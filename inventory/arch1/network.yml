@@ -7,6 +7,9 @@ all:
   children:
     network:
       children:
+        internet_routers:
+          hosts:
+            internet-rtr1:
         site_routers:
           hosts:
             hq-rtr1:

@@ -77,14 +77,35 @@
         image_definition: "{{ virl_image_definition | default(omit) }}"
         config: "{{ day0_config | default(omit) }}"
 
+- name: Start Systems
+  hosts: client:&virl_hosts
+  connection: local
+  gather_facts: no
+  tags:
+    - start
+    - network
+  tasks:
+    - name: Generating day0 config
+      set_fact:
+        day0_config: "{{ lookup('template', virl_config_template) }}"
+      when: virl_config_template is defined
+
+    - name: Start Node
+      virl_node:
+        name: "{{ inventory_hostname }}"
+        host: "{{ virl_host }}"
+        user: "{{ virl_username }}"
+        password: "{{ virl_password }}"
+        lab: "{{ virl_lab }}"
+        state: started
+        image_definition: "{{ virl_image_definition | default(omit) }}"
+        config: "{{ day0_config | default(omit) }}"
+
 - name: Check initial topology connectivity
-  hosts: hq-rtr1:&virl_hosts
+  hosts: internet-rtr1:&virl_hosts
   connection: local
   tags:
-    - check_control
-    - check_all
     - network
-    - CA
   any_errors_fatal: true
   gather_facts: no
   tasks:
@@ -113,7 +134,7 @@
       until: result is not failed
       connection: network_cli
 
-    - name: Ping inside interface of Internet routers
+    - name: Ping inside interface of site routers
       ios_ping:
         dest: "{{ hostvars[item].interfaces.GigabitEthernet2.ip.primary | ipaddr('address') }}"
       loop: "{{ groups.site_routers | intersect(groups.virl_hosts) }}"
@@ -123,26 +144,12 @@
       until: result is not failed
       connection: network_cli
 
-- name: Start Systems
-  hosts: system:&virl_hosts
-  connection: local
-  gather_facts: no
-  tags:
-    - start
-    - network
-  tasks:
-    - name: Generating day0 config
-      set_fact:
-        day0_config: "{{ lookup('template', virl_config_template) }}"
-      when: virl_config_template is defined
-
-    - name: Start Node
-      virl_node:
-        name: "{{ inventory_hostname }}"
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
-        state: started
-        image_definition: "{{ virl_image_definition | default(omit) }}"
-        config: "{{ day0_config | default(omit) }}"
+    - name: Ping client hosts
+      ios_ping:
+        dest: "{{ hostvars[item].host_ip | ipaddr('address') }}"
+      loop: "{{ groups.client | intersect(groups.virl_hosts) }}"
+      register: result
+      retries: 60
+      delay: 10
+      until: result is not failed
+      connection: network_cli
