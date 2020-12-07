@@ -1,0 +1,18 @@
+all:
+  children:
+    system:
+      vars:
+        virl_config_template: virl/host.j2
+        host_interface: ens2
+      children:
+        client:
+          hosts:
+            hq-host1:
+              host_ip: 172.16.0.100/24
+              host_gateway: 172.16.0.1
+            site1-host1:
+              host_ip: 192.168.1.100/24
+              host_gateway: 192.168.1.1
+            site2-host1:
+              host_ip: 192.168.2.100/24
+              host_gateway: 192.168.2.1

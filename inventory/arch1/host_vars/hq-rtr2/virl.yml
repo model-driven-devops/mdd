@@ -1,0 +1,3 @@
+virl_config_template: ios/virl.j2
+virl_mgmt_interface: GigabitEthernet8
+virl_image_definition: "csr1000v-{{ csr1000v_version }}"

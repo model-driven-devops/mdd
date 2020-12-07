@@ -1,0 +1,8 @@
+venv/
+myCA/
+licenses/
+.virl/
+.virlrc
+*.pyc
+*.retry
+viptela_api_cookie

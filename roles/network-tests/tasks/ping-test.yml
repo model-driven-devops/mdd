@@ -1,0 +1,13 @@
+- set_fact:
+    edge_type: ios
+
+- include_tasks:
+    file: "ping-{{ edge_type }}.yml"
+
+- debug:
+    msg: "{{ ping_host }} => {{ ping_dst_ip }}: {{ ping_rx }}/{{ ping_tx }}, {{ ping_loss }} loss, Pass(actual/expected) {{ actual_result }}/{{ expected_result }}"
+  failed_when: actual_result != expected_result
+  ignore_errors: False
+  vars:
+    actual_result: "{{ True if ping_loss != '100%' else False }}"
+    expected_result: "{{ ping_pass }}"

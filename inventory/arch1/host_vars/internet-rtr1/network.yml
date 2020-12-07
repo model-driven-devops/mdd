@@ -1,0 +1,60 @@
+interfaces:
+  GigabitEthernet1:
+    enabled: true
+    ip:
+      primary: 10.0.0.1/30
+  GigabitEthernet2:
+    enabled: true
+    ip:
+      primary: 10.0.0.5/30
+  GigabitEthernet3:
+    enabled: true
+    ip:
+      primary: 10.0.0.9/30
+  GigabitEthernet4:
+    enabled: true
+    ip:
+      primary: 10.0.0.13/30  
+  GigabitEthernet8:
+    vrf: Mgmt-intf
+    enabled: true
+    ip:
+      primary: dhcp        
+
+static_routes:
+  global:
+    - network: 0.0.0.0/0
+      fwd_list:
+        - fwd: Null0
+    - network: 10.0.0.0/8
+      fwd_list:
+        - fwd: Null0        
+
+router:
+  bgp:
+    id: 65000
+    log_neighbor_changes: true
+    router_id: 10.0.0.1
+    neighbors:
+      - id: 10.0.0.2
+        remote_as: 65100
+      - id: 10.0.0.6
+        remote_as: 65100
+      - id: 10.0.0.10
+        remote_as: 65101
+      - id: 10.0.0.14
+        remote_as: 65102
+    address_family:
+      global:
+        ipv4:
+          neighbors:
+            - id: 10.0.0.2
+              activate: true
+            - id: 0.0.0.6
+              activate: true
+            - id: 10.0.0.10
+              activate: true
+            - id: 10.0.0.14
+              activate: true
+          networks:
+            - network: 10.0.0.0/8

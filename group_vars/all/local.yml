@@ -1,0 +1,1 @@
+csr1000v_version: "{{ lookup('env','CSR1000V_VERSION') | default('170101', true) }}"
