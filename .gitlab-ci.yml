@@ -1,0 +1,33 @@
+stages:
+  - clean
+  - build
+  - test
+
+image: ciscops/ansible-devops
+
+variables:
+  ANSIBLE_GATHERING: "smart"
+  ANSIBLE_CONFIG: "./ansible.cfg"
+  ANSIBLE_ROLES_PATH: "./roles"
+  GIT_SUBMODULE_STRATEGY: "recursive"
+
+clean:
+  stage: clean
+  script:
+    - ansible-playbook clean-cml.yml
+  only:
+    changes:
+      - files/arch1.yaml
+  
+build:
+  stage: build
+  script:
+    - ansible-playbook build-cml.yml
+  only:
+    changes:
+      - files/arch1.yaml
+    
+test:
+  stage: test
+  script:
+    - ansible-playbook check-network.yml
