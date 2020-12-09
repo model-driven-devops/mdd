@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 OPTIONS=""
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
@@ -19,4 +20,4 @@ fi
 
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
-docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ansible-devops ansible-playbook "$@"
+docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ciscops/ansible-devops ansible-playbook "$@"
