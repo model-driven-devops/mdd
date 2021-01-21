@@ -1,0 +1,9 @@
+- name: Update the configuration
+  hosts: "{{ passed | default('network') }}" 
+  connection: network_cli
+  gather_facts: no
+  tasks:
+    - name: Apply config
+      ios_config:
+        src: "{{ virl_config_template }}"
+      when: virl_config_template is defined
