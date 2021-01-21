@@ -1,6 +1,7 @@
 stages:
   - clean
   - build
+  - update
   - test
 
 image: ciscops/ansible-devops
@@ -26,7 +27,12 @@ build:
   only:
     changes:
       - files/arch1.yaml
-    
+
+update:
+  stage: update
+  script:
+    - ansible-playbook update-network.yml
+
 test:
   stage: test
   script:
