@@ -1,8 +1,6 @@
 #jinja2: lstrip_blocks: True, trim_blocks: True
 {{ lookup('template', 'ios/cli/system.j2') }}
 !
-license smart enable
-!
 username {{ ansible_user }} privilege 15 secret {{ ansible_password }}
 crypto key generate rsa modulus 2048
 !
