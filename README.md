@@ -77,6 +77,7 @@
     Password: 
     Welcome to site1-rtr1!
     ```
+1. Exit out of the ssh session.
 
 1. Edit the `inventory/arch1/group_vars/all/system.yml` file and replace the line containing `banner_motd`.
     Replace:
@@ -113,7 +114,7 @@
 1. Congratulations! You created a fully functioning CI pipeline for a model-driven network.
 
 ## Making a change that fails validation
-1. From the shell, edit the `inventory/arch1/host_vars/site1-rtr1/network.yml` file and change the `primary` IP address for GigabitEthernet2.  Replace
+1. From the shell, edit the `inventory/arch1/host_vars/site1-rtr1/network.yml` file and change the `primary` IP address for GigabitEthernet2.  Replace:
     ```
     primary: 192.168.1.1/24
     ```
