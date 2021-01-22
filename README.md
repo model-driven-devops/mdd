@@ -3,8 +3,6 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 
 > Note: The tools in this repo only work from a Unix environment with Docker (e.g. Linux, MacOS, etc.) due to issues with Ansible and file permissions mapping between Windows and the Linux container used in `play.sh`.  WSL2 may fix this issue and we will revisit when WSL2 is released.
 
-> Note: This repo is tested against CML^2 and VMware vCenter 6.7.
-
 ## Requirements
 - [Docker](https://www.docker.com) - required to run playbooks using the `play.sh` wrapper
 - [Cisco Modeling Labs](https://www.cisco.com/c/en/us/products/cloud-systems-management/modeling-labs/index.html) - required to simulate the topology
