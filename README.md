@@ -4,12 +4,12 @@
 
 ## Setup
 
-1. Clone the devops-demo repo.
+1. Clone the repo.
     ```
     git clone https://github.com/ciscops/model-driven-devops.git
     ```
 
-1. Change to the devops-demo directory.
+1. Change to the model-driven-devops directory.
     ```
     cd model-driven-devops
     ```
