@@ -1,6 +1,6 @@
 hostname {{ inventory_hostname.split('.')[0] }}
 ip domain name {{ domain_name | default('local') }}
 {% if banner_motd is defined %}
-banner motd ^C{{ banner_motd }}^C
+banner motd ^{{ banner_motd }}^
 {% endif %}{# banner_motd is defined #}
 !
