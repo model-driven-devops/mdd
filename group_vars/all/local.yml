@@ -1,1 +1,2 @@
 csr1000v_version: "{{ lookup('env','CSR1000V_VERSION') | default('170101', true) }}"
+iosvl2_version: "{{ lookup('env','IOSVL2_VERSION') | default('2019', true) }}"

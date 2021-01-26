@@ -1,2 +1,2 @@
 virl_config_template: iosl2/virl.j2
-virl_mgmt_interface: Vlan1
+virl_image_definition: "iosvl2-{{ iosvl2_version }}"
