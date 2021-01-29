@@ -1,8 +1,8 @@
 lab:
   description: ''
   notes: ''
-  timestamp: 1607303798.5816956
-  title: jasonkin_sdwan
+  timestamp: 1611957979.8345087
+  title: arch1.yaml
   version: 0.0.4
 nodes:
   - id: n7
@@ -10,70 +10,7 @@ nodes:
     node_definition: csr1000v
     x: -500
     y: -150
-    configuration: |-
-      hostname internet-rtr1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface GigabitEthernet1
-       ip address 10.0.0.1 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 10.0.0.5 255.255.255.252
-       no shut
-      interface GigabitEthernet3
-       ip address 10.0.0.9 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       ip address 10.0.0.13 255.255.255.252
-       no shut
-      interface GigabitEthernet8
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  10.0.0.0 255.0.0.0 Null0
-
-      !
-      router bgp 65000
-       bgp router-id 10.0.0.1
-       neighbor 10.0.0.2 remote-as 65100
-       neighbor 10.0.0.6 remote-as 65100
-       neighbor 10.0.0.10 remote-as 65101
-       neighbor 10.0.0.14 remote-as 65102
-       address-family ipv4
-        network 10.0.0.0 mask 255.0.0.0
-        neighbor 10.0.0.2 activate
-        neighbor 0.0.0.6 activate
-        neighbor 10.0.0.10 activate
-        neighbor 10.0.0.14 activate
-
-      !
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname internet-rtr1
     image_definition: csr1000v-170101
     tags: []
     interfaces:
@@ -213,46 +150,7 @@ nodes:
     node_definition: iosvl2
     x: -900
     y: -200
-    configuration: |-
-      hostname hq-sw1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Vlan1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-      interface GigabitEthernet0/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-      interface GigabitEthernet0/1
-       switchport trunk encapsulation dot1q
-       switchport mode trunk
-       no shut
-      interface GigabitEthernet1/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-
-      !
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname hq-sw1
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -328,46 +226,7 @@ nodes:
     node_definition: iosvl2
     x: -900
     y: -100
-    configuration: |-
-      hostname hq-sw2
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Vlan1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-      interface GigabitEthernet0/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-      interface GigabitEthernet0/1
-       switchport trunk encapsulation dot1q
-       switchport mode trunk
-       no shut
-      interface GigabitEthernet1/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-
-      !
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname hq-sw2
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -443,42 +302,7 @@ nodes:
     node_definition: iosvl2
     x: -100
     y: -250
-    configuration: |-
-      hostname site1-sw1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Vlan1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-      interface GigabitEthernet0/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-      interface GigabitEthernet1/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-
-      !
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname site1-sw1
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -566,70 +390,7 @@ nodes:
     node_definition: csr1000v
     x: -750
     y: -200
-    configuration: |-
-      hostname hq-rtr1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface GigabitEthernet1
-       ip address 10.0.0.2 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 172.16.0.2 255.255.255.0
-       standby 1 priority 100
-       standby 1 ip 172.16.0.1
-       no shut
-      interface GigabitEthernet3
-       ip address 172.16.255.1 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  172.16.0.0 255.255.0.0 Null0
-
-      !
-      router bgp 65100
-       bgp router-id 172.16.255.1
-       neighbor 172.16.255.2 remote-as 65100
-       neighbor 10.0.0.1 remote-as 65000
-       address-family ipv4
-        network 172.16.0.0 mask 255.255.0.0
-        neighbor 172.16.255.2 activate
-        neighbor 10.0.0.1 activate
-        neighbor 10.0.0.1 next-hop-self
-
-      !
-      router ospf 65100
-       router-id 172.16.255.1
-       network 172.16.0.0 255.255.0.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname hq-rtr1
     image_definition: csr1000v-170101
     tags: []
     interfaces:
@@ -769,70 +530,7 @@ nodes:
     node_definition: csr1000v
     x: -750
     y: -100
-    configuration: |-
-      hostname hq-rtr2
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface GigabitEthernet1
-       ip address 10.0.0.6 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 172.16.0.3 255.255.255.0
-       standby 1 priority 1
-       standby 1 ip 172.16.0.1
-       no shut
-      interface GigabitEthernet3
-       ip address 172.16.255.2 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  172.16.0.0 255.255.0.0 Null0
-
-      !
-      router bgp 65100
-       bgp router-id 172.16.255.2
-       neighbor 172.16.255.1 remote-as 65100
-       neighbor 10.0.0.5 remote-as 65000
-       address-family ipv4
-        network 172.16.0.0 mask 255.255.0.0
-        neighbor 172.16.255.1 activate
-        neighbor 10.0.0.5 activate
-        neighbor 10.0.0.5 next-hop-self
-
-      !
-      router ospf 65100
-       router-id 172.16.255.2
-       network 172.16.0.0 255.255.0.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname hq-rtr2
     image_definition: csr1000v-170101
     tags: []
     interfaces:
@@ -972,63 +670,7 @@ nodes:
     node_definition: csr1000v
     x: -250
     y: -250
-    configuration: |-
-      hostname site1-rtr1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface GigabitEthernet1
-       ip address 10.0.0.10 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 192.168.1.1 255.255.255.0
-       no shut
-      interface GigabitEthernet3
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  192.168.1.0 255.255.255.0 Null0
-
-      !
-      router bgp 65101
-       bgp router-id 192.168.1.1
-       neighbor 10.0.0.9 remote-as 65000
-       address-family ipv4
-        network 192.168.1.0 mask 255.255.255.0
-        neighbor 10.0.0.9 activate
-        neighbor 10.0.0.9 next-hop-self
-
-      !
-      router ospf 65101
-       router-id 192.168.1.1
-       network 192.168.1.0 255.255.255.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname site1-rtr1
     image_definition: csr1000v-170101
     tags: []
     interfaces:
@@ -1174,10 +816,6 @@ nodes:
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: site1-host1
-      runcmd:
-       - sudo ip address add 192.168.1.100/24 dev ens2
-       - sudo ip link set dev ens2 up
-       - sudo ip route add default via 192.168.1.1
     image_definition: ubuntu-18-04
     tags: []
     interfaces:
@@ -1200,10 +838,6 @@ nodes:
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: hq-host1
-      runcmd:
-       - sudo ip address add 172.16.0.100/24 dev ens2
-       - sudo ip link set dev ens2 up
-       - sudo ip route add default via 172.16.0.1
     image_definition: ubuntu-18-04
     tags: []
     interfaces:
@@ -1244,63 +878,7 @@ nodes:
     node_definition: csr1000v
     x: -250
     y: -100
-    configuration: |-
-      hostname site2-rtr1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface GigabitEthernet1
-       ip address 10.0.0.14 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 192.168.2.1 255.255.255.0
-       no shut
-      interface GigabitEthernet3
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  192.168.2.0 255.255.255.0 Null0
-
-      !
-      router bgp 65102
-       bgp router-id 192.168.2.1
-       neighbor 10.0.0.13 remote-as 65000
-       address-family ipv4
-        network 192.168.2.0 mask 255.255.255.0
-        neighbor 10.0.0.13 activate
-        neighbor 10.0.0.13 next-hop-self
-
-      !
-      router ospf 65102
-       router-id 192.168.2.1
-       network 192.168.2.0 255.255.255.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname site2-rtr1
     image_definition: csr1000v-170101
     tags: []
     interfaces:
@@ -1328,42 +906,7 @@ nodes:
     node_definition: iosvl2
     x: -100
     y: -100
-    configuration: |-
-      hostname site2-sw1
-      ip domain name virl.local
-      !
-      !
-      license smart enable
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Vlan1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-      interface GigabitEthernet0/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-      interface GigabitEthernet1/0
-       switchport mode access
-       switchport access vlan 10
-       no shut
-
-      !
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: hostname site2-sw1
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -1445,10 +988,6 @@ nodes:
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: site2-host1
-      runcmd:
-       - sudo ip address add 192.168.2.100/24 dev ens2
-       - sudo ip link set dev ens2 up
-       - sudo ip route add default via 192.168.2.1
     image_definition: ubuntu-19-10
     tags: []
     interfaces:
