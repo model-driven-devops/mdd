@@ -1,0 +1,35 @@
+- name: NSO host Python bootstrap
+  import_tasks: nso-bootstrap.yml
+  become: true
+  any_errors_fatal: true
+  tags:
+    - bootstrap
+    - install
+
+- name: Install NSO
+  import_tasks: nso-install.yml
+  become: false
+  any_errors_fatal: true
+  tags:
+    - install
+
+- name: Install packages
+  import_tasks: nso-packages.yml
+  become: false
+  any_errors_fatal: true
+  tags:
+    - install
+
+- name: Generate device list
+  import_tasks: nso-generateDeviceList.yml
+  become: false
+  any_errors_fatal: true
+  tags:
+    - start
+
+- name: Start NSO
+  import_tasks: nso-startNSO.yml
+  become: false
+  any_errors_fatal: true
+  tags:
+    - start

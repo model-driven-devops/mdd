@@ -1,4 +1,8 @@
 interfaces:
+  Loopback0:
+    enabled: true
+    ip:
+      primary: 172.16.255.2/32
   GigabitEthernet1:
     enabled: true
     ip:
@@ -14,7 +18,7 @@ interfaces:
   GigabitEthernet3:
     enabled: true
     ip:
-      primary: 172.16.255.2/30  
+      primary: 172.16.254.2/30  
   GigabitEthernet4:
     vrf: Mgmt-intf
     enabled: true
@@ -43,7 +47,7 @@ router:
     log_neighbor_changes: true
     router_id: 172.16.255.2
     neighbors:
-      - id: 172.16.255.1
+      - id: 172.16.254.1
         remote_as: 65100
       - id: 10.0.0.5
         remote_as: 65000
@@ -51,7 +55,7 @@ router:
       global:
         ipv4:
           neighbors:
-            - id: 172.16.255.1
+            - id: 172.16.254.1
               activate: true
             - id: 10.0.0.5
               activate: true

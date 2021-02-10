@@ -1,0 +1,17 @@
+---
+- name: Determine device addresses
+  virl_lab_facts:
+    host: "{{ virl_host }}"
+    user: "{{ virl_username }}"
+    password: "{{ virl_password }}"
+    lab: "{{ virl_lab }}"
+  no_log: true
+  delegate_to: localhost
+  register: result
+  until: result.virl_facts.nodes[inventory_hostname].ansible_host is defined and result.virl_facts.nodes[inventory_hostname].ansible_host
+  retries: 30
+  delay: 10
+  when: mgmt_ip is undefined or mgmt_ip == 'dhcp'
+
+- name: Refresh CML inventory
+  meta: refresh_inventory

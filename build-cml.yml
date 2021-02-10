@@ -78,7 +78,7 @@
         config: "{{ day0_config | default(omit) }}"
 
 - name: Start Systems
-  hosts: client:&virl_hosts
+  hosts: system:&virl_hosts
   connection: local
   gather_facts: no
   tags:
@@ -143,10 +143,10 @@
       until: result is not failed
       connection: network_cli
 
-    - name: Ping client hosts
+    - name: Ping hosts
       ios_ping:
         dest: "{{ hostvars[item].host_ip | ipaddr('address') }}"
-      loop: "{{ groups.client | intersect(groups.virl_hosts) }}"
+      loop: "{{ groups.system | intersect(groups.virl_hosts) }}"
       register: result
       retries: 60
       delay: 10

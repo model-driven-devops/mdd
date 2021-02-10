@@ -1,0 +1,53 @@
+---
+- name: Remove install directory
+  file:
+    path: '/home/{{ admin_user }}/{{ nso_install_dir }}'
+    state: absent
+
+- name: Remove run directory
+  file:
+    path: '/home/{{ admin_user }}/{{ nso_run_dir }}'
+    state: absent
+
+- name: Create temporary installer directory
+  tempfile:
+    state: directory
+    suffix: installer
+  register: tempdir
+
+- name: Upload the NSO installer
+  copy:
+    src: '{{ playbook_dir }}/packages/{{ nso_installer_name }}'
+    dest: '{{ tempdir.path }}/{{ nso_installer_name }}'
+
+- set_fact:
+    installer: '{{ nso_installer_name }}'
+
+- block:
+    - name: "Unpack '{{ nso_installer_name }}'"
+      shell: 'cd {{ tempdir.path }}; sh ./{{ nso_installer_name }} --skip-verification'
+
+    - set_fact:
+        installer: '{{ nso_installer_name | regex_replace("signed.bin$","installer.bin") }}'
+  when: '"signed.bin" in nso_installer_name'
+
+- name: Run the NSO installer
+  shell: 'sh {{ tempdir.path }}/{{ installer }} $HOME/{{ nso_install_dir }} --local-install'
+
+- name: Clean up installer
+  file:
+    path: '{{ tempdir.path }}'
+    state: absent
+
+- name: Tweak bash profile
+  blockinfile:
+    path: '/home/{{ admin_user }}/.bashrc'
+    insertafter: EOF
+    block: |
+      if [ -f ~/{{ nso_install_dir }}/ncsrc ]; then
+          . ~/{{ nso_install_dir }}/ncsrc
+      fi
+      export NCS_JAVA_VM_OPTIONS="{{ nso_java_opts }}"
+
+- name: Initial NSO setup
+  shell: '$HOME/{{ nso_install_dir }}/bin/ncs-setup --dest $HOME/{{ nso_run_dir }}'

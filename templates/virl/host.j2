@@ -2,29 +2,49 @@
 password: {{ ansible_password }}
 chpasswd: { expire: False }
 ssh_pwauth: True
-hostname: {{ inventory_hostname }}
-{% if interfaces is defined %}
-{%   for key, value in interfaces.items() %}
-{%     if value.enabled is defined and value.enabled is sameas true and value.ip is defined and value.ip.primary is defined %}
-runcmd:
- - sudo ip address add {{ value.ip.primary }} dev {{ key }}
- - sudo ip link set dev {{ key }} up
-{%     endif %}
-{%   endfor %}
+{% if admin_key is defined %}
+ssh_authorized_keys:
+  - {{ admin_key }}
 {% endif %}
-{% if static_routes is defined %}
-{%  for vrf, value in static_routes.items() %}
-{%   for route in value|default([]) %}
-{%    for dest in route.fwd_list|default([]) %}
- - sudo ip route add {{ route.network }} via {{ dest.fwd }}
-{%    endfor %}
-{%   endfor %}
-{%  endfor %}
-{% elif host_ip is defined %}
+hostname: {{ inventory_hostname }}
+apt:
+  preserve_sources_list: false
+  primary:
+    - arches:
+        - default
+      uri: 'http://us.archive.ubuntu.com/ubuntu'
+      search_dns: true
+  security:
+    - arches:
+        - default
+      uri: 'http://us.archive.ubuntu.com/ubuntu'
+      search_dns: true
+{% if interfaces is defined or static_routes is defined or host_ip is defined %}
 runcmd:
+{%  if host_ip is defined %}
  - sudo ip address add {{ host_ip }} dev {{ host_interface | default('eth0') }}
  - sudo ip link set dev {{ host_interface | default('eth0') }} up
 {%   if host_gateway is defined %}
  - sudo ip route add default via {{ host_gateway }}
 {%   endif %}
+{%  endif %}
+{%  if interfaces is defined %}
+{%   for key, value in interfaces.items() %}
+{%     if value.enabled is defined and value.enabled is sameas true %}
+{%       if value.ip is defined and value.ip.primary is defined %}
+ - sudo ip address add {{ value.ip.primary }} dev {{ key }}
+ - sudo ip link set dev {{ key }} up
+{%       else %}
+ - sudo dhclient {{ key }}
+{%       endif %}
+{%     endif %}
+{%   endfor %}
+{%  endif %}
+{%  if static_routes is defined %}
+{%   for route, value in static_routes.items() %}
+{%    if value.next_hop is defined %}
+ - sudo ip route add {{ route }} via {{ value.next_hop }}
+{%    endif %}
+{%   endfor %}
+{%  endif %}
 {% endif %}

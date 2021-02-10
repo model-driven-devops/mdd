@@ -1,0 +1,15 @@
+---
+- name: Install Python
+  raw: test -e /usr/bin/python || ( apt -o Acquire::ForceIPv4=true update && apt -o Acquire::ForceIPv4=true install python3 -y )
+
+- name: Install prerequisites for NSO
+  apt:
+    name:
+      - default-jdk
+      - openssh-client
+      - ant
+      - make
+      - libxml2-utils
+      - xsltproc
+    update_cache: yes
+    install-recommends: no

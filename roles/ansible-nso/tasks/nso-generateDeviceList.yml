@@ -1,0 +1,5 @@
+---
+- name: Generating device list seed
+  template:
+    src: "{{ nso_devices_seed_template }}"
+    dest: "{{ nso_run_dir }}/ncs-cdb/nso-deviceSetup.xml"

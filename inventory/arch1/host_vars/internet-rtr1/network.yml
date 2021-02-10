@@ -1,4 +1,8 @@
 interfaces:
+  Loopback0:
+    enabled: true
+    ip:
+      primary: 10.255.255.1/32
   GigabitEthernet1:
     enabled: true
     ip:
@@ -34,7 +38,7 @@ router:
   bgp:
     id: 65000
     log_neighbor_changes: true
-    router_id: 10.0.0.1
+    router_id: 10.255.255.1
     neighbors:
       - id: 10.0.0.2
         remote_as: 65100
