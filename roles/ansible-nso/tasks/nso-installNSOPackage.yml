@@ -1,9 +1,18 @@
 ---
 # unarchive would be better if it didn't complain about the .tar.gz format (not supposed to)
-- name: "Upload '{{ item }}'"
-  copy:
-    src: '{{ playbook_dir }}/packages/{{ item }}'
+# - name: "Upload '{{ item }}'"
+#   copy:
+#     src: '{{ playbook_dir }}/packages/{{ item }}'
+#     dest: '{{ tempdir.path }}/{{ item }}'
+
+- aws_s3:
+    aws_access_key: '{{ aws_access_key_id }}'
+    aws_secret_key: '{{ aws_secret_access_key }}'
+    region: '{{ aws_region }}'
+    bucket: '{{ aws_bucket }}'
+    object: '{{ item }}'
     dest: '{{ tempdir.path }}/{{ item }}'
+    mode: get
 
 - set_fact:
     pkg_name: '{{ item }}'

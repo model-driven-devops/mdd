@@ -11,5 +11,8 @@
       - make
       - libxml2-utils
       - xsltproc
+      - python3-boto
+      - python3-boto3
+      - python3-botocore
     update_cache: yes
     install-recommends: no

@@ -15,10 +15,19 @@
     suffix: installer
   register: tempdir
 
-- name: Upload the NSO installer
-  copy:
-    src: '{{ playbook_dir }}/packages/{{ nso_installer_name }}'
+# - name: Upload the NSO installer
+#   copy:
+#     src: '{{ playbook_dir }}/packages/{{ nso_installer_name }}'
+#     dest: '{{ tempdir.path }}/{{ nso_installer_name }}'
+
+- aws_s3:
+    aws_access_key: '{{ aws_access_key_id }}'
+    aws_secret_key: '{{ aws_secret_access_key }}'
+    region: '{{ aws_region }}'
+    bucket: '{{ aws_bucket }}'
+    object: '{{ nso_installer_name }}'
     dest: '{{ tempdir.path }}/{{ nso_installer_name }}'
+    mode: get
 
 - set_fact:
     installer: '{{ nso_installer_name }}'

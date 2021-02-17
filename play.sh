@@ -17,6 +17,18 @@ fi
 if [[ ! -z "$VIRL_LAB" ]]; then
    OPTIONS="$OPTIONS --env VIRL_LAB=$VIRL_LAB"
 fi
+if [[ ! -z "$AWS_ACCESS_KEY_ID" ]]; then
+   OPTIONS="$OPTIONS --env AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+fi
+if [[ ! -z "$AWS_SECRET_ACCESS_KEY" ]]; then
+   OPTIONS="$OPTIONS --env AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY"
+fi
+if [[ ! -z "$AWS_REGION" ]]; then
+   OPTIONS="$OPTIONS --env AWS_REGION=$AWS_REGION"
+fi
+if [[ ! -z "$AWS_BUCKET" ]]; then
+   OPTIONS="$OPTIONS --env AWS_BUCKET=$AWS_BUCKET"
+fi
 
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
