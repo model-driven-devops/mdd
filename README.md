@@ -12,7 +12,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 
 1. Clone the repo.
     ```
-    git clone https://github.com/ciscops/model-driven-devops.git
+    git clone -b cidr-919 https://github.com/ciscops/model-driven-devops.git
     ```
 
 1. Change to the model-driven-devops directory.
@@ -24,14 +24,20 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 1.  Export the following variables to match your environment.
     ```
     export VIRL_HOST=cml.example.com
-    export VIRL_USERNAME=cml2
-    export VIRL_PASSWORD=foo
+    export VIRL_USERNAME=
+    export VIRL_PASSWORD=
     export VIRL_LAB=my_lab
     export GITLAB_HOST=https://gitlab.example.com
-    export GITLAB_USER=foo
-    export GITLAB_API_TOKEN=abc123
+    export GITLAB_USER=
+    export GITLAB_API_TOKEN=
     export GITLAB_PROJECT=model-driven-devops
+    export AWS_ACCESS_KEY_ID=
+    export AWS_SECRET_ACCESS_KEY=
+    export AWS_REGION=
+    export AWS_BUCKET=
     ```
+
+    > Note: AWS S3 bucket used for NSO packages
 
 ## Create a CI pipeline in GitLab
 
@@ -40,24 +46,12 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     extras/create-gitlab-project.sh
     ```
 
-1. Remove the old origin
+1. Remove the old origin, add new origin and push to GitLab.
     ```
     git remote remove origin
-    ```
-
-1. Add a new origin that points to your newly created GitLab project.
-    ```
     git remote add origin $GITLAB_HOST/$GITLAB_USER/$GITLAB_PROJECT.git
-    ```
-
-1. (Optional) GitLab can sometimes fail with HTTP/2 over slow connections.  Use HTTP/1.1 if this happens.
-    ```
     git config http.version HTTP/1.1
-    ```
-
-1. Now push the commits to your new project.
-    ```
-    git push --set-upstream origin master
+    git push --set-upstream origin cidr-919
     ```
 
     >Note: enter your GitLab credentials if asked
