@@ -6,34 +6,5 @@
     - install
     - start
 
-- name: Sync devices
-  hosts: nso_hosts:&virl_hosts
-  tags:
-    - devices
-  connection: local
-  gather_facts: no
-  tasks:
-    - name: Request fetch SSH keys from devices
-      nso_action:
-        url: "http://{{ ansible_host }}:8080/jsonrpc"
-        username: "{{ admin_user }}"
-        password: "{{ admin_password }}"
-        path: /ncs:devices/fetch-ssh-host-keys
-        input:
-          suppress-unchanged-result: None
-      register: output
-
-    # - debug:
-    #     var: output
-
-    - name: Trigger NSO to sync config from devices
-      nso_action:
-        url: "http://{{ ansible_host }}:8080/jsonrpc"
-        username: "{{ admin_user }}"
-        password: "{{ admin_password }}"
-        path: /ncs:devices/sync-from
-        input: {}
-      register: output
-
-    # - debug:
-    #     var: output
+- import_playbook: sync-nso.yml
+  tags: sync
