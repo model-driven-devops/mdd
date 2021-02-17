@@ -29,10 +29,10 @@ build-cml:
     changes:
       - files/arch2.yaml
 
-build-cml:
-  stage: build-cml
+build-nso:
+  stage: build-nso
   script:
-    - ansible-playbook build-cml.yml
+    - ansible-playbook build-nso.yml
   only:
     changes:
       - files/arch2.yaml
