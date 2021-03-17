@@ -23,13 +23,13 @@ ping_tests:
 # Test internet-to-site
 #
   - dst_ip: 172.16.0.100
-    src_host: intenet-rtr1
+    src_host: internet-rtr1
     pass: yes
   - dst_ip: 192.168.1.100
-    src_host: intenet-rtr1
+    src_host: internet-rtr1
     pass: yes
   - dst_ip: 192.168.2.100
-    src_host: intenet-rtr1
+    src_host: internet-rtr1
     pass: yes
 
 

@@ -21,12 +21,25 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     ```
     >Note: all future commands should be executed from this directory.
 
+1. If using CoLaboratory, build gitlab deployment. 
+    ```   
+    In WebEx, send COLABOT "gitlab build" command
+    ```
+   >Note: This will take approximately 10 minutes.
+
+1. If using CoLaboratory, log into GitLab and create GITLAB_API_TOKEN
+   - Use your personal GitLab deployment URL, username, and password messaged to you by COLABOT
+   - In the upper left of console, click on the symbol for your account and then Settings
+   - In the left menu, click on "Access Tokens"
+   - Provide a token name, expiration, the api scope, click "Create personal access token", and save the generated TOKEN for the next step
+
 1.  Export the following variables to match your environment.
     ```
     export VIRL_HOST=cml.example.com
     export VIRL_USERNAME=
     export VIRL_PASSWORD=
     export VIRL_LAB=my_lab
+    export CML_VERIFY_CERT=false
     export GITLAB_HOST=https://gitlab.example.com
     export GITLAB_USER=
     export GITLAB_API_TOKEN=
@@ -56,7 +69,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 
     >Note: enter your GitLab credentials if asked
 
-1. From the GitLab web UI, navigate to the CI/CD -> Pipelines page for the project. You should see a pipeline currently active since we commited the model-driven-devops code and we had a `.gitlab-ci.yml` file present. If that file is present, GitLab will automatically try to execute the CI pipeline defined inside.
+1. From the GitLab web UI, navigate to the CI/CD -> Pipelines page for the project. You should see a pipeline currently active since we committed the model-driven-devops code and we had a `.gitlab-ci.yml` file present. If that file is present, GitLab will automatically try to execute the CI pipeline defined inside.
 
 1. Use the graphical representation of the pipeline to click through the console output of the various stages. The entire pipeline will take approximately ~8 minutes to complete. Wait until it completes to go onto the next step.
 
