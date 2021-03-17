@@ -74,23 +74,25 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 1. Use the graphical representation of the pipeline to click through the console output of the various stages. The entire pipeline will take approximately ~8 minutes to complete. Wait until it completes to go onto the next step.
 
 ## Modify infrastructure-as-code to exercise the CI pipeline
-1. From the shell, run the `cml-inventory.yml` playbook to find your **site1-rtr1** IP-address.
+1. From the shell, run the `cml-inventory.yml` playbook to find your **internet-rtr1** IP-address.
     ```
-    ./play.sh --limit "site1-rtr1" cml-inventory.yml
+    ./play.sh --limit "internet-rtr1" cml-inventory.yml
     ```
 
-1. SSH to the site1-rtr1 IP-address, using credentials admin/admin.
+1. SSH to the internet-rtr1 IP-address, using credentials admin/admin.
     ```
-    ssh admin@<your site1-rtr1 IP-address>
+    ssh admin@<your internet-rtr1 IP-address>
     ```
 
 1. Verify the banner when you login. It should look something like:
     ```
     % ssh admin@192.133.186.206
     Password: 
-    Welcome to site1-rtr1!
+    Welcome to internet-rtr1!
     ```
 1. Exit out of the ssh session.
+
+##Good to here...
 
 1. Edit the `inventory/arch1/group_vars/all/system.yml` file and replace the line containing `banner_motd`.
     Replace:
