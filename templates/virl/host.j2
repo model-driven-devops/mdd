@@ -19,6 +19,49 @@ apt:
         - default
       uri: 'http://us.archive.ubuntu.com/ubuntu'
       search_dns: true
+{%  if inventory_hostname == 'hq-netbox' %}
+package_update: true
+packages:
+ - git
+ - curl
+write_files:
+  - path: /home/ubuntu/docker-compose.override.yml
+    content: |
+      version: '3.4'
+      services:
+        netbox:
+          ports:
+            - 8000:8080
+  - path: /home/ubuntu/nb_prep.py
+    content: |
+      import yaml
+      import os
+      os.rename('/home/ubuntu/netbox-docker/docker-compose.yml', '/home/ubuntu/netbox-docker/docker-compose.yml.original')
+      with open('/home/ubuntu/netbox-docker/docker-compose.yml.original', 'r') as f:
+          doc = yaml.safe_load(f)
+      doc2 = dict(doc)
+      for i in doc['services']:
+          doc2['services'][i]['restart'] = 'always'
+      with open('/home/ubuntu/netbox-docker/docker-compose.yml', 'w') as f:
+          yaml.dump(doc2, f, default_flow_style=False)
+  - path: /etc/init.d/netbox_stop.sh
+    content: |
+      #!/bin/bash
+      cd /home/ubuntu/netbox-docker
+      sudo docker-compose stop
+  - path: /home/ubuntu/startup.sh
+    permissions: '0755'
+    content: |
+      #!/bin/bash
+      cd /home/ubuntu
+      sudo git clone -b release https://github.com/netbox-community/netbox-docker.git
+      cd /home/ubuntu/netbox-docker
+      cp /home/ubuntu/docker-compose.override.yml /home/ubuntu/netbox-docker/docker-compose.override.yml
+      cp /home/ubuntu/nb_prep.py /home/ubuntu/netbox-docker/nb_prep.py
+      sudo python /home/ubuntu/netbox-docker/nb_prep.py
+      sudo docker-compose pull
+      sudo docker-compose up
+{%   endif %}
 {% if interfaces is defined or static_routes is defined or host_ip is defined %}
 runcmd:
 {%  if host_ip is defined %}
@@ -46,5 +89,23 @@ runcmd:
  - sudo ip route add {{ route }} via {{ value.next_hop }}
 {%    endif %}
 {%   endfor %}
+{%  endif %}
+{%  if inventory_hostname == 'hq-netbox' %}
+ - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+ - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge"
+ - apt-get update -y
+ - apt-cache policy docker-ce
+ - apt-get install -y docker-ce
+ - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ - chmod +x /usr/local/bin/docker-compose
+ - systemctl start docker
+ - systemctl enable docker
+ - ln -s /etc/init.d/netbox_stop.sh /etc/rc0.d/k99stop_netbox_containers
+ - ln -s /etc/init.d/netbox_stop.sh /etc/rc6.d/k99stop_netbox_containers
+ - chmod a+x /etc/init.d/netbox_stop.sh
+ - apt-get install -y python
+ - apt-get install -y python-pip
+ - pip install pyyaml
+ - sudo /home/ubuntu/startup.sh
 {%  endif %}
 {% endif %}

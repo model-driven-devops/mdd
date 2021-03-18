@@ -38,3 +38,19 @@ all:
                   next_hop: 172.16.0.1
                 192.168.0.0/16:
                   next_hop: 172.16.0.1
+            hq-netbox:
+              host_ip: 172.16.0.102/24
+              interfaces:
+                ens4:
+                  enabled: true
+              static_routes:
+                172.16.0.0/24:
+                  next_hop: 172.16.0.1
+                172.16.254.0/24:
+                  next_hop: 172.16.0.1
+                172.16.255.0/24:
+                  next_hop: 172.16.0.1
+                10.0.0.0/8:
+                  next_hop: 172.16.0.1
+                192.168.0.0/16:
+                  next_hop: 172.16.0.1

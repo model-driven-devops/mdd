@@ -621,6 +621,42 @@ nodes:
         slot: 1
         label: enp0s3
         type: physical
+  - id: n30
+    label: netbox-mgmt
+    node_definition: external_connector
+    x: -1200
+    y: -150
+    configuration: bridge0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
+
+  - id: n31
+    label: hq-netbox
+    node_definition: ubuntu
+    x: -1050
+    y: -150
+    configuration: |-
+      #cloud-config
+      password: admin
+      chpasswd: { expire: False }
+      ssh_pwauth: True
+      hostname: hq-netbox
+    image_definition: ubuntu-18-04
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: enp0s2
+        type: physical
+      - id: i1
+        slot: 1
+        label: enp0s3
+        type: physical
+
 links:
   - id: l0
     i1: i1
@@ -702,3 +738,13 @@ links:
     n1: n3
     i2: i0
     n2: n11
+  - id: l31
+    i1: i0
+    n1: n31
+    i2: i3
+    n2: n10
+  - id: l30
+    i1: i1
+    n1: n31
+    i2: i0
+    n2: n30
