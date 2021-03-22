@@ -61,8 +61,50 @@ write_files:
       sudo python /home/ubuntu/netbox-docker/nb_prep.py
       sudo docker-compose pull
       sudo docker-compose up
-{%   endif %}
-{% if interfaces is defined or static_routes is defined or host_ip is defined %}
+  - path: /etc/netplan/network-config.yaml
+    permissions: '0644'
+    content: |
+      network:
+        version: 2
+        ethernets:
+          ens3:
+            dhcp4: false
+            addresses:
+              - 172.16.0.102/24
+            nameservers:
+              addresses: [208.67.222.222, 208.67.220.220]
+            routes:
+              - to: 172.16.1.0/24
+                via: 172.16.0.1
+                metric: 3
+              - to: 172.16.3.0/24
+                via: 172.16.0.1
+                metric: 3
+          ens4:
+            dhcp4: true
+            nameservers:
+              addresses: [208.67.222.222, 208.67.220.220]
+runcmd:
+ - rm /etc/netplan/50-cloud-init.yaml
+ - netplan generate
+ - netplan apply
+ - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+ - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge"
+ - apt-get update -y
+ - apt-cache policy docker-ce
+ - apt-get install -y docker-ce
+ - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+ - chmod +x /usr/local/bin/docker-compose
+ - systemctl start docker
+ - systemctl enable docker
+ - ln -s /etc/init.d/netbox_stop.sh /etc/rc0.d/k99stop_netbox_containers
+ - ln -s /etc/init.d/netbox_stop.sh /etc/rc6.d/k99stop_netbox_containers
+ - chmod a+x /etc/init.d/netbox_stop.sh
+ - apt-get install -y python
+ - apt-get install -y python-pip
+ - pip install pyyaml
+ - sudo /home/ubuntu/startup.sh
+{% elif interfaces is defined or static_routes is defined or host_ip is defined %}
 runcmd:
 {%  if host_ip is defined %}
  - sudo ip address add {{ host_ip }} dev {{ host_interface | default('eth0') }}
@@ -89,23 +131,5 @@ runcmd:
  - sudo ip route add {{ route }} via {{ value.next_hop }}
 {%    endif %}
 {%   endfor %}
-{%  endif %}
-{%  if inventory_hostname == 'hq-netbox' %}
- - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
- - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge"
- - apt-get update -y
- - apt-cache policy docker-ce
- - apt-get install -y docker-ce
- - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
- - chmod +x /usr/local/bin/docker-compose
- - systemctl start docker
- - systemctl enable docker
- - ln -s /etc/init.d/netbox_stop.sh /etc/rc0.d/k99stop_netbox_containers
- - ln -s /etc/init.d/netbox_stop.sh /etc/rc6.d/k99stop_netbox_containers
- - chmod a+x /etc/init.d/netbox_stop.sh
- - apt-get install -y python
- - apt-get install -y python-pip
- - pip install pyyaml
- - sudo /home/ubuntu/startup.sh
 {%  endif %}
 {% endif %}
