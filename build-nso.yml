@@ -5,6 +5,3 @@
   tags:
     - install
     - start
-
-- import_playbook: sync-nso.yml
-  tags: sync
