@@ -19,8 +19,6 @@ all:
               host_ip: 192.168.2.100/24
               host_gateway: 192.168.2.1
         server:
-          vars:
-            virl_image_definition: "ubuntu-{{ ubuntu_version }}"
           hosts:
             hq-nso1:
               host_ip: 172.16.0.101/24

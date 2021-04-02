@@ -15,6 +15,17 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     git clone -b cidr-919 https://github.com/ciscops/model-driven-devops.git
     ```
 
+1. This repo deploys using a Network Services Orchestrator image created from https://github.com/ciscops/cml-custom-images.
+   Edit './inventory/arch2/nso.yml' with the appropriate NSO variables. For example
+   ```   
+   admin_user: ubuntu
+   admin_password: admin
+   nso_install_dir: /pkgs/nso-install
+   nso_run_dir: /home/ubuntu/ncs-run
+   nso_ned_id: cisco-ios-cli-6.69
+   ```
+1. You may need to verify/edit node_definition and image_definition names for your CML deployment in './files/arch2.yaml'.
+
 1. Change to the model-driven-devops directory.
     ```
     cd model-driven-devops
@@ -44,13 +55,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     export GITLAB_USER=
     export GITLAB_API_TOKEN=
     export GITLAB_PROJECT=model-driven-devops
-    export AWS_ACCESS_KEY_ID=
-    export AWS_SECRET_ACCESS_KEY=
-    export AWS_REGION=
-    export AWS_BUCKET=
     ```
-
-    > Note: AWS S3 bucket used for NSO packages
 
 ## Create a CI pipeline in GitLab
 
@@ -92,7 +97,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     ```
 1. Exit out of the ssh session.
 
-##Good to here...
+##Good to here 3...
 
 1. Edit the `inventory/arch1/group_vars/all/system.yml` file and replace the line containing `banner_motd`.
     Replace:

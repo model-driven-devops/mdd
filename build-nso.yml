@@ -3,5 +3,4 @@
   roles:
     - ansible-nso
   tags:
-    - install
     - start

@@ -53,7 +53,7 @@ nodes:
     label: hq-sw1
     node_definition: iosvl2
     x: -900
-    y: -200
+    y: -250
     configuration: hostname hq-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -129,7 +129,7 @@ nodes:
     label: hq-sw2
     node_definition: iosvl2
     x: -900
-    y: -100
+    y: -50
     configuration: hostname hq-sw2
     image_definition: iosvl2-2019
     tags: []
@@ -205,7 +205,7 @@ nodes:
     label: site1-sw1
     node_definition: iosvl2
     x: -100
-    y: -250
+    y: -300
     configuration: hostname site1-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -281,7 +281,7 @@ nodes:
     label: hq-rtr1
     node_definition: csr1000v
     x: -750
-    y: -200
+    y: -250
     configuration: hostname hq-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -325,7 +325,7 @@ nodes:
     label: hq-rtr2
     node_definition: csr1000v
     x: -750
-    y: -100
+    y: -50
     configuration: hostname hq-rtr2
     image_definition: csr1000v-170101
     tags: []
@@ -369,7 +369,7 @@ nodes:
     label: site1-rtr1
     node_definition: csr1000v
     x: -250
-    y: -250
+    y: -300
     configuration: hostname site1-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -413,7 +413,7 @@ nodes:
     label: site1-host1
     node_definition: ubuntu
     x: 50
-    y: -250
+    y: -300
     configuration: |-
       #cloud-config
       password: admin
@@ -435,7 +435,7 @@ nodes:
     label: hq-host1
     node_definition: ubuntu
     x: -1050
-    y: -200
+    y: -250
     configuration: |-
       #cloud-config
       password: admin
@@ -457,7 +457,7 @@ nodes:
     label: internet-mgmt
     node_definition: external_connector
     x: -500
-    y: -250
+    y: -300
     configuration: bridge0
     tags: []
     interfaces:
@@ -469,7 +469,7 @@ nodes:
     label: site2-rtr1
     node_definition: csr1000v
     x: -250
-    y: -100
+    y: -0
     configuration: hostname site2-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -497,7 +497,7 @@ nodes:
     label: site2-sw1
     node_definition: iosvl2
     x: -100
-    y: -100
+    y: -0
     configuration: hostname site2-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -573,7 +573,7 @@ nodes:
     label: site2-host1
     node_definition: ubuntu
     x: 50
-    y: -100
+    y: -0
     configuration: |-
       #cloud-config
       password: admin
@@ -591,7 +591,7 @@ nodes:
     label: nso-mgmt
     node_definition: external_connector
     x: -1200
-    y: -100
+    y: -50
     configuration: bridge0
     tags: []
     interfaces:
@@ -601,25 +601,25 @@ nodes:
         type: physical
   - id: n3
     label: hq-nso1
-    node_definition: ubuntu
+    node_definition: NSO
     x: -1050
-    y: -100
+    y: -50
     configuration: |-
       #cloud-config
       password: admin
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: hq-nso1
-    image_definition: ubuntu-18-04
+    image_definition: NSO5.5
     tags: []
     interfaces:
       - id: i0
         slot: 0
-        label: enp0s2
+        label: ens3
         type: physical
       - id: i1
         slot: 1
-        label: enp0s3
+        label: ens4
         type: physical
   - id: n30
     label: netbox-mgmt
@@ -636,7 +636,7 @@ nodes:
 
   - id: n31
     label: hq-netbox
-    node_definition: ubuntu
+    node_definition: Netbox
     x: -1050
     y: -150
     configuration: |-
@@ -645,16 +645,16 @@ nodes:
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: hq-netbox
-    image_definition: ubuntu-18-04
+    image_definition: Netbox
     tags: []
     interfaces:
       - id: i0
         slot: 0
-        label: enp0s2
+        label: ens3
         type: physical
       - id: i1
         slot: 1
-        label: enp0s3
+        label: ens4
         type: physical
 
 links:

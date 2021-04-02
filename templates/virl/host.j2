@@ -19,114 +19,23 @@ apt:
         - default
       uri: 'http://us.archive.ubuntu.com/ubuntu'
       search_dns: true
-{%  if inventory_hostname == 'hq-netbox' %}
-package_update: true
-packages:
- - git
- - curl
-write_files:
-  - path: /home/ubuntu/docker-compose.override.yml
-    content: |
-      version: '3.4'
-      services:
-        netbox:
-          ports:
-            - 8000:8080
-  - path: /home/ubuntu/nb_prep.py
-    content: |
-      import yaml
-      import os
-      os.rename('/home/ubuntu/netbox-docker/docker-compose.yml', '/home/ubuntu/netbox-docker/docker-compose.yml.original')
-      with open('/home/ubuntu/netbox-docker/docker-compose.yml.original', 'r') as f:
-          doc = yaml.safe_load(f)
-      doc2 = dict(doc)
-      for i in doc['services']:
-          doc2['services'][i]['restart'] = 'always'
-      with open('/home/ubuntu/netbox-docker/docker-compose.yml', 'w') as f:
-          yaml.dump(doc2, f, default_flow_style=False)
-  - path: /etc/init.d/netbox_stop.sh
-    content: |
-      #!/bin/bash
-      cd /home/ubuntu/netbox-docker
-      sudo docker-compose stop
-  - path: /home/ubuntu/startup.sh
-    permissions: '0755'
-    content: |
-      #!/bin/bash
-      cd /home/ubuntu
-      sudo git clone -b release https://github.com/netbox-community/netbox-docker.git
-      cd /home/ubuntu/netbox-docker
-      cp /home/ubuntu/docker-compose.override.yml /home/ubuntu/netbox-docker/docker-compose.override.yml
-      cp /home/ubuntu/nb_prep.py /home/ubuntu/netbox-docker/nb_prep.py
-      sudo python /home/ubuntu/netbox-docker/nb_prep.py
-      sudo docker-compose pull
-      sudo docker-compose up
-  - path: /etc/netplan/network-config.yaml
-    permissions: '0644'
-    content: |
-      network:
-        version: 2
-        ethernets:
-          ens3:
-            dhcp4: false
-            addresses:
-              - 172.16.0.102/24
-            nameservers:
-              addresses: [208.67.222.222, 208.67.220.220]
-            routes:
-              - to: 172.16.254.0/24
-                via: 172.16.0.1
-                metric: 3
-              - to: 172.16.255.0/24
-                via: 172.16.0.1
-                metric: 3
-              - to: 10.0.0.0/8
-                via: 172.16.0.1
-                metric: 3
-              - to: 192.168.0.0/16
-                via: 172.16.0.1
-                metric: 3
-          ens4:
-            dhcp4: true
-            nameservers:
-              addresses: [208.67.222.222, 208.67.220.220]
-runcmd:
- - rm /etc/netplan/50-cloud-init.yaml
- - netplan generate
- - netplan apply
- - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
- - add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge"
- - apt-get update -y
- - apt-cache policy docker-ce
- - apt-get install -y docker-ce
- - sudo curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
- - chmod +x /usr/local/bin/docker-compose
- - systemctl start docker
- - systemctl enable docker
- - ln -s /etc/init.d/netbox_stop.sh /etc/rc0.d/k99stop_netbox_containers
- - ln -s /etc/init.d/netbox_stop.sh /etc/rc6.d/k99stop_netbox_containers
- - chmod a+x /etc/init.d/netbox_stop.sh
- - apt-get install -y python
- - apt-get install -y python-pip
- - pip install pyyaml
- - sudo /home/ubuntu/startup.sh
-{% elif interfaces is defined or static_routes is defined or host_ip is defined %}
-runcmd:
+{% if interfaces is defined or static_routes is defined or host_ip is defined %}
+bootcmd:
 {%  if host_ip is defined %}
- - sudo ip address add {{ host_ip }} dev {{ host_interface | default('eth0') }}
- - sudo ip link set dev {{ host_interface | default('eth0') }} up
+ - cloud-init-per always ip-ad sudo ip address add {{ host_ip }} dev {{ host_interface | default('eth0') }}
+ - cloud-init-per always link-set sudo ip link set dev {{ host_interface | default('eth0') }} up
 {%   if host_gateway is defined %}
- - sudo ip route add default via {{ host_gateway }}
+ - cloud-init-per always ip-route-add sudo ip route add default via {{ host_gateway }}
 {%   endif %}
 {%  endif %}
 {%  if interfaces is defined %}
 {%   for key, value in interfaces.items() %}
 {%     if value.enabled is defined and value.enabled is sameas true %}
 {%       if value.ip is defined and value.ip.primary is defined %}
- - sudo ip address add {{ value.ip.primary }} dev {{ key }}
- - sudo ip link set dev {{ key }} up
+ - cloud-init-per always ip-address-add sudo ip address add {{ value.ip.primary }} dev {{ key }}
+ - cloud-init-per always link-set sudo ip link set dev {{ key }} up
 {%       else %}
- - sudo dhclient {{ key }}
+ - cloud-init-per always dhcpint sudo dhclient {{ key }}
 {%       endif %}
 {%     endif %}
 {%   endfor %}
@@ -134,7 +43,7 @@ runcmd:
 {%  if static_routes is defined %}
 {%   for route, value in static_routes.items() %}
 {%    if value.next_hop is defined %}
- - sudo ip route add {{ route }} via {{ value.next_hop }}
+ - cloud-init-per always route-add sudo ip route add {{ route }} via {{ value.next_hop }}
 {%    endif %}
 {%   endfor %}
 {%  endif %}
