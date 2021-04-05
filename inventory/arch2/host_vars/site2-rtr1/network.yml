@@ -1,21 +1,17 @@
 interfaces:
+  Loopback0:
+    enabled: true
+    ip:
+      primary: 192.168.255.2/32
   GigabitEthernet1:
     enabled: true
     ip:
-      primary: 10.0.0.6/30
+      primary: 10.0.0.14/30
   GigabitEthernet2:
     enabled: true
     ip:
-      primary: 172.16.0.3/24
-      standby:
-        group: 1
-        priority: 1
-        address: 172.16.0.1
+      primary: 192.168.2.1/24
   GigabitEthernet3:
-    enabled: true
-    ip:
-      primary: 172.16.255.2/30  
-  GigabitEthernet4:
     vrf: Mgmt-intf
     enabled: true
     ip:
@@ -26,36 +22,34 @@ static_routes:
     - network: 0.0.0.0/0
       fwd_list:
         - fwd: Null0
-    - network: 172.16.0.0/16
+    - network: 192.168.2.0/24
       fwd_list:
         - fwd: Null0        
 
 router:
   ospf:
-    id: 65100
-    router_id: 172.16.255.2
+    id: 65102
+    router_id: 192.168.2.1
     default_information_originate: true
     networks:
-      - network: 172.16.0.0/16
+      - network: 192.168.2.0/24
+        area: 0
+      - network: 192.168.255.2/32
         area: 0
   bgp:
-    id: 65100
+    id: 65102
     log_neighbor_changes: true
-    router_id: 172.16.255.2
+    router_id: 192.168.255.2
     neighbors:
-      - id: 172.16.255.1
-        remote_as: 65100
-      - id: 10.0.0.5
+      - id: 10.0.0.13
         remote_as: 65000
     address_family:
       global:
         ipv4:
           neighbors:
-            - id: 172.16.255.1
-              activate: true
-            - id: 10.0.0.5
+            - id: 10.0.0.13
               activate: true
               next_hop_self: true
           networks:
-            - network: 172.16.0.0/16
-
+            - network: 192.168.2.0/24
+            - network: 192.168.255.2/32

@@ -1,0 +1,5 @@
+---
+- name: Launch main NSO process
+  command:
+    chdir: "{{ nso_run_dir }}"
+    cmd: '/bin/bash -c "source {{ nso_install_dir }}/ncsrc; NCS_JAVA_VM_OPTIONS=\"{{ nso_java_opts }}\" {{ nso_install_dir }}/bin/ncs"'

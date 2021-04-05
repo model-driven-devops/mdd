@@ -1,7 +1,8 @@
 stages:
   - clean
-  - build
-  - update
+  - build-cml
+  - build-nso
+  - sync-nso
   - test
 
 image: ciscops/ansible-devops
@@ -16,22 +17,30 @@ clean:
   stage: clean
   script:
     - ansible-playbook clean-cml.yml
-  only:
-    changes:
-      - files/arch1.yaml
-  
-build:
-  stage: build
+#  only:
+#    changes:
+#      - files/arch2.yaml
+
+build-cml:
+  stage: build-cml
   script:
     - ansible-playbook build-cml.yml
-  only:
-    changes:
-      - files/arch1.yaml
-
-update:
-  stage: update
+#  only:
+#    changes:
+#      - files/arch2.yaml
+#
+build-nso:
+  stage: build-nso
   script:
-    - ansible-playbook update-network.yml
+    - ansible-playbook build-nso.yml
+##  only:
+##    changes:
+##      - files/arch2.yaml
+##
+sync-nso:
+  stage: sync-nso
+  script:
+    - ansible-playbook sync-nso.yml
 
 test:
   stage: test

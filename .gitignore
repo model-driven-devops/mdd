@@ -4,3 +4,4 @@ venv/
 *.pyc
 *.retry
 envfile
+*.signed.bin

@@ -1,0 +1,6 @@
+- name: Install NSO
+  hosts: nso_hosts:&virl_hosts
+  roles:
+    - ansible-nso
+  tags:
+    - start

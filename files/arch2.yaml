@@ -1,8 +1,8 @@
 lab:
   description: ''
   notes: ''
-  timestamp: 1611957979.8345087
-  title: arch1.yaml
+  timestamp: 1611959261.8288233
+  title: arch2.yaml
   version: 0.0.4
 nodes:
   - id: n7
@@ -53,7 +53,7 @@ nodes:
     label: hq-sw1
     node_definition: iosvl2
     x: -900
-    y: -200
+    y: -250
     configuration: hostname hq-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -129,7 +129,7 @@ nodes:
     label: hq-sw2
     node_definition: iosvl2
     x: -900
-    y: -100
+    y: -50
     configuration: hostname hq-sw2
     image_definition: iosvl2-2019
     tags: []
@@ -205,7 +205,7 @@ nodes:
     label: site1-sw1
     node_definition: iosvl2
     x: -100
-    y: -250
+    y: -300
     configuration: hostname site1-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -277,23 +277,11 @@ nodes:
         slot: 15
         label: GigabitEthernet3/3
         type: physical
-  - id: n19
-    label: hq-mgmt
-    node_definition: external_connector
-    x: -900
-    y: -400
-    configuration: bridge0
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: port
-        type: physical
   - id: n18
     label: hq-rtr1
     node_definition: csr1000v
     x: -750
-    y: -200
+    y: -250
     configuration: hostname hq-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -337,7 +325,7 @@ nodes:
     label: hq-rtr2
     node_definition: csr1000v
     x: -750
-    y: -100
+    y: -50
     configuration: hostname hq-rtr2
     image_definition: csr1000v-170101
     tags: []
@@ -381,7 +369,7 @@ nodes:
     label: site1-rtr1
     node_definition: csr1000v
     x: -250
-    y: -250
+    y: -300
     configuration: hostname site1-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -425,7 +413,7 @@ nodes:
     label: site1-host1
     node_definition: ubuntu
     x: 50
-    y: -250
+    y: -300
     configuration: |-
       #cloud-config
       password: admin
@@ -447,7 +435,7 @@ nodes:
     label: hq-host1
     node_definition: ubuntu
     x: -1050
-    y: -200
+    y: -250
     configuration: |-
       #cloud-config
       password: admin
@@ -469,19 +457,7 @@ nodes:
     label: internet-mgmt
     node_definition: external_connector
     x: -500
-    y: -250
-    configuration: bridge0
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: port
-        type: physical
-  - id: n3
-    label: site1-mgmt
-    node_definition: external_connector
-    x: -100
-    y: -450
+    y: -300
     configuration: bridge0
     tags: []
     interfaces:
@@ -493,7 +469,7 @@ nodes:
     label: site2-rtr1
     node_definition: csr1000v
     x: -250
-    y: -100
+    y: -0
     configuration: hostname site2-rtr1
     image_definition: csr1000v-170101
     tags: []
@@ -521,7 +497,7 @@ nodes:
     label: site2-sw1
     node_definition: iosvl2
     x: -100
-    y: -100
+    y: -0
     configuration: hostname site2-sw1
     image_definition: iosvl2-2019
     tags: []
@@ -597,7 +573,7 @@ nodes:
     label: site2-host1
     node_definition: ubuntu
     x: 50
-    y: -100
+    y: -0
     configuration: |-
       #cloud-config
       password: admin
@@ -612,10 +588,10 @@ nodes:
         label: enp0s2
         type: physical
   - id: n11
-    label: site2-mgmt
+    label: nso-mgmt
     node_definition: external_connector
-    x: -100
-    y: 100
+    x: -1200
+    y: -50
     configuration: bridge0
     tags: []
     interfaces:
@@ -623,126 +599,64 @@ nodes:
         slot: 0
         label: port
         type: physical
-  - id: n13
-    label: hq-mgmt-switch
-    node_definition: unmanaged_switch
-    x: -900
-    y: -300
-    configuration: ''
+  - id: n3
+    label: hq-nso1
+    node_definition: NSO
+    x: -1050
+    y: -50
+    configuration: |-
+      #cloud-config
+      password: admin
+      chpasswd: { expire: False }
+      ssh_pwauth: True
+      hostname: hq-nso1
+    image_definition: NSO5.5
     tags: []
     interfaces:
       - id: i0
         slot: 0
-        label: port0
+        label: ens3
         type: physical
       - id: i1
         slot: 1
-        label: port1
+        label: ens4
         type: physical
-      - id: i2
-        slot: 2
-        label: port2
-        type: physical
-      - id: i3
-        slot: 3
-        label: port3
-        type: physical
-      - id: i4
-        slot: 4
-        label: port4
-        type: physical
-      - id: i5
-        slot: 5
-        label: port5
-        type: physical
-      - id: i6
-        slot: 6
-        label: port6
-        type: physical
-      - id: i7
-        slot: 7
-        label: port7
-        type: physical
-  - id: n14
-    label: site1-mgmt-switch
-    node_definition: unmanaged_switch
-    x: -100
-    y: -350
-    configuration: ''
+  - id: n30
+    label: netbox-mgmt
+    node_definition: external_connector
+    x: -1200
+    y: -150
+    configuration: bridge0
     tags: []
     interfaces:
       - id: i0
         slot: 0
-        label: port0
+        label: port
         type: physical
-      - id: i1
-        slot: 1
-        label: port1
-        type: physical
-      - id: i2
-        slot: 2
-        label: port2
-        type: physical
-      - id: i3
-        slot: 3
-        label: port3
-        type: physical
-      - id: i4
-        slot: 4
-        label: port4
-        type: physical
-      - id: i5
-        slot: 5
-        label: port5
-        type: physical
-      - id: i6
-        slot: 6
-        label: port6
-        type: physical
-      - id: i7
-        slot: 7
-        label: port7
-        type: physical
-  - id: n15
-    label: unmanaged-switch-0
-    node_definition: unmanaged_switch
-    x: -100
-    y: 0
-    configuration: ''
+
+  - id: n31
+    label: hq-netbox
+    node_definition: Netbox
+    x: -1050
+    y: -150
+    configuration: |-
+      #cloud-config
+      password: admin
+      chpasswd: { expire: False }
+      ssh_pwauth: True
+      hostname: hq-netbox
+    image_definition: Netbox
     tags: []
     interfaces:
       - id: i0
         slot: 0
-        label: port0
+        label: ens3
         type: physical
       - id: i1
         slot: 1
-        label: port1
+        label: ens4
         type: physical
-      - id: i2
-        slot: 2
-        label: port2
-        type: physical
-      - id: i3
-        slot: 3
-        label: port3
-        type: physical
-      - id: i4
-        slot: 4
-        label: port4
-        type: physical
-      - id: i5
-        slot: 5
-        label: port5
-        type: physical
-      - id: i6
-        slot: 6
-        label: port6
-        type: physical
-      - id: i7
-        slot: 7
-        label: port7
-        type: physical
+
 links:
   - id: l0
     i1: i1
@@ -816,56 +730,21 @@ links:
     n2: n9
   - id: l7
     i1: i0
-    n1: n19
-    i2: i0
-    n2: n13
-  - id: l16
-    i1: i16
-    n1: n9
-    i2: i1
-    n2: n13
-  - id: l20
-    i1: i4
-    n1: n18
-    i2: i2
-    n2: n13
-  - id: l17
-    i1: i4
-    n1: n0
-    i2: i3
-    n2: n13
-  - id: l21
-    i1: i16
-    n1: n10
-    i2: i4
-    n2: n13
+    n1: n3
+    i2: i5
+    n2: n10
   - id: l9
-    i1: i0
-    n1: n14
-    i2: i0
-    n2: n3
-  - id: l18
-    i1: i3
-    n1: n2
-    i2: i2
-    n2: n14
-  - id: l13
-    i1: i0
-    n1: n11
-    i2: i0
-    n2: n15
-  - id: l23
     i1: i1
-    n1: n15
-    i2: i16
-    n2: n5
-  - id: l19
-    i1: i2
-    n1: n15
+    n1: n3
+    i2: i0
+    n2: n11
+  - id: l31
+    i1: i0
+    n1: n31
     i2: i3
-    n2: n4
-  - id: l22
+    n2: n10
+  - id: l30
     i1: i1
-    n1: n14
-    i2: i16
-    n2: n12
+    n1: n31
+    i2: i0
+    n2: n30

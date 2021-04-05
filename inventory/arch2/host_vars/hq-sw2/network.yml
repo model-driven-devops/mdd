@@ -10,6 +10,11 @@ interfaces:
       mode: trunk
       trunk:
         encapsulation: dot1q
+  GigabitEthernet0/2:
+    enabled: true
+    switchport:
+      mode: access
+      vlan: 10
   GigabitEthernet1/0:
     enabled: true
     switchport:
@@ -20,4 +25,3 @@ interfaces:
     ip:
       primary: dhcp
     vrf: Mgmt-intf
-                             

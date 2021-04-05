@@ -4,7 +4,6 @@ OPTIONS=""
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
-
 if [[ ! -z "$VIRL_HOST" ]]; then
    OPTIONS="$OPTIONS --env VIRL_HOST=$VIRL_HOST"
 fi
@@ -17,6 +16,7 @@ fi
 if [[ ! -z "$VIRL_LAB" ]]; then
    OPTIONS="$OPTIONS --env VIRL_LAB=$VIRL_LAB"
 fi
+
 
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 

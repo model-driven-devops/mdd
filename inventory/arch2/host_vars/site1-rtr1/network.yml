@@ -1,4 +1,8 @@
 interfaces:
+  Loopback0:
+    enabled: true
+    ip:
+      primary: 192.168.255.1/32
   GigabitEthernet1:
     enabled: true
     ip:
@@ -20,20 +24,22 @@ static_routes:
         - fwd: Null0
     - network: 192.168.1.0/24
       fwd_list:
-        - fwd: Null0        
+        - fwd: Null0   
 
 router:
   ospf:
     id: 65101
-    router_id: 192.168.1.1
+    router_id: 192.168.255.1
     default_information_originate: true
     networks:
       - network: 192.168.1.0/24
         area: 0
+      - network: 192.168.255.1/32
+        area: 0
   bgp:
     id: 65101
     log_neighbor_changes: true
-    router_id: 192.168.1.1
+    router_id: 192.168.255.1
     neighbors:
       - id: 10.0.0.9
         remote_as: 65000
@@ -46,3 +52,4 @@ router:
               next_hop_self: true
           networks:
             - network: 192.168.1.0/24
+            - network: 192.168.255.1/32
