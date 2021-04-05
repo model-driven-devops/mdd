@@ -1,2 +1,0 @@
-# virl_lab_file: "{{ playbook_dir }}/files/arch1.yaml"
-virl_lab_file: "{{ playbook_dir }}/files/arch2.yaml"

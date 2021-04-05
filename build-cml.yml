@@ -54,7 +54,7 @@
         state: started
 
 - name: Start the network
-  hosts: network:&virl_hosts
+  hosts: network:&cml_hosts
   connection: local
   gather_facts: no
   tags:
