@@ -22,7 +22,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
    admin_password: admin
    nso_install_dir: /pkgs/nso-install
    nso_run_dir: /home/ubuntu/ncs-run
-   nso_ned_id: cisco-ios-cli-6.69
+   nso_ned_id: cisco-ios-cli-6.72
    ```
 1. You may need to verify/edit node_definition and image_definition names for your CML deployment in './files/arch2.yaml'.
 
