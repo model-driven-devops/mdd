@@ -1,5 +1,6 @@
 - name: Install NSO
-  hosts: nso_hosts:&virl_hosts
+  hosts: nso_hosts:&cml_hosts
+  gather_facts: no
   roles:
     - ansible-nso
   tags:

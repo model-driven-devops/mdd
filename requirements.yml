@@ -1,0 +1,6 @@
+collections:
+  - ansible.netcommon
+  - ansible.utils
+  - cisco.cml
+  - community.yang
+  - netbox.netbox

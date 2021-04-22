@@ -2,12 +2,12 @@
   hosts: localhost
   gather_facts: no
   tags:
-    - virl
+    - cml
     - network
   tasks:
     - name: Check for the lab file
       stat:
-        path: "{{ virl_lab_file }}"
+        path: "{{ cml_lab_file }}"
       register: stat_result
       delegate_to: localhost
       run_once: yes
@@ -15,22 +15,22 @@
     - assert:
         that:
           - stat_result.stat.exists
-          - virl_host != ""
-          - virl_username != ""
-          - virl_password != ""
-          - virl_lab != ""
-        msg: "VIRL host, credentials, and topology file are required.  Verify the requirements in README are met."
+          - cml_host != ""
+          - cml_username != ""
+          - cml_password != ""
+          - cml_lab != ""
+        msg: "CML host, credentials, and topology file are required.  Verify the requirements in README are met."
       delegate_to: localhost
       run_once: yes
 
     - name: Create the lab
-      virl_lab:
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+      cisco.cml.cml_lab:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: present
-        file: "{{ virl_lab_file }}"
+        file: "{{ cml_lab_file }}"
       register: results
 
     - name: Refresh Inventory
@@ -45,16 +45,16 @@
     - network
   tasks:
     - name: Start dumb stuff (not a judgement)
-      virl_node:
+      cisco.cml.cml_node:
         name: "{{ inventory_hostname }}"
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: started
 
 - name: Start the network
-  hosts: network:&virl_hosts
+  hosts: network:&cml_hosts
   connection: local
   gather_facts: no
   tags:
@@ -63,22 +63,22 @@
   tasks:
     - name: Generating day0 config
       set_fact:
-        day0_config: "{{ lookup('template', virl_config_template) }}"
-      when: virl_config_template is defined
+        day0_config: "{{ lookup('template', cml_config_template) }}"
+      when: cml_config_template is defined
 
     - name: Start Node
-      virl_node:
+      cisco.cml.cml_node:
         name: "{{ inventory_hostname }}"
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: started
-        image_definition: "{{ virl_image_definition | default(omit) }}"
+        image_definition: "{{ cml_image_definition | default(omit) }}"
         config: "{{ day0_config | default(omit) }}"
 
 - name: Start Systems
-  hosts: system:&virl_hosts
+  hosts: system:&cml_hosts
   connection: local
   gather_facts: no
   tags:
@@ -87,22 +87,22 @@
   tasks:
     - name: Generating day0 config
       set_fact:
-        day0_config: "{{ lookup('template', virl_config_template) }}"
-      when: virl_config_template is defined
+        day0_config: "{{ lookup('template', cml_config_template) }}"
+      when: cml_config_template is defined
 
     - name: Start Node
-      virl_node:
+      cisco.cml.cml_node:
         name: "{{ inventory_hostname }}"
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: started
-        image_definition: "{{ virl_image_definition | default(omit) }}"
+        image_definition: "{{ cml_image_definition | default(omit) }}"
         config: "{{ day0_config | default(omit) }}"
 
 - name: Check initial topology connectivity
-  hosts: internet-rtr1:&virl_hosts
+  hosts: internet-rtr1:&cml_hosts
   connection: local
   tags:
     - network
@@ -110,13 +110,13 @@
   gather_facts: no
   tasks:
     - name: Wait until the mgmt interface comes up
-      virl_lab_facts:
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+      cisco.cml.cml_lab_facts:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
       register: result
-      until: result.virl_facts.nodes[inventory_hostname].ansible_host is defined and result.virl_facts.nodes[inventory_hostname].ansible_host
+      until: result.cml_facts.nodes[inventory_hostname].ansible_host is defined and result.cml_facts.nodes[inventory_hostname].ansible_host
       retries: 60
       delay: 10
 
@@ -126,7 +126,7 @@
     - name: Ping outside interface of site routers
       ios_ping:
         dest: "{{ hostvars[item].interfaces.GigabitEthernet1.ip.primary | ipaddr('address') }}"
-      loop: "{{ groups.site_routers | intersect(groups.virl_hosts) }}"
+      loop: "{{ groups.site_routers | intersect(groups.cml_hosts) }}"
       register: result
       retries: 60
       delay: 10
@@ -136,7 +136,7 @@
     - name: Ping inside interface of site routers
       ios_ping:
         dest: "{{ hostvars[item].interfaces.GigabitEthernet2.ip.primary | ipaddr('address') }}"
-      loop: "{{ groups.site_routers | intersect(groups.virl_hosts) }}"
+      loop: "{{ groups.site_routers | intersect(groups.cml_hosts) }}"
       register: result
       retries: 60
       delay: 10
@@ -146,7 +146,7 @@
     - name: Ping hosts
       ios_ping:
         dest: "{{ hostvars[item].host_ip | ipaddr('address') }}"
-      loop: "{{ groups.system | intersect(groups.virl_hosts) }}"
+      loop: "{{ groups.system | intersect(groups.cml_hosts) }}"
       register: result
       retries: 60
       delay: 10
