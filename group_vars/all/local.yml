@@ -1,4 +1,9 @@
 csr1000v_version: "{{ lookup('env','CSR1000V_VERSION') | default('170101', true) }}"
 iosvl2_version: "{{ lookup('env','IOSVL2_VERSION') | default('2019', true) }}"
 ubuntu_version: "{{ lookup('env','UBUNTU_VERSION') | default('18-04', true) }}"
-ansible_python_interpreter: /Users/stevenca/Workspaces/model-driven-devops/venv-mdd/bin/python
+# ansible_python_interpreter: /Users/stevenca/Workspaces/model-driven-devops/venv-mdd/bin/python
+ansible_user: admin
+ansible_password: admin
+
+platform_dict:
+  'IOS-XE': 'IOS'

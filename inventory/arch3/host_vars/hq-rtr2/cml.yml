@@ -1,0 +1,2 @@
+cml_config_template: ios/cml.j2
+cml_image_definition: "csr1000v-{{ csr1000v_version }}"

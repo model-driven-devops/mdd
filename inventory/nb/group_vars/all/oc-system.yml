@@ -1,0 +1,205 @@
+openconfig-system:system:
+    aaa:
+        accounting:
+            config:
+                accounting-method:
+                - '['
+                - ']'
+            events:
+                event:
+                -   config:
+                        event-type: ''
+                        record: ''
+                    event-type: ''
+                    state:
+                        event-type: ''
+                        record: ''
+        authentication:
+            admin-user:
+                config:
+                    admin-password: ''
+                    admin-password-hashed: ''
+            config:
+                authentication-method:
+                - '['
+                - ']'
+            users:
+                user:
+                -   config:
+                        password: ''
+                        password-hashed: ''
+                        role: ''
+                        ssh-key: ''
+                        username: ''
+                    username: ''
+        authorization:
+            config:
+                authorization-method:
+                - '['
+                - ']'
+            events:
+                event:
+                -   config:
+                        event-type: ''
+                    event-type: ''
+                    state:
+                        event-type: ''
+        config: {}
+        server-groups:
+            server-group:
+            -   config:
+                    name: ''
+                    type: ''
+                name: ''
+                servers:
+                    server:
+                    -   address: ''
+                        config:
+                            address: ''
+                            name: ''
+                            timeout: ''
+                        radius:
+                            config:
+                                acct-port: '1813'
+                                auth-port: '1812'
+                                retransmit-attempts: ''
+                                secret-key: ''
+                                secret-key-hashed: ''
+                                source-address: ''
+                        tacacs:
+                            config:
+                                port: '49'
+                                secret-key: ''
+                                secret-key-hashed: ''
+                                source-address: ''
+    alarms:
+        alarm:
+        -   config: {}
+            id: ''
+    clock:
+        config:
+            timezone-name: ''
+    config:
+        domain-name: ''
+        hostname: ''
+        login-banner: ''
+        motd-banner: ''
+    dns:
+        config:
+            search:
+            - '['
+            - ']'
+        host-entries:
+            host-entry:
+            -   config:
+                    alias:
+                    - '['
+                    - ']'
+                    hostname: ''
+                    ipv4-address:
+                    - '['
+                    - ']'
+                    ipv6-address:
+                    - '['
+                    - ']'
+                hostname: ''
+        servers:
+            server:
+            -   address: ''
+                config:
+                    address: ''
+                    port: '53'
+    grpc-server:
+        config:
+            certificate-id: ''
+            enable: 'True'
+            listen-addresses:
+            - '['
+            - ']'
+            metadata-authentication: 'False'
+            port: '9339'
+            transport-security: 'True'
+    license:
+        licenses:
+            license:
+            -   config:
+                    active: 'False'
+                    license-data: ''
+                    license-id: ''
+                license-id: ''
+    logging:
+        console:
+            config: {}
+            selectors:
+                selector:
+                -   config:
+                        facility: ''
+                        severity: ''
+                    facility: ''
+                    severity: ''
+        remote-servers:
+            remote-server:
+            -   config:
+                    host: ''
+                    remote-port: '514'
+                    source-address: ''
+                host: ''
+                selectors:
+                    selector:
+                    -   config:
+                            facility: ''
+                            severity: ''
+                        facility: ''
+                        severity: ''
+                        state:
+                            facility: ''
+                            severity: ''
+    memory:
+        config: {}
+    messages:
+        config:
+            severity: ''
+        debug-entries:
+            debug-service:
+            -   config:
+                    enabled: 'False'
+                    service: ''
+                service: ''
+                state:
+                    enabled: 'False'
+                    service: ''
+    ntp:
+        config:
+            enable-ntp-auth: 'False'
+            enabled: 'False'
+            ntp-source-address: ''
+        ntp-keys:
+            ntp-key:
+            -   config:
+                    key-id: ''
+                    key-type: ''
+                    key-value: ''
+                key-id: ''
+        servers:
+            server:
+            -   address: ''
+                config:
+                    address: ''
+                    association-type: SERVER
+                    iburst: 'False'
+                    port: '123'
+                    prefer: 'False'
+                    version: '4'
+    ssh-server:
+        state:
+            enable: 'True'
+            protocol-version: V2
+            rate-limit: ''
+            session-limit: ''
+            timeout: ''
+    telnet-server:
+        config:
+            enable: 'False'
+            rate-limit: ''
+            session-limit: ''
+            timeout: ''

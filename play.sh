@@ -4,20 +4,20 @@ OPTIONS=""
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
-if [[ ! -z "$VIRL_HOST" ]]; then
-   OPTIONS="$OPTIONS --env VIRL_HOST=$VIRL_HOST"
+if [[ ! -z "$CML_HOST" ]]; then
+   OPTIONS="$OPTIONS --env CML_HOST=$CML_HOST"
 fi
-if [[ ! -z "$VIRL_USERNAME" ]]; then
-   OPTIONS="$OPTIONS --env VIRL_USERNAME=$VIRL_USERNAME"
+if [[ ! -z "$CML_USERNAME" ]]; then
+   OPTIONS="$OPTIONS --env CML_USERNAME=$CML_USERNAME"
 fi
-if [[ ! -z "$VIRL_PASSWORD" ]]; then
-   OPTIONS="$OPTIONS --env VIRL_PASSWORD=$VIRL_PASSWORD"
+if [[ ! -z "$CML_PASSWORD" ]]; then
+   OPTIONS="$OPTIONS --env CML_PASSWORD=$CML_PASSWORD"
 fi
-if [[ ! -z "$VIRL_LAB" ]]; then
-   OPTIONS="$OPTIONS --env VIRL_LAB=$VIRL_LAB"
+if [[ ! -z "$CML_LAB" ]]; then
+   OPTIONS="$OPTIONS --env CML_LAB=$CML_LAB"
 fi
 
 
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
-docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ciscops/ansible-devops ansible-playbook "$@"
+docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd-container:latest ansible-playbook "$@"

@@ -3,9 +3,10 @@
   gather_facts: no
   tasks:
     - debug:
-        msg: "Node: {{ inventory_hostname }}({{ cml_facts.node_definition }}), State: {{ cml_facts.state }}, Address: {{ hostvars[inventory_hostname]['mgmt_ip'] | default(ansible_host) | ipaddr('address') }}"
+        msg: "Node: {{ inventory_hostname }}({{ cml_facts.node_definition }}), State: {{ cml_facts.state }}, Address: {{ ansible_host }}"
+      when: ansible_host is defined
     - debug:
-        var: virl_facts
+        var: cml_facts
       tags:
         - never
         - detail

@@ -4,28 +4,28 @@
     - always
   tasks:
     - name: Stop the lab
-      virl_lab:
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+      cisco.cml.cml_lab:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: stopped
       tags:
         - stop
         - wipe
     - name: Wipe the lab
-      virl_lab:
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+      cisco.cml.cml_lab:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: wiped
       tags:
         - wipe
     - name: Delete the lab
-      virl_lab:
-        host: "{{ virl_host }}"
-        user: "{{ virl_username }}"
-        password: "{{ virl_password }}"
-        lab: "{{ virl_lab }}"
+      cisco.cml.cml_lab:
+        host: "{{ cml_host }}"
+        user: "{{ cml_username }}"
+        password: "{{ cml_password }}"
+        lab: "{{ cml_lab }}"
         state: absent

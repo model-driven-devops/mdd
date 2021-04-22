@@ -5,5 +5,5 @@
   tasks:
     - name: Apply config
       ios_config:
-        src: "{{ virl_config_template }}"
-      when: virl_config_template is defined
+        src: "{{ cml_config_template }}"
+      when: cml_config_template is defined

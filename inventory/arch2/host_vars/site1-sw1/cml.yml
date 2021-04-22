@@ -1,0 +1,2 @@
+cml_config_template: iosl2/cml.j2
+cml_image_definition: "iosvl2-{{ iosvl2_version }}"
