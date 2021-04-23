@@ -16,7 +16,7 @@ all:
         nso_devices_seed_template: "nso-deviceSetup.xml.j2"
         ansible_user: "{{ admin_user }}"
         ansible_password: "{{ admin_password }}"
-        ansible_python_interpreter: "/usr/bin/python3"
+#        ansible_python_interpreter: "/usr/bin/python3"
       hosts:
         hq-nso1:
     nso_devices:

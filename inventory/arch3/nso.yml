@@ -16,13 +16,13 @@ all:
         nso_devices_seed_template: "nso-deviceSetup.xml.j2"
         ansible_user: "{{ admin_user }}"
         ansible_password: "{{ admin_password }}"
-        ansible_python_interpreter: "/usr/bin/python3"
+#        ansible_python_interpreter: "/usr/bin/python3"
       hosts:
         hq-nso1:
     nso_devices:
       vars:
         mgmt_ip: "{{ interfaces.Loopback0.ip.primary }}"
-        nso_ned_id: cisco-ios-cli-6.69
+        nso_ned_id: cisco-ios-cli-6.72
       hosts:
         hq-rtr1:
         hq-rtr2:
