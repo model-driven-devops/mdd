@@ -12,7 +12,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 
 1. Clone the repo.
     ```
-    git clone https://github.com/ciscops/model-driven-devops.git
+    git clone https://github.com/model-driven-devops/mdd-dev.git
     ```
 
 1. This repo deploys using a Network Services Orchestrator image created from https://github.com/ciscops/cml-custom-images.
@@ -26,9 +26,9 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
    ```
 1. You may need to verify/edit node_definition and image_definition names for your CML deployment in './files/arch2.yaml'.
 
-1. Change to the model-driven-devops directory.
+1. Change to the mdd-dev directory.
     ```
-    cd model-driven-devops
+    cd mdd-dev
     ```
     >Note: all future commands should be executed from this directory.
 
@@ -46,10 +46,10 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
 
 1.  Export the following variables to match your environment.
     ```
-    export VIRL_HOST=cml.example.com
-    export VIRL_USERNAME=
-    export VIRL_PASSWORD=
-    export VIRL_LAB=my_lab
+    export CML_HOST=cml.example.com
+    export CML_USERNAME=
+    export CML_PASSWORD=
+    export CML_LAB=my_lab
     export CML_VERIFY_CERT=false
     export GITLAB_HOST=https://gitlab.example.com
     export GITLAB_USER=
