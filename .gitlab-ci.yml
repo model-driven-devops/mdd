@@ -5,7 +5,7 @@ stages:
   - sync-nso
   - test
 
-image: ghcr.io/model-driven-devops/mdd-container:latest˚
+image: ghcr.io/model-driven-devops/mdd-container:latest
 
 variables:
   ANSIBLE_GATHERING: "smart"
