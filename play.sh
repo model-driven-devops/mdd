@@ -16,7 +16,9 @@ fi
 if [[ ! -z "$CML_LAB" ]]; then
    OPTIONS="$OPTIONS --env CML_LAB=$CML_LAB"
 fi
-
+if [[ ! -z "$ANSIBLE_INVENTORY" ]]; then
+   OPTIONS="$OPTIONS --env ANSIBLE_INVENTORY=$ANSIBLE_INVENTORY"
+fi
 
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
