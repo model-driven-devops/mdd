@@ -610,7 +610,7 @@ nodes:
       chpasswd: { expire: False }
       ssh_pwauth: True
       hostname: hq-nso1
-    image_definition: NSO5.5.2
+    image_definition: NSO5.5.2NEDsv2
     tags: []
     interfaces:
       - id: i0
