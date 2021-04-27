@@ -5,3 +5,5 @@ venv/
 *.retry
 envfile
 *.signed.bin
+.cache/
+collections/
