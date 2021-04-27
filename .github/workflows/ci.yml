@@ -1,4 +1,4 @@
-name: XG CI
+name: MDD CI
 on:
   pull_request:
     branches: [main]
