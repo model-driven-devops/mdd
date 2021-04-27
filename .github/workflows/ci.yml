@@ -1,7 +1,7 @@
 name: MDD CI
 on:
   pull_request:
-    branches: [main]
+    branches: [main, master]
 
 env:
   ACTION_BUILD: true
