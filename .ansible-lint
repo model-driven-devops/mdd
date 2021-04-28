@@ -1,3 +1,10 @@
 warn_list:  # or 'skip_list' to silence them completely
   - unnamed-task  # All tasks should be named
   - no-handler
+skip_list:
+  # truthy complains if we use yes/no
+  - truthy
+  # lots of these to fix
+  - new-line-at-end-of-file
+  # frequently used to comment out code, so doesn't line up
+  - comments-indentation

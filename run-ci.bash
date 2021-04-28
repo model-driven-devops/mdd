@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-ansible-lint --exclude=collections -c .ansible-lint -v
+ansible-lint --exclude=.github --exclude=collections -c .ansible-lint -v
