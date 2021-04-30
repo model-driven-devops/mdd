@@ -1,5 +1,5 @@
 - name: Sync devices
-  hosts: nso_hosts:&virl_hosts
+  hosts: nso_hosts:&cml_hosts
   tags:
     - sync
   connection: local
