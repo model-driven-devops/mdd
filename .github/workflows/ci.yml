@@ -1,0 +1,37 @@
+name: MDD CI
+on:
+  pull_request:
+    branches: [main, master]
+
+env:
+  ACTION_BUILD: true
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: append to path
+        run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
+      - name: install pre-reqs
+        run: |
+          # we have to uninstall ansible or else pip complains
+          sudo apt remove -y ansible
+          sudo apt update
+          sudo apt -y install libxml2-dev libxslt-dev
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+          if [ -f requirements.yml ]; then  ansible-galaxy collection install -p ./collections -r requirements.yml; fi
+      - name: Run CI script
+        run: ./run-ci.bash
+  # to be enabled later
+  #lint-container:
+  #  name: Linting Dockerfile
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - uses: brpaz/hadolint-action@v1.2.1
+  #      with:
+  #        dockerfile: Dockerfile
