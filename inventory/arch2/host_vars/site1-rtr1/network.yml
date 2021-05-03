@@ -24,7 +24,7 @@ static_routes:
         - fwd: Null0
     - network: 192.168.1.0/24
       fwd_list:
-        - fwd: Null0   
+        - fwd: Null0
 
 router:
   ospf:

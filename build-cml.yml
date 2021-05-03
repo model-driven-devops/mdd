@@ -34,7 +34,7 @@
       register: results
 
     - name: Refresh Inventory
-      meta: refresh_inventory    
+      meta: refresh_inventory
 
 - name: Start unmanaged nodes
   hosts: external_connector:unmanaged_switch

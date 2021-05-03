@@ -18,12 +18,12 @@ interfaces:
   GigabitEthernet4:
     enabled: true
     ip:
-      primary: 10.0.0.13/30  
+      primary: 10.0.0.13/30
   GigabitEthernet8:
     vrf: Mgmt-intf
     enabled: true
     ip:
-      primary: dhcp        
+      primary: dhcp
 
 static_routes:
   global:
@@ -32,7 +32,7 @@ static_routes:
         - fwd: Null0
     - network: 10.0.0.0/8
       fwd_list:
-        - fwd: Null0        
+        - fwd: Null0
 
 router:
   bgp:

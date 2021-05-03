@@ -8,3 +8,7 @@ skip_list:
   - new-line-at-end-of-file
   # frequently used to comment out code, so doesn't line up
   - comments-indentation
+  # braces doesn't like {{ varname }} but that's the ansible convention
+  - braces
+  # we have a ticket in to convert dashes to underscores, remove this when done
+  - role-name

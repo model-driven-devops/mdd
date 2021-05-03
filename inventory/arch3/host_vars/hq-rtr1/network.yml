@@ -18,12 +18,12 @@ interfaces:
   GigabitEthernet3:
     enabled: true
     ip:
-      primary: 172.16.254.1/30  
+      primary: 172.16.254.1/30
   GigabitEthernet8:
     vrf: Mgmt-intf
     enabled: true
     ip:
-      primary: dhcp     
+      primary: dhcp
 
 static_routes:
   global:
@@ -32,7 +32,7 @@ static_routes:
         - fwd: Null0
     - network: 172.16.0.0/16
       fwd_list:
-        - fwd: Null0        
+        - fwd: Null0
 
 router:
   ospf:
@@ -62,4 +62,3 @@ router:
               next_hop_self: true
           networks:
             - network: 172.16.0.0/16
-

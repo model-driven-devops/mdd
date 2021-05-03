@@ -9,7 +9,7 @@ name_servers:
   - 208.67.220.220
 
 ntp_server_list:
-  - { ip-address: 192.5.41.40 }
-  - { ip-address: 192.5.41.41 }
+  - {ip-address: 192.5.41.40}
+  - {ip-address: 192.5.41.41}
 
 banner_motd: "Welcome to {{ inventory_hostname }}!"

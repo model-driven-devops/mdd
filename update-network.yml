@@ -1,5 +1,5 @@
 - name: Update the configuration
-  hosts: "{{ passed | default('network') }}" 
+  hosts: "{{ passed | default('network') }}"
   connection: network_cli
   gather_facts: no
   tasks:

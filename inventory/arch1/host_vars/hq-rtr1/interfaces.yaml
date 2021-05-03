@@ -1,3097 +1,3097 @@
 openconfig-interfaces:interfaces:
   interface:
-  - config:
-      enabled: true
+    - config:
+        enabled: true
+        name: GigabitEthernet1
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet1
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet1
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:00:76:22
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:00:76:22
-        mac-address: 52:54:00:00:76:22
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: UP
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '61768'
-        in-unicast-pkts: '710'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '33701'
-        out-unicast-pkts: '470'
-      enabled: true
-      ifindex: 1
-      last-change: '1616708875198000000'
-      name: GigabitEthernet1
-      oper-status: UP
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: true
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          addresses:
-            address:
-            - config:
-                ip: 10.0.0.2
-                prefix-length: 30
-              ip: 10.0.0.2
-              state:
-                ip: 10.0.0.2
-                prefix-length: 30
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '71008'
-              in-pkts: '829'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '468'
-              out-octets: '33581'
-              out-pkts: '468'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:00:76:22
         state:
-          admin-status: UP
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '61768'
-            in-unicast-pkts: '710'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '33701'
-            out-unicast-pkts: '470'
-          enabled: true
-          ifindex: 1
-          last-change: '1616708875198000000'
-          name: GigabitEthernet1
-          oper-status: UP
-  - config:
-      enabled: false
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:00:76:22
+          mac-address: 52:54:00:00:76:22
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: UP
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "61768"
+          in-unicast-pkts: "710"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "33701"
+          out-unicast-pkts: "470"
+        enabled: true
+        ifindex: 1
+        last-change: "1616708875198000000"
+        name: GigabitEthernet1
+        oper-status: UP
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: true
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                  - config:
+                      ip: 10.0.0.2
+                      prefix-length: 30
+                    ip: 10.0.0.2
+                    state:
+                      ip: 10.0.0.2
+                      prefix-length: 30
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "71008"
+                  in-pkts: "829"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "468"
+                  out-octets: "33581"
+                  out-pkts: "468"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: UP
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "61768"
+                in-unicast-pkts: "710"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "33701"
+                out-unicast-pkts: "470"
+              enabled: true
+              ifindex: 1
+              last-change: "1616708875198000000"
+              name: GigabitEthernet1
+              oper-status: UP
+    - config:
+        enabled: false
+        name: GigabitEthernet10
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet10
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet10
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:02:97:dd
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:02:97:dd
-        mac-address: 52:54:00:02:97:dd
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 10
-      last-change: '1616708862267000000'
-      name: GigabitEthernet10
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:02:97:dd
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 10
-          last-change: '1616708862267000000'
-          name: GigabitEthernet10
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet11
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet11
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:04:50:cf
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:02:97:dd
+          mac-address: 52:54:00:02:97:dd
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
       state:
-        auto-negotiate: true
+        admin-status: DOWN
         counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:04:50:cf
-        mac-address: 52:54:00:04:50:cf
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 11
-      last-change: '1616708862272000000'
-      name: GigabitEthernet11
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 11
-          last-change: '1616708862272000000'
-          name: GigabitEthernet11
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet12
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet12
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:09:91:91
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:09:91:91
-        mac-address: 52:54:00:09:91:91
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 12
-      last-change: '1616708861277000000'
-      name: GigabitEthernet12
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 12
-          last-change: '1616708861277000000'
-          name: GigabitEthernet12
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet13
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet13
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:07:b4:dd
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:07:b4:dd
-        mac-address: 52:54:00:07:b4:dd
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 13
-      last-change: '1616708861289000000'
-      name: GigabitEthernet13
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 13
-          last-change: '1616708861289000000'
-          name: GigabitEthernet13
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet14
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet14
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:1e:c2:12
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:1e:c2:12
-        mac-address: 52:54:00:1e:c2:12
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 14
-      last-change: '1616708861294000000'
-      name: GigabitEthernet14
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 14
-          last-change: '1616708861294000000'
-          name: GigabitEthernet14
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet15
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet15
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:13:3c:c1
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:13:3c:c1
-        mac-address: 52:54:00:13:3c:c1
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 15
-      last-change: '1616708861299000000'
-      name: GigabitEthernet15
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 15
-          last-change: '1616708861299000000'
-          name: GigabitEthernet15
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet16
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet16
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:08:50:e6
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:08:50:e6
-        mac-address: 52:54:00:08:50:e6
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 16
-      last-change: '1616708861304000000'
-      name: GigabitEthernet16
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 16
-          last-change: '1616708861304000000'
-          name: GigabitEthernet16
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet17
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet17
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:1d:cc:45
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:1d:cc:45
-        mac-address: 52:54:00:1d:cc:45
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 17
-      last-change: '1616708861309000000'
-      name: GigabitEthernet17
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 17
-          last-change: '1616708861309000000'
-          name: GigabitEthernet17
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet18
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet18
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0a:57:4b
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0a:57:4b
-        mac-address: 52:54:00:0a:57:4b
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 18
-      last-change: '1616708861315000000'
-      name: GigabitEthernet18
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 18
-          last-change: '1616708861315000000'
-          name: GigabitEthernet18
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet19
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet19
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0e:e6:bf
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0e:e6:bf
-        mac-address: 52:54:00:0e:e6:bf
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 19
-      last-change: '1616708862320000000'
-      name: GigabitEthernet19
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 19
-          last-change: '1616708862320000000'
-          name: GigabitEthernet19
-          oper-status: DOWN
-  - config:
-      enabled: true
-      name: GigabitEthernet2
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet2
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:1d:04:7c
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:1d:04:7c
-        mac-address: 52:54:00:1d:04:7c
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: UP
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '760126'
-        in-unicast-pkts: '9728'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '346630'
-        out-unicast-pkts: '4715'
-      enabled: true
-      ifindex: 2
-      last-change: '1616708876215000000'
-      name: GigabitEthernet2
-      oper-status: UP
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: true
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          addresses:
-            address:
-            - config:
-                ip: 172.16.0.2
-                prefix-length: 24
-              ip: 172.16.0.2
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 10
+        last-change: "1616708862267000000"
+        name: GigabitEthernet10
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
               state:
-                ip: 172.16.0.2
-                prefix-length: 24
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '452098'
-              in-pkts: '5188'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '4468'
-              out-octets: '331798'
-              out-pkts: '4469'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: UP
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '760126'
-            in-unicast-pkts: '9728'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '346630'
-            out-unicast-pkts: '4715'
-          enabled: true
-          ifindex: 2
-          last-change: '1616708876215000000'
-          name: GigabitEthernet2
-          oper-status: UP
-  - config:
-      enabled: false
-      name: GigabitEthernet20
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet20
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:1f:e0:63
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:1f:e0:63
-        mac-address: 52:54:00:1f:e0:63
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 20
-      last-change: '1616708861325000000'
-      name: GigabitEthernet20
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 20
-          last-change: '1616708861325000000'
-          name: GigabitEthernet20
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet21
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet21
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0d:9b:42
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0d:9b:42
-        mac-address: 52:54:00:0d:9b:42
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 21
-      last-change: '1616708861330000000'
-      name: GigabitEthernet21
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 21
-          last-change: '1616708861330000000'
-          name: GigabitEthernet21
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet22
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet22
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0e:6f:13
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0e:6f:13
-        mac-address: 52:54:00:0e:6f:13
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 22
-      last-change: '1616708861335000000'
-      name: GigabitEthernet22
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 22
-          last-change: '1616708861335000000'
-          name: GigabitEthernet22
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet23
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet23
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:14:1b:88
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:14:1b:88
-        mac-address: 52:54:00:14:1b:88
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 23
-      last-change: '1616708861341000000'
-      name: GigabitEthernet23
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 23
-          last-change: '1616708861341000000'
-          name: GigabitEthernet23
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet24
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet24
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:1e:03:e0
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:1e:03:e0
-        mac-address: 52:54:00:1e:03:e0
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 24
-      last-change: '1616708861346000000'
-      name: GigabitEthernet24
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 24
-          last-change: '1616708861346000000'
-          name: GigabitEthernet24
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet25
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet25
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:08:97:e2
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:08:97:e2
-        mac-address: 52:54:00:08:97:e2
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 25
-      last-change: '1616708861351000000'
-      name: GigabitEthernet25
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 25
-          last-change: '1616708861351000000'
-          name: GigabitEthernet25
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet26
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet26
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:18:4a:58
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:18:4a:58
-        mac-address: 52:54:00:18:4a:58
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 26
-      last-change: '1616708862356000000'
-      name: GigabitEthernet26
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
-        state:
-          admin-status: DOWN
-          counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 26
-          last-change: '1616708862356000000'
-          name: GigabitEthernet26
-          oper-status: DOWN
-  - config:
-      enabled: true
-      name: GigabitEthernet3
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet3
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0d:4f:b8
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0d:4f:b8
-        mac-address: 52:54:00:0d:4f:b8
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: UP
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '144456'
-        in-unicast-pkts: '1438'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '144774'
-        out-unicast-pkts: '1443'
-      enabled: true
-      ifindex: 3
-      last-change: '1616708876218000000'
-      name: GigabitEthernet3
-      oper-status: UP
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: true
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          addresses:
-            address:
-            - config:
-                ip: 172.16.255.1
-                prefix-length: 30
-              ip: 172.16.255.1
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
               state:
-                ip: 172.16.255.1
-                prefix-length: 30
-          proxy-arp:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
             state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '153636'
-              in-pkts: '1556'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '1437'
-              out-octets: '144414'
-              out-pkts: '1437'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 10
+              last-change: "1616708862267000000"
+              name: GigabitEthernet10
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet11
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet11
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:04:50:cf
         state:
-          admin-status: UP
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '144456'
-            in-unicast-pkts: '1438'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '144774'
-            out-unicast-pkts: '1443'
-          enabled: true
-          ifindex: 3
-          last-change: '1616708876218000000'
-          name: GigabitEthernet3
-          oper-status: UP
-  - config:
-      enabled: true
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:04:50:cf
+          mac-address: 52:54:00:04:50:cf
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 11
+        last-change: "1616708862272000000"
+        name: GigabitEthernet11
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 11
+              last-change: "1616708862272000000"
+              name: GigabitEthernet11
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet12
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet12
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:09:91:91
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:09:91:91
+          mac-address: 52:54:00:09:91:91
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 12
+        last-change: "1616708861277000000"
+        name: GigabitEthernet12
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 12
+              last-change: "1616708861277000000"
+              name: GigabitEthernet12
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet13
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet13
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:07:b4:dd
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:07:b4:dd
+          mac-address: 52:54:00:07:b4:dd
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 13
+        last-change: "1616708861289000000"
+        name: GigabitEthernet13
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 13
+              last-change: "1616708861289000000"
+              name: GigabitEthernet13
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet14
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet14
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:1e:c2:12
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:1e:c2:12
+          mac-address: 52:54:00:1e:c2:12
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 14
+        last-change: "1616708861294000000"
+        name: GigabitEthernet14
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 14
+              last-change: "1616708861294000000"
+              name: GigabitEthernet14
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet15
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet15
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:13:3c:c1
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:13:3c:c1
+          mac-address: 52:54:00:13:3c:c1
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 15
+        last-change: "1616708861299000000"
+        name: GigabitEthernet15
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 15
+              last-change: "1616708861299000000"
+              name: GigabitEthernet15
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet16
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet16
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:08:50:e6
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:08:50:e6
+          mac-address: 52:54:00:08:50:e6
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 16
+        last-change: "1616708861304000000"
+        name: GigabitEthernet16
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 16
+              last-change: "1616708861304000000"
+              name: GigabitEthernet16
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet17
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet17
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:1d:cc:45
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:1d:cc:45
+          mac-address: 52:54:00:1d:cc:45
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 17
+        last-change: "1616708861309000000"
+        name: GigabitEthernet17
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 17
+              last-change: "1616708861309000000"
+              name: GigabitEthernet17
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet18
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet18
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0a:57:4b
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0a:57:4b
+          mac-address: 52:54:00:0a:57:4b
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 18
+        last-change: "1616708861315000000"
+        name: GigabitEthernet18
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 18
+              last-change: "1616708861315000000"
+              name: GigabitEthernet18
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet19
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet19
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0e:e6:bf
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0e:e6:bf
+          mac-address: 52:54:00:0e:e6:bf
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 19
+        last-change: "1616708862320000000"
+        name: GigabitEthernet19
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 19
+              last-change: "1616708862320000000"
+              name: GigabitEthernet19
+              oper-status: DOWN
+    - config:
+        enabled: true
+        name: GigabitEthernet2
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet2
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:1d:04:7c
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:1d:04:7c
+          mac-address: 52:54:00:1d:04:7c
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: UP
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "760126"
+          in-unicast-pkts: "9728"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "346630"
+          out-unicast-pkts: "4715"
+        enabled: true
+        ifindex: 2
+        last-change: "1616708876215000000"
+        name: GigabitEthernet2
+        oper-status: UP
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: true
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                  - config:
+                      ip: 172.16.0.2
+                      prefix-length: 24
+                    ip: 172.16.0.2
+                    state:
+                      ip: 172.16.0.2
+                      prefix-length: 24
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "452098"
+                  in-pkts: "5188"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "4468"
+                  out-octets: "331798"
+                  out-pkts: "4469"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: UP
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "760126"
+                in-unicast-pkts: "9728"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "346630"
+                out-unicast-pkts: "4715"
+              enabled: true
+              ifindex: 2
+              last-change: "1616708876215000000"
+              name: GigabitEthernet2
+              oper-status: UP
+    - config:
+        enabled: false
+        name: GigabitEthernet20
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet20
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:1f:e0:63
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:1f:e0:63
+          mac-address: 52:54:00:1f:e0:63
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 20
+        last-change: "1616708861325000000"
+        name: GigabitEthernet20
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 20
+              last-change: "1616708861325000000"
+              name: GigabitEthernet20
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet21
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet21
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0d:9b:42
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0d:9b:42
+          mac-address: 52:54:00:0d:9b:42
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 21
+        last-change: "1616708861330000000"
+        name: GigabitEthernet21
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 21
+              last-change: "1616708861330000000"
+              name: GigabitEthernet21
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet22
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet22
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0e:6f:13
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0e:6f:13
+          mac-address: 52:54:00:0e:6f:13
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 22
+        last-change: "1616708861335000000"
+        name: GigabitEthernet22
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 22
+              last-change: "1616708861335000000"
+              name: GigabitEthernet22
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet23
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet23
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:14:1b:88
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:14:1b:88
+          mac-address: 52:54:00:14:1b:88
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 23
+        last-change: "1616708861341000000"
+        name: GigabitEthernet23
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 23
+              last-change: "1616708861341000000"
+              name: GigabitEthernet23
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet24
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet24
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:1e:03:e0
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:1e:03:e0
+          mac-address: 52:54:00:1e:03:e0
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 24
+        last-change: "1616708861346000000"
+        name: GigabitEthernet24
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 24
+              last-change: "1616708861346000000"
+              name: GigabitEthernet24
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet25
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet25
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:08:97:e2
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:08:97:e2
+          mac-address: 52:54:00:08:97:e2
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 25
+        last-change: "1616708861351000000"
+        name: GigabitEthernet25
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 25
+              last-change: "1616708861351000000"
+              name: GigabitEthernet25
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet26
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet26
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:18:4a:58
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:18:4a:58
+          mac-address: 52:54:00:18:4a:58
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 26
+        last-change: "1616708862356000000"
+        name: GigabitEthernet26
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 26
+              last-change: "1616708862356000000"
+              name: GigabitEthernet26
+              oper-status: DOWN
+    - config:
+        enabled: true
+        name: GigabitEthernet3
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet3
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0d:4f:b8
+        state:
+          auto-negotiate: true
+          counters:
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0d:4f:b8
+          mac-address: 52:54:00:0d:4f:b8
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: UP
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "144456"
+          in-unicast-pkts: "1438"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "144774"
+          out-unicast-pkts: "1443"
+        enabled: true
+        ifindex: 3
+        last-change: "1616708876218000000"
+        name: GigabitEthernet3
+        oper-status: UP
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: true
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                  - config:
+                      ip: 172.16.255.1
+                      prefix-length: 30
+                    ip: 172.16.255.1
+                    state:
+                      ip: 172.16.255.1
+                      prefix-length: 30
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "153636"
+                  in-pkts: "1556"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "1437"
+                  out-octets: "144414"
+                  out-pkts: "1437"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: UP
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "144456"
+                in-unicast-pkts: "1438"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "144774"
+                out-unicast-pkts: "1443"
+              enabled: true
+              ifindex: 3
+              last-change: "1616708876218000000"
+              name: GigabitEthernet3
+              oper-status: UP
+    - config:
+        enabled: true
+        name: GigabitEthernet4
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet4
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet4
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:19:d2:1a
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:19:d2:1a
-        mac-address: 52:54:00:19:d2:1a
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: UP
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '6713980'
-        in-unicast-pkts: '80848'
-        in-unknown-protos: '0'
-        last-clear: '1616708734000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '6325067'
-        out-unicast-pkts: '7681'
-      enabled: true
-      ifindex: 4
-      last-change: '1616717046300000000'
-      name: GigabitEthernet4
-      oper-status: UP
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: true
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '160735'
-              in-pkts: '1315'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '1140'
-              out-octets: '1223056'
-              out-pkts: '1140'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:19:d2:1a
         state:
-          admin-status: UP
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '6713980'
-            in-unicast-pkts: '80848'
-            in-unknown-protos: '0'
-            last-clear: '1616708734000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '6325067'
-            out-unicast-pkts: '7681'
-          enabled: true
-          ifindex: 4
-          last-change: '1616717046300000000'
-          name: GigabitEthernet4
-          oper-status: UP
-  - config:
-      enabled: false
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:19:d2:1a
+          mac-address: 52:54:00:19:d2:1a
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: UP
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "6713980"
+          in-unicast-pkts: "80848"
+          in-unknown-protos: "0"
+          last-clear: "1616708734000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "6325067"
+          out-unicast-pkts: "7681"
+        enabled: true
+        ifindex: 4
+        last-change: "1616717046300000000"
+        name: GigabitEthernet4
+        oper-status: UP
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: true
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "160735"
+                  in-pkts: "1315"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "1140"
+                  out-octets: "1223056"
+                  out-pkts: "1140"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: UP
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "6713980"
+                in-unicast-pkts: "80848"
+                in-unknown-protos: "0"
+                last-clear: "1616708734000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "6325067"
+                out-unicast-pkts: "7681"
+              enabled: true
+              ifindex: 4
+              last-change: "1616717046300000000"
+              name: GigabitEthernet4
+              oper-status: UP
+    - config:
+        enabled: false
+        name: GigabitEthernet5
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet5
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet5
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0b:21:19
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0b:21:19
-        mac-address: 52:54:00:0b:21:19
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 5
-      last-change: '1616708861241000000'
-      name: GigabitEthernet5
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0b:21:19
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 5
-          last-change: '1616708861241000000'
-          name: GigabitEthernet5
-          oper-status: DOWN
-  - config:
-      enabled: false
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0b:21:19
+          mac-address: 52:54:00:0b:21:19
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 5
+        last-change: "1616708861241000000"
+        name: GigabitEthernet5
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 5
+              last-change: "1616708861241000000"
+              name: GigabitEthernet5
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet6
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet6
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet6
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0f:98:c3
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0f:98:c3
-        mac-address: 52:54:00:0f:98:c3
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 6
-      last-change: '1616708861246000000'
-      name: GigabitEthernet6
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0f:98:c3
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 6
-          last-change: '1616708861246000000'
-          name: GigabitEthernet6
-          oper-status: DOWN
-  - config:
-      enabled: false
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0f:98:c3
+          mac-address: 52:54:00:0f:98:c3
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 6
+        last-change: "1616708861246000000"
+        name: GigabitEthernet6
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 6
+              last-change: "1616708861246000000"
+              name: GigabitEthernet6
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet7
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet7
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet7
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:0e:aa:a3
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:0e:aa:a3
-        mac-address: 52:54:00:0e:aa:a3
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 7
-      last-change: '1616708861251000000'
-      name: GigabitEthernet7
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:0e:aa:a3
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 7
-          last-change: '1616708861251000000'
-          name: GigabitEthernet7
-          oper-status: DOWN
-  - config:
-      enabled: false
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:0e:aa:a3
+          mac-address: 52:54:00:0e:aa:a3
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 7
+        last-change: "1616708861251000000"
+        name: GigabitEthernet7
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 7
+              last-change: "1616708861251000000"
+              name: GigabitEthernet7
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet8
+        type: iana-if-type:ethernetCsmacd
       name: GigabitEthernet8
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet8
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:19:3f:7d
-      state:
-        auto-negotiate: true
-        counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:19:3f:7d
-        mac-address: 52:54:00:19:3f:7d
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 8
-      last-change: '1616708861256000000'
-      name: GigabitEthernet8
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
-            state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:19:3f:7d
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 8
-          last-change: '1616708861256000000'
-          name: GigabitEthernet8
-          oper-status: DOWN
-  - config:
-      enabled: false
-      name: GigabitEthernet9
-      type: iana-if-type:ethernetCsmacd
-    name: GigabitEthernet9
-    openconfig-if-ethernet:ethernet:
-      config:
-        auto-negotiate: true
-        enable-flow-control: true
-        mac-address: 52:54:00:10:e2:c9
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:19:3f:7d
+          mac-address: 52:54:00:19:3f:7d
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
       state:
-        auto-negotiate: true
+        admin-status: DOWN
         counters:
-          in-8021q-frames: '0'
-          in-crc-errors: '0'
-          in-fragment-frames: '0'
-          in-jabber-frames: '0'
-          in-mac-control-frames: '0'
-          in-mac-pause-frames: '0'
-          in-oversize-frames: '0'
-          out-8021q-frames: '0'
-          out-mac-control-frames: '0'
-          out-mac-pause-frames: '0'
-        enable-flow-control: false
-        hw-mac-address: 52:54:00:10:e2:c9
-        mac-address: 52:54:00:10:e2:c9
-        negotiated-duplex-mode: FULL
-        negotiated-port-speed: SPEED_1GB
-        port-speed: SPEED_1GB
-    state:
-      admin-status: DOWN
-      counters:
-        in-broadcast-pkts: '0'
-        in-discards: '0'
-        in-errors: '0'
-        in-fcs-errors: '0'
-        in-multicast-pkts: '0'
-        in-octets: '0'
-        in-unicast-pkts: '0'
-        in-unknown-protos: '0'
-        last-clear: '1616708733000000000'
-        out-broadcast-pkts: '0'
-        out-discards: '0'
-        out-errors: '0'
-        out-multicast-pkts: '0'
-        out-octets: '0'
-        out-unicast-pkts: '0'
-      enabled: false
-      ifindex: 9
-      last-change: '1616708861262000000'
-      name: GigabitEthernet9
-      oper-status: DOWN
-      type: iana-if-type:ethernetCsmacd
-    subinterfaces:
-      subinterface:
-      - config:
-          enabled: false
-          index: 0
-        index: 0
-        openconfig-if-ip:ipv4:
-          proxy-arp:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 8
+        last-change: "1616708861256000000"
+        name: GigabitEthernet8
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
             state:
-              mode: DISABLE
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-        openconfig-if-ip:ipv6:
-          config:
-            enabled: false
-          state:
-            counters:
-              in-discarded-pkts: '0'
-              in-error-pkts: '0'
-              in-forwarded-octets: '0'
-              in-forwarded-pkts: '0'
-              in-octets: '0'
-              in-pkts: '0'
-              out-discarded-pkts: '0'
-              out-error-pkts: '0'
-              out-forwarded-octets: '0'
-              out-forwarded-pkts: '0'
-              out-octets: '0'
-              out-pkts: '0'
-            enabled: false
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 8
+              last-change: "1616708861256000000"
+              name: GigabitEthernet8
+              oper-status: DOWN
+    - config:
+        enabled: false
+        name: GigabitEthernet9
+        type: iana-if-type:ethernetCsmacd
+      name: GigabitEthernet9
+      openconfig-if-ethernet:ethernet:
+        config:
+          auto-negotiate: true
+          enable-flow-control: true
+          mac-address: 52:54:00:10:e2:c9
         state:
-          admin-status: DOWN
+          auto-negotiate: true
           counters:
-            in-broadcast-pkts: '0'
-            in-discards: '0'
-            in-errors: '0'
-            in-fcs-errors: '0'
-            in-multicast-pkts: '0'
-            in-octets: '0'
-            in-unicast-pkts: '0'
-            in-unknown-protos: '0'
-            last-clear: '1616708733000000000'
-            out-broadcast-pkts: '0'
-            out-discards: '0'
-            out-errors: '0'
-            out-multicast-pkts: '0'
-            out-octets: '0'
-            out-unicast-pkts: '0'
-          enabled: false
-          ifindex: 9
-          last-change: '1616708861262000000'
-          name: GigabitEthernet9
-          oper-status: DOWN
+            in-8021q-frames: "0"
+            in-crc-errors: "0"
+            in-fragment-frames: "0"
+            in-jabber-frames: "0"
+            in-mac-control-frames: "0"
+            in-mac-pause-frames: "0"
+            in-oversize-frames: "0"
+            out-8021q-frames: "0"
+            out-mac-control-frames: "0"
+            out-mac-pause-frames: "0"
+          enable-flow-control: false
+          hw-mac-address: 52:54:00:10:e2:c9
+          mac-address: 52:54:00:10:e2:c9
+          negotiated-duplex-mode: FULL
+          negotiated-port-speed: SPEED_1GB
+          port-speed: SPEED_1GB
+      state:
+        admin-status: DOWN
+        counters:
+          in-broadcast-pkts: "0"
+          in-discards: "0"
+          in-errors: "0"
+          in-fcs-errors: "0"
+          in-multicast-pkts: "0"
+          in-octets: "0"
+          in-unicast-pkts: "0"
+          in-unknown-protos: "0"
+          last-clear: "1616708733000000000"
+          out-broadcast-pkts: "0"
+          out-discards: "0"
+          out-errors: "0"
+          out-multicast-pkts: "0"
+          out-octets: "0"
+          out-unicast-pkts: "0"
+        enabled: false
+        ifindex: 9
+        last-change: "1616708861262000000"
+        name: GigabitEthernet9
+        oper-status: DOWN
+        type: iana-if-type:ethernetCsmacd
+      subinterfaces:
+        subinterface:
+          - config:
+              enabled: false
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              proxy-arp:
+                state:
+                  mode: DISABLE
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+            openconfig-if-ip:ipv6:
+              config:
+                enabled: false
+              state:
+                counters:
+                  in-discarded-pkts: "0"
+                  in-error-pkts: "0"
+                  in-forwarded-octets: "0"
+                  in-forwarded-pkts: "0"
+                  in-octets: "0"
+                  in-pkts: "0"
+                  out-discarded-pkts: "0"
+                  out-error-pkts: "0"
+                  out-forwarded-octets: "0"
+                  out-forwarded-pkts: "0"
+                  out-octets: "0"
+                  out-pkts: "0"
+                enabled: false
+            state:
+              admin-status: DOWN
+              counters:
+                in-broadcast-pkts: "0"
+                in-discards: "0"
+                in-errors: "0"
+                in-fcs-errors: "0"
+                in-multicast-pkts: "0"
+                in-octets: "0"
+                in-unicast-pkts: "0"
+                in-unknown-protos: "0"
+                last-clear: "1616708733000000000"
+                out-broadcast-pkts: "0"
+                out-discards: "0"
+                out-errors: "0"
+                out-multicast-pkts: "0"
+                out-octets: "0"
+                out-unicast-pkts: "0"
+              enabled: false
+              ifindex: 9
+              last-change: "1616708861262000000"
+              name: GigabitEthernet9
+              oper-status: DOWN

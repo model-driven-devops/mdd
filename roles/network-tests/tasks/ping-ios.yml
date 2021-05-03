@@ -1,4 +1,4 @@
-- ios_ping:
+- ios_ping:  # noqa unnamed-task
     provider:
       host: "{{ hostvars[ping_host].ansible_host }}"
       username: admin
@@ -11,7 +11,7 @@
   delegate_to: localhost
   register: ping
 
-- set_fact:
+- set_fact:  # noqa unnamed-task
     ping_rx: "{{ ping.packets_rx }}"
     ping_tx: "{{ ping.packets_tx }}"
     ping_loss: "{{ ping.packet_loss }}"

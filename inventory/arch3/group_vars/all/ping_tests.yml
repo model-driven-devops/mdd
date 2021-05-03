@@ -1,7 +1,7 @@
 ping_tests:
-#
-# Test branch-to-main
-#
+  #
+  # Test branch-to-main
+  #
   # - dst_ip: 172.16.0.100
   #   src_host: site1-rtr1
   #   pass: yes
@@ -9,9 +9,9 @@ ping_tests:
   #   src_host: site2-rtr1
   #   pass: yes
 
-#
-# Test main-to-branch
-#
+  #
+  # Test main-to-branch
+  #
   # - dst_ip: 192.168.1.100
   #   src_host: hq-rtr1
   #   pass: yes
@@ -19,9 +19,9 @@ ping_tests:
   #   src_host: hq-rtr1
   #   pass: yes
 
-#
-# Test internet-to-site
-#
+  #
+  # Test internet-to-site
+  #
   - dst_ip: 172.16.0.100
     src_host: internet-rtr1
     pass: yes
@@ -32,10 +32,9 @@ ping_tests:
     src_host: internet-rtr1
     pass: yes
 
-
-#
-# Test offsite
-#
+  #
+  # Test offsite
+  #
   - dst_ip: 8.8.8.8
     src_host: internet-rtr1
     pass: no
