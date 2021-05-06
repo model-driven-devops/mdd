@@ -69,7 +69,7 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     git remote remove origin
     git remote add origin $GITLAB_HOST/$GITLAB_USER/$GITLAB_PROJECT.git
     git config http.version HTTP/1.1
-    git push --set-upstream origin master
+    git push --set-upstream origin main
     ```
 
     >Note: enter your GitLab credentials if asked
