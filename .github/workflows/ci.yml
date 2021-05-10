@@ -27,11 +27,11 @@ jobs:
       - name: Run CI script
         run: ./run-ci.bash
   # to be enabled later
-  #lint-container:
-  #  name: Linting Dockerfile
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #    - uses: brpaz/hadolint-action@v1.2.1
-  #      with:
-  #        dockerfile: Dockerfile
+  lint-container:
+    name: Linting Dockerfile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: brpaz/hadolint-action@v1.5.0
+        with:
+          dockerfile: Dockerfile
