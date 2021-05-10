@@ -1,11 +1,11 @@
-- set_fact:
+- set_fact:  # noqa unnamed-task
     edge_type: ios
 
 - include_tasks:
     file: "ping-{{ edge_type }}.yml"
 
-- debug:
-    msg: "{{ ping_host }} => {{ ping_dst_ip }}: {{ ping_rx }}/{{ ping_tx }}, {{ ping_loss }} loss, Pass(actual/expected) {{ actual_result }}/{{ expected_result }}"
+- debug:  # noqa unnamed-task
+    msg: "{{ ping_host }} => {{ ping_dst_ip }}: {{ ping_rx }}/{{ ping_tx }}, {{ ping_loss }} loss, Pass(actual/expected) {{ actual_result }}/{{ expected_result }}"  # noqa line-length
   failed_when: actual_result != expected_result
   ignore_errors: False
   vars:

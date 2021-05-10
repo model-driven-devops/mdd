@@ -15,7 +15,7 @@ interfaces:
     vrf: Mgmt-intf
     enabled: true
     ip:
-      primary: dhcp     
+      primary: dhcp
 
 static_routes:
   global:
@@ -24,7 +24,7 @@ static_routes:
         - fwd: Null0
     - network: 192.168.2.0/24
       fwd_list:
-        - fwd: Null0        
+        - fwd: Null0
 
 router:
   ospf:

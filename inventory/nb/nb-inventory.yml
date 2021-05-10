@@ -13,7 +13,7 @@ interfaces: true
 device_query_filters:
   - has_primary_ip: 'true'
 compose:
-  ansible_network_os: platform.slug  
+  ansible_network_os: platform.slug
 
 # has_primary_ip is a useful way to filter out patch panels and other passive devices
 
@@ -48,5 +48,3 @@ compose:
 # keyed_groups:
 #   - prefix: status
 #     key: status.value
-
-
