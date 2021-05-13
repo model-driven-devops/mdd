@@ -1,10 +1,9 @@
 all:
   vars:
-#    nso_installer_name: nso-5.4.2.linux.x86_64.signed.bin
-#    nso_package_list:
-#      - ncs-5.4.1-cisco-ios-6.68.signed.bin
-#      # - ncs-5.4.1-cisco-ios-6.68.tar.gz
-#      # - ncs-5.4.2-cisco-nx-5.21.1.tar.gz
+    mdd_model_repos:
+      - name: nso-oc-services
+        model_list:
+          - oc-system-nso
   children:
     nso_hosts:
       vars:
@@ -16,7 +15,6 @@ all:
         nso_devices_seed_template: "nso-deviceSetup.xml.j2"
         ansible_user: "{{ admin_user }}"
         ansible_password: "{{ admin_password }}"
-#        ansible_python_interpreter: "/usr/bin/python3"
       hosts:
         hq-nso1:
     nso_devices:
