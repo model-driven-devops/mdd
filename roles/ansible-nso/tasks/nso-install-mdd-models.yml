@@ -16,7 +16,7 @@
     - name: Make packages
       command:
         chdir: '{{ nso_run_dir }}/packages/{{ item[1] }}/src/'
-        cmd: '/bin/bash -c "source {{ nso_install_dir }}/ncsrc"; make'
+        cmd: '/bin/bash -c "source {{ nso_install_dir }}/ncsrc; NCS_JAVA_VM_OPTIONS=\"{{ nso_java_opts }}\" make"'
       with_subelements:
         - "{{ mdd_model_repos }}"
         - model_list
