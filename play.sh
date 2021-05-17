@@ -20,6 +20,22 @@ if [[ ! -z "$ANSIBLE_INVENTORY" ]]; then
    OPTIONS="$OPTIONS --env ANSIBLE_INVENTORY=$ANSIBLE_INVENTORY"
 fi
 
+OPTION_LIST=( \
+   "CML_HOST" \
+   "CML_USERNAME" \
+   "CML_PASSWORD" \
+   "CML_LAB" \
+   "CSR1000V_VERSION" \
+   "UBUNTU_VERSION" \
+   "IOSVL2_VERSION" \
+   )
+
+for OPTION in ${OPTION_LIST[*]}; do
+   if [[ ! -z "${!OPTION}" ]]; then
+      OPTIONS="$OPTIONS --env $OPTION=${!OPTION}"
+   fi
+done
+
 OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
 docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd-container:latest ansible-playbook "$@"
