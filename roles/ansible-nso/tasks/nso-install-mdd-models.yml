@@ -1,6 +1,7 @@
 ---
 - name: Process package list
-  vars:
+  environment:
+    NCS_JAVA_VM_OPTIONS: "{{ nso_java_opts }}"
   block:
     - name: Clone model-driven-devops nso-oc-services repo
       ansible.builtin.git:
@@ -16,7 +17,7 @@
     - name: Make packages
       command:
         chdir: '{{ nso_run_dir }}/packages/{{ item[1] }}/src/'
-        cmd: '/bin/bash -c "source {{ nso_install_dir }}/ncsrc"; make'
+        cmd: '/bin/bash -c "source {{ nso_install_dir }}/ncsrc; make"'
       with_subelements:
         - "{{ mdd_model_repos }}"
         - model_list
