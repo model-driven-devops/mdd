@@ -15,8 +15,15 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
     git clone https://github.com/model-driven-devops/mdd-dev.git
     ```
 
+1. Edit './ansible.cfg' with the architecture you would like to deploy. For instance, to deploy arch3:
+   ```   
+   ...
+   inventory = ./inventory/arch3
+   ...
+   ```
+
 1. This repo deploys using a Network Services Orchestrator image created from https://github.com/ciscops/cml-custom-images.
-   Edit './inventory/arch2/nso.yml' with the appropriate NSO variables. For example
+   Edit your chosen architecture's nso.yml file with the appropriate NSO variables. For example for architecture arch3, edit './inventory/arch3/nso.yml' as follows:
    ```   
    admin_user: ubuntu
    admin_password: admin
@@ -24,7 +31,23 @@ This repo contains a set of tools to automate workflows and build CI/CD pipeline
    nso_run_dir: /home/ubuntu/ncs-run
    nso_ned_id: cisco-ios-cli-6.72
    ```
-1. You may need to verify/edit node_definition and image_definition names for your CML deployment in './files/arch2.yaml'.
+
+1. If you would like NSO to deploy with YANG models as services, find the appropriate models types in https://github.com/model-driven-devops.
+   For example for OpenConfig services, you would want nso-oc-services. Then within the nso-oc-services directory,
+   find the nso package for the desired OpenConfig YANG model. For instance, to add the OpenConfig system model service package
+   located at https://github.com/model-driven-devops/nso-oc-services/tree/main/oc-system-nso to NSO for arch3, you would 
+   edit './inventory/arch3/nso.yml' as follows:
+   ```   
+   all:
+     vars:
+       mdd_model_repos:
+         - name: nso-oc-services
+           model_list:
+             - oc-system-nso
+   ...
+   ```
+   
+1. You may need to verify/edit node_definition and image_definition names for your CML deployment in './files/arch3.yaml'.
 
 1. Change to the mdd-dev directory.
     ```
