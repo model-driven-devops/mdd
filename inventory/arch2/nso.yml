@@ -3,7 +3,7 @@ all:
     mdd_model_repos:
       - name: nso-oc-services
         model_list:
-          - oc-system-nso
+          - mdd
   children:
     nso_hosts:
       vars:
@@ -20,7 +20,7 @@ all:
     nso_devices:
       vars:
         mgmt_ip: "{{ interfaces.Loopback0.ip.primary }}"
-        nso_ned_id: cisco-ios-cli-6.72
+        nso_ned_id: cisco-ios-cli-6.74
       hosts:
         hq-rtr1:
         hq-rtr2:
