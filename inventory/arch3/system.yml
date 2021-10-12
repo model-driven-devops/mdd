@@ -6,8 +6,6 @@ all:
         host_interface: ens3
       children:
         client:
-          vars:
-            cml_image_definition: "ubuntu-{{ ubuntu_version }}"
           hosts:
             hq-host1:
               host_ip: 172.16.0.100/24

@@ -1,0 +1,24 @@
+check_bgp_neighbors:
+  title: BGP Neighbor Check
+  type: object
+  required: ['ipv4']
+  properties:
+    ipv4:
+      type: object
+      required: ['unicast']
+      properties:
+        unicast:
+          type: object
+          required: ['neighbors']
+          properties:
+            neighbors:
+              type: array
+              empty: false
+              items:
+                type: object
+                properties:
+                  'bgp-state':
+                    type: string
+                    empty: false
+                    # pattern: '^Established$'
+                required: ['bgp-state']

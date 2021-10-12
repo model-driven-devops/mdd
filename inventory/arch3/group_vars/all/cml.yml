@@ -1,1 +1,1 @@
-cml_lab_file: "{{ playbook_dir }}/files/arch3.yaml"
+cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch3.yaml"
