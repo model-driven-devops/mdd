@@ -1,5 +1,5 @@
 #jinja2: lstrip_blocks: True, trim_blocks: True
-{{ lookup('template', './cli/system.j2') }}
+{% include 'ios/cli/system.j2' %}
 !
 username {{ ansible_user }} privilege 15 secret {{ ansible_password }}
 crypto key generate rsa modulus 2048
@@ -13,12 +13,12 @@ vrf definition Mgmt-intf
 {# ---------- #}
 {# Interfaces #}
 {# ---------- #}
-{{ lookup('template', './cli/interfaces.j2') }}
+{% include 'ios/cli/interfaces.j2' %}
 !
 {# ------------- #}
 {# Static Routes #}
 {# ------------- #}
-{{ lookup('template', './cli/static-routes.j2') }}
+{% include 'ios/cli/static-routes.j2' %}
 !
 {# ----------------- #}
 {# Routing Protocols #}
@@ -26,22 +26,22 @@ vrf definition Mgmt-intf
 {# --- #}
 {# BGP #}
 {# --- #}
-{{ lookup('template', './cli/bgp.j2') }}
+{% include 'ios/cli/bgp.j2' %}
 !
 {# ---- #}
 {# OSPF #}
 {# ---- #}
-{{ lookup('template', './cli/ospf.j2') }}
+{% include 'ios/cli/ospf.j2' %}
 !
 {# --- #}
 {# DNS #}
 {# --- #}
-{{ lookup('template', './cli/dns.j2') }}
+{% include 'ios/cli/dns.j2' %}
 !
 {# --- #}
 {# NTP #}
 {# --- #}
-{{ lookup('template', './cli/ntp.j2') }}
+{% include 'ios/cli/ntp.j2' %}
 !
 line vty 0 4
  login local

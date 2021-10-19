@@ -4,3 +4,4 @@ netaddr
 pynetbox
 jsonschema
 ipaddress
+paramiko

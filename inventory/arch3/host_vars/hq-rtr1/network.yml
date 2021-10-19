@@ -1,29 +1,29 @@
-interfaces:
-  Loopback0:
-    enabled: true
-    ip:
-      primary: 172.16.255.1/32
-  GigabitEthernet1:
-    enabled: true
-    ip:
-      primary: 10.0.0.2/30
-  GigabitEthernet2:
-    enabled: true
-    ip:
-      primary: 172.16.0.2/24
-      standby:
-        group: 1
-        priority: 100
-        address: 172.16.0.1
-  GigabitEthernet3:
-    enabled: true
-    ip:
-      primary: 172.16.254.1/30
-  GigabitEthernet8:
-    vrf: Mgmt-intf
-    enabled: true
-    ip:
-      primary: dhcp
+# interfaces:
+#   Loopback0:
+#     enabled: true
+#     ip:
+#       primary: 172.16.255.1/32
+#   GigabitEthernet1:
+#     enabled: true
+#     ip:
+#       primary: 10.0.0.2/30
+#   GigabitEthernet2:
+#     enabled: true
+#     ip:
+#       primary: 172.16.0.2/24
+#       standby:
+#         group: 1
+#         priority: 100
+#         address: 172.16.0.1
+#   GigabitEthernet3:
+#     enabled: true
+#     ip:
+#       primary: 172.16.254.1/30
+#   GigabitEthernet8:
+#     vrf: Mgmt-intf
+#     enabled: true
+#     ip:
+#       primary: dhcp
 
 static_routes:
   global:
