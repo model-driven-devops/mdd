@@ -1,0 +1,11 @@
+oc_ni_host:
+  openconfig-network-instance:network-instances:
+    network-instance:
+      - name: default
+        protocols:
+          protocol:
+            - name: '65100'
+              bgp:
+                global:
+                  config:
+                    router-id: 172.16.255.1
