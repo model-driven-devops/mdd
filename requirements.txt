@@ -5,3 +5,6 @@ pynetbox
 jsonschema
 ipaddress
 paramiko
+genie
+pyats
+jmespath

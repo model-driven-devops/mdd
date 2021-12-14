@@ -1,0 +1,19 @@
+type: object
+properties:
+  vrf:
+    type: object
+    properties:
+      default:
+        type: object
+        properties:
+          address_family:
+            type: object
+            properties:
+              ipv4:
+                type: object
+                required:
+                  - routes
+                properties:
+                  routes:
+                    type: object
+                    required: {{ check_vars.routes }}

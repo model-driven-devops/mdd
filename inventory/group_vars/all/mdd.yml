@@ -1,0 +1,18 @@
+---
+mdd_group_list: "{{ regions }}"
+mdd_data_root: "{{ lookup('env', 'PWD') }}/mdd-data"
+mdd_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+mdd_device_dir: "{{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}"
+
+check_root: "{{ mdd_data_root }}"
+check_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+check_file_patterns:
+  - 'check-*.yml'
+
+oc_data_root: "{{ mdd_data_root }}"
+oc_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+oc_file_patterns:
+  - 'oc-*.yml'
+
+# defaults file location for data_validation
+schema_root: "{{ lookup('env', 'PWD') }}/schemas"
