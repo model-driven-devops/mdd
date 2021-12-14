@@ -1,0 +1,25 @@
+{
+  "$id": "https://cisco.com/CISC-ND_IOSXE.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CISC-ND_IOSXE",
+
+    "type": "object",
+    "required": ["openconfig-system:system"],
+    "properties": {
+        "openconfig-system:system": {
+            "type": "object",
+            "required": ["config", "ntp"],
+            "properties": {
+                "config": {
+                    "description": "STIG: CISC_IOSXE-ND",
+                    "$ref": "file:./CISC_IOSXE-ND.schema"
+                },
+                "ntp": {
+                    "description": "STIG: CISC_IOSXE-ND",
+                    "$ref": "file:./CISC_IOSXE-ND_NTP.schema"
+                }
+            }
+        }
+    }
+}
+

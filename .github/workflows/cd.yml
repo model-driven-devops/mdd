@@ -1,0 +1,35 @@
+---
+name: CD
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mdd-data/**.yml'
+      - 'mdd-data/**.yaml'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: navy-test
+    concurrency: navy-test
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Create Vault Password File
+        run: echo ${{ secrets.ANSIBLE_VAULT_PASSWORD }} > vault_pass.txt
+      - name: Deploy Changes
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no --vault-password-file vault_pass.txt
+        env:
+          NETBOX_API: ${{ secrets.NETBOX_API }}
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
+      - name: Run Checks
+        run: ansible-playbook ciscops.mdd.run_check_list --vault-password-file vault_pass.txt
+        env:
+          NETBOX_API: ${{ secrets.NETBOX_API }}
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}

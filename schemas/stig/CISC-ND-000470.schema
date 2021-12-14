@@ -1,0 +1,57 @@
+{
+
+    "$id": "nd_000470.schema",
+    "description": "STIG ID: CISC-ND-000470",
+
+    "type": "object",
+    "required": [
+        "openconfig-system-ext:ip-boot_server",
+        "openconfig-system-ext:ip-bootp_server",
+        "openconfig-system-ext:ip-dns_server",
+        "openconfig-system-ext:ip-identd",
+        "openconfig-system-ext:ip-http_server",
+        "openconfig-system-ext:ip_rcmd_rcp_enable",
+        "openconfig-system-ext:ip_rcmd_rsh_enable",
+        "openconfig-system-ext:service_config",
+        "openconfig-system-ext:service_finger",
+        "openconfig-system-ext:service_tcp_small_servers",
+        "openconfig-system-ext:service_udp_small_servers"
+        ],
+    "properties": {
+        "openconfig-system-ext:ip-boot_server": {
+            "const": false
+        },
+        "openconfig-system-ext:ip-bootp_server": {
+            "const": false
+        },
+        "openconfig-system-ext:ip-dns_server": {
+            "const": false
+        },
+        "openconfig-system-ext:ip-identd": {
+            "const": false
+        },
+        "openconfig-system-ext:ip-http_server": {
+            "const": false
+        },
+        "openconfig-system-ext:ip_rcmd_rcp_enable": {
+            "const": false
+        },
+        "openconfig-system-ext:ip_rcmd_rsh_enable": {
+            "const": false
+        },
+        "openconfig-system-ext:service_config": {
+            "const": false
+        },
+        "openconfig-system-ext:service_finger": {
+            "const": false
+        },
+        "openconfig-system-ext:service_tcp_small_servers": {
+            "const": false
+        },
+        "openconfig-system-ext:service_udp_small_servers": {
+            "const": false
+        }
+    }
+
+}
+

@@ -1,0 +1,36 @@
+---
+name: Update Interfaces
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry Run'
+        type: boolean 
+        required: false
+        default: true
+      limit:
+        description: 'Limit Hosts'
+        type: string 
+        required: false
+        default: 'all'
+      
+
+jobs:
+  update_interfaces:
+    runs-on: self-hosted
+    environment: navy-test
+    concurrency: navy-test
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Create Vault Password File
+        run: echo ${{ secrets.ANSIBLE_VAULT_PASSWORD }} > vault_pass.txt
+      - name: NSO Update OC
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=${{ inputs.dry_run }} --limit=${{ inputs.limit }} --vault-password-file vault_pass.txt
+        env:
+          NETBOX_API: ${{ secrets.NETBOX_API }}
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
