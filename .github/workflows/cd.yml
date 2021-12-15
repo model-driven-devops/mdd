@@ -1,0 +1,43 @@
+---
+name: CD
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mdd-data/**.yml'
+      - 'mdd-data/**.yaml'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: mdd-dev
+    concurrency: mdd-dev
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Deploy Changes
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Run Checks
+        run: ansible-playbook ciscops.mdd.run_check_list
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}

@@ -1,1 +1,0 @@
-cml_lab_file: "{{ playbook_dir }}/files/arch3.yaml"

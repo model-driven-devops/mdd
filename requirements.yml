@@ -1,6 +1,7 @@
 collections:
-  - ansible.netcommon
-  - ansible.utils
-  - cisco.cml
-  - community.yang
-  - netbox.netbox
+  - name: https://github.com/model-driven-devops/ansible-mdd.git,mdd-dev
+    type: git
+  - name: https://github.com/model-driven-devops/ansible-nso.git
+    type: git
+  - name: https://github.com/CiscoDevNet/ansible-cml.git,mdd-dev
+    type: git

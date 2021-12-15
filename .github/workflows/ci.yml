@@ -1,37 +1,75 @@
-name: MDD CI
+---
+name: CI
 on:
+  workflow_dispatch:
   pull_request:
-    branches: [main, master]
-
-env:
-  ACTION_BUILD: true
+    branches:
+      - main
+    paths:
+      - 'mdd-data/**.yml'
+      - 'mdd-data/**.yaml'
 
 jobs:
-  linting:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: self-hosted
+    environment: mdd-dev
+    concurrency: mdd-dev
     steps:
-      - name: Checkout
+      - name: Checkout Inventory
         uses: actions/checkout@v2
-      - name: append to path
-        run: echo "${HOME}/.local/bin" >> $GITHUB_PATH
-      - name: install pre-reqs
-        run: |
-          # we have to uninstall ansible or else pip complains
-          sudo apt remove -y ansible
-          sudo apt update
-          sudo apt -y install libxml2-dev libxslt-dev
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-          if [ -f requirements.yml ]; then  ansible-galaxy collection install -p ./collections -r requirements.yml; fi
-      - name: Run CI script
-        run: ./run-ci.bash
-  # to be enabled later
-  #lint-container:
-  #  name: Linting Dockerfile
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - uses: actions/checkout@v2
-  #    - uses: brpaz/hadolint-action@v1.2.1
-  #      with:
-  #        dockerfile: Dockerfile
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Run YAMLLINT
+        run: yamllint mdd-data
+      - name: Save Rollback
+        run: ansible-playbook ciscops.mdd.nso_save_rollback
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Validate Data
+        run: ansible-playbook ciscops.mdd.validate_data
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Deploy Changes
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Run Checks
+        run: ansible-playbook ciscops.mdd.run_check_list
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Load Rollback
+        run: ansible-playbook ciscops.mdd.nso_load_rollback
+        env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}

@@ -1,4 +1,4 @@
-{% for key, value in interfaces.items() %}
+{% for key, value in interfaces.items() | default([]) %}
 interface {{ key }}
 {%  if value.vlan is defined %}
  encapsulation dot1Q {{ value.vlan }}

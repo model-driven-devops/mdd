@@ -1,0 +1,32 @@
+mdd_data:
+  openconfig-network-instance:network-instances:
+    network-instance:
+    - config:
+        enabled: true
+        name: default
+        type: DEFAULT_INSTANCE
+      name: default
+      protocols:
+        protocol:
+        - bgp:
+            global:
+              config:
+                as: 65100
+            neighbors:
+              neighbor:
+              - config:
+                  enabled: true
+                  neighbor-address: 172.16.254.2
+                  peer-as: 65100
+                neighbor-address: 172.16.254.2
+              - config:
+                  enabled: true
+                  neighbor-address: 10.0.0.1
+                  peer-as: 65000
+                neighbor-address: 10.0.0.1
+          config:
+            enabled: true
+            identifier: BGP
+            name: BGP
+          identifier: BGP
+          name: BGP

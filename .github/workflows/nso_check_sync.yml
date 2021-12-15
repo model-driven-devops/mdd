@@ -1,0 +1,22 @@
+---
+name: Check Sync
+on:
+  workflow_dispatch:
+
+
+jobs:
+  check_sync:
+    runs-on: self-hosted
+    environment: mdd-dev
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: NSO Check Sync
+        run: ansible-playbook ciscops.mdd.nso_check_sync
+        env:
+          NETBOX_API: ${{ secrets.NETBOX_API }}
+          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}

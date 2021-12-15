@@ -1,0 +1,122 @@
+---
+mdd_data:
+  openconfig-interfaces:interfaces:
+    interface:
+      - config:
+          enabled: true
+          name: GigabitEthernet1
+          type: ethernetCsmacd
+        name: GigabitEthernet1
+        openconfig-if-ethernet:ethernet:
+          config: {}
+        subinterfaces:
+          subinterface:
+            - config:
+                enabled: true
+                index: '0'
+              index: '0'
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 10.0.0.6
+                        prefix-length: 30
+                      ip: 10.0.0.6
+                config:
+                  dhcp-client: false
+      - config:
+          enabled: true
+          name: GigabitEthernet2
+          type: ethernetCsmacd
+        name: GigabitEthernet2
+        openconfig-if-ethernet:ethernet:
+          config: {}
+        subinterfaces:
+          subinterface:
+            - config:
+                enabled: true
+                index: '0'
+              index: '0'
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.0.3
+                        prefix-length: 24
+                      ip: 172.16.0.3
+                config:
+                  dhcp-client: false
+      - config:
+          enabled: true
+          name: GigabitEthernet3
+          type: ethernetCsmacd
+        name: GigabitEthernet3
+        openconfig-if-ethernet:ethernet:
+          config: {}
+        subinterfaces:
+          subinterface:
+            - config:
+                enabled: true
+                index: '0'
+              index: '0'
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.254.2
+                        prefix-length: 30
+                      ip: 172.16.254.2
+                config:
+                  dhcp-client: false
+      - config:
+          enabled: true
+          name: GigabitEthernet8
+          type: ethernetCsmacd
+        name: GigabitEthernet8
+        openconfig-if-ethernet:ethernet:
+          config: {}
+        subinterfaces:
+          subinterface:
+            - config:
+                enabled: true
+                index: '0'
+              index: '0'
+              openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
+      - config:
+          enabled: true
+          name: Loopback0
+          type: softwareLoopback
+        name: Loopback0
+        subinterfaces:
+          subinterface:
+            - config:
+                enabled: true
+                index: '0'
+              index: '0'
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.255.2
+                        prefix-length: 32
+                      ip: 172.16.255.2
+                config:
+                  dhcp-client: false
+  openconfig-network-instance:network-instances:
+    network-instance:
+      - name: 'Mgmt-intf'
+        config:
+          name: 'Mgmt-intf'
+          type: 'L3VRF'  # oc-ni-types:DEFAULT_INSTANCE
+          enabled: true  # not in IOS
+          enabled-address-families:
+            - 'IPV4'
+        interfaces:
+          interface:
+            - id: 'GigabitEthernet8'
+              config:
+                id: 'GigabitEthernet8'
+                interface: 'GigabitEthernet8'
+                subinterface: '0'

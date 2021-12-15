@@ -1,0 +1,29 @@
+mdd_data:
+  openconfig-network-instance:network-instances:
+    network-instance:
+    - config:
+        enabled: true
+        name: default
+        type: DEFAULT_INSTANCE
+      name: default
+      protocols:
+        protocol:
+        - bgp:
+            global:
+              config:
+                as: 65101
+                router-id: 192.168.255.1
+            neighbors:
+              neighbor:
+              - config:
+                  enabled: true
+                  neighbor-address: 10.0.0.9
+                neighbor-address: 10.0.0.9
+          config:
+            enabled: true
+            identifier: BGP
+            name: BGP
+          identifier: BGP
+          name: BGP
+mdd_tags:
+- all

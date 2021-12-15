@@ -1,0 +1,24 @@
+{
+
+    "$id": "nd_001030.schema",
+    "description": "STIG ID: CISC-ND-001030",
+
+    "type": "object",
+    "required": [
+        "config"
+        ],
+    "properties": {
+        "config": {
+            "type": "object",
+            "required": [
+                "enabled"
+            ],
+            "properties": {
+                "enabled": {
+                    "const": true
+                }
+            }
+        }
+    }
+}
+
