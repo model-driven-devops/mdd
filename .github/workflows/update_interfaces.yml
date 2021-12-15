@@ -18,8 +18,8 @@ on:
 jobs:
   update_interfaces:
     runs-on: self-hosted
-    environment: navy-test
-    concurrency: navy-test
+    environment: mdd-dev
+    concurrency: mdd-dev
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2
@@ -27,10 +27,8 @@ jobs:
         run: pip install -r requirements.txt
       - name: Install Collections
         run: ansible-galaxy collection install -r requirements.yml
-      - name: Create Vault Password File
-        run: echo ${{ secrets.ANSIBLE_VAULT_PASSWORD }} > vault_pass.txt
       - name: NSO Update OC
-        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=${{ inputs.dry_run }} --limit=${{ inputs.limit }} --vault-password-file vault_pass.txt
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=${{ inputs.dry_run }} --limit=${{ inputs.limit }}
         env:
           NETBOX_API: ${{ secrets.NETBOX_API }}
           NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}

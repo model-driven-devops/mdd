@@ -12,8 +12,8 @@ on:
 jobs:
   test:
     runs-on: self-hosted
-    environment: navy-test
-    concurrency: navy-test
+    environment: mdd-dev
+    concurrency: mdd-dev
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2
