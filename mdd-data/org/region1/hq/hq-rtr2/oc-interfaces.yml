@@ -98,10 +98,10 @@ mdd_data:
               openconfig-if-ip:ipv4:
                 addresses:
                   address:
-                  - config:
+                    - config:
+                        ip: 172.16.255.2
+                        prefix-length: 32
                       ip: 172.16.255.2
-                      prefix-length: 32
-                    ip: 172.16.255.2
                 config:
                   dhcp-client: false
   openconfig-network-instance:network-instances:
