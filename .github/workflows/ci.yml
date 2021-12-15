@@ -64,6 +64,7 @@ jobs:
           CML_HOST: ${{ secrets.CML_HOST }}
           CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
       - name: Load Rollback
+        run: ansible-playbook ciscops.mdd.nso_load_rollback
         env:
           NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
           NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
