@@ -21,15 +21,23 @@ jobs:
         run: ansible-galaxy collection install -r requirements.yml
       - name: Install PIP requirements
         run: pip install -r requirements.txt
-      - name: Create Vault Password File
-        run: echo ${{ secrets.ANSIBLE_VAULT_PASSWORD }} > vault_pass.txt
       - name: Deploy Changes
-        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no --vault-password-file vault_pass.txt
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
         env:
-          NETBOX_API: ${{ secrets.NETBOX_API }}
-          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
       - name: Run Checks
-        run: ansible-playbook ciscops.mdd.run_check_list --vault-password-file vault_pass.txt
+        run: ansible-playbook ciscops.mdd.run_check_list
         env:
-          NETBOX_API: ${{ secrets.NETBOX_API }}
-          NETBOX_TOKEN: ${{ secrets.NETBOX_TOKEN }}
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
