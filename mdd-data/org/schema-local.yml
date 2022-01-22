@@ -1,6 +1,0 @@
----
-mdd_tags:
-  - all
-mdd_schemas:
-  - name: local
-    path: 'local/banner.yml'

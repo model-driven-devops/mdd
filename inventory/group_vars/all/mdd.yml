@@ -1,32 +1,19 @@
 ---
+# The root directory where the MDD Data is stored
 mdd_data_root: "{{ lookup('env', 'PWD') }}/mdd-data"
+# The directory items that make up the direct path from the highest level
+# to the device specific level
 mdd_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
-mdd_file_patterns:
-  - 'oc-*.yml'
+# The data directory for the particular device
 mdd_device_dir: "{{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}"
-
-# The file pattern there use for finding check definition files
-check_file_patterns:
+# The file pattern for files that specify OD Data
+mdd_oc_patterns:
+  - 'oc-*.yml'
+# The file pattern for files that specify state checks
+mdd_check_patterns:
   - 'check-*.yml'
-
 # default file location for JSON schemas
-schema_root: "{{ lookup('env', 'PWD') }}/schemas"
-# The file pattern there use for finding check definition files
-schema_file_patterns:
-  - 'schema-*.yml'
-
-# oc_data_root: "{{ mdd_data_root }}"
-# oc_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
-# oc_file_patterns:
-#   - 'oc-*.yml'
-
-#
-# The list of schmema groups to validate
-#
-# schema_group_list:
-#   - local
-# schema_group_table:
-#   stig:
-#     path: 'local/banner.schema'
-#     tags:
-#       - all
+mdd_schema_root: "{{ lookup('env', 'PWD') }}/schemas"
+# The file pattern for files that specify data validation
+mdd_validate_patterns:
+  - 'validate-*.yml'

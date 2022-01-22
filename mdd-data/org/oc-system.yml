@@ -18,6 +18,8 @@ mdd_data:
       # openconfig-system-ext:file-privilege: 15
       domain-name: 'mdd.cisco.com'
       hostname: "{{ inventory_hostname }}"
+      login-banner: "Unauthorized access is prohibited!"
+      motd-banner: "Welcome to {{ inventory_hostname }}"
     openconfig-system-ext:services:
       finger: false
     dns:
