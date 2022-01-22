@@ -1,7 +1,6 @@
 - hosts: localhost
   gather_facts: no
-  tags:
-    - always
+  connection: local
   tasks:
     - name: Stop the lab
       cisco.cml.cml_lab:
@@ -13,6 +12,7 @@
       tags:
         - stop
         - wipe
+        - erase
     - name: Wipe the lab
       cisco.cml.cml_lab:
         host: "{{ cml_host }}"
@@ -22,10 +22,13 @@
         state: wiped
       tags:
         - wipe
-    - name: Delete the lab
+        - erase
+    - name: Erase the lab
       cisco.cml.cml_lab:
         host: "{{ cml_host }}"
         user: "{{ cml_username }}"
         password: "{{ cml_password }}"
         lab: "{{ cml_lab }}"
         state: absent
+      tags:
+        - erase

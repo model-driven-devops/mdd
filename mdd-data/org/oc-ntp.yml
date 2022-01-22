@@ -1,0 +1,21 @@
+---
+mdd_data:
+  openconfig-system:system:
+    clock:
+      config:
+        timezone-name: 'PST -8 0'
+    ntp:
+      config:
+        enabled: true
+      servers:
+        server:
+          - address: '1.us.pool.ntp.org'
+            config:
+              address: '1.us.pool.ntp.org'
+              association-type: SERVER
+              iburst: true
+          - address: '2.us.pool.ntp.org'
+            config:
+              address: '2.us.pool.ntp.org'
+              association-type: SERVER
+              iburst: true

@@ -1,0 +1,41 @@
+mdd_data:
+  openconfig-interfaces:interfacses:
+    interface:
+    - config:
+        enabled: true
+        name: Loopback0
+      name: Loopback0
+    - config:
+        enabled: true
+        name: GigabitEthernet1
+      name: GigabitEthernet1
+    - config:
+        enabled: true
+        name: GigabitEthernet2
+      name: GigabitEthernet2
+    - config:
+        enabled: true
+        name: GigabitEthernet3
+      name: GigabitEthernet3
+    - config:
+        enabled: false
+        name: GigabitEthernet4
+      name: GigabitEthernet4
+    - config:
+        enabled: false
+        name: GigabitEthernet5
+      name: GigabitEthernet5
+    - config:
+        enabled: false
+        name: GigabitEthernet6
+      name: GigabitEthernet6
+    - config:
+        enabled: false
+        name: GigabitEthernet7
+      name: GigabitEthernet7
+    - config:
+        enabled: true
+        name: GigabitEthernet8
+      name: GigabitEthernet8
+mdd_tags:
+- all

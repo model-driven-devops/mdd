@@ -5,4 +5,4 @@ mdd_checks:
   - name: BGP Neighbor Status
     command: 'show bgp neighbors'
     schema: 'pyats/bgp-neighbors.yml'
-    method: nso_parse
+    method: cli_parse

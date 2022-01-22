@@ -102,7 +102,7 @@
         config: "{{ day0_config | default(omit) }}"
 
 - name: Check initial topology connectivity
-  hosts: internet-rtr1:&cml_hosts
+  hosts: hq_routers
   connection: local
   tags:
     - network
@@ -143,12 +143,12 @@
       until: result is not failed
       connection: network_cli
 
-    - name: Ping hosts
-      ios_ping:
-        dest: "{{ hostvars[item].host_ip | ipaddr('address') }}"
-      loop: "{{ groups.system | intersect(groups.cml_hosts) }}"
-      register: result
-      retries: 60
-      delay: 10
-      until: result is not failed
-      connection: network_cli
+    # - name: Ping hosts
+    #   ios_ping:
+    #     dest: "{{ hostvars[item].host_ip | ipaddr('address') }}"
+    #   loop: "{{ groups.server | intersect(groups.cml_hosts) }}"
+    #   register: result
+    #   retries: 60
+    #   delay: 10
+    #   until: result is not failed
+    #   connection: network_cli

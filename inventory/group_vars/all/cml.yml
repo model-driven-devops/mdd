@@ -1,1 +1,1 @@
-cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch3_8kv.yaml"
+cml_lab_file: "files/arch3_8kv.yaml"

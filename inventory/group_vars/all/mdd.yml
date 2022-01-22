@@ -1,18 +1,32 @@
 ---
-mdd_group_list: "{{ regions }}"
 mdd_data_root: "{{ lookup('env', 'PWD') }}/mdd-data"
 mdd_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+mdd_file_patterns:
+  - 'oc-*.yml'
 mdd_device_dir: "{{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}"
 
-check_root: "{{ mdd_data_root }}"
-check_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+# The file pattern there use for finding check definition files
 check_file_patterns:
   - 'check-*.yml'
 
-oc_data_root: "{{ mdd_data_root }}"
-oc_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
-oc_file_patterns:
-  - 'oc-*.yml'
-
-# defaults file location for data_validation
+# default file location for JSON schemas
 schema_root: "{{ lookup('env', 'PWD') }}/schemas"
+# The file pattern there use for finding check definition files
+schema_file_patterns:
+  - 'schema-*.yml'
+
+# oc_data_root: "{{ mdd_data_root }}"
+# oc_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+# oc_file_patterns:
+#   - 'oc-*.yml'
+
+#
+# The list of schmema groups to validate
+#
+# schema_group_list:
+#   - local
+# schema_group_table:
+#   stig:
+#     path: 'local/banner.schema'
+#     tags:
+#       - all

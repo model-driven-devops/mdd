@@ -1,13 +1,10 @@
 ---
 mdd_data:
   openconfig-system:system:
-    clock:
-      config:
-        timezone-name: 'EDT -4 0'
     config:
       # openconfig-system-ext:enable-secret: 'admin'
-      openconfig-system-ext:console-exec-timeout-seconds: '600'
-      openconfig-system-ext:ip-http-max-connections: 2
+      # openconfig-system-ext:console-exec-timeout-seconds: '600'
+      # openconfig-system-ext:ip-http-max-connections: 2
       # openconfig-system-ext:ip-boot_server: false
       # openconfig-system-ext:ip-bootp_server: false
       # openconfig-system-ext:ip-dns_server: false
@@ -34,22 +31,6 @@ mdd_data:
             config:
               address: '208.67.220.220'
               port: '53'  # always 53 for ios
-    ntp:
-      config:
-        openconfig-system-ext:ntp-enable-logging: true
-        enable-ntp-auth: true
-        enabled: true  # true or false - removes or adds ntp servers
-        # ntp-source-address: '192.168.100.1'
-      servers:
-        server:
-          - address: '1.us.pool.ntp.org'
-            # openconfig-system-ext:ntp-use-vrf: 'Mgmt-intf'
-            config:
-              address: '1.us.pool.ntp.org'
-          - address: '2.us.pool.ntp.org'
-            # openconfig-system-ext:ntp-use-vrf: 'Mgmt-intf'
-            config:
-              address: '2.us.pool.ntp.org'
     ssh-server:
       config:
         openconfig-system-ext:absolute-timeout-minutes: '1200'

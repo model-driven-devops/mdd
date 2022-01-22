@@ -1,82 +1,124 @@
 lab:
   description: ''
-  notes: ''
-  timestamp: 1617724740.2914157
-  title: stevenca_mdd
+  notes: |2-
+
+
+    ## Import Warnings
+    - Can't map ubuntu, ens3
+    - Can't map ubuntu, ens4
+    - Can't map ubuntu, ens3
+    - Can't map ubuntu, ens4
+  timestamp: 1639244295.7854996
+  title: mdd-dev
   version: 0.0.4
 nodes:
   - id: n7
     label: internet-rtr1
     node_definition: cat8000v
-    image_definition: cat8000v
     x: -500
     y: -150
-    configuration: |-
-      hostname internet-rtr1
-      ip domain name cml.local
-      banner motd ^Welcome to internet-rtr1!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Loopback0
-       ip address 10.255.255.1 255.255.255.255
-       no shut
-      interface GigabitEthernet1
-       ip address 10.0.0.1 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 10.0.0.5 255.255.255.252
-       no shut
-      interface GigabitEthernet3
-       ip address 10.0.0.9 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       ip address 10.0.0.13 255.255.255.252
-       no shut
-      interface GigabitEthernet8
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  10.0.0.0 255.0.0.0 Null0
-
-      !
-      router bgp 65000
-       bgp router-id 10.255.255.1
-       neighbor 10.0.0.2 remote-as 65100
-       neighbor 10.0.0.6 remote-as 65100
-       neighbor 10.0.0.10 remote-as 65101
-       neighbor 10.0.0.14 remote-as 65102
-       address-family ipv4
-        network 10.0.0.0 mask 255.0.0.0
-        neighbor 10.0.0.2 activate
-        neighbor 10.0.0.6 activate
-        neighbor 10.0.0.10 activate
-        neighbor 10.0.0.14 activate
-
-      !
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: "Building configuration...\n\nCurrent configuration : 7598 bytes\n\
+      !\n! Last configuration change at 11:51:11 EDT Fri Jan 7 2022\n!\nversion 17.6\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname internet-rtr1\n\
+      !\nboot-start-marker\nboot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n\
+      \ address-family ipv4\n exit-address-family\n !\n address-family ipv6\n exit-address-family\n\
+      !\nno logging console\n!\nno aaa new-model\nclock timezone EDT -4 0\n!\n!\n\
+      !\n!\n!\n!\n!\nip name-server 208.67.222.222 208.67.220.220\nip domain name\
+      \ mdd.cisco.com\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber\
+      \ templating\n!\nmultilink bundle-name authenticated\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-3507166866\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-3507166866\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-3507166866\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-3507166866\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 33353037 31363638 3636301E 170D3232 30313037 31353437\n\
+      \  32395A17 0D333230 31303731 35343732 395A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 35303731\n\
+      \  36363836 36308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 0100AC39 5B99B525 2AF34878 A2AD13DF 19FBFA02 75276E67 B5C8682F\n\
+      \  28A1E139 C57B6504 648F7896 8121255A 8ADDF146 128F3B77 B59B3E17 17D7A9C5\n\
+      \  3F347F96 0726A9E4 0CF7F205 324BD4AE 04A1FEF2 292441EE F246F552 8DEEA1B8\n\
+      \  F88BB484 255B0537 B1E84093 019B7938 3B981A40 F381043F 1A158530 21E545DD\n\
+      \  660C0A5B 7EB519BD ED658A64 D7BB47E3 4CFC57FB C507E9CF 65FEF48B A9053556\n\
+      \  68DCE460 2714A0AF 68D275C8 6C6B9B5E 05060338 349D78AE F3813AE4 CCA9E716\n\
+      \  7698E46C 45334286 7A4341E7 D9665466 5FE16519 FA5943B8 7D5C4087 291209DB\n\
+      \  EE277401 DAAFD5E9 624C323E EF7A3E92 46275B64 2DC29106 120260B5 4C95D57C\n\
+      \  6B85BD74 326F0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 140CB059 02AC24F1 6C4D28CB 54B9188A 1762E4F9\n\
+      \  CE301D06 03551D0E 04160414 0CB05902 AC24F16C 4D28CB54 B9188A17 62E4F9CE\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 0B695E34 7364D9E4 3ECAE39D\n\
+      \  249E80D2 64939964 849F4E20 EB6CD3F9 9A8C5EE5 D6BB5593 E81E1334 B44AACF5\n\
+      \  2128629C DC83AD6C D182C1AC CAF45E47 79DE90A2 C4788DC6 EB103E97 BF09467C\n\
+      \  E8E16B70 806B050A C1BEFDE0 9944050F 51013C10 4304BC78 8EB4B3A4 E5A49708\n\
+      \  DED7ECF6 5FE2033F F54E0DE4 BD2BBA0E 97C709C4 506C6EC9 6288B7C4 A1306BBC\n\
+      \  4C2EFDF5 7EF6308F 4A086FD5 B31D1955 B3423785 499F3FA8 73A9316C 30AA2D86\n\
+      \  92FC8D50 308D3561 27FCDB65 DCC66280 37CD9CCA 1412B761 0498FB00 BD31DFBC\n\
+      \  EE6C47CC AB83D010 5EE3A8B5 BC4EDF13 2FD59515 FD66655C A8C2623C 6BFACB73\n\
+      \  D3390F1C 331D9A55 4B55EFE3 8AAC3926 65B2207B\n  \tquit\n!\nlicense udi pid\
+      \ C8000V sn 9HFBAUCWC4K\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 68484\n!\n!\nusername admin privilege 15 secret 9 $9$jy/aUoZCycxAi.$/jrGK1Ku2PgRnJFpplQwLxuagDmdgNVoVnx17KxJrrA\n\
+      !\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 10.255.255.1\
+      \ 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 10.0.0.1 255.255.255.252\n\
+      \ ip nat inside\n negotiation auto\n!\ninterface GigabitEthernet2\n ip address\
+      \ 10.0.0.5 255.255.255.252\n ip nat inside\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet3\n ip address 10.0.0.9 255.255.255.252\n ip nat inside\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet4\n ip address 10.0.0.13 255.255.255.252\n\
+      \ ip nat inside\n negotiation auto\n!\ninterface GigabitEthernet5\n no ip address\n\
+      \ shutdown\n negotiation auto\n!\ninterface GigabitEthernet6\n no ip address\n\
+      \ shutdown\n negotiation auto\n!\ninterface GigabitEthernet7\n ip address dhcp\n\
+      \ ip nat outside\n negotiation auto\n!\ninterface GigabitEthernet8\n vrf forwarding\
+      \ Mgmt-intf\n ip address dhcp\n negotiation auto\n!\nrouter bgp 65000\n bgp\
+      \ router-id 10.255.255.1\n bgp log-neighbor-changes\n neighbor 10.0.0.2 remote-as\
+      \ 65100\n neighbor 10.0.0.6 remote-as 65100\n neighbor 10.0.0.10 remote-as 65101\n\
+      \ neighbor 10.0.0.14 remote-as 65102\n !\n address-family ipv4\n  network 10.0.0.0\n\
+      \  redistribute static\n  neighbor 10.0.0.2 activate\n  neighbor 10.0.0.2 default-originate\n\
+      \  neighbor 10.0.0.6 activate\n  neighbor 10.0.0.6 default-originate\n  neighbor\
+      \ 10.0.0.10 activate\n  neighbor 10.0.0.10 default-originate\n  neighbor 10.0.0.14\
+      \ activate\n  neighbor 10.0.0.14 default-originate\n exit-address-family\n!\n\
+      ip forward-protocol nd\nno ip http server\nip http secure-server\nip http max-connections\
+      \ 2\n!\nip nat inside source list nat interface GigabitEthernet7 overload\n\
+      ip route 10.0.0.0 255.0.0.0 Null0\nip ssh time-out 60\nip ssh version 2\n!\n\
+      ip access-list standard nat\n 10 permit 10.0.0.0 0.0.0.255\n 20 permit 192.168.0.0\
+      \ 0.0.255.255\n 30 permit 172.16.0.0 0.15.255.255\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\nbanner motd ^CWelcome to internet-rtr1!^C\n!\nline con 0\n exec-timeout 0\
+      \ 0\n stopbits 1\nline aux 0\nline vty 0 4\n exec-timeout 30 0\n absolute-timeout\
+      \ 60\n session-limit 16\n login local\n length 0\n transport input ssh\n!\n\
+      call-home\n ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\nntp\
+      \ logging\nntp authenticate\nntp server 2.us.pool.ntp.org\nntp server 1.us.pool.ntp.org\n\
+      !\n!\n!\n!\n!\n!\nend"
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -120,45 +162,188 @@ nodes:
     x: -900
     y: -250
     configuration: |-
+      Building configuration...
+
+      Current configuration : 4089 bytes
+      !
+      ! Last configuration change at 11:48:57 EDT Fri Jan 7 2022
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
       hostname hq-sw1
-      ip domain name cml.local
-      banner motd ^Welcome to hq-sw1!^
       !
+      boot-start-marker
+      boot-end-marker
       !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
       !
       vrf definition Mgmt-intf
+       !
        address-family ipv4
        exit-address-family
+       !
        address-family ipv6
        exit-address-family
       !
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$Q2hU$nHOxjkiissQsChJTZ01gb/
+      no aaa new-model
+      clock timezone EDT -4 0
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip domain-name mdd.cisco.com
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
       interface GigabitEthernet0/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
       interface GigabitEthernet0/1
        switchport trunk encapsulation dot1q
        switchport mode trunk
-       no shut
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
       interface GigabitEthernet1/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       negotiation auto
+      !
       interface GigabitEthernet3/3
        no switchport
        vrf forwarding Mgmt-intf
        ip address dhcp
-       no shut
-
+       negotiation auto
       !
-
+      ip forward-protocol nd
       !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner motd ^CWelcome to hq-sw1!^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
       line vty 0 4
+       exec-timeout 30 0
+       absolute-timeout 60
+       session-limit 16
        login local
        transport input ssh
-      exit
+      !
+      ntp logging
+      ntp authenticate
+      ntp server 1.us.pool.ntp.org
+      ntp server 2.us.pool.ntp.org
+      !
+      end
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -235,49 +420,190 @@ nodes:
     x: -900
     y: -50
     configuration: |-
+      Building configuration...
+
+      Current configuration : 4140 bytes
+      !
+      ! Last configuration change at 11:49:28 EDT Fri Jan 7 2022
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
       hostname hq-sw2
-      ip domain name cml.local
-      banner motd ^Welcome to hq-sw2!^
       !
+      boot-start-marker
+      boot-end-marker
       !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
       !
       vrf definition Mgmt-intf
+       !
        address-family ipv4
        exit-address-family
+       !
        address-family ipv6
        exit-address-family
       !
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$anOV$LsntczXb8N6azDF82QPjv1
+      no aaa new-model
+      clock timezone EDT -4 0
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip domain-name mdd.cisco.com
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
       interface GigabitEthernet0/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
       interface GigabitEthernet0/1
        switchport trunk encapsulation dot1q
        switchport mode trunk
-       no shut
+       negotiation auto
+      !
       interface GigabitEthernet0/2
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
       interface GigabitEthernet1/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       negotiation auto
+      !
       interface GigabitEthernet3/3
        no switchport
        vrf forwarding Mgmt-intf
        ip address dhcp
-       no shut
-
+       negotiation auto
       !
-
+      ip forward-protocol nd
       !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner motd ^CWelcome to hq-sw2!^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
       line vty 0 4
+       exec-timeout 30 0
+       absolute-timeout 60
+       session-limit 16
        login local
        transport input ssh
-      exit
+      !
+      ntp logging
+      ntp authenticate
+      ntp server 1.us.pool.ntp.org
+      ntp server 2.us.pool.ntp.org
+      !
+      end
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -354,41 +680,186 @@ nodes:
     x: -100
     y: -300
     configuration: |-
+      Building configuration...
+
+      Current configuration : 4034 bytes
+      !
+      ! Last configuration change at 11:50:48 EDT Fri Jan 7 2022
+      !
+      version 15.2
+      service timestamps debug datetime msec
+      service timestamps log datetime msec
+      no service password-encryption
+      service compress-config
+      !
       hostname site1-sw1
-      ip domain name cml.local
-      banner motd ^Welcome to site1-sw1!^
       !
+      boot-start-marker
+      boot-end-marker
       !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
       !
       vrf definition Mgmt-intf
+       !
        address-family ipv4
        exit-address-family
+       !
        address-family ipv6
        exit-address-family
       !
+      no logging console
+      !
+      username admin privilege 15 secret 5 $1$.Ncj$c/MzRhnqQoxl0LECcHOr91
+      no aaa new-model
+      clock timezone EDT -4 0
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      ip domain-name mdd.cisco.com
+      ip cef
+      no ipv6 cef
+      !
+      !
+      !
+      spanning-tree mode pvst
+      spanning-tree extend system-id
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
+      !
       interface GigabitEthernet0/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet0/1
+       negotiation auto
+      !
+      interface GigabitEthernet0/2
+       negotiation auto
+      !
+      interface GigabitEthernet0/3
+       negotiation auto
+      !
       interface GigabitEthernet1/0
-       switchport mode access
        switchport access vlan 10
-       no shut
+       switchport mode access
+       negotiation auto
+      !
+      interface GigabitEthernet1/1
+       negotiation auto
+      !
+      interface GigabitEthernet1/2
+       negotiation auto
+      !
+      interface GigabitEthernet1/3
+       negotiation auto
+      !
+      interface GigabitEthernet2/0
+       negotiation auto
+      !
+      interface GigabitEthernet2/1
+       negotiation auto
+      !
+      interface GigabitEthernet2/2
+       negotiation auto
+      !
+      interface GigabitEthernet2/3
+       negotiation auto
+      !
+      interface GigabitEthernet3/0
+       negotiation auto
+      !
+      interface GigabitEthernet3/1
+       negotiation auto
+      !
+      interface GigabitEthernet3/2
+       negotiation auto
+      !
       interface GigabitEthernet3/3
        no switchport
        vrf forwarding Mgmt-intf
        ip address dhcp
-       no shut
-
+       negotiation auto
       !
-
+      ip forward-protocol nd
       !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      !
+      !
+      !
+      !
+      !
+      control-plane
+      !
+      banner exec ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner incoming ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner login ^C
+      **************************************************************************
+      * IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+      * education. IOSv is provided as-is and is not supported by Cisco's      *
+      * Technical Advisory Center. Any use or disclosure, in whole or in part, *
+      * of the IOSv Software or Documentation to any third party for any       *
+      * purposes is expressly prohibited except as otherwise authorized by     *
+      * Cisco in writing.                                                      *
+      **************************************************************************^C
+      banner motd ^CWelcome to site1-sw1!^C
+      !
+      line con 0
+       exec-timeout 0 0
+      line aux 0
       line vty 0 4
+       exec-timeout 30 0
+       absolute-timeout 60
+       session-limit 16
        login local
        transport input ssh
-      exit
+      !
+      ntp logging
+      ntp authenticate
+      ntp server 1.us.pool.ntp.org
+      ntp server 2.us.pool.ntp.org
+      !
+      end
     image_definition: iosvl2-2019
     tags: []
     interfaces:
@@ -462,75 +933,105 @@ nodes:
   - id: n18
     label: hq-rtr1
     node_definition: cat8000v
-    image_definition: cat8000v
     x: -750
     y: -250
-    configuration: |-
-      hostname hq-rtr1
-      ip domain name cml.local
-      banner motd ^Welcome to hq-rtr1!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Loopback0
-       ip address 172.16.255.1 255.255.255.255
-       no shut
-      interface GigabitEthernet1
-       ip address 10.0.0.2 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 172.16.0.2 255.255.255.0
-       standby 1 priority 100
-       standby 1 ip 172.16.0.1
-       no shut
-      interface GigabitEthernet3
-       ip address 172.16.254.1 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  172.16.0.0 255.255.0.0 Null0
-
-      !
-      router bgp 65100
-       bgp router-id 172.16.255.1
-       neighbor 172.16.254.2 remote-as 65100
-       neighbor 10.0.0.1 remote-as 65000
-       address-family ipv4
-        network 172.16.0.0 mask 255.255.0.0
-        neighbor 172.16.254.2 activate
-        neighbor 10.0.0.1 activate
-        neighbor 10.0.0.1 next-hop-self
-
-      !
-      router ospf 65100
-       router-id 172.16.255.1
-       network 172.16.0.0 255.255.0.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: "Building configuration...\n\nCurrent configuration : 7153 bytes\n\
+      !\n! Last configuration change at 11:48:13 EDT Fri Jan 7 2022\n!\nversion 17.6\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname hq-rtr1\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n address-family ipv4\n\
+      \ exit-address-family\n!\nno logging console\n!\nno aaa new-model\nclock timezone\
+      \ EDT -4 0\n!\n!\n!\n!\n!\n!\n!\nip name-server 208.67.222.222 208.67.220.220\n\
+      ip domain name mdd.cisco.com\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
+      !\n!\nsubscriber templating\n!\nmultilink bundle-name authenticated\n!\n!\n\
+      !\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check\
+      \ crl\n!\ncrypto pki trustpoint TP-self-signed-1112141977\n enrollment selfsigned\n\
+      \ subject-name cn=IOS-Self-Signed-Certificate-1112141977\n revocation-check\
+      \ none\n rsakeypair TP-self-signed-1112141977\n!\n!\ncrypto pki certificate\
+      \ chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209 A0030201 02020101\
+      \ 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355 040A1305 43697363\
+      \ 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73 696E6720 526F6F74\
+      \ 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338 30353330 31393438\
+      \ 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030 1E060355 04031317\
+      \ 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130 82012230 0D06092A\
+      \ 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100 A6BCBD96 131E05F7\
+      \ 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147 C655D8D7 9471380D\
+      \ 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239 C659F715 B98C0A59\
+      \ 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96\
+      \ 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD C847A2C5 DAB553EB\
+      \ 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7 948E71D7 AE3BCC84\
+      \ F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62 EA2F505D C7B062A4\
+      \ 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD 3D992327 A8BB03BD\
+      \ 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1 02030100 01A34230\
+      \ 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13 0101FF04 05300301\
+      \ 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17 606AF333 3D3B4C73\
+      \ E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24 D3932A66 86025D9F\
+      \ E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B 77FC460E CD636FDB\
+      \ DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E 1AECA0C2 2189BB5C\
+      \ 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700 6ADF0F0D CF835015\
+      \ 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB\
+      \ E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F 494E8A9E 07B85737\
+      \ F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA EEBC7CF9 8428787B\
+      \ 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049 4D10AB75 27E86F73\
+      \ 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\ncrypto pki certificate\
+      \ chain TP-self-signed-1112141977\n certificate self-signed 01\n  30820330 30820218\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n  31312F30 2D060355\
+      \ 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n  69666963 6174652D\
+      \ 31313132 31343139 3737301E 170D3232 30313037 31353437\n  35305A17 0D333230\
+      \ 31303731 35343735 305A3031 312F302D 06035504 03132649\n  4F532D53 656C662D\
+      \ 5369676E 65642D43 65727469 66696361 74652D31 31313231\n  34313937 37308201\
+      \ 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n  0A028201 0100B473\
+      \ F4EC2C2C 97F20309 3A9DA1C7 BBB5817B E5FB866C 026E6222\n  8672E76B E242711F\
+      \ 616FBEEA AFDD22FC 80C40EF2 C5679DD7 BD95F797 4137B801\n  2E7ED1D8 7259FF3F\
+      \ BBAF54E9 14375675 27FB135F 37EDE876 A662F596 CE043629\n  9550AFA1 5B5039C7\
+      \ A3945071 F861D0FC D17516B7 4B023F2B EACC6D3C 7A885E33\n  7F2900D6 E4F22346\
+      \ D582DEAE 625D0782 D7B7A0E1 A16462E9 9EF01529 180159FF\n  33CBC29F 46D44DF1\
+      \ 80CB7E01 39CF39CB 6C15115F C9E5F040 94303E3E D53D4CEF\n  5D535FEE 1FE318A2\
+      \ 537D2ED9 6777CE63 EA4FE09C 4DC5B146 F2108019 9BC39FE0\n  AE8BFA75 B1D0B9D9\
+      \ F714E534 3EF0F3FE 107156F0 ED7A2D71 3250EF74 B5C13E72\n  45B27E52 12390203\
+      \ 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n  301F0603 551D2304\
+      \ 18301680 14C2652E 9F577230 9D3729DA 4A25A8A9 36F46D43\n  60301D06 03551D0E\
+      \ 04160414 C2652E9F 5772309D 3729DA4A 25A8A936 F46D4360\n  300D0609 2A864886\
+      \ F70D0101 05050003 82010100 8AAB1F7F B9776B9B F59AC231\n  0B6D06F9 220B3C92\
+      \ FD71A8B7 C636576C 7F10FCE9 39DE4157 5D7CC75E 7F44A09E\n  995D7452 994D622C\
+      \ 971DED5C 830E326A 2313A46D 8637F7EE EDF95367 6725C986\n  A57EB09B C35EDF10\
+      \ 16058A5F C947A823 D508E0D0 2F43D5DC F442126F 4449F7E8\n  4A463AB5 7A5660AA\
+      \ 9B4D99D6 6329037A 324F4963 40E50072 ECA43AA5 F0A66109\n  7D4F678C 2CBC2335\
+      \ 840A631E EAE8F5C9 5B17BA50 66AF4C10 00F78B8C 09207EF6\n  29015F7B 79CE3B5B\
+      \ 42C04EE1 568A5FF0 E3991461 1283FECD 337A0AC1 FF79FD35\n  FA7B6EE5 880FBD5C\
+      \ DBE4A0D4 7D5EC227 AB34A4E8 92C55CAC C881C937 11F83C0B\n  C32CEA8D C9B6945B\
+      \ 63B1EDD2 D63B0A2D ADA64513\n  \tquit\n!\nlicense udi pid C8000V sn 9TXC3M6JHVH\n\
+      diagnostic bootup level minimal\nmemory free low-watermark processor 68484\n\
+      !\n!\nusername admin privilege 15 secret 9 $9$EKC5CJRAND8CsU$KNg0NOJkPzQuLNzds8/ws60YsIYrw6ZSin2B8s2CFao\n\
+      !\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 172.16.255.1\
+      \ 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 10.0.0.2 255.255.255.252\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet2\n ip address 172.16.0.2 255.255.255.0\n\
+      \ standby 1 ip 172.16.0.1\n negotiation auto\n!\ninterface GigabitEthernet3\n\
+      \ ip address 172.16.254.1 255.255.255.0\n negotiation auto\n!\ninterface GigabitEthernet4\n\
+      \ no ip address\n negotiation auto\n!\ninterface GigabitEthernet5\n no ip address\n\
+      \ shutdown\n negotiation auto\n!\ninterface GigabitEthernet6\n no ip address\n\
+      \ shutdown\n negotiation auto\n!\ninterface GigabitEthernet7\n no ip address\n\
+      \ shutdown\n negotiation auto\n!\ninterface GigabitEthernet8\n vrf forwarding\
+      \ Mgmt-intf\n ip address dhcp\n negotiation auto\n!\nrouter ospf 65100\n router-id\
+      \ 172.16.255.1\n network 172.16.0.0 0.0.255.255 area 0\n default-information\
+      \ originate\n!\nrouter bgp 65100\n bgp router-id 172.16.255.1\n bgp log-neighbor-changes\n\
+      \ neighbor 10.0.0.1 remote-as 65000\n neighbor 172.16.254.2 remote-as 65100\n\
+      \ !\n address-family ipv4\n  network 172.16.0.0\n  neighbor 10.0.0.1 activate\n\
+      \  neighbor 10.0.0.1 next-hop-self\n  neighbor 172.16.254.2 activate\n exit-address-family\n\
+      !\nip forward-protocol nd\nno ip http server\nip http secure-server\nip http\
+      \ max-connections 2\n!\nip bgp-community new-format\nip route 172.16.0.0 255.255.0.0\
+      \ Null0\nip ssh time-out 60\nip ssh version 2\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\nbanner motd ^CWelcome to hq-rtr1!^C\n!\nline con 0\n exec-timeout 0 0\n stopbits\
+      \ 1\nline aux 0\nline vty 0 4\n exec-timeout 30 0\n absolute-timeout 60\n session-limit\
+      \ 16\n login local\n transport input ssh\n!\ncall-home\n ! If contact email\
+      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
+      \ email address configured in Cisco Smart License Portal will be used as contact\
+      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\nntp\
+      \ logging\nntp authenticate\nntp server 2.us.pool.ntp.org\nntp server 1.us.pool.ntp.org\n\
+      !\n!\n!\n!\n!\n!\nend"
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -571,75 +1072,106 @@ nodes:
   - id: n0
     label: hq-rtr2
     node_definition: cat8000v
-    image_definition: cat8000v
     x: -750
     y: -50
-    configuration: |-
-      hostname hq-rtr2
-      ip domain name cml.local
-      banner motd ^Welcome to hq-rtr2!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Loopback0
-       ip address 172.16.255.2 255.255.255.255
-       no shut
-      interface GigabitEthernet1
-       ip address 10.0.0.6 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 172.16.0.3 255.255.255.0
-       standby 1 priority 1
-       standby 1 ip 172.16.0.1
-       no shut
-      interface GigabitEthernet3
-       ip address 172.16.254.2 255.255.255.252
-       no shut
-      interface GigabitEthernet4
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  172.16.0.0 255.255.0.0 Null0
-
-      !
-      router bgp 65100
-       bgp router-id 172.16.255.2
-       neighbor 172.16.254.1 remote-as 65100
-       neighbor 10.0.0.5 remote-as 65000
-       address-family ipv4
-        network 172.16.0.0 mask 255.255.0.0
-        neighbor 172.16.254.1 activate
-        neighbor 10.0.0.5 activate
-        neighbor 10.0.0.5 next-hop-self
-
-      !
-      router ospf 65100
-       router-id 172.16.255.2
-       network 172.16.0.0 255.255.0.0 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: "Building configuration...\n\nCurrent configuration : 7169 bytes\n\
+      !\n! Last configuration change at 11:48:22 EDT Fri Jan 7 2022\n!\nversion 17.6\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname hq-rtr2\n!\nboot-start-marker\n\
+      boot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n address-family ipv4\n\
+      \ exit-address-family\n!\nno logging console\n!\nno aaa new-model\nclock timezone\
+      \ EDT -4 0\n!\n!\n!\n!\n!\n!\n!\nip name-server 208.67.222.222 208.67.220.220\n\
+      ip domain name mdd.cisco.com\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
+      !\n!\nsubscriber templating\n!\nmultilink bundle-name authenticated\n!\n!\n\
+      !\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check\
+      \ crl\n!\ncrypto pki trustpoint TP-self-signed-389856400\n enrollment selfsigned\n\
+      \ subject-name cn=IOS-Self-Signed-Certificate-389856400\n revocation-check none\n\
+      \ rsakeypair TP-self-signed-389856400\n!\n!\ncrypto pki certificate chain SLA-TrustPoint\n\
+      \ certificate ca 01\n  30820321 30820209 A0030201 02020101 300D0609 2A864886\
+      \ F70D0101 0B050030\n  32310E30 0C060355 040A1305 43697363 6F312030 1E060355\
+      \ 04031317 43697363\n  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31\
+      \ 33303533 30313934\n  3834375A 170D3338 30353330 31393438 34375A30 32310E30\
+      \ 0C060355 040A1305\n  43697363 6F312030 1E060355 04031317 43697363 6F204C69\
+      \ 63656E73 696E6720\n  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101\
+      \ 05000382 010F0030\n  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6\
+      \ 17222EA1 F1EFF64D\n  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A\
+      \ 9CAE6388 8A38E520\n  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3\
+      \ 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7\
+      \ 104FDC5F EA2956AC\n  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3\
+      \ C0BD23CF 58BD7188\n  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F\
+      \ 539BA42B 42C68BB7\n  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4\
+      \ 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B\
+      \ DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F\
+      \ 0101FF04 04030201\n  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D\
+      \ 0E041604 1449DC85\n  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648\
+      \ 86F70D01 010B0500\n  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0\
+      \ 49631C78 240DA905\n  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB\
+      \ 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646\
+      \ 5575B146 8DFC66A8\n  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC\
+      \ 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86\
+      \ C71E3B49 1765308B\n  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229\
+      \ C37C1E69 39F08678\n  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A\
+      \ B623CDBD 230E3AFB\n  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE\
+      \ 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\ncrypto pki certificate chain TP-self-signed-389856400\n\
+      \ certificate self-signed 01\n  3082032E 30820216 A0030201 02020101 300D0609\
+      \ 2A864886 F70D0101 05050030\n  30312E30 2C060355 04031325 494F532D 53656C66\
+      \ 2D536967 6E65642D 43657274\n  69666963 6174652D 33383938 35363430 30301E17\
+      \ 0D323230 31303731 35343735\n  375A170D 33323031 30373135 34373537 5A303031\
+      \ 2E302C06 03550403 1325494F\n  532D5365 6C662D53 69676E65 642D4365 72746966\
+      \ 69636174 652D3338 39383536\n  34303030 82012230 0D06092A 864886F7 0D010101\
+      \ 05000382 010F0030 82010A02\n  82010100 A3FCA90E 4E2EF80C 179E2273 647BBDA7\
+      \ DAB893A1 09D144A2 F8D29C2F\n  88FF169C C787F217 4D9A8D3D 16C618A3 A9B39BC5\
+      \ CDBBB032 0815B9F4 53B33E7A\n  8A6AE089 23EF68D6 BD8A2265 6CF670AB A1C743D6\
+      \ 5A12244F 593E8133 C93A3B87\n  5811E3E4 97177AAD 540C48B6 9241EF44 619BC5E7\
+      \ 68E5AD07 E770A79C 80A8B178\n  A5C5FCBE CEEB8A18 BB51F51A 2C9F7DB9 9F7A006F\
+      \ DF1BC083 5B52F2AB EB3B7CA1\n  2534A262 671DE3B3 17A8E78E 1EE0E32D 3375F364\
+      \ 6867D57D 983C1DC9 0B445C82\n  6CC945A8 7FD37E8B 5D0C7736 CE2CC10E 72E985F8\
+      \ 6AC4A52D 69E0E8A1 52DB932F\n  987E506C DADC2BBF 533A3426 113FF941 050194D6\
+      \ E9C96320 A36C78A6 6782964C\n  7E8CD281 02030100 01A35330 51300F06 03551D13\
+      \ 0101FF04 05300301 01FF301F\n  0603551D 23041830 16801432 FD81D06F FE21CE88\
+      \ B7851061 7DE9A1E7 F1E72C30\n  1D060355 1D0E0416 041432FD 81D06FFE 21CE88B7\
+      \ 8510617D E9A1E7F1 E72C300D\n  06092A86 4886F70D 01010505 00038201 01000033\
+      \ 89AD0BE7 A7292C37 BB1F6FE1\n  180147CA 3A8ACFB9 D35FA215 D6D0DACE ACAA5A59\
+      \ 8AA0E010 1A535ECA F2AF555C\n  57A06E64 3569B342 ADF7D203 7CFC5AE8 E1FD6C28\
+      \ 77D7708B E24741C9 766659E0\n  4195C0AD F828402F EC36D5E6 A5765D4F 37E025FE\
+      \ 41EC4A6B 405AD4BC 705EA3A8\n  717FAA62 D8D5A8A0 4AB8D854 C818FA34 CEDAEFC6\
+      \ 95F606CD F9239DC0 18EF813B\n  C1A5EE21 FB696CCF 38EB70B5 8AC64F6A A5B4493C\
+      \ C9F5D3E6 D3028C7F 8C1C61D8\n  AD4E5C3E B675EA29 3FF322AD E240B195 3ADA89C2\
+      \ F0D920EE 4432B368 4A7F7A70\n  A60BEB28 2383506F A72AF2C6 C2BC7931 9343ECED\
+      \ C079EBEF 2114749B 44A34080\n  0CD6B4BB 81C29F15 2E2D17D4 F6462427 BD32\n \
+      \ \tquit\n!\nlicense udi pid C8000V sn 9TYLK2TEU5A\ndiagnostic bootup level\
+      \ minimal\nmemory free low-watermark processor 68484\n!\n!\nusername admin privilege\
+      \ 15 secret 9 $9$EsD.pzNfxbz7S.$owRJKuBlami9tLyb8TUAVNUAy4E9KZTwyhAm72eqjlU\n\
+      !\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 172.16.255.2\
+      \ 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 10.0.0.6 255.255.255.252\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet2\n ip address 172.16.0.3 255.255.255.0\n\
+      \ standby 1 ip 172.16.0.1\n standby 1 priority 1\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet3\n ip address 172.16.254.2 255.255.255.252\n negotiation auto\n\
+      !\ninterface GigabitEthernet4\n no ip address\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet5\n no ip address\n shutdown\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet6\n no ip address\n shutdown\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet7\n no ip address\n shutdown\n negotiation auto\n!\ninterface\
+      \ GigabitEthernet8\n vrf forwarding Mgmt-intf\n ip address dhcp\n negotiation\
+      \ auto\n!\nrouter ospf 65100\n router-id 172.16.255.2\n network 172.16.0.0 0.0.255.255\
+      \ area 0\n default-information originate\n!\nrouter bgp 65100\n bgp router-id\
+      \ 172.16.255.2\n bgp log-neighbor-changes\n neighbor 10.0.0.5 remote-as 65000\n\
+      \ neighbor 172.16.254.1 remote-as 65100\n !\n address-family ipv4\n  network\
+      \ 172.16.0.0\n  neighbor 10.0.0.5 activate\n  neighbor 10.0.0.5 next-hop-self\n\
+      \  neighbor 172.16.254.1 activate\n exit-address-family\n!\nip forward-protocol\
+      \ nd\nno ip http server\nip http secure-server\nip http max-connections 2\n\
+      !\nip bgp-community new-format\nip route 172.16.0.0 255.255.0.0 Null0\nip ssh\
+      \ time-out 60\nip ssh version 2\n!\n!\n!\n!\n!\ncontrol-plane\n!\nbanner motd\
+      \ ^CWelcome to hq-rtr2!^C\n!\nline con 0\n exec-timeout 0 0\n stopbits 1\nline\
+      \ aux 0\nline vty 0 4\n exec-timeout 30 0\n absolute-timeout 60\n session-limit\
+      \ 16\n login local\n transport input ssh\n!\ncall-home\n ! If contact email\
+      \ address in call-home is configured as sch-smart-licensing@cisco.com\n ! the\
+      \ email address configured in Cisco Smart License Portal will be used as contact\
+      \ email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\nntp\
+      \ logging\nntp authenticate\nntp server 1.us.pool.ntp.org\nntp server 2.us.pool.ntp.org\n\
+      !\n!\n!\n!\n!\n!\nend"
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -680,70 +1212,105 @@ nodes:
   - id: n2
     label: site1-rtr1
     node_definition: cat8000v
-    image_definition: cat8000v
     x: -250
     y: -300
-    configuration: |-
-      hostname site1-rtr1
-      ip domain name cml.local
-      banner motd ^Welcome to site1-rtr1!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Loopback0
-       ip address 192.168.255.1 255.255.255.255
-       no shut
-      interface GigabitEthernet1
-       ip address 10.0.0.10 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 192.168.1.1 255.255.255.0
-       no shut
-      interface GigabitEthernet3
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  192.168.1.0 255.255.255.0 Null0
-
-      !
-      router bgp 65101
-       bgp router-id 192.168.255.1
-       neighbor 10.0.0.9 remote-as 65000
-       address-family ipv4
-        network 192.168.1.0 mask 255.255.255.0
-        network 192.168.255.1 mask 255.255.255.255
-        neighbor 10.0.0.9 activate
-        neighbor 10.0.0.9 next-hop-self
-
-      !
-      router ospf 65101
-       router-id 192.168.255.1
-       network 192.168.1.0 255.255.255.0 area 0
-       network 192.168.255.1 255.255.255.255 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: "Building configuration...\n\nCurrent configuration : 7138 bytes\n\
+      !\n! Last configuration change at 11:49:16 EDT Fri Jan 7 2022\n!\nversion 17.6\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname site1-rtr1\n!\n\
+      boot-start-marker\nboot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n address-family\
+      \ ipv4\n exit-address-family\n!\nno logging console\n!\nno aaa new-model\nclock\
+      \ timezone EDT -4 0\n!\n!\n!\n!\n!\n!\n!\nip name-server 208.67.222.222 208.67.220.220\n\
+      ip domain name mdd.cisco.com\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n\
+      !\n!\nsubscriber templating\n!\nmultilink bundle-name authenticated\n!\n!\n\
+      !\ncrypto pki trustpoint SLA-TrustPoint\n enrollment pkcs12\n revocation-check\
+      \ crl\n!\ncrypto pki trustpoint TP-self-signed-3505446260\n enrollment selfsigned\n\
+      \ subject-name cn=IOS-Self-Signed-Certificate-3505446260\n revocation-check\
+      \ none\n rsakeypair TP-self-signed-3505446260\n!\n!\ncrypto pki certificate\
+      \ chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209 A0030201 02020101\
+      \ 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355 040A1305 43697363\
+      \ 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73 696E6720 526F6F74\
+      \ 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338 30353330 31393438\
+      \ 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030 1E060355 04031317\
+      \ 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130 82012230 0D06092A\
+      \ 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100 A6BCBD96 131E05F7\
+      \ 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147 C655D8D7 9471380D\
+      \ 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239 C659F715 B98C0A59\
+      \ 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96\
+      \ 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD C847A2C5 DAB553EB\
+      \ 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7 948E71D7 AE3BCC84\
+      \ F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62 EA2F505D C7B062A4\
+      \ 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD 3D992327 A8BB03BD\
+      \ 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1 02030100 01A34230\
+      \ 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13 0101FF04 05300301\
+      \ 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17 606AF333 3D3B4C73\
+      \ E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24 D3932A66 86025D9F\
+      \ E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B 77FC460E CD636FDB\
+      \ DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E 1AECA0C2 2189BB5C\
+      \ 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700 6ADF0F0D CF835015\
+      \ 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB\
+      \ E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F 494E8A9E 07B85737\
+      \ F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA EEBC7CF9 8428787B\
+      \ 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049 4D10AB75 27E86F73\
+      \ 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \tquit\ncrypto pki certificate\
+      \ chain TP-self-signed-3505446260\n certificate self-signed 01\n  30820330 30820218\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n  31312F30 2D060355\
+      \ 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n  69666963 6174652D\
+      \ 33353035 34343632 3630301E 170D3232 30313037 31353437\n  33365A17 0D333230\
+      \ 31303731 35343733 365A3031 312F302D 06035504 03132649\n  4F532D53 656C662D\
+      \ 5369676E 65642D43 65727469 66696361 74652D33 35303534\n  34363236 30308201\
+      \ 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n  0A028201 0100B5DC\
+      \ D1A0115C 3B2BB9E1 CDEFD44B FF09DFA6 88209E69 C6401903\n  58408C09 F969CC7E\
+      \ 26D5E69D 5E48C372 44405F9B 498518A6 8348C42B 479265E0\n  BE4A8E41 D823EFC1\
+      \ A70A017C EA1BB2F6 56FE5203 1D951C94 895964B0 D55E3401\n  F07F1799 D4A30D2A\
+      \ D247B93E B7AA9428 99DAAD31 C3DC0033 9896F3EB 62817747\n  80022DE2 B36BDEF2\
+      \ 7727D8D0 149E848C 1BFD7823 FE4E57D5 09AC2A19 B1009274\n  6FFD8051 DE81F56F\
+      \ 859F58F4 81E87F96 799EC373 53F4AAEF 0E574C01 8BF19AAE\n  E34BAD56 CE0168D3\
+      \ 8DFA861D 98636655 49A4EDE9 72EC6E6A 84268792 656E93A1\n  E2A9D993 3E17AC54\
+      \ F5B73071 4D969701 4C62D660 E616C97F 7436B40B 2E87DFD4\n  B9BD6E26 F2C50203\
+      \ 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n  301F0603 551D2304\
+      \ 18301680 14C9B79A C987BF81 6D9BCFED 0FE1FED1 177C040E\n  56301D06 03551D0E\
+      \ 04160414 C9B79AC9 87BF816D 9BCFED0F E1FED117 7C040E56\n  300D0609 2A864886\
+      \ F70D0101 05050003 82010100 AFA0C17F BE8DFBFF BE62D2D1\n  43B2BA88 586672C6\
+      \ 6C8C669E 68D31A50 15A3CD85 1096F5FE 217ACFC8 16C7E69B\n  31865545 B5A70E85\
+      \ 9860C70A 253B1DF1 BC0FC0D0 7193F3D6 ADE78DD5 FE476738\n  B7D15352 A3CA894C\
+      \ EC480FA6 8CDD0811 F3A34518 7D2CFDE2 D1B3144E 7AF6984A\n  2FA5D2F9 8C5EF9DC\
+      \ 690A1361 B2977364 D77BC0D7 0D7F92CD 7965E439 1EC3714C\n  40E31A7E 0139A46D\
+      \ 44DA10BB 652686A9 FEA37635 235DFEC0 26DB742D F31060EA\n  F4C95C77 074BB60D\
+      \ 8B114CB6 4BEC10A9 41846C94 1C681531 A49A6EC9 AEC94E7D\n  EBD09280 2E129A2D\
+      \ 3EFE42AD 7B142C4A 1696D20E 578ADBB1 9AB1FE0A 31DA51CE\n  0223E3A6 EBF4A14F\
+      \ FE25E2D7 73C0F8C2 F373D681\n  \tquit\n!\nlicense udi pid C8000V sn 9STGVOOYFWF\n\
+      diagnostic bootup level minimal\nmemory free low-watermark processor 68484\n\
+      !\n!\nusername admin privilege 15 secret 9 $9$gqGK1hsYhl3vmU$IKCJUpapPpkG7HC8XIaVSjcdq/VK/CtEoxD66x9jbrw\n\
+      !\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 172.16.255.1\
+      \ 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 10.0.0.10 255.255.255.252\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet2\n ip address 192.168.1.1 255.255.255.0\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet3\n no ip address\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet5\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet6\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet7\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet8\n vrf forwarding Mgmt-intf\n ip address\
+      \ dhcp\n negotiation auto\n!\nrouter ospf 65101\n router-id 192.168.255.1\n\
+      \ network 192.168.1.0 0.0.0.255 area 0\n network 192.168.255.1 0.0.0.0 area\
+      \ 0\n default-information originate\n!\nrouter bgp 65101\n bgp router-id 192.168.255.1\n\
+      \ bgp log-neighbor-changes\n neighbor 10.0.0.9 remote-as 65000\n !\n address-family\
+      \ ipv4\n  network 192.168.1.0\n  network 192.168.255.1 mask 255.255.255.255\n\
+      \  neighbor 10.0.0.9 activate\n  neighbor 10.0.0.9 next-hop-self\n exit-address-family\n\
+      !\nip forward-protocol nd\nno ip http server\nip http secure-server\nip http\
+      \ max-connections 2\n!\nip bgp-community new-format\nip route 192.168.1.0 255.255.255.0\
+      \ Null0\nip ssh time-out 60\nip ssh version 2\n!\n!\n!\n!\n!\ncontrol-plane\n\
+      !\nbanner motd ^CWelcome to site1-rtr1!^C\n!\nline con 0\n exec-timeout 0 0\n\
+      \ stopbits 1\nline aux 0\nline vty 0 4\n exec-timeout 30 0\n absolute-timeout\
+      \ 60\n session-limit 16\n login local\n transport input ssh\n!\ncall-home\n\
+      \ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com\n\
+      \ ! the email address configured in Cisco Smart License Portal will be used\
+      \ as contact email address to send SCH notifications.\n contact-email-addr sch-smart-licensing@cisco.com\n\
+      \ profile \"CiscoTAC-1\"\n  active\n  destination transport-method http\nntp\
+      \ logging\nntp authenticate\nntp server 1.us.pool.ntp.org\nntp server 2.us.pool.ntp.org\n\
+      !\n!\n!\n!\n!\n!\nend"
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -872,70 +1439,105 @@ nodes:
   - id: n4
     label: site2-rtr1
     node_definition: cat8000v
-    image_definition: cat8000v
     x: -250
     y: 0
-    configuration: |-
-      hostname site2-rtr1
-      ip domain name cml.local
-      banner motd ^Welcome to site2-rtr1!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
-      vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
-      !
-      interface Loopback0
-       ip address 192.168.255.2 255.255.255.255
-       no shut
-      interface GigabitEthernet1
-       ip address 10.0.0.14 255.255.255.252
-       no shut
-      interface GigabitEthernet2
-       ip address 192.168.2.1 255.255.255.0
-       no shut
-      interface GigabitEthernet3
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shut
-
-      !
-      ip route  0.0.0.0 0.0.0.0 Null0
-      ip route  192.168.2.0 255.255.255.0 Null0
-
-      !
-      router bgp 65102
-       bgp router-id 192.168.255.2
-       neighbor 10.0.0.13 remote-as 65000
-       address-family ipv4
-        network 192.168.2.0 mask 255.255.255.0
-        network 192.168.255.2 mask 255.255.255.255
-        neighbor 10.0.0.13 activate
-        neighbor 10.0.0.13 next-hop-self
-
-      !
-      router ospf 65102
-       router-id 192.168.2.1
-       network 192.168.2.0 255.255.255.0 area 0
-       network 192.168.255.2 255.255.255.255 area 0
-       default-information originate
-
-      !
-
-      !
-      ntp server 192.5.41.40
-      ntp server 192.5.41.41
-
-      !
-      line vty 0 4
-       login local
-       transport input ssh
-      exit
+    configuration: "Building configuration...\n\nCurrent configuration : 7157 bytes\n\
+      !\n! Last configuration change at 08:49:19 EDT Fri Jan 7 2022\n!\nversion 17.6\n\
+      service timestamps debug datetime msec\nservice timestamps log datetime msec\n\
+      service call-home\nplatform qfp utilization monitor load 80\nplatform punt-keepalive\
+      \ disable-kernel-core\nplatform console serial\n!\nhostname site2-rtr1\n!\n\
+      boot-start-marker\nboot-end-marker\n!\n!\nvrf definition Mgmt-intf\n !\n address-family\
+      \ ipv4\n exit-address-family\n !\n address-family ipv6\n exit-address-family\n\
+      !\nno logging console\n!\nno aaa new-model\nclock timezone EDT -7 0\n!\n!\n\
+      !\n!\n!\n!\n!\nip name-server 208.67.222.222 208.67.220.220\nip domain name\
+      \ mdd.cisco.com\n!\n!\n!\nlogin on-success log\n!\n!\n!\n!\n!\n!\n!\nsubscriber\
+      \ templating\n!\nmultilink bundle-name authenticated\n!\n!\n!\ncrypto pki trustpoint\
+      \ SLA-TrustPoint\n enrollment pkcs12\n revocation-check crl\n!\ncrypto pki trustpoint\
+      \ TP-self-signed-1670406578\n enrollment selfsigned\n subject-name cn=IOS-Self-Signed-Certificate-1670406578\n\
+      \ revocation-check none\n rsakeypair TP-self-signed-1670406578\n!\n!\ncrypto\
+      \ pki certificate chain SLA-TrustPoint\n certificate ca 01\n  30820321 30820209\
+      \ A0030201 02020101 300D0609 2A864886 F70D0101 0B050030\n  32310E30 0C060355\
+      \ 040A1305 43697363 6F312030 1E060355 04031317 43697363\n  6F204C69 63656E73\
+      \ 696E6720 526F6F74 20434130 1E170D31 33303533 30313934\n  3834375A 170D3338\
+      \ 30353330 31393438 34375A30 32310E30 0C060355 040A1305\n  43697363 6F312030\
+      \ 1E060355 04031317 43697363 6F204C69 63656E73 696E6720\n  526F6F74 20434130\
+      \ 82012230 0D06092A 864886F7 0D010101 05000382 010F0030\n  82010A02 82010100\
+      \ A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D\n  CBB4C798 212AA147\
+      \ C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520\n  1C394D78 462EF239\
+      \ C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE\n  4AA4E80D DB6FD1C9\
+      \ 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC\n  7390A3EB 2B5436AD\
+      \ C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188\n  68E69491 20F320E7\
+      \ 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7\n  C7479096 B4CB2D62\
+      \ EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191\n  C55F0D76 61F9A4CD\
+      \ 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44\n  DFC7C6CF 04DD7FD1\
+      \ 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201\n  06300F06 03551D13\
+      \ 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85\n  4B3D31E5 1B3E6A17\
+      \ 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500\n  03820101 00507F24\
+      \ D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905\n  604EDCDE FF4FED2B\
+      \ 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B\n  D98987BF E40CBD9E\
+      \ 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8\n  467A3DF4 4D565700\
+      \ 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C\n  7CA7B7E6 C1AF74F6\
+      \ 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B\n  5FB0DA06 B92AFE7F\
+      \ 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678\n  80DDCD16 D6BACECA\
+      \ EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB\n  418616A9 4093E049\
+      \ 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0\n  D697DF7F 28\n  \t\
+      quit\ncrypto pki certificate chain TP-self-signed-1670406578\n certificate self-signed\
+      \ 01\n  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 05050030\n\
+      \  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274\n\
+      \  69666963 6174652D 31363730 34303635 3738301E 170D3232 30313037 31353437\n\
+      \  34355A17 0D333230 31303731 35343734 355A3031 312F302D 06035504 03132649\n\
+      \  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 36373034\n\
+      \  30363537 38308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201\n\
+      \  0A028201 01009F5B 5A4A0116 1D4225AA 41533E02 40453FC5 710048E4 4010A5AD\n\
+      \  15519CBB BE91BD5F E962F9B8 555A18DC 6286AD33 EA2D77CE 7A9F1055 B83A6A67\n\
+      \  42387FA1 8505400B DBFA0034 0D32BA79 8AB6B0B5 DF3F40D3 ECA25F39 78EB4A3C\n\
+      \  768237D4 27932DA4 79850774 E22D864D 8551E7E9 E7AEB62E 096D7A54 D5E158E0\n\
+      \  52CAE8E3 D62FF6DB DF1542D5 21CE20CF 2A40627E F8F1E36F C203D2D6 80E97751\n\
+      \  CECDAD38 1EE590AC 91F2CBC5 E2C1331A DC030335 3C23FA7B 98F4162F 24D48B57\n\
+      \  4FC4C2F4 BB65CCF9 E1481917 91E766F0 AA753A6F B614E2F0 D0BFE266 ACF9B120\n\
+      \  F154BAD2 3E44AAFA 511A5763 63E3BB95 D66703EF 3049B891 C467D650 7722CC25\n\
+      \  403E472F 16530203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF\n\
+      \  301F0603 551D2304 18301680 14155FE3 16CB1576 9220D0B1 3C437FCC 1A004791\n\
+      \  E0301D06 03551D0E 04160414 155FE316 CB157692 20D0B13C 437FCC1A 004791E0\n\
+      \  300D0609 2A864886 F70D0101 05050003 82010100 8A457438 7BD84E98 8A91D0B2\n\
+      \  31DFFD52 522DEA51 A640FC02 8157A911 6CC71EC8 3361C4B1 ED500F07 4A4C8719\n\
+      \  AD24FC48 D10E4050 6AE0343D 9A0A5D6E 5069CB93 40EB59E9 88D12CCC D2EEBE54\n\
+      \  AABABD0A 54581FD9 2B904302 65D7A3EE DA27D28F B68C7FB1 7C667564 875B2860\n\
+      \  F5EC11FE 2F1F374E 04B2D467 72F283D2 00F51E82 DC7A0115 FD3EF2F7 ADAC0E96\n\
+      \  E8A15D88 0F82BAC2 CE3C7A31 7840E1C2 3BD82D13 563AD474 04B98761 045E6A36\n\
+      \  7413E523 D60D12C5 108826AE 5BD4BCEF 44B1CD43 61A1B967 E678F181 42B530EA\n\
+      \  A7ADCC18 BD20D447 8E915E29 231E6D57 4CCFE125 41E2E8FD 1C8CAE85 F988036A\n\
+      \  3D18EFB9 8525FA1C 7742E8DE 755DD5F0 E67C8D4C\n  \tquit\n!\nlicense udi pid\
+      \ C8000V sn 9GDHIEJT1A1\ndiagnostic bootup level minimal\nmemory free low-watermark\
+      \ processor 68484\n!\n!\nusername admin privilege 15 secret 9 $9$gSimhsDaAplx/k$GCy.eGBi049RyXZ6iJwzFSSx8KwgY.B/b2zTC2wn7mU\n\
+      !\nredundancy\n!\n!\n!\n!\n!\n!\n!\n!\n!\ninterface Loopback0\n ip address 192.168.255.2\
+      \ 255.255.255.255\n!\ninterface GigabitEthernet1\n ip address 10.0.0.14 255.255.255.252\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet2\n ip address 192.168.2.1 255.255.255.0\n\
+      \ negotiation auto\n!\ninterface GigabitEthernet3\n no ip address\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet4\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet5\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet6\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet7\n no ip address\n shutdown\n negotiation\
+      \ auto\n!\ninterface GigabitEthernet8\n vrf forwarding Mgmt-intf\n ip address\
+      \ dhcp\n negotiation auto\n!\nrouter ospf 65102\n router-id 192.168.2.1\n network\
+      \ 192.168.2.0 0.0.0.255 area 0\n network 192.168.255.2 0.0.0.0 area 0\n default-information\
+      \ originate\n!\nrouter bgp 65102\n bgp router-id 192.168.255.2\n bgp log-neighbor-changes\n\
+      \ neighbor 10.0.0.13 remote-as 65000\n !\n address-family ipv4\n  network 192.168.2.0\n\
+      \  network 192.168.255.2 mask 255.255.255.255\n  neighbor 10.0.0.13 activate\n\
+      \  neighbor 10.0.0.13 next-hop-self\n exit-address-family\n!\nip forward-protocol\
+      \ nd\nno ip http server\nip http secure-server\nip http max-connections 2\n\
+      !\nip route 192.168.2.0 255.255.255.0 Null0\nip ssh time-out 60\nip ssh version\
+      \ 2\n!\n!\n!\n!\n!\ncontrol-plane\n!\nbanner motd ^CWelcome to site2-rtr1!^C\n\
+      !\nline con 0\n exec-timeout 0 0\n stopbits 1\nline aux 0\nline vty 0 4\n exec-timeout\
+      \ 30 0\n absolute-timeout 60\n session-limit 16\n login local\n transport input\
+      \ ssh\n!\ncall-home\n ! If contact email address in call-home is configured\
+      \ as sch-smart-licensing@cisco.com\n ! the email address configured in Cisco\
+      \ Smart License Portal will be used as contact email address to send SCH notifications.\n\
+      \ contact-email-addr sch-smart-licensing@cisco.com\n profile \"CiscoTAC-1\"\n\
+      \  active\n  destination transport-method http\nntp logging\nntp authenticate\n\
+      ntp server 2.us.pool.ntp.org\nntp server 1.us.pool.ntp.org\n!\n!\n!\n!\n!\n\
+      !\nend"
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -1118,97 +1720,11 @@ nodes:
         slot: 0
         label: enp0s2
         type: physical
-  - id: n3
-    label: hq-nso1
-    node_definition: ubuntu
-    x: -1050
-    y: -50
-    configuration: |-
-      #cloud-config
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      hostname: hq-nso1
-      apt:
-        preserve_sources_list: false
-        primary:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-        security:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-      bootcmd:
-       - cloud-init-per always ip-ad sudo ip address add 172.16.0.101/24 dev ens3
-       - cloud-init-per always link-set sudo ip link set dev ens3 up
-       - cloud-init-per always dhcpint sudo dhclient ens4
-       - cloud-init-per always route-add sudo ip route add 172.16.0.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 172.16.254.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 172.16.255.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 10.0.0.0/8 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 192.168.0.0/16 via 172.16.0.1
-    image_definition: ubuntu-18-04
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: ens3
-        type: physical
-      - id: i1
-        slot: 1
-        label: ens4
-        type: physical
-  - id: n31
-    label: hq-netbox
-    node_definition: ubuntu
-    x: -1050
-    y: -150
-    configuration: |-
-      #cloud-config
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      hostname: hq-nso
-      apt:
-        preserve_sources_list: false
-        primary:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-        security:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-      bootcmd:
-       - cloud-init-per always ip-ad sudo ip address add 172.16.0.102/24 dev ens3
-       - cloud-init-per always link-set sudo ip link set dev ens3 up
-       - cloud-init-per always dhcpint sudo dhclient ens4
-       - cloud-init-per always route-add sudo ip route add 172.16.0.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 172.16.254.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 172.16.255.0/24 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 10.0.0.0/8 via 172.16.0.1
-       - cloud-init-per always route-add sudo ip route add 192.168.0.0/16 via 172.16.0.1
-    image_definition: ubuntu
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: ens3
-        type: physical
-      - id: i1
-        slot: 1
-        label: ens4
-        type: physical
   - id: n13
     label: hq-mgmt-bridge
     node_definition: external_connector
-    x: -900
-    y: 150
+    x: -1100
+    y: -150
     configuration: bridge0
     tags: []
     interfaces:
@@ -1219,8 +1735,8 @@ nodes:
   - id: n11
     label: hq-mgmt-switch
     node_definition: unmanaged_switch
-    x: -900
-    y: 50
+    x: -1000
+    y: -150
     configuration: ''
     tags: []
     interfaces:
@@ -1360,6 +1876,50 @@ nodes:
         slot: 0
         label: port
         type: physical
+  - id: n3
+    label: nso1
+    node_definition: ubuntu
+    x: -1000
+    y: -50
+    configuration: |-
+      #cloud-config
+      hostname: nso1
+      manage_etc_hosts: True
+      system_info:
+        default_user:
+          name: ubuntu
+      password: admin
+      chpasswd: { expire: False }
+      ssh_pwauth: True
+      ssh_authorized_keys:
+         - your-ssh-pubkey-line-goes-here
+    image_definition: ubuntu-18-04
+    ram: 8192
+    cpus: 4
+    cpu_limit: 100
+    tags:
+      - nso
+    interfaces:
+      - id: i0
+        slot: 0
+        label: enp0s2
+        type: physical
+      - id: i1
+        slot: 1
+        label: enp0s3
+        type: physical
+  - id: n19
+    label: internet-out
+    node_definition: external_connector
+    x: -500
+    y: 0
+    configuration: bridge0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
 links:
   - id: l0
     i1: i1
@@ -1431,31 +1991,11 @@ links:
     n1: n21
     i2: i5
     n2: n9
-  - id: l7
-    i1: i0
-    n1: n3
-    i2: i5
-    n2: n10
-  - id: l31
-    i1: i0
-    n1: n31
-    i2: i3
-    n2: n10
   - id: l9
     i1: i0
     n1: n11
     i2: i0
     n2: n13
-  - id: l13
-    i1: i1
-    n1: n3
-    i2: i1
-    n2: n11
-  - id: l16
-    i1: i1
-    n1: n31
-    i2: i2
-    n2: n11
   - id: l18
     i1: i8
     n1: n18
@@ -1486,3 +2026,38 @@ links:
     n1: n16
     i2: i8
     n2: n4
+  - id: l7
+    i1: i0
+    n1: n3
+    i2: i1
+    n2: n11
+  - id: l13
+    i1: i2
+    n1: n11
+    i2: i16
+    n2: n9
+  - id: l16
+    i1: i3
+    n1: n11
+    i2: i16
+    n2: n10
+  - id: l17
+    i1: i16
+    n1: n12
+    i2: i2
+    n2: n14
+  - id: l24
+    i1: i16
+    n1: n5
+    i2: i2
+    n2: n16
+  - id: l25
+    i1: i0
+    n1: n19
+    i2: i7
+    n2: n7
+  - id: l26
+    i1: i1
+    n1: n3
+    i2: i3
+    n2: n10
