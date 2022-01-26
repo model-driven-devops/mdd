@@ -1,11 +1,14 @@
 ---
 # The root directory where the MDD Data is stored
 mdd_data_root: "{{ lookup('env', 'PWD') }}/mdd-data"
-# The directory items that make up the direct path from the highest level
-# to the device specific level
-mdd_dir_items: "{{ ((regions + sites) | intersect(group_names)) + [ inventory_hostname ] }}"
+# The directory items that make up the direct path
+# from the highest level to the device specific level
+mdd_dir_items: >-
+  {{ ((regions + sites) | intersect(group_names)) +
+  [ inventory_hostname ] }}
 # The data directory for the particular device
-mdd_device_dir: "{{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}"
+mdd_device_dir: >-
+  {{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}
 # The file pattern for files that specify OD Data
 mdd_oc_patterns:
   - 'oc-*.yml'
