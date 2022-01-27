@@ -1,8 +1,0 @@
----
-mdd_tags:
-  - bgp
-mdd_checks:
-  - name: BGP Neighbor Status
-    command: 'show bgp neighbors'
-    schema: 'pyats/bgp-neighbors.yml'
-    method: cli_parse
