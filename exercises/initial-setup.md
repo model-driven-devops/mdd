@@ -5,11 +5,19 @@ There are two ways to run the tooling in this repo:
 2) Using GitHub actions from a fork of the repo
 
 ## Cloning the repo for local execution
+### Clone the repo
+
+First, clone and enter the repo:
+```
+git clone https://github.com/model-driven-devops/mdd.git
+cd mdd
+```
+
 ### Dependencies
 The first step is to install the dependencies.  There are two sets of dependencies, Python and Ansible
 
 ### Python Dependancies
-It is highly recommended that you create a virtual environment to make it easier to
+Next, tt is highly recommended that you create a virtual environment to make it easier to
 install the dependencies without conflict:
 
 ```
