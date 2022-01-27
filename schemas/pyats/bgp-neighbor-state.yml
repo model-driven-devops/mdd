@@ -1,0 +1,35 @@
+#
+# Check to make sure that any enabled neighbors are established
+#
+title: BGP Neighbor Check
+type: object
+required:
+  - vrf
+properties:
+  vrf:
+    type: object
+    required:
+      - default
+    properties:
+      default:
+        type: object
+        required:
+          - neighbor
+        properties:
+          neighbor:
+            type: object
+            additionalProperties:
+              type: object
+              required:
+                - session_state
+                - shutdown
+              if:
+                properties:
+                  shutdown:
+                    type: boolean
+                    const: false
+              then:
+                properties:
+                  session_state:
+                    type: string
+                    const: Established
