@@ -1,7 +1,7 @@
 # model-driven-devops
 This is a reference implementation for Model-Driven Devops
 
-# MDD Excercises
+# Exercises
 * [Initial Setup](exercises/initial-setup.md)
 * Running exercises locally
 * Running exercises as a GitLab Action

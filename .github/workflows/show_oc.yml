@@ -1,0 +1,22 @@
+---
+name: Show OC
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 'Limit Hosts'
+        type: string 
+        required: false
+        default: 'all'
+
+jobs:
+  show_oc:
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Show OC Data
+        run: ansible-playbook ciscops.mdd.show_oc --limit=${{ inputs.limit }}
