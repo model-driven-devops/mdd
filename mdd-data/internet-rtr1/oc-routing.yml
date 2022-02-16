@@ -11,18 +11,26 @@ mdd_data:
         - bgp:
             global:
               config:
-                as: 65100
-                router-id: 172.16.255.2
+                as: 65000
+                router-id: 10.255.255.1
             neighbors:
               neighbor:
               - config:
                   enabled: true
-                  neighbor-address: 10.0.0.5
-                neighbor-address: 10.0.0.5
+                  neighbor-address: 10.0.0.2
+                neighbor-address: 10.0.0.2
               - config:
                   enabled: true
-                  neighbor-address: 172.16.254.1
-                neighbor-address: 172.16.254.1
+                  neighbor-address: 10.0.0.6
+                neighbor-address: 10.0.0.6
+              - config:
+                  enabled: true
+                  neighbor-address: 10.0.0.10
+                neighbor-address: 10.0.0.10
+              - config:
+                  enabled: true
+                  neighbor-address: 10.0.0.14
+                neighbor-address: 10.0.0.14
           config:
             enabled: true
             identifier: BGP

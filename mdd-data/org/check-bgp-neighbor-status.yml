@@ -4,5 +4,5 @@ mdd_tags:
 mdd_checks:
   - name: BGP Neighbor Status
     command: 'show bgp neighbors'
-    schema: 'pyats/bgp-neighbors.yml'
+    schema: 'pyats/bgp-neighbor-state.yml'
     method: cli_parse
