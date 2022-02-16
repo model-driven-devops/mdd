@@ -13,7 +13,7 @@ git clone https://github.com/model-driven-devops/mdd.git
 cd mdd
 ```
 
-### Dependencies
+## Dependencies
 The first step is to install the dependencies.  There are two sets of dependencies, Python and Ansible
 
 ### Python Dependancies
@@ -45,7 +45,7 @@ cd ciscops
 git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
 ```
 
-### Environment Variables
+## Environment Variables
 Lastly, the MDD tooling requires several environment variables.  The first one required for
 base execution is:
 ```
@@ -58,7 +58,7 @@ You can define this variable from the `envars` file:
 . ./envvars
 ```
 
-### Testing
+## Testing
 At this point, you should be able to show the config data for the hosts in the inventory.
 To show the config data for `hq-rtr1`, run:
 ```
