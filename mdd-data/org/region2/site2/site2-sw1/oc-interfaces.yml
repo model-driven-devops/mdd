@@ -6,11 +6,11 @@ mdd_data:
         name: GigabitEthernet0/0
         type: ethernetCsmacd
       name: GigabitEthernet0/0
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
+      openconfig-if-ethernet:ethernet:
+        openconfig-vlan:switched-vlan:
+          config:
+            access-vlan: '10'
+            interface-mode: ACCESS
     - config:
         enabled: true
         name: GigabitEthernet0/1
@@ -46,11 +46,11 @@ mdd_data:
         name: GigabitEthernet1/0
         type: ethernetCsmacd
       name: GigabitEthernet1/0
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
+      openconfig-if-ethernet:ethernet:
+        openconfig-vlan:switched-vlan:
+          config:
+            access-vlan: '10'
+            interface-mode: ACCESS
     - config:
         enabled: true
         name: GigabitEthernet1/1

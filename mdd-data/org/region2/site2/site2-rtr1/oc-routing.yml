@@ -11,7 +11,6 @@ mdd_data:
         - bgp:
             global:
               config:
-                as: 65102
                 router-id: 192.168.255.2
             neighbors:
               neighbor:

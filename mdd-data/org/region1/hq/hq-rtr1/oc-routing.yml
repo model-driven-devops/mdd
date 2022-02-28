@@ -1,33 +1,89 @@
 mdd_data:
   openconfig-network-instance:network-instances:
     network-instance:
-    - config:
-        enabled: true
-        name: default
-        type: DEFAULT_INSTANCE
-      name: default
-      protocols:
-        protocol:
-        - bgp:
-            global:
+      - name: 'default'
+        config:
+          name: 'default'
+          type: 'DEFAULT_INSTANCE'
+          enabled: true
+        protocols:
+          protocol:
+            - name: 'BGP'
+              identifier: 'BGP'
               config:
-                as: 65100
-                router-id: 172.16.255.1
-            neighbors:
-              neighbor:
-              - config:
-                  enabled: true
-                  neighbor-address: 10.0.0.1
-                neighbor-address: 10.0.0.1
-              - config:
-                  enabled: true
-                  neighbor-address: 172.16.254.2
-                neighbor-address: 172.16.254.2
-          config:
-            enabled: true
-            identifier: BGP
-            name: BGP
-          identifier: BGP
-          name: BGP
+                enabled: True
+                identifier: 'BGP'
+                name: 'BGP'
+              bgp:
+                global:
+                  config:
+                    router-id: 172.16.255.1
+                neighbors:
+                  neighbor:
+                    - config:
+                        neighbor-address: '172.16.254.2'
+                        peer-as: 65100
+                      neighbor-address: '172.16.254.2'
+                      afi-safis:
+                        afi-safi:
+                          - afi-safi-name: 'IPV4_UNICAST'
+                            config:
+                              afi-safi-name: 'IPV4_UNICAST'
+                              enabled: true
+                    - config:
+                        neighbor-address: '10.0.0.1'
+                        peer-as: 65100
+                      neighbor-address: '10.0.0.1'
+                      afi-safis:
+                        afi-safi:
+                          - afi-safi-name: 'IPV4_UNICAST'
+                            config:
+                              afi-safi-name: 'IPV4_UNICAST'
+                              enabled: true
+                            apply-policy:
+                              config:
+                                export-policy:
+                                - 'set-next-hop-self'
+            - name: '65100'
+              identifier: 'OSPF'
+              config:
+                enabled: True
+                identifier: 'OSPF'
+                name: '65100'
+              ospfv2:
+                global:
+                  config:
+                    router-id: '172.16.255.1'
+                areas:
+                  area:
+                  - config:
+                      identifier: 0
+                    identifier: 0
+                    interfaces:
+                      interface:
+                      - config:
+                          id: 'Loopback0'
+                        id: 'Loopback0'
+                      - config:
+                          id: 'GigabitEthernet2'
+                        id: 'GigabitEthernet2'
+                      - config:
+                          id: 'GigabitEthernet3'
+                        id: 'GigabitEthernet3'
+      - name: 'Mgmt-intf'
+        config:
+          name: 'Mgmt-intf'
+          type: 'L3VRF'
+          enabled: true
+          enabled-address-families:
+            - 'IPV4'
+            - 'IPV6'
+        interfaces:
+          interface:
+            - id: 'GigabitEthernet8'
+              config:
+                id: 'GigabitEthernet8'
+                interface: 'GigabitEthernet8'
+                subinterface: 0
 mdd_tags:
 - all

@@ -18,6 +18,13 @@ See [Initial Setup](exercises/initial-setup.md)
 
 ## Procedure
 
+### Deploying the CML Topology
+
 ```
 ansible-playbook build-cml.yml
+```
+
+### Cleaning the CML Topology
+```
+ansible-playbook clean-cml.yml
 ```

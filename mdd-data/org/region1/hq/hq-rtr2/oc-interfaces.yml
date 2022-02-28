@@ -52,6 +52,16 @@ mdd_data:
                   ip: 172.16.0.3
                   prefix-length: '24'
                 ip: 172.16.0.3
+                vrrp:
+                  vrrp-group:
+                  - config:
+                      preempt: true
+                      preempt-delay: 10
+                      priority: 200
+                      virtual-address:
+                      - 172.16.0.1
+                      virtual-router-id: 1
+                    virtual-router-id: 1
     - config:
         enabled: true
         name: GigabitEthernet3

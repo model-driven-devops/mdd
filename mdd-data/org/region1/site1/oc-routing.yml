@@ -1,0 +1,31 @@
+mdd_data:
+  openconfig-network-instance:network-instances:
+    network-instance:
+      - name: 'default'
+        config:
+          name: 'default'
+          type: 'DEFAULT_INSTANCE'
+          enabled: true
+        protocols:
+          protocol:     
+            - identifier: 'STATIC'
+              name: 'DEFAULT'
+              config:
+                identifier: 'STATIC'
+                name: 'DEFAULT'
+              static-routes:
+                static:
+                  - prefix: '192.168.1.0/24'
+                    config:
+                      prefix: '192.168.1.0/24'
+                      description: 'to_bgp'
+                      set-tag: '179'
+                    next-hops:
+                      next-hop:
+                        - config:
+                            index: 'DROP'
+                            metric: 200
+                            next-hop: 'DROP'
+                          index: 'DROP'
+mdd_tags:
+  - bgp

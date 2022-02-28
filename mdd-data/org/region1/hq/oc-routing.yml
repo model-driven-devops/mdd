@@ -7,43 +7,26 @@ mdd_data:
           type: 'DEFAULT_INSTANCE'
           enabled: true
         protocols:
-          protocol:
-            - name: 'BGP'
-              identifier: 'BGP'
+          protocol:     
+            - identifier: 'STATIC'
+              name: 'DEFAULT'
               config:
-                enabled: True
-                identifier: 'BGP'
-                name: 'BGP'
-              bgp:
-                global:
-                  config:
-                    router-id: 172.16.255.2
-                neighbors:
-                  neighbor:
-                    - config:
-                        neighbor-address: '172.16.254.1'
-                        peer-as: 65100
-                      neighbor-address: '172.16.254.1'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
-                    - config:
-                        neighbor-address: '10.0.0.5'
-                        peer-as: 65100
-                      neighbor-address: '10.0.0.5'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
-                            apply-policy:
-                              config:
-                                export-policy:
-                                - 'set-next-hop-self'
+                identifier: 'STATIC'
+                name: 'DEFAULT'
+              static-routes:
+                static:
+                  - prefix: '172.16.0.0/16'
+                    config:
+                      prefix: '172.16.0.0/16'
+                      description: 'to_bgp'
+                      set-tag: '179'
+                    next-hops:
+                      next-hop:
+                        - config:
+                            index: 'DROP'
+                            metric: 200
+                            next-hop: 'DROP'
+                          index: 'DROP'
             - name: '65100'
               identifier: 'OSPF'
               config:
@@ -53,7 +36,7 @@ mdd_data:
               ospfv2:
                 global:
                   config:
-                    router-id: '172.16.255.2'
+                    router-id: '172.16.255.1'
                 areas:
                   area:
                   - config:
