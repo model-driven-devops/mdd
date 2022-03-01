@@ -1,3 +1,4 @@
+---
 mdd_data:
   openconfig-network-instance:network-instances:
     network-instance:
@@ -7,7 +8,7 @@ mdd_data:
           type: 'DEFAULT_INSTANCE'
           enabled: true
         protocols:
-          protocol:     
+          protocol:
             - identifier: 'STATIC'
               name: 'DEFAULT'
               config:
