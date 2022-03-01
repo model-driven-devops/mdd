@@ -12,7 +12,7 @@ mdd_data:
             - bgp:
                 global:
                   config:
-                    router-id: 192.168.255.2
+                    router-id: 192.168.2.1
                 neighbors:
                   neighbor:
                     - config:
