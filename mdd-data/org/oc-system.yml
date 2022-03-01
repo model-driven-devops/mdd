@@ -41,5 +41,5 @@ mdd_data:
         enable: true  #   adds line transport input ssh; must be enabled for this to work
         protocol-version: 'V2'  # ip ssh version 2
         rate-limit: '0'  # unsupported in ios
-        session-limit: '16' # line session-limit 16
+        session-limit: '16'  # line session-limit 16
         timeout: '1800'  # seconds - line exec-timeout 30 0

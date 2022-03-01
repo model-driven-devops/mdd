@@ -16,9 +16,9 @@ mdd_data:
             addresses:
               address:
               - config:
-                  ip: 172.16.255.1
+                  ip: 10.255.255.1
                   prefix-length: '32'
-                ip: 172.16.255.1
+                ip: 10.255.255.1
     - config:
         enabled: true
         name: GigabitEthernet1
@@ -33,9 +33,9 @@ mdd_data:
             addresses:
               address:
               - config:
-                  ip: 10.0.0.2
+                  ip: 10.0.0.1
                   prefix-length: '30'
-                ip: 10.0.0.2
+                ip: 10.0.0.1
     - config:
         enabled: true
         name: GigabitEthernet2
@@ -50,16 +50,9 @@ mdd_data:
             addresses:
               address:
               - config:
-                  ip: 172.16.0.2
-                  prefix-length: '24'
-                ip: 172.16.0.2
-                vrrp:
-                  vrrp-group:
-                  - config:
-                      virtual-address:
-                      - 172.16.0.1
-                      virtual-router-id: 1
-                    virtual-router-id: 1
+                  ip: 10.0.0.5
+                  prefix-length: '30'
+                ip: 10.0.0.5
     - config:
         enabled: true
         name: GigabitEthernet3
@@ -74,11 +67,11 @@ mdd_data:
             addresses:
               address:
               - config:
-                  ip: 172.16.254.1
-                  prefix-length: '24'
-                ip: 172.16.254.1
+                  ip: 10.0.0.9
+                  prefix-length: '30'
+                ip: 10.0.0.9
     - config:
-        enabled: false
+        enabled: true
         name: GigabitEthernet4
         type: ethernetCsmacd
       name: GigabitEthernet4
@@ -87,6 +80,13 @@ mdd_data:
         - config:
             index: 0
           index: 0
+          openconfig-if-ip:ipv4:
+            addresses:
+              address:
+              - config:
+                  ip: 10.0.0.13
+                  prefix-length: '30'
+                ip: 10.0.0.13
     - config:
         enabled: false
         name: GigabitEthernet5
@@ -108,7 +108,7 @@ mdd_data:
             index: 0
           index: 0
     - config:
-        enabled: false
+        enabled: true
         name: GigabitEthernet7
         type: ethernetCsmacd
       name: GigabitEthernet7

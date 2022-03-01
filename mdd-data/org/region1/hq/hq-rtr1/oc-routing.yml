@@ -18,13 +18,13 @@ mdd_data:
               bgp:
                 global:
                   config:
-                    router-id: 172.16.255.2
+                    router-id: 172.16.255.1
                 neighbors:
                   neighbor:
                     - config:
-                        neighbor-address: '172.16.254.1'
+                        neighbor-address: '172.16.254.2'
                         peer-as: 65100
-                      neighbor-address: '172.16.254.1'
+                      neighbor-address: '172.16.254.2'
                       afi-safis:
                         afi-safi:
                           - afi-safi-name: 'IPV4_UNICAST'
@@ -32,9 +32,9 @@ mdd_data:
                               afi-safi-name: 'IPV4_UNICAST'
                               enabled: true
                     - config:
-                        neighbor-address: '10.0.0.5'
+                        neighbor-address: '10.0.0.1'
                         peer-as: 65100
-                      neighbor-address: '10.0.0.5'
+                      neighbor-address: '10.0.0.1'
                       afi-safis:
                         afi-safi:
                           - afi-safi-name: 'IPV4_UNICAST'
@@ -54,7 +54,7 @@ mdd_data:
               ospfv2:
                 global:
                   config:
-                    router-id: '172.16.255.2'
+                    router-id: '172.16.255.1'
                 areas:
                   area:
                     - config:

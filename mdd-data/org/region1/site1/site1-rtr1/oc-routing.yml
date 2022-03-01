@@ -1,3 +1,4 @@
+---
 mdd_data:
   openconfig-network-instance:network-instances:
     network-instance:
@@ -11,7 +12,6 @@ mdd_data:
         - bgp:
             global:
               config:
-                as: 65101
                 router-id: 192.168.255.1
             neighbors:
               neighbor:
@@ -21,9 +21,9 @@ mdd_data:
                 neighbor-address: 10.0.0.9
           config:
             enabled: true
-            identifier: BGP
-            name: BGP
-          identifier: BGP
-          name: BGP
+            identifier: 'BGP'
+            name: 'BGP'
+          identifier: 'BGP'
+          name: 'BGP'
 mdd_tags:
 - all

@@ -48,10 +48,12 @@ all:
                       tags:
                         - router
                         - bgp
+                        - ospf
                     hq-rtr2:
                       tags:
                         - router
                         - bgp
+                        - ospf
                     hq-sw1:
                       tags:
                         - switch
