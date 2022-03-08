@@ -2,7 +2,6 @@ all:
   children:
     system:
       vars:
-        cml_config_template: cml/host.j2
         host_interface: ens2
       children:
         client:
