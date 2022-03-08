@@ -15,16 +15,100 @@ See [Initial Setup](exercises/initial-setup.md)
 ## Ansible Variables
 
 * `cml_lab_file`: The CML topology file to to deploy (defined in `inventory/group_vars/all/cml.yml`)
+* `nso_installer_file`: URL to the NSO installer file
+* `nso_ned_files`: List of URLs to the NSO NED files
 
 ## Procedure
 
-### Deploying the CML Topology
+### CML
+
+#### Build the CML Topology
+
+* Create the topology
 
 ```
-ansible-playbook build-cml.yml
+ansible-playbook cisco.cml.build -e startup='host'
 ```
 
-### Cleaning the CML Topology
+#### Cleaning the CML Topology (optional)
+
+* Start each node adding config where available
+
 ```
-ansible-playbook clean-cml.yml
+ansible-playbook cisco.cml.clean
 ```
+
+#### Getting Inventory (optional)
+
+* Display the current inventory of CML devices
+
+```
+ansible-playbook cisco.cml.inventory
+```
+
+### NSO
+
+#### Install NSO Software
+
+* Install NSO in server mode
+
+```
+ansible-playbook ciscops.mdd.nso_install
+```
+
+#### Installing NSO Packages
+
+* Install NSO MDD Packages
+
+```
+ansible-playbook ciscops.mdd.nso_update_packages
+```
+
+#### Inititalize NSO
+
+* Add default Auth Group
+
+```
+ansible-playbook ciscops.mdd.nso_init
+```
+
+#### Adding CML Devices to NSO
+
+* Add devices from inventory into NSO
+
+```
+ansible-playbook ciscops.mdd.nso_update_devices
+```
+
+>Note: Can be run with `--limit=<host>` to limit the scope of the playbook
+
+#### Update NSO config from device (optional)
+
+* Re-sync configuration from the device
+
+```
+ansible-playbook ciscops.mdd.nso_sync_from
+```
+
+>Note: Can be run with `--limit=<host>` to limit the scope of the playbook
+
+#### Update device config from NSO (optional)
+
+* Re-sync configuration from the device
+
+```
+ansible-playbook ciscops.mdd.nso_sync_to
+```
+
+>Note: Can be run with `--limit=<host>` to limit the scope of the playbook
+
+
+#### Check to make sure device is in sync with NSO (optional)
+
+* Re-sync configuration from the device
+
+```
+ansible-playbook ciscops.mdd.nso_check_sync
+```
+
+>Note: Can be run with `--limit=<host>` to limit the scope of the playbook
