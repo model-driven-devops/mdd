@@ -38,46 +38,46 @@ all:
                   tags:
                     - router
                     - bgp
-        org:
+    org:
+      children:
+        region1:
           children:
-            region1:
-              children:
-                hq:
-                  hosts:
-                    hq-rtr1:
-                      tags:
-                        - router
-                        - bgp
-                        - ospf
-                    hq-rtr2:
-                      tags:
-                        - router
-                        - bgp
-                        - ospf
-                    hq-sw1:
-                      tags:
-                        - switch
-                    hq-sw2:
-                      tags:
-                        - switch
-                site1:
-                  hosts:
-                    site1-rtr1:
-                      tags:
-                        - router
-                        - bgp
-                    site1-sw1:
-                      tags:
-                        - switch
-            region2:
-              children:
-                site2:
-                  hosts:
-                    site2-rtr1:
-                      tags:
-                        - router
-                        - bgp
-                    site2-sw1:
-                      tags:
-                        - switch
+            hq:
+              hosts:
+                hq-rtr1:
+                  tags:
+                    - router
+                    - bgp
+                    - ospf
+                hq-rtr2:
+                  tags:
+                    - router
+                    - bgp
+                    - ospf
+                hq-sw1:
+                  tags:
+                    - switch
+                hq-sw2:
+                  tags:
+                    - switch
+            site1:
+              hosts:
+                site1-rtr1:
+                  tags:
+                    - router
+                    - bgp
+                site1-sw1:
+                  tags:
+                    - switch
+        region2:
+          children:
+            site2:
+              hosts:
+                site2-rtr1:
+                  tags:
+                    - router
+                    - bgp
+                site2-sw1:
+                  tags:
+                    - switch
 
