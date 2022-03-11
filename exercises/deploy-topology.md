@@ -4,6 +4,10 @@
 
 See [Initial Setup](exercises/initial-setup.md)
 
+## Topology
+
+![MDD Reference Topology](exercises/mdd_topo.png?raw=true "MDD Reference Topology")
+
 ## Environment Variables
 
 * `CML_HOST`: The hostname of the CML server
