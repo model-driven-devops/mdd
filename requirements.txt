@@ -1,11 +1,11 @@
 ansible==4.5.0
-virl2_client>=2.0.0b5
+virl2_client==2.2.1.post2
 netaddr
 pynetbox
 jsonschema
 ipaddress
 paramiko
-genie
-pyats
+# genie
+# pyats
 jmespath
 passlib

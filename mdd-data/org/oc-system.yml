@@ -1,28 +1,45 @@
 ---
 mdd_data:
   openconfig-system:system:
-    config:
+    openconfig-system:logging:
+     console:
+       config:
+         openconfig-system-ext:enabled: false
+    openconfig-system:config:
       # openconfig-system-ext:enable-secret: 'admin'
       # openconfig-system-ext:console-exec-timeout-seconds: '600'
-      # openconfig-system-ext:ip-http-max-connections: 2
       # openconfig-system-ext:ip-boot_server: false
       # openconfig-system-ext:ip-bootp_server: false
       # openconfig-system-ext:ip-dns_server: false
       # openconfig-system-ext:ip-identd: false
-      # openconfig-system-ext:ip-http_server: false
       # openconfig-system-ext:ip_rcmd_rcp_enable: false
       # openconfig-system-ext:ip_rcmd_rsh_enable: false
       # openconfig-system-ext:service_config: false
-      # openconfig-system-ext:service_tcp_small_servers: false
-      # openconfig-system-ext:service_udp_small_servers: false
       # openconfig-system-ext:file-privilege: 15
       domain-name: 'mdd.cisco.com'
-      hostname: "{{ inventory_hostname }}"
+      hostname: '{{ inventory_hostname }}'
       login-banner: "Unauthorized access is prohibited!"
       motd-banner: "Welcome to {{ inventory_hostname }}"
+      openconfig-system-ext:timestamps:
+        openconfig-system-ext:logging:
+          openconfig-system-ext:enabled: true
+          openconfig-system-ext:datetime: true
+          openconfig-system-ext:uptime: false
+          openconfig-system-ext:localtime: false
+        openconfig-system-ext:debugging:
+          openconfig-system-ext:enabled: true
+          openconfig-system-ext:datetime: true
+          openconfig-system-ext:uptime: false
+          openconfig-system-ext:localtime: false
     openconfig-system-ext:services:
       finger: false
-    dns:
+      service-tcp-small-servers: false
+      service-udp-small-servers: false
+      openconfig-system-ext:http:
+        openconfig-system-ext:http-enabled: false
+        openconfig-system-ext:https-enabled: true
+        openconfig-system-ext:ip-http-max-connections: 2
+    openconfig-system:dns:
       servers:
         server:
           - address: '208.67.222.222'
@@ -33,7 +50,7 @@ mdd_data:
             config:
               address: '208.67.220.220'
               port: '53'  # always 53 for ios
-    ssh-server:
+    openconfig-system:ssh-server:
       config:
         openconfig-system-ext:absolute-timeout-minutes: '1200'
         openconfig-system-ext:ssh-timeout: '60'  # ip ssh timeout
@@ -43,3 +60,4 @@ mdd_data:
         rate-limit: '0'  # unsupported in ios
         session-limit: '16'  # line session-limit 16
         timeout: '1800'  # seconds - line exec-timeout 30 0
+

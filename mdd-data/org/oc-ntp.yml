@@ -1,10 +1,10 @@
 ---
 mdd_data:
   openconfig-system:system:
-    clock:
+    openconfig-system:clock:
       config:
         timezone-name: 'PST -8 0'
-    ntp:
+    openconfig-system:ntp:
       config:
         enabled: true
       servers:

@@ -1,6 +1,0 @@
----
-mdd_data:
-  openconfig-system:system:
-    clock:
-      config:
-        timezone-name: 'EDT -7 0'

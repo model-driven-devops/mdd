@@ -17,8 +17,25 @@ mdd_data:
               address:
               - config:
                   ip: 192.168.255.2
-                  prefix-length: '32'
+                  prefix-length: 32
                 ip: 192.168.255.2
+    - config:
+        enabled: true
+        name: Loopback100
+        type: softwareLoopback
+      name: Loopback100
+      subinterfaces:
+        subinterface:
+        - config:
+            index: 0
+          index: 0
+          openconfig-if-ip:ipv4:
+            addresses:
+              address:
+              - config:
+                  ip: 10.255.255.14
+                  prefix-length: 32
+                ip: 10.255.255.14
     - config:
         enabled: true
         name: GigabitEthernet1
@@ -34,7 +51,7 @@ mdd_data:
               address:
               - config:
                   ip: 10.0.0.14
-                  prefix-length: '30'
+                  prefix-length: 30
                 ip: 10.0.0.14
     - config:
         enabled: true
@@ -44,65 +61,45 @@ mdd_data:
       subinterfaces:
         subinterface:
         - config:
-            index: 0
-          index: 0
+            description: VLAN10
+            enabled: true
+            index: 10
+          index: 10
           openconfig-if-ip:ipv4:
             addresses:
               address:
               - config:
                   ip: 192.168.2.1
-                  prefix-length: '24'
+                  prefix-length: 24
                 ip: 192.168.2.1
+          openconfig-vlan:vlan:
+            config:
+              vlan-id: 10
     - config:
         enabled: false
         name: GigabitEthernet3
         type: ethernetCsmacd
       name: GigabitEthernet3
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
     - config:
         enabled: false
         name: GigabitEthernet4
         type: ethernetCsmacd
       name: GigabitEthernet4
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
     - config:
         enabled: false
         name: GigabitEthernet5
         type: ethernetCsmacd
       name: GigabitEthernet5
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
     - config:
         enabled: false
         name: GigabitEthernet6
         type: ethernetCsmacd
       name: GigabitEthernet6
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
     - config:
         enabled: false
         name: GigabitEthernet7
         type: ethernetCsmacd
       name: GigabitEthernet7
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
     - config:
         enabled: true
         name: GigabitEthernet8
@@ -110,8 +107,11 @@ mdd_data:
       name: GigabitEthernet8
       subinterfaces:
         subinterface:
-        - config:
+          - config:
+              index: 0
             index: 0
-          index: 0
+            openconfig-if-ip:ipv4:
+              config:
+                dhcp-client: true
 mdd_tags:
 - all
