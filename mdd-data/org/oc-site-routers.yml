@@ -96,18 +96,18 @@ mdd_data:
                     log-adjacency-changes: True
                 areas:
                   area:
-                  - config:
+                    - config:
+                        identifier: 0
                       identifier: 0
-                    identifier: 0
-                    interfaces:
-                      interface:
-                      - config:
-                          id: 'Loopback100'
-                          passive: True
-                        id: 'Loopback100'
-                      - config:
-                          id: 'GigabitEthernet1'
-                        id: 'GigabitEthernet1'
+                      interfaces:
+                        interface:
+                          - config:
+                              id: 'Loopback100'
+                              passive: True
+                            id: 'Loopback100'
+                          - config:
+                              id: 'GigabitEthernet1'
+                            id: 'GigabitEthernet1'
             - name: 'BGP'
               identifier: 'BGP'
               config:
@@ -201,19 +201,19 @@ mdd_data:
                           enabled: true
         openconfig-network-instance:table-connections:
           table-connection:
-          - address-family: 'IPV4'
-            dst-protocol: 'BGP'
-            src-protocol: 'STATIC'
-            config:
-              address-family: 'IPV4'
+            - address-family: 'IPV4'
               dst-protocol: 'BGP'
               src-protocol: 'STATIC'
-          - address-family: 'IPV4'
-            dst-protocol: 'BGP'
-            src-protocol: 'DIRECTLY_CONNECTED'
-            config:
-              address-family: 'IPV4'
+              config:
+                address-family: 'IPV4'
+                dst-protocol: 'BGP'
+                src-protocol: 'STATIC'
+            - address-family: 'IPV4'
               dst-protocol: 'BGP'
               src-protocol: 'DIRECTLY_CONNECTED'
+              config:
+                address-family: 'IPV4'
+                dst-protocol: 'BGP'
+                src-protocol: 'DIRECTLY_CONNECTED'
 mdd_tags:
   - site_router

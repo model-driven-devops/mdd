@@ -2,154 +2,139 @@
 mdd_data:
   openconfig-interfaces:interfaces:
     interface:
-    - config:
-        enabled: true
+      - config:
+          enabled: true
+          name: Loopback0
+          type: softwareLoopback
         name: Loopback0
-        type: softwareLoopback
-      name: Loopback0
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
-          openconfig-if-ip:ipv4:
-            addresses:
-              address:
-              - config:
-                  ip: 172.16.255.2
-                  prefix-length: 32
-                ip: 172.16.255.2
-    - config:
-        enabled: true
-        name: Loopback100
-        type: softwareLoopback
-      name: Loopback100
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
-          openconfig-if-ip:ipv4:
-            addresses:
-              address:
-              - config:
-                  ip: 10.255.255.12
-                  prefix-length: 32
-                ip: 10.255.255.12
-    - config:
-        enabled: true
-        name: GigabitEthernet1
-        type: ethernetCsmacd
-      name: GigabitEthernet1
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
-          openconfig-if-ip:ipv4:
-            addresses:
-              address:
-              - config:
-                  ip: 10.0.0.6
-                  prefix-length: 30
-                ip: 10.0.0.6
-    - config:
-        description: '802.1q Trunk'
-        enabled: true
-        name: GigabitEthernet2
-        type: ethernetCsmacd
-      name: GigabitEthernet2
-      subinterfaces:
-        subinterface:
-        - config:
-            description: VLAN10
-            enabled: true
-            index: 10
-          index: 10
-          openconfig-if-ip:ipv4:
-            addresses:
-              address:
-              - config:
-                  ip: 172.16.0.3
-                  prefix-length: 24
-                ip: 172.16.0.3
-                vrrp:
-                  vrrp-group:
-                  - config:
-                      preempt: true
-                      preempt-delay: 10
-                      priority: 200
-                      virtual-address:
-                      - 172.16.0.1
-                      virtual-router-id: 1
-                    virtual-router-id: 1
-          openconfig-vlan:vlan:
-            config:
-              vlan-id: 10
-#              - config:
-#                  description: VLAN11
-#                  enabled: true
-#                  index: 11
-#                index: 11
-#                openconfig-if-ip:ipv4:
-#                  addresses:
-#                    address:
-#                    - config:
-#                        ip: 172.16.11.3
-#                        prefix-length: 24
-#                      ip: 172.16.11.3
-#                openconfig-vlan:vlan:
-#                  config:
-#                    vlan-id: 11
-    - config:
-        enabled: true
-        name: GigabitEthernet3
-        type: ethernetCsmacd
-      name: GigabitEthernet3
-      subinterfaces:
-        subinterface:
-        - config:
-            index: 0
-          index: 0
-          openconfig-if-ip:ipv4:
-            addresses:
-              address:
-              - config:
-                  ip: 172.16.3.2
-                  prefix-length: 30
-                ip: 172.16.3.2
-    - config:
-        enabled: false
-        name: GigabitEthernet4
-        type: ethernetCsmacd
-      name: GigabitEthernet4
-    - config:
-        enabled: false
-        name: GigabitEthernet5
-        type: ethernetCsmacd
-      name: GigabitEthernet5
-    - config:
-        enabled: false
-        name: GigabitEthernet6
-        type: ethernetCsmacd
-      name: GigabitEthernet6
-    - config:
-        enabled: false
-        name: GigabitEthernet7
-        type: ethernetCsmacd
-      name: GigabitEthernet7
-    - config:
-        enabled: true
-        name: GigabitEthernet8
-        type: ethernetCsmacd
-      name: GigabitEthernet8
-      subinterfaces:
-        subinterface:
-          - config:
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
               index: 0
-            index: 0
-            openconfig-if-ip:ipv4:
-              config:
-                dhcp-client: true
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.255.2
+                        prefix-length: 32
+                      ip: 172.16.255.2
+      - config:
+          enabled: true
+          name: Loopback100
+          type: softwareLoopback
+        name: Loopback100
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 10.255.255.12
+                        prefix-length: 32
+                      ip: 10.255.255.12
+      - config:
+          enabled: true
+          name: GigabitEthernet1
+          type: ethernetCsmacd
+        name: GigabitEthernet1
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 10.0.0.6
+                        prefix-length: 30
+                      ip: 10.0.0.6
+      - config:
+          description: '802.1q Trunk'
+          enabled: true
+          name: GigabitEthernet2
+          type: ethernetCsmacd
+        name: GigabitEthernet2
+        subinterfaces:
+          subinterface:
+            - config:
+                description: VLAN10
+                enabled: true
+                index: 10
+              index: 10
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.0.3
+                        prefix-length: 24
+                      ip: 172.16.0.3
+                      vrrp:
+                        vrrp-group:
+                          - config:
+                              preempt: true
+                              preempt-delay: 10
+                              priority: 200
+                              virtual-address:
+                                - 172.16.0.1
+                              virtual-router-id: 1
+                            virtual-router-id: 1
+              openconfig-vlan:vlan:
+                config:
+                  vlan-id: 10
+      - config:
+          enabled: true
+          name: GigabitEthernet3
+          type: ethernetCsmacd
+        name: GigabitEthernet3
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 172.16.3.2
+                        prefix-length: 30
+                      ip: 172.16.3.2
+      - config:
+          enabled: false
+          name: GigabitEthernet4
+          type: ethernetCsmacd
+        name: GigabitEthernet4
+      - config:
+          enabled: false
+          name: GigabitEthernet5
+          type: ethernetCsmacd
+        name: GigabitEthernet5
+      - config:
+          enabled: false
+          name: GigabitEthernet6
+          type: ethernetCsmacd
+        name: GigabitEthernet6
+      - config:
+          enabled: false
+          name: GigabitEthernet7
+          type: ethernetCsmacd
+        name: GigabitEthernet7
+      - config:
+          enabled: true
+          name: GigabitEthernet8
+          type: ethernetCsmacd
+        name: GigabitEthernet8
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
 mdd_tags:
-- all
+  - all

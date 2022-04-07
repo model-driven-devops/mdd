@@ -189,18 +189,18 @@ mdd_data:
                     log-adjacency-changes: True
                 areas:
                   area:
-                  - config:
+                    - config:
+                        identifier: 0
                       identifier: 0
-                    identifier: 0
-                    interfaces:
-                      interface:
-                      - config:
-                          id: 'Loopback100'
-                          passive: True
-                        id: 'Loopback100'
-                      - config:
-                          id: 'GigabitEthernet1'
-                        id: 'GigabitEthernet1'
+                      interfaces:
+                        interface:
+                          - config:
+                              id: 'Loopback100'
+                              passive: True
+                            id: 'Loopback100'
+                          - config:
+                              id: 'GigabitEthernet1'
+                            id: 'GigabitEthernet1'
             - name: BGP
               identifier: BGP
               config:
@@ -310,21 +310,21 @@ mdd_data:
                     log-adjacency-changes: True
                 areas:
                   area:
-                  - config:
+                    - config:
+                        identifier: 0
                       identifier: 0
-                    identifier: 0
-                    interfaces:
-                      interface:
-                      - config:
-                          id: 'Loopback0'
-                          passive: True
-                        id: 'Loopback0'
-                      - config:
-                          id: 'GigabitEthernet2.10'
-                        id: 'GigabitEthernet2.10'
-                      - config:
-                          id: 'GigabitEthernet3'
-                        id: 'GigabitEthernet3'
+                      interfaces:
+                        interface:
+                          - config:
+                              id: 'Loopback0'
+                              passive: True
+                            id: 'Loopback0'
+                          - config:
+                              id: 'GigabitEthernet2.10'
+                            id: 'GigabitEthernet2.10'
+                          - config:
+                              id: 'GigabitEthernet3'
+                            id: 'GigabitEthernet3'
             - name: BGP
               identifier: BGP
               config:
@@ -343,34 +343,34 @@ mdd_data:
                           enabled: true
         openconfig-network-instance:table-connections:
           table-connection:
-          - address-family: 'IPV4'
-            dst-protocol: 'OSPF'
-            src-protocol: 'STATIC'
-            config:
-              address-family: 'IPV4'
+            - address-family: 'IPV4'
               dst-protocol: 'OSPF'
               src-protocol: 'STATIC'
-              openconfig-network-instance-ext:dst-protocol-process-number: 1
-          - address-family: 'IPV4'
-            dst-protocol: 'BGP'
-            src-protocol: 'OSPF'
-            config:
-              address-family: 'IPV4'
+              config:
+                address-family: 'IPV4'
+                dst-protocol: 'OSPF'
+                src-protocol: 'STATIC'
+                openconfig-network-instance-ext:dst-protocol-process-number: 1
+            - address-family: 'IPV4'
               dst-protocol: 'BGP'
               src-protocol: 'OSPF'
-              openconfig-network-instance-ext:src-protocol-process-number: 1
-              import-policy:
-                - 'from_ospf'
-          - address-family: 'IPV4'
-            dst-protocol: 'OSPF'
-            src-protocol: 'BGP'
-            config:
-              address-family: 'IPV4'
+              config:
+                address-family: 'IPV4'
+                dst-protocol: 'BGP'
+                src-protocol: 'OSPF'
+                openconfig-network-instance-ext:src-protocol-process-number: 1
+                import-policy:
+                  - 'from_ospf'
+            - address-family: 'IPV4'
               dst-protocol: 'OSPF'
               src-protocol: 'BGP'
-              openconfig-network-instance-ext:dst-protocol-process-number: 1
-              openconfig-network-instance-ext:src-protocol-process-number: 65100
-              import-policy:
-                - 'to_ospf'
+              config:
+                address-family: 'IPV4'
+                dst-protocol: 'OSPF'
+                src-protocol: 'BGP'
+                openconfig-network-instance-ext:dst-protocol-process-number: 1
+                openconfig-network-instance-ext:src-protocol-process-number: 65100
+                import-policy:
+                  - 'to_ospf'
 mdd_tags:
   - hq_router

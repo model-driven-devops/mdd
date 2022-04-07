@@ -2,9 +2,9 @@
 mdd_data:
   openconfig-system:system:
     openconfig-system:logging:
-     console:
-       config:
-         openconfig-system-ext:enabled: false
+      console:
+        config:
+          openconfig-system-ext:enabled: false
     openconfig-system:config:
       # openconfig-system-ext:enable-secret: 'admin'
       # openconfig-system-ext:console-exec-timeout-seconds: '600'
@@ -60,4 +60,3 @@ mdd_data:
         rate-limit: '0'  # unsupported in ios
         session-limit: '16'  # line session-limit 16
         timeout: '1800'  # seconds - line exec-timeout 30 0
-
