@@ -16,6 +16,9 @@ mdd_data:
                 global:
                   config:
                     router-id: 10.255.255.12
+      - name: 'internal_1'
+        config:
+          route-distinguisher: '1:2'
       - name: 'Mgmt-intf'
         config:
           name: 'Mgmt-intf'

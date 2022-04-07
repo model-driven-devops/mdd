@@ -1,14 +1,22 @@
 type: object
 properties:
+  required:
+    - vrf
   vrf:
     type: object
     properties:
-      default:
+      required:
+        - {{ check_vars.vrf }}
+      {{ check_vars.vrf }}:
         type: object
         properties:
+          required:
+            - address_family
           address_family:
             type: object
             properties:
+              required:
+                - ipv4
               ipv4:
                 type: object
                 required:

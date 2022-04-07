@@ -5,7 +5,7 @@ pynetbox
 jsonschema
 ipaddress
 paramiko
-# genie
-# pyats
+genie
+pyats
 jmespath
 passlib

@@ -31,7 +31,7 @@ See [Initial Setup](exercises/initial-setup.md)
 * Create the topology
 
 ```
-ansible-playbook cisco.cml.build -e startup='host'
+ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
 ```
 
 #### Cleaning the CML Topology (optional)
