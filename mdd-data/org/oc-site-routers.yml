@@ -2,13 +2,6 @@
 mdd_data:
   openconfig-routing-policy:routing-policy:
     defined-sets:
-      tag-sets:
-        tag-set:
-          - name: '9999'
-            config:
-              name: '9999'
-              tag-value:
-                - 9999
       openconfig-bgp-policy:bgp-defined-sets:
         ext-community-sets:
           ext-community-set:
@@ -24,48 +17,8 @@ mdd_data:
                 match-set-options: 'ANY'
                 ext-community-member:
                   - "1:1"
-    policy-definitions:
+    openconfig-routing-policy:policy-definitions:
       openconfig-routing-policy:policy-definition:
-        - name: 'from_ospf'
-          config:
-            name: 'from_ospf'
-          statements:
-            openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                conditions:
-                  match-tag-set:
-                    config:
-                      tag-set: '9999'
-                      match-set-options: 'ANY'
-                actions:
-                  config:
-                    policy-result: 'REJECT_ROUTE'
-              - name: '20'
-                config:
-                  name: '20'
-                actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-        - name: 'to_ospf'
-          config:
-            name: 'to_ospf'
-          statements:
-            openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-                  set-tag:
-                    config:
-                      mode: 'INLINE'
-                    inline:
-                      config:
-                        tag:
-                          - '9999'
         - name: 'import-route-target'
           config:
             name: 'import-route-target'
@@ -98,10 +51,10 @@ mdd_data:
                     policy-result: 'ACCEPT_ROUTE'
   openconfig-network-instance:network-instances:
     openconfig-network-instance:network-instance:
-      - name: default
+      - name: 'default'
         config:
-          name: default
-          type: DEFAULT_INSTANCE
+          name: 'default'
+          type: 'DEFAULT_INSTANCE'
           enabled: true
         mpls:
           global:
@@ -121,7 +74,7 @@ mdd_data:
             ldp:
               global:
                 config:
-                  lsr-id: 10.255.255.11
+                  lsr-id: 10.255.255.13
                 graceful-restart:
                   config:
                     enabled: false
@@ -131,52 +84,6 @@ mdd_data:
                   hello-interval: 5
         protocols:
           protocol:
-            - identifier: 'STATIC'   # These needs an address to switch 1 after G2
-              name: 'DEFAULT'
-              config:
-                identifier: 'STATIC'
-                name: 'DEFAULT'
-              static-routes:
-                static:
-                  - prefix: '10.0.0.0/8'
-                    config:
-                      prefix: '10.0.0.0/8'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
-                  - prefix: '172.16.0.0/12'
-                    config:
-                      prefix: '172.16.0.0/12'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
-                  - prefix: '192.168.0.0/16'
-                    config:
-                      prefix: '192.168.0.0/16'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
             - name: '100'
               identifier: 'OSPF'
               config:
@@ -201,21 +108,25 @@ mdd_data:
                           - config:
                               id: 'GigabitEthernet1'
                             id: 'GigabitEthernet1'
-            - name: BGP
-              identifier: BGP
+            - name: 'BGP'
+              identifier: 'BGP'
               config:
                 enabled: True
-                identifier: BGP
-                name: BGP
+                identifier: 'BGP'
+                name: 'BGP'
               bgp:
                 global:
                   config:
                     as: 65100
-                    router-id: 10.255.255.11
+                    router-id: 10.255.255.13
                     openconfig-bgp-ext:log-neighbor-changes: true
                   use-multiple-paths:
                     config:
                       enabled: True
+                    ebgp:
+                      config:
+                        allow-multiple-as: True
+                        maximum-paths: 2
                     ibgp:
                       config:
                         maximum-paths: 2
@@ -225,10 +136,6 @@ mdd_data:
                         config:
                           afi-safi-name: 'L3VPN_IPV4_UNICAST'
                           enabled: true
-                      - afi-safi-name: 'IPV4_UNICAST'
-                        config:
-                          afi-safi-name: 'IPV4_UNICAST'
-                          enabled: true
                 neighbors:
                   neighbor:
                     - config:
@@ -236,7 +143,6 @@ mdd_data:
                         description: 'WAN RR'
                         peer-as: 65100
                         send-community: 'BOTH'
-                        enabled: True
                       neighbor-address: '10.255.255.1'
                       transport:
                         config:
@@ -247,10 +153,6 @@ mdd_data:
                             config:
                               afi-safi-name: 'L3VPN_IPV4_UNICAST'
                               enabled: true
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
       - name: 'internal_1'
         config:
           name: 'internal_1'
@@ -259,7 +161,7 @@ mdd_data:
           enabled-address-families:
             - 'IPV4'
             - 'IPV6'
-          route-distinguisher: '1:1'
+          route-distinguisher: '1:3'
         inter-instance-policies:
           apply-policy:
             config:
@@ -281,50 +183,6 @@ mdd_data:
                 subinterface: 10
         protocols:
           protocol:
-            - identifier: 'STATIC'
-              name: 'DEFAULT'
-              config:
-                identifier: 'STATIC'
-                name: 'DEFAULT'
-              static-routes:
-                static:
-                  - prefix: '0.0.0.0/0'
-                    config:
-                      prefix: '0.0.0.0/0'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: '10.255.255.1'
-                            next-hop: '10.255.255.1'
-                            openconfig-local-routing-ext:global: true
-                          index: '10.255.255.1'
-            - name: '1'
-              identifier: 'OSPF'
-              config:
-                enabled: True
-                identifier: 'OSPF'
-                name: '1'
-              ospfv2:
-                global:
-                  config:
-                    log-adjacency-changes: True
-                areas:
-                  area:
-                    - config:
-                        identifier: 0
-                      identifier: 0
-                      interfaces:
-                        interface:
-                          - config:
-                              id: 'Loopback0'
-                              passive: True
-                            id: 'Loopback0'
-                          - config:
-                              id: 'GigabitEthernet2.10'
-                            id: 'GigabitEthernet2.10'
-                          - config:
-                              id: 'GigabitEthernet3'
-                            id: 'GigabitEthernet3'
             - name: BGP
               identifier: BGP
               config:
@@ -344,33 +202,18 @@ mdd_data:
         openconfig-network-instance:table-connections:
           table-connection:
             - address-family: 'IPV4'
-              dst-protocol: 'OSPF'
+              dst-protocol: 'BGP'
               src-protocol: 'STATIC'
               config:
                 address-family: 'IPV4'
-                dst-protocol: 'OSPF'
+                dst-protocol: 'BGP'
                 src-protocol: 'STATIC'
-                openconfig-network-instance-ext:dst-protocol-process-number: 1
             - address-family: 'IPV4'
               dst-protocol: 'BGP'
-              src-protocol: 'OSPF'
+              src-protocol: 'DIRECTLY_CONNECTED'
               config:
                 address-family: 'IPV4'
                 dst-protocol: 'BGP'
-                src-protocol: 'OSPF'
-                openconfig-network-instance-ext:src-protocol-process-number: 1
-                import-policy:
-                  - 'from_ospf'
-            - address-family: 'IPV4'
-              dst-protocol: 'OSPF'
-              src-protocol: 'BGP'
-              config:
-                address-family: 'IPV4'
-                dst-protocol: 'OSPF'
-                src-protocol: 'BGP'
-                openconfig-network-instance-ext:dst-protocol-process-number: 1
-                openconfig-network-instance-ext:src-protocol-process-number: 65100
-                import-policy:
-                  - 'to_ospf'
+                src-protocol: 'DIRECTLY_CONNECTED'
 mdd_tags:
-  - hq_router
+  - site_router

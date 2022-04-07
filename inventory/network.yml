@@ -14,6 +14,12 @@ all:
       - region1
       - region2
   children:
+    internet_routers:
+      hosts:
+        internet-rtr1:
+          tags:
+            - router
+            - bgp
     network:
       children:
         switches:
@@ -32,12 +38,6 @@ all:
               hosts:
                 site1-rtr1:
                 site2-rtr1:      
-            internet_routers:
-              hosts:
-                internet-rtr1:
-                  tags:
-                    - router
-                    - bgp
     org:
       children:
         region1:
@@ -46,12 +46,12 @@ all:
               hosts:
                 hq-rtr1:
                   tags:
-                    - router
+                    - hq_router
                     - bgp
                     - ospf
                 hq-rtr2:
                   tags:
-                    - router
+                    - hq_router
                     - bgp
                     - ospf
                 hq-sw1:
@@ -64,8 +64,7 @@ all:
               hosts:
                 site1-rtr1:
                   tags:
-                    - router
-                    - bgp
+                    - site_router
                 site1-sw1:
                   tags:
                     - switch
@@ -75,8 +74,7 @@ all:
               hosts:
                 site2-rtr1:
                   tags:
-                    - router
-                    - bgp
+                    - site_router
                 site2-sw1:
                   tags:
                     - switch

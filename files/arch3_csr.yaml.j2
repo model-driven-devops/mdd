@@ -14,7 +14,7 @@ lab:
 nodes:
   - id: n7
     label: internet-rtr1
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -500
     y: -150
     configuration: |-
@@ -57,6 +57,7 @@ nodes:
       mpls ip
       no mop enabled
       no mop sysid
+      no shutdown
       !
       interface GigabitEthernet2
       ip address 10.0.0.5 255.255.255.252
@@ -65,6 +66,7 @@ nodes:
       mpls ip
       no mop enabled
       no mop sysid
+      no shutdown
       !
       interface GigabitEthernet3
       ip address 10.0.0.9 255.255.255.252
@@ -73,6 +75,7 @@ nodes:
       mpls ip  
       no mop enabled
       no mop sysid
+      no shutdown
       !
       interface GigabitEthernet4
       ip address 10.0.0.13 255.255.255.252
@@ -81,6 +84,7 @@ nodes:
       mpls ip
       no mop enabled
       no mop sysid
+      no shutdown
       !
       interface GigabitEthernet5
       no ip address
@@ -109,6 +113,7 @@ nodes:
       negotiation auto
       no mop enabled
       no mop sysid
+      no shutdown
       !
       router ospf 100
       router-id 10.255.255.1
@@ -558,7 +563,7 @@ nodes:
         type: physical
   - id: n18
     label: hq-rtr1
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -750
     y: -250
     configuration: |-
@@ -639,7 +644,7 @@ nodes:
         type: physical
   - id: n0
     label: hq-rtr2
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -750
     y: -50
     configuration: |-
@@ -720,7 +725,7 @@ nodes:
         type: physical
   - id: n2
     label: site1-rtr1
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -250
     y: -300
     configuration: |-
@@ -889,7 +894,7 @@ nodes:
         type: physical
   - id: n4
     label: site2-rtr1
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -250
     y: 0
     configuration: |-

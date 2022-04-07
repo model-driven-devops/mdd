@@ -1,13 +1,15 @@
 ---
 mdd_tags:
-  - router
+  - hq_router
+  - site_router
 mdd_checks:
   - name: Check Network-wide Routes
-    command: 'show ip route'
+    command: 'show ip route vrf internal_1'
     schema: 'pyats/show_ip_route.yml.j2'
-    method: nso_parse
+    method: cli_parse
     check_vars:
+      vrf: internal_1
       routes:
-        - 172.16.0.0/16
+        - 172.16.0.0/24
         - 192.168.1.0/24
         - 192.168.2.0/24

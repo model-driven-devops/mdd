@@ -1,0 +1,47 @@
+---
+name: Rebuild
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: mdd-dev
+    concurrency: mdd-dev
+    steps:
+      - name: Checkout Inventory
+        uses: actions/checkout@v2
+      - name: Install Collections
+        run: ansible-galaxy collection install -r requirements.yml
+      - name: Install PIP requirements
+        run: pip install -r requirements.txt
+      - name: Clean existing topology
+        run: ansible-playbook cisco.cml.clean
+        env:
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Build new topology
+        run: ansible-playbook cisco.cml.build -e startup='host' -e wait=yes
+        env:
+          CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
+          CML_LAB: ${{ secrets.CML_LAB }}
+          CML_USERNAME: ${{ secrets.CML_USERNAME }}
+          CML_HOST: ${{ secrets.CML_HOST }}
+          CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
+      - name: Install NSO
+        run: ansible-playbook ciscops.mdd.nso_install
+      - name: Install NSO Pacakges
+        run: ansible-playbook ciscops.mdd.nso_update_packages
+      - name: Initialize NSO
+        run: ansible-playbook ciscops.mdd.nso_init
+      - name: Update NSO Devices
+        run: ansible-playbook ciscops.mdd.nso_update_devices
+      - name: Validate Data
+        run: ansible-playbook ciscops.mdd.validate
+      - name: Push Data
+        run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
+      - name: Check State
+        run: ansible-playbook ciscops.mdd.check

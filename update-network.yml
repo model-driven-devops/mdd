@@ -1,9 +1,0 @@
-- name: Update the configuration
-  hosts: "{{ passed | default('network') }}"
-  connection: network_cli
-  gather_facts: no
-  tasks:
-    - name: Apply config
-      ios_config:
-        src: "{{ cml_config_template }}"
-      when: cml_config_template is defined

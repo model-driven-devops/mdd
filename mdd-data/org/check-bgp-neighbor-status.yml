@@ -1,8 +1,9 @@
 ---
 mdd_tags:
-  - bgp
+  - hq_router
+  - site_router
 mdd_checks:
-  - name: BGP Neighbor Status
-    command: 'show bgp neighbors'
+  - name: BGP VPNV4 Neighbor Status
+    command: 'show ip bgp vpnv4 all neighbors'
     schema: 'pyats/bgp-neighbor-state.yml'
     method: cli_parse

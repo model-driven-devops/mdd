@@ -1,76 +1,24 @@
 ---
 mdd_data:
   openconfig-network-instance:network-instances:
-    network-instance:
-      - name: 'default'
-        config:
-          name: 'default'
-          type: 'DEFAULT_INSTANCE'
-          enabled: true
+    openconfig-network-instance:network-instance:
+      - name: default
+        mpls:
+          signaling-protocols:
+            ldp:
+              global:
+                config:
+                  lsr-id: 10.255.255.12
         protocols:
           protocol:
-            - name: 'BGP'
-              identifier: 'BGP'
-              config:
-                enabled: True
-                identifier: 'BGP'
-                name: 'BGP'
+            - name: BGP
               bgp:
                 global:
                   config:
-                    router-id: 172.16.255.2
-                neighbors:
-                  neighbor:
-                    - config:
-                        neighbor-address: '172.16.254.1'
-                        peer-as: 65100
-                      neighbor-address: '172.16.254.1'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
-                    - config:
-                        neighbor-address: '10.0.0.5'
-                        peer-as: 65100
-                      neighbor-address: '10.0.0.5'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
-                            apply-policy:
-                              config:
-                                export-policy:
-                                  - 'set-next-hop-self'
-            - name: '65100'
-              identifier: 'OSPF'
-              config:
-                enabled: True
-                identifier: 'OSPF'
-                name: '65100'
-              ospfv2:
-                global:
-                  config:
-                    router-id: '172.16.255.2'
-                areas:
-                  area:
-                    - config:
-                        identifier: 0
-                      identifier: 0
-                      interfaces:
-                        interface:
-                          - config:
-                              id: 'Loopback0'
-                            id: 'Loopback0'
-                          - config:
-                              id: 'GigabitEthernet2'
-                            id: 'GigabitEthernet2'
-                          - config:
-                              id: 'GigabitEthernet3'
-                            id: 'GigabitEthernet3'
+                    router-id: 10.255.255.12
+      - name: 'internal_1'
+        config:
+          route-distinguisher: '1:2'
       - name: 'Mgmt-intf'
         config:
           name: 'Mgmt-intf'
