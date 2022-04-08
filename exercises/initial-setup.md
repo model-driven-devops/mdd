@@ -40,10 +40,11 @@ Ansible dependencies, use ansible-galaxy:
 ```
 ansible-galaxy collection install -r requirements.yml
 ```
-> Note: If you want to develop a collection, you need to set `COLLECTIONS_PATHS` to tell Ansible to look locally for
-collections, comment out the collection in requirements.yml, and clone the collection repo directly, e.g.
+> Note: If you want to develop a collection, you need to set `ANSIBLE_COLLECTIONS_PATH` (or set in ansible.cfg)
+before installing the requirements above to tell Ansible to look locally for collections, comment out the collection
+in requirements.yml, and clone the collection repo directly, e.g.
 ```
-export COLLECTIONS_PATHS=./
+export ANSIBLE_COLLECTIONS_PATH=./
 cd ansible_colletions
 mkdir ciscops
 cd ciscops
@@ -75,6 +76,7 @@ If you are running the tooling locally instide a container, you can use the prov
 ./play.sh ciscops.mdd.show_oc --limit=hq-rtr1
 ```
 
+> Note: The same applies as above to developing running in the container.
 
 ## Testing
 At this point, you should be able to show the config data for the hosts in the inventory.

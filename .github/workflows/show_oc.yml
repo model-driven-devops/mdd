@@ -11,6 +11,8 @@ on:
 
 jobs:
   show_oc:
+    container:
+      image: ghcr.io/model-driven-devops/mdd:latest
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2

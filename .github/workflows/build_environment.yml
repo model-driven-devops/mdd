@@ -10,10 +10,9 @@ env:
   CML_HOST: ${{ secrets.CML_HOST }}
   CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
   ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
-  COLLECTIONS_PATHS: /
 
 jobs:
-  rebuild:
+  build:
     runs-on: self-hosted
     environment: mdd-dev
     concurrency: mdd-dev
