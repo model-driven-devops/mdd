@@ -14,9 +14,12 @@ cd mdd
 ```
 
 ## Dependencies
-The first step is to install the dependencies.  There are two sets of dependencies, Python and Ansible
+The first step is to install the dependencies.  There are two ways to satisfy the dependancies.  The first
+is to install them into a Python virtual environment locally on your computer.  The second is to run
+the tooling from a container.
 
-### Python Dependancies
+### Running Locally
+#### Python Dependancies
 Next, tt is highly recommended that you create a virtual environment to make it easier to
 install the dependencies without conflict:
 
@@ -30,22 +33,24 @@ Next, install the Python requirements via pip:
 pip3 install -r requirements.txt
 ```
 
-### Ansible Collections
+#### Ansible Collections
 The MDD tooling is distributed via an Ansible Collection.  To install the tooling and it's
 Ansible dependencies, use ansible-galaxy:
 
 ```
 ansible-galaxy collection install -r requirements.yml
 ```
-> Note: If you want to develop a collection, you need to comment out the collection in requirements.yml and clone the collection repo directly, e.g.
+> Note: If you want to develop a collection, you need to set `COLLECTIONS_PATHS` to tell Ansible to look locally for
+collections, comment out the collection in requirements.yml, and clone the collection repo directly, e.g.
 ```
+export COLLECTIONS_PATHS=./
 cd ansible_colletions
 mkdir ciscops
 cd ciscops
 git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
 ```
 
-## Environment Variables
+#### Environment Variables
 Lastly, the MDD tooling requires several environment variables.  The first one required for
 base execution is:
 ```
@@ -57,6 +62,19 @@ You can define this variable from the `envars` file:
 ```
 . ./envvars
 ```
+
+### Running in a Container
+If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
+documentation for how to run tooling from a container.  Examples of how to run the tooling from a
+container in GitHib actions can be found in `.github/workflows` in this repo.
+
+If you are running the tooling locally instide a container, you can use the provided shell script
+`play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
+
+```
+./play.sh ciscops.mdd.show_oc --limit=hq-rtr1
+```
+
 
 ## Testing
 At this point, you should be able to show the config data for the hosts in the inventory.
