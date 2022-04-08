@@ -1,7 +1,7 @@
 ---
 mdd_data:
   openconfig-interfaces:interfaces:
-    interface:
+    openconfig-interfaces:interface:
       - config:
           enabled: true
           name: GigabitEthernet0/0
@@ -103,7 +103,7 @@ mdd_data:
                 config:
                   dhcp-client: true
   openconfig-network-instance:network-instances:
-    network-instance:
+    openconfig-network-instance:network-instance:
       - name: 'Mgmt-intf'
         config:
           name: 'Mgmt-intf'

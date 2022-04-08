@@ -1,7 +1,7 @@
 ---
 mdd_data:
   openconfig-interfaces:interfaces:
-    interface:
+    openconfig-interfaces:interface:
       - config:
           enabled: true
           name: Loopback0
