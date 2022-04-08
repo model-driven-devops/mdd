@@ -1,5 +1,5 @@
 ---
-name: Check Sync
+name: NSO Update Packages
 on:
   workflow_dispatch:
 
@@ -12,7 +12,7 @@ env:
   ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
 
 jobs:
-  check_sync:
+  nso_update_packages:
     runs-on: self-hosted
     environment: mdd-dev
     container:
@@ -21,4 +21,4 @@ jobs:
       - name: Checkout Inventory
         uses: actions/checkout@v2
       - name: NSO Check Sync
-        run: ansible-playbook ciscops.mdd.nso_check_sync
+        run: ansible-playbook ciscops.mdd.nso_update_packages

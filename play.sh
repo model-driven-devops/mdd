@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
-OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
+# OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi

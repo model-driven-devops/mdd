@@ -5,7 +5,7 @@ ARG build_date=unspecified
 # workspace location
 ARG WORKSPACE
 ENV WORKSPACE ${WORKSPACE:-/ansible}
-ENV COLLECTIONS_PATHS /
+ENV ANSIBLE_COLLECTIONS_PATH /
 
 
 # LABEL org.opencontainers.image.title="Cisco-SDWAN" \
