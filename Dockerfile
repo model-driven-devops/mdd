@@ -5,6 +5,8 @@ ARG build_date=unspecified
 # workspace location
 ARG WORKSPACE
 ENV WORKSPACE ${WORKSPACE:-/ansible}
+ENV COLLECTIONS_PATHS /
+
 
 # LABEL org.opencontainers.image.title="Cisco-SDWAN" \
 #       org.opencontainers.image.description="Cisco SDWAN DevOps" \
@@ -15,6 +17,7 @@ ENV WORKSPACE ${WORKSPACE:-/ansible}
 COPY requirements.txt /tmp/requirements.txt
 COPY requirements.yml /tmp/requirements.yml
 USER root
+RUN mkdir /ansible_collections && chmod 777 /ansible_collections
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm && \
     yum -y install git sshpass && \
     pip3 install --upgrade --no-cache-dir setuptools pip && \
