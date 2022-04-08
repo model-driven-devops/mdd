@@ -34,6 +34,8 @@ jobs:
       - name: Install NSO
         run: ansible-playbook ciscops.mdd.nso_install
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -42,6 +44,8 @@ jobs:
       - name: Install NSO Pacakges
         run: ansible-playbook ciscops.mdd.nso_update_packages
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -50,6 +54,8 @@ jobs:
       - name: Initialize NSO
         run: ansible-playbook ciscops.mdd.nso_init
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -58,6 +64,8 @@ jobs:
       - name: Update NSO Devices
         run: ansible-playbook ciscops.mdd.nso_update_devices
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -66,6 +74,8 @@ jobs:
       - name: Validate Data
         run: ansible-playbook ciscops.mdd.validate
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -74,6 +84,8 @@ jobs:
       - name: Push Data
         run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}
@@ -82,6 +94,8 @@ jobs:
       - name: Check State
         run: ansible-playbook ciscops.mdd.check
         env:
+          NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
+          NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
           CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
           CML_LAB: ${{ secrets.CML_LAB }}
           CML_USERNAME: ${{ secrets.CML_USERNAME }}

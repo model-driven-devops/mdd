@@ -32,7 +32,7 @@ jobs:
           CML_HOST: ${{ secrets.CML_HOST }}
           CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
       - name: Run Checks
-        run: ansible-playbook ciscops.mdd.run_check_list
+        run: ansible-playbook ciscops.mdd.check
         env:
           NSO_USERNAME: ${{ secrets.NSO_USERNAME }}
           NSO_PASSWORD: ${{ secrets.NSO_PASSWORD }}
