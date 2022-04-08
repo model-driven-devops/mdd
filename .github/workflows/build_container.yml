@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'Dockerfile'
+      - 'requirements.txt'
+      - 'requirements.yml'
   
   workflow_dispatch:
     inputs:

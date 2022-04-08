@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 
-ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python
-
-OPTIONS=""
+OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
-fi
-if [[ ! -z "$ANSIBLE_INVENTORY" ]]; then
-   OPTIONS="$OPTIONS --env ANSIBLE_INVENTORY=$ANSIBLE_INVENTORY"
 fi
 
 OPTION_LIST=( \
@@ -19,7 +14,7 @@ OPTION_LIST=( \
    "CSR1000V_VERSION" \
    "UBUNTU_VERSION" \
    "IOSVL2_VERSION" \
-   "ANSIBLE_PYTHON_INTERPRETER" \
+   "ANSIBLE_INVENTORY" \
    )
 
 for OPTION in ${OPTION_LIST[*]}; do
@@ -27,7 +22,5 @@ for OPTION in ${OPTION_LIST[*]}; do
       OPTIONS="$OPTIONS --env $OPTION=${!OPTION}"
    fi
 done
-
-OPTIONS="$OPTIONS --env ANSIBLE_ROLES_PATH=/ansible/roles"
 
 docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd:latest ansible-playbook "$@"
