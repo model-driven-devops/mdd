@@ -3,7 +3,7 @@ mdd_tags:
   - switch
 mdd_data:
   openconfig-network-instance:network-instances:
-    network-instance:
+    openconfig-network-instance:network-instance:
       - name: 'default'
         config:
           name: 'default'
