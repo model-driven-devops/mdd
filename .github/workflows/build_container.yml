@@ -1,0 +1,38 @@
+---
+name: Build, push, and tag containers on merge and tag
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '*'
+  
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Image Tag'     
+        required: true
+        default: 'latest'
+
+jobs:
+  push-and-tag:
+    name: Deploy containers to GHCR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.IRONBANK_REGISTRY }}
+          username: ${{ secrets.IRONBANK_USERNAME }}
+          password: ${{ secrets.IRONBANK_PASSWORD }}
+
+      - name: Build Container
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile
+          load: true
+          tags: ghcr.io/${{ github.repository }}:latest
