@@ -1,5 +1,5 @@
 ---
-name: Show OC Data
+name: Check
 on:
   workflow_dispatch:
     inputs:
@@ -18,7 +18,7 @@ env:
   ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
 
 jobs:
-  show_oc:
+  check:
     runs-on: self-hosted
     environment: mdd-dev
     container:
@@ -27,4 +27,4 @@ jobs:
       - name: Checkout Inventory
         uses: actions/checkout@v2
       - name: Check
-        run: ansible-playbook ciscops.mdd.show_oc --limit=${{ inputs.limit }}
+        run: ansible-playbook ciscops.mdd.check --limit=${{ inputs.limit }}
