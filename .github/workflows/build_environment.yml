@@ -37,5 +37,8 @@ jobs:
         run: ansible-playbook ciscops.mdd.validate
       - name: Push Data
         run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
+      - name: Sleep to let the network settle
+        run: sleep 60s
+        shell: bash  
       - name: Check State
         run: ansible-playbook ciscops.mdd.check

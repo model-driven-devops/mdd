@@ -1,4 +1,6 @@
-export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python
+export ANSIBLE_COLLECTIONS_PATH=./
+# Uncomment if you want to install collection in the mdd directory
+# export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python 
 export CML_HOST=YOUR_CML_HOST
 export CML_USERNAME=YOUR_CML_USERNAME
 export CML_PASSWORD=YOUR_CML_PASSWORD
