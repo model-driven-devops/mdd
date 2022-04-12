@@ -1,5 +1,5 @@
 # Model-Driven DevOps
-This is a reference implementation for Model-Driven Devops as outlined in the book "Model-Driven DevOps: Increasing agility and security in your physical network through DevOps".  While the book capture the reference implementation at a moment in time, this reference implementation will evolve while holding true to the core concepts presented in the book.
+This is a reference implementation for Model-Driven Devops as outlined in the book "Model-Driven DevOps: Increasing agility and security in your physical network through DevOps".  While the book captures the reference implementation at a moment in time, the reference implementation will evolve while holding true to the core concepts presented in the book.
 
 ## What is Model-Driven DevOps?
 Model-Driven Devops (MDD) is an IaC approach to automating physical infrastrcuture that focuses on data organization and movement into the network in a way that seeks to treat the network the same as other parts of the infrastructure.  It focuses on using industry stanadrd tools and DevOps methodologies implemented as a CI/CD pipeline to break down silos between network operations and the rest of the infrastructure.  For example, this is a common flow in Cloud Operations:
@@ -12,7 +12,7 @@ When fully implemented, MDD requires a similar skillset to cloud operations.  Th
 
 ![MDD Branch Flow](exercises/mdd_branching.png?raw=true "MDD Branch Flow")
 
-This workflow allowed for a group of network engineers and network operators to collaborate on a change, test that change, get approvals, then push that change into the production network.  MDD includes comprehensive testing including linting the configuration data for typos, validating the configuration data for anything that would violate organization norms or create vulnerabilities, and then testing the result of that change in a network before deployment:
+This workflow allowed for a group of network engineers and network operators to collaborate on a change, test that change, get approvals, then push that change into the production network.  MDD includes comprehensive testing such as linting the configuration data for typos, validating the configuration data for anything that would violate organization norms or create vulnerabilities, and then testing the result of that change in a network before deployment:
 
 ![MDD CI Flow](exercises/mdd_ci_flow.png?raw=true "MDD CI Flow")
 
