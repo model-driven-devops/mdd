@@ -1,8 +1,9 @@
 # Initial Setup
 
-There are two ways to run the tooling in this repo:
-1) Locally from a clone of the repo
-2) Using GitHub actions from a fork of the repo
+There are three ways to run the tooling in this repo:
+1) Locally in the native OS
+2) Using a container on top of your native OS
+3) Using GitHub actions from a fork of the repo (covered later)
 
 ## Cloning the repo for local execution
 ### Clone the repo
@@ -14,12 +15,27 @@ cd mdd
 ```
 
 ## Dependencies
-The first step is to install the dependencies.  There are two ways to satisfy the dependancies.  The first
-is to install them into a Python virtual environment locally on your computer.  The second is to run
-the tooling from a container.
 
-### Running Locally
-#### Python Dependancies
+* Environmental Variables
+* Docker (if running in a docker container)
+
+### Environmental Variables
+The MDD tooling requires several environment variables.  The first one required for
+base execution is:
+```
+export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python
+```
+
+You can define this variable from the `envars` file:
+
+```
+. ./envvars
+```
+
+### Docker
+
+## Running Locally in the Native OS
+### Python Dependancies
 Next, tt is highly recommended that you create a virtual environment to make it easier to
 install the dependencies without conflict:
 
@@ -33,7 +49,7 @@ Next, install the Python requirements via pip:
 pip3 install -r requirements.txt
 ```
 
-#### Ansible Collections
+### Ansible Collections
 The MDD tooling is distributed via an Ansible Collection.  To install the tooling and it's
 Ansible dependencies, use ansible-galaxy:
 
@@ -51,23 +67,14 @@ cd ciscops
 git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
 ```
 
-#### Environment Variables
-Lastly, the MDD tooling requires several environment variables.  The first one required for
-base execution is:
-```
-export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python
-```
 
-You can define this variable from the `envars` file:
 
-```
-. ./envvars
-```
-
-### Running in a Container
+## Running in a Container on top of your native OS
 If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
 documentation for how to run tooling from a container.  Examples of how to run the tooling from a
 container in GitHib actions can be found in `.github/workflows` in this repo.
+
+*** Need to put more verbiage on running in the container (e.g. Where does it get the tolling, where does it get the data)
 
 If you are running the tooling locally instide a container, you can use the provided shell script
 `play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
