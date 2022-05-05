@@ -3,7 +3,6 @@ venv*/
 .virlrc
 *.pyc
 *.retry
-envfile
 *.signed.bin
 .cache/
 collections/
