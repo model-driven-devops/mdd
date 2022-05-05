@@ -36,7 +36,7 @@ You can define this variable from the `envars` file:
 
 ## Running Locally in the Native OS
 ### Python Dependancies
-Next, tt is highly recommended that you create a virtual environment to make it easier to
+Next, it is highly recommended that you create a virtual environment to make it easier to
 install the dependencies without conflict:
 
 ```
