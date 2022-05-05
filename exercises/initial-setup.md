@@ -74,7 +74,7 @@ If you are running the tools from a CI runner like GitHib Actions, you'll need t
 documentation for how to run tooling from a container.  Examples of how to run the tooling from a
 container in GitHib actions can be found in `.github/workflows` in this repo.
 
-*** Need to put more verbiage on running in the container (e.g. Where does it get the tolling, where does it get the data)
+*** Need to put more verbiage on running in the container (e.g. Where does it get the tooling, where does it get the data)
 
 If you are running the tooling locally instide a container, you can use the provided shell script
 `play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
