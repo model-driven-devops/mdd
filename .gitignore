@@ -7,3 +7,4 @@ envfile
 *.signed.bin
 .cache/
 collections/
+envvars
