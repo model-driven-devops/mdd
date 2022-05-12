@@ -1,5 +1,22 @@
 # MDD: Exploring the Data
-Although we also leverage the Ansible inventory, we use a separate directory heiracrhy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a determinisitc heriarchy.  The data is layed out in the directory as follows:
+Although we also leverage the Ansible inventory, we use a separate role called `ciscops.mdd.data` to contruct the data needed to configure devices.  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a determinisitc heriarchy.
+
+In order to make it easy to leverage, the role can be called in the roles sections of the playbook.  For example, here is a simple playbook (`ciscops.mdd.show`) that displays the data conctructed for a particular device:
+
+```
+- hosts: network
+  connection: local
+  gather_facts: no
+  roles:
+    - ciscops.mdd.data
+  tasks:
+    - debug:
+        var: mdd_data
+```
+
+Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data strcuture that contains the device's configuration data that can be used later in the playbook.
+
+We use we use a separate directory heiracrhy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  The data is layed out in the directory as follows:
 
 ```
 mdd-data
@@ -65,7 +82,7 @@ mdd_data:
               iburst: true
 ```
 
-The OpenConfig data is collected into `mdd_data`.  While this file just include the OC data to define NTP, it will later be combined with the rest of the data to create the full data payload.  Since this data is at the root of the heirachrcy, it can be overridden by anything else closer to the device.  If we want to set `timesone-name` to something specific to a particular region, we can override it there.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
+The OpenConfig data is collected into `mdd_data`.  While this file just include the OC data to define NTP, it will later be combined with the rest of the data to create the full data payload.  Since this data is at the root of the heirachrcy, it can be overridden by anything else closer to the device.  If we want to set `timezone-name` to something specific to a particular region, we can override it there.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
 
 ```
 ---
@@ -109,3 +126,13 @@ Compared to the timezone set for `site2-rtr1`:
 ```
 
 It matches the "patch" that we made to the data for region2.
+
+This is all done witha the custom filter `ciscops.mdd.mdd_combine` that is built off of the Ansible built-in `combine` filter.  Using specific knowledge of the YANG data model, `ciscops.mdd.mdd_combine` is able to do context-aware patching of the data such that the intent of the patch is preserveved in the resultant data model.  It is invoked in the same way as the `combine` filter:
+
+```
+- name: Combine the MDD Data
+  set_fact:
+    mdd_data: "{{ mdd_data_list | ciscops.mdd.mdd_combine(recursive=True) }}"
+```
+
+This invocation of the `ciscops.mdd.mdd_combine` filter takes the default data and a list of patches and combines it recursively to produce one data strcuture where the patches later in the list take precence over the data earlier in the list.
