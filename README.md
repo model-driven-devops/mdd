@@ -27,7 +27,7 @@ The goal is to find a bad configuration before it is pushed into the network.
 * [Deploying the Topology](exercises/deploy-topology.md)
 * [Exploring the Inventory](exercises/explore-inventory.md)
 * [Exploring the Data](exercises/explore-data.md)
-* Exercising the Runner
+* [Exercising the Runner](exercises/explore-runner.md)
 * Data Validation
 * Pushing the Data
 * State Checking
