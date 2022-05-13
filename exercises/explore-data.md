@@ -56,7 +56,7 @@ This aligns with the way that the devices are organizaed in the Ansible inventor
   |  |  |  |--site2-sw1
 ```
 
-Data at the deeper levels of the tree (closer to the device) take precendense over data closer to the root of the tree.  Each of the files in the heiracrhy are named by for the purpose and content.  For OpenConfig data, the filenames begin with `oc-`, but is configurable.  For examample, the file `mdd-data/org/oc-ntp.yml` contains the organization level NTP configuration:
+Data at the deeper levels of the tree (closer to the device) take precendense over data closer to the root of the tree.  Each of the files in the hierarchy are named by for the purpose and content.  For OpenConfig data, the filenames begin with `oc-`, but this is configurable.  For example, the file `mdd-data/org/oc-ntp.yml` contains the organization level NTP configuration:
 
 ```
 ---
@@ -82,7 +82,7 @@ mdd_data:
               iburst: true
 ```
 
-The OpenConfig data is collected into `mdd_data`.  While this file just include the OC data to define NTP, it will later be combined with the rest of the data to create the full data payload.  Since this data is at the root of the heirachrcy, it can be overridden by anything else closer to the device.  If we want to set `timezone-name` to something specific to a particular region, we can override it there.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
+The OpenConfig data is collected under the `mdd_data` key.  While the following file just includes the OC data to define NTP, it will later be combined with the rest of the OC data to create the full data payload.  Since this data is at the root of the hierarchy, it can be overridden by anything else closer to the device.  If we want to set `timezone-name` to something specific to a particular region, we can override it at the region level.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
 
 ```
 ---
@@ -93,7 +93,7 @@ mdd_data:
         timezone-name: 'EST -5 0'
 ```
 
-This file only contains the data needed to override specific values and the approriate structure to place it in contect in the overall data model.
+This file only contains the data needed to override specific values and the approriate structure to place it in context of the overall data model.
 
 To see the effect this has on the data run the following:
 
@@ -101,10 +101,10 @@ To see the effect this has on the data run the following:
 ansible-playbook ciscops.mdd.show --limit=site1-rtr1
 ```
 
-and conmpare to:
+And conmpare to:
 
 ```
-ansible-playbook ciscops.mdd.show --limit=site1-rtr2
+ansible-playbook ciscops.mdd.show --limit=site2-rtr1
 ```
 
 In partucular, note the timezone set for `site1-rtr1`:

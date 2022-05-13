@@ -36,7 +36,7 @@ You can define this variable from the `envars` file:
 
 ## Running Locally in the Native OS
 ### Python Dependancies
-Next, tt is highly recommended that you create a virtual environment to make it easier to
+Next, it is highly recommended that you create a virtual environment to make it easier to
 install the dependencies without conflict:
 
 ```
@@ -67,14 +67,12 @@ cd ciscops
 git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
 ```
 
-
-
 ## Running in a Container on top of your native OS
 If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
 documentation for how to run tooling from a container.  Examples of how to run the tooling from a
 container in GitHib actions can be found in `.github/workflows` in this repo.
 
-*** Need to put more verbiage on running in the container (e.g. Where does it get the tolling, where does it get the data)
+*** Need to put more verbiage on running in the container (e.g. Where does it get the tooling, where does it get the data)
 
 If you are running the tooling locally instide a container, you can use the provided shell script
 `play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
