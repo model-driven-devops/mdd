@@ -1,0 +1,3 @@
+# MDD: Exploring the Runner
+
+A runner is used to execute a sequence of operations that acheive and overall task or workflow.  The MDD reference implimentation uses [Github Actions](https://github.com/features/actions) as a runner for it's CI/CD pipeline because it is integrated into the GitHub platform.  Enterpirses might chose other tunners such as GitLab CI or Jenkins.  Since most runners operate un fundmaentally the same way, moving between runners is not difficult.
