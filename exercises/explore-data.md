@@ -82,7 +82,7 @@ mdd_data:
               iburst: true
 ```
 
-The OpenConfig data is collected under the `mdd_data` key.  While this file just includes the OC data to define NTP, it will later be combined with the rest of the OC data to create the full data payload.  Since this data is at the root of the heirachrcy, it can be overridden by anything else closer to the device.  If we want to set `timezone-name` to something specific to a particular region, we can override it at the region level.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
+The OpenConfig data is collected under the `mdd_data` key.  While this file just includes the OC data to define NTP, it will later be combined with the rest of the OC data to create the full data payload.  Since this data is at the root of the hierarchy, it can be overridden by anything else closer to the device.  If we want to set `timezone-name` to something specific to a particular region, we can override it at the region level.  For example, `mdd-data/org/region2/oc-ntp.yml` could contain:
 
 ```
 ---
