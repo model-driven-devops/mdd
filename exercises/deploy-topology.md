@@ -36,7 +36,7 @@ ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
 
 #### Cleaning the CML Topology (optional)
 
-* Start each node adding config where available
+* Stop each node and delete the topology
 
 ```
 ansible-playbook cisco.cml.clean
@@ -98,7 +98,7 @@ ansible-playbook ciscops.mdd.nso_sync_from
 
 #### Update device config from NSO (optional)
 
-* Re-sync configuration from the device
+* Re-sync configuration to the device
 
 ```
 ansible-playbook ciscops.mdd.nso_sync_to
