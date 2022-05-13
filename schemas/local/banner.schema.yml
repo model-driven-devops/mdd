@@ -6,9 +6,9 @@ properties:
   'openconfig-system:system':
     type: object
     required:
-      - config
+      - 'openconfig-system:config'
     properties:
-      config:
+      'openconfig-system:config':
         type: object
         required:
           - login-banner

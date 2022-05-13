@@ -7,9 +7,9 @@ properties:
     description: top level object
     type: object
     required:
-      - dns
+      - 'openconfig-system:dns'
     properties:
-      dns:
+      'openconfig-system:dns':
         description: DNS settings
         type: object
         required:
