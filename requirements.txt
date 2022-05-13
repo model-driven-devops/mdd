@@ -9,3 +9,5 @@ genie
 pyats
 jmespath
 passlib
+botocore
+boto3

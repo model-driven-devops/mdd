@@ -1,5 +1,5 @@
 ---
-name: Show OC Data
+name: Show
 on:
   workflow_dispatch:
     inputs:
@@ -9,22 +9,16 @@ on:
         required: false
         default: 'all'
 
-env:
-  CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
-  CML_LAB: ${{ secrets.CML_LAB }}
-  CML_USERNAME: ${{ secrets.CML_USERNAME }}
-  CML_HOST: ${{ secrets.CML_HOST }}
-  CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
-  ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
+# env:
+#   ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
 
 jobs:
-  show_oc:
-    runs-on: self-hosted
-    environment: mdd-dev
+  show:
+    runs-on: ubuntu-20.04
     container:
       image: ghcr.io/model-driven-devops/mdd:latest
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2
-      - name: Check
+      - name: Show
         run: ansible-playbook ciscops.mdd.show_oc --limit=${{ inputs.limit }}
