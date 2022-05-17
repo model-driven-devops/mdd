@@ -1,9 +1,10 @@
 venv*/
+ansible_collections/
 .virl/
 .virlrc
 *.pyc
 *.retry
-envfile
 *.signed.bin
 .cache/
 collections/
+envvars
