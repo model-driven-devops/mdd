@@ -67,8 +67,6 @@ cd ciscops
 git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
 ```
 
-
-
 ## Running in a Container on top of your native OS
 If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
 documentation for how to run tooling from a container.  Examples of how to run the tooling from a

@@ -1,7 +1,7 @@
 # MDD: Exploring the Data
-Although we also leverage the Ansible inventory, we use a separate role called `ciscops.mdd.data` to contruct the data needed to configure devices.  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a determinisitc heriarchy.
+Although we also leverage the Ansible inventory, we use a separate role called `ciscops.mdd.data` to construct the data needed to configure devices.  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a determinisitc hierarchy.
 
-In order to make it easy to leverage, the role can be called in the roles sections of the playbook.  For example, here is a simple playbook (`ciscops.mdd.show`) that displays the data conctructed for a particular device:
+In order to make it easy to leverage, the role can be called in the roles sections of the playbook.  For example, here is a simple playbook (`ciscops.mdd.show`) that displays the data constructed for a particular device:
 
 ```
 - hosts: network
@@ -14,9 +14,9 @@ In order to make it easy to leverage, the role can be called in the roles sectio
         var: mdd_data
 ```
 
-Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data strcuture that contains the device's configuration data that can be used later in the playbook.
+Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data structure that contains the device's configuration data that can be used later in the playbook.
 
-We use we use a separate directory heiracrhy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  The data is layed out in the directory as follows:
+We use we use a separate directory hierarchy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  The data is laid out in the directory as follows:
 
 ```
 mdd-data
@@ -36,7 +36,7 @@ mdd-data
             └── site2-sw1
 ```
 
-This aligns with the way that the devices are organizaed in the Ansible inventory:
+This aligns with the way that the devices are organized in the Ansible inventory:
 
 ```
 @all:
@@ -95,7 +95,7 @@ mdd_data:
 
 This file only contains the data needed to override specific values and the approriate structure to place it in context of the overall data model.
 
-To see the effect this has on the data run the following:
+To see the effect this has on the data, run the following:
 
 ```
 ansible-playbook ciscops.mdd.show --limit=site1-rtr1
@@ -107,7 +107,7 @@ And compare to:
 ansible-playbook ciscops.mdd.show --limit=site2-rtr1
 ```
 
-In partucular, note the timezone set for `site1-rtr1`:
+In particular, note the timezone set for `site1-rtr1`:
 ```
             "openconfig-system:clock": {
                 "config": {
@@ -127,7 +127,7 @@ Compared to the timezone set for `site2-rtr1`:
 
 It matches the "patch" that we made to the data for region2.
 
-This is all done witha the custom filter `ciscops.mdd.mdd_combine` that is built off of the Ansible built-in `combine` filter.  Using specific knowledge of the YANG data model, `ciscops.mdd.mdd_combine` is able to do context-aware patching of the data such that the intent of the patch is preserveved in the resultant data model.  It is invoked in the same way as the `combine` filter:
+This is all done witha the custom filter `ciscops.mdd.mdd_combine` that is built off of the Ansible built-in `combine` filter.  Using specific knowledge of the YANG data model, `ciscops.mdd.mdd_combine` is able to do context-aware patching of the data such that the intent of the patch is preserved in the resultant data model.  It is invoked in the same way as the `combine` filter:
 
 ```
 - name: Combine the MDD Data
@@ -135,4 +135,4 @@ This is all done witha the custom filter `ciscops.mdd.mdd_combine` that is built
     mdd_data: "{{ mdd_data_list | ciscops.mdd.mdd_combine(recursive=True) }}"
 ```
 
-This invocation of the `ciscops.mdd.mdd_combine` filter takes the default data and a list of patches and combines it recursively to produce one data strcuture where the patches later in the list take precence over the data earlier in the list.
+This invocation of the `ciscops.mdd.mdd_combine` filter takes the default data and a list of patches and combines it recursively to produce one data structure where the patches later in the list take precedence over the data earlier in the list.
