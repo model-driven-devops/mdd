@@ -265,7 +265,7 @@ nodes:
        transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -378,7 +378,7 @@ nodes:
        transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -491,7 +491,7 @@ nodes:
        transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -831,7 +831,7 @@ nodes:
        - cloud-init-per always ip-ad sudo ip address add 192.168.1.100/24 dev ens3
        - cloud-init-per always link-set sudo ip link set dev ens3 up
        - cloud-init-per always ip-route-add sudo ip route add default via 192.168.1.1
-    image_definition: ubuntu-18-04
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -869,7 +869,7 @@ nodes:
        - cloud-init-per always ip-ad sudo ip address add 172.16.0.100/24 dev ens3
        - cloud-init-per always link-set sudo ip link set dev ens3 up
        - cloud-init-per always ip-route-add sudo ip route add default via 172.16.0.1
-    image_definition: ubuntu-18-04
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -1005,7 +1005,7 @@ nodes:
        login local
        transport input ssh
       exit
-    image_definition: iosvl2-2019
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -1102,7 +1102,7 @@ nodes:
        - cloud-init-per always ip-ad sudo ip address add 192.168.2.100/24 dev ens3
        - cloud-init-per always link-set sudo ip link set dev ens3 up
        - cloud-init-per always ip-route-add sudo ip route add default via 192.168.2.1
-    image_definition: ubuntu-18-04
+    image_definition: ''
     tags: []
     interfaces:
       - id: i0
@@ -1282,7 +1282,7 @@ nodes:
       ssh_pwauth: True
       ssh_authorized_keys:
          - your-ssh-pubkey-line-goes-here
-    image_definition: ubuntu-18-04
+    image_definition: ''
     ram: 8192
     cpus: 4
     cpu_limit: 100
