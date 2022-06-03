@@ -6,3 +6,4 @@ collections:
   - name: https://github.com/model-driven-devops/ansible-nso.git
     type: git
   - name: aws.amazon
+    source: https://galaxy.ansible.com
