@@ -63,12 +63,12 @@ mdd_data:
             interface-attributes:
               interface:
                 - config:
-                    interface-id: 'GigabitEthernet1'
+                    interface-id: 'GigabitEthernet2'
                     mpls-enabled: true
-                  interface-id: 'GigabitEthernet1'
+                  interface-id: 'GigabitEthernet2'
                   interface-ref:
                     config:
-                      interface: 'GigabitEthernet1'
+                      interface: 'GigabitEthernet2'
                       subinterface: 0
           signaling-protocols:
             ldp:
@@ -106,8 +106,8 @@ mdd_data:
                               passive: True
                             id: 'Loopback100'
                           - config:
-                              id: 'GigabitEthernet1'
-                            id: 'GigabitEthernet1'
+                              id: 'GigabitEthernet2'
+                            id: 'GigabitEthernet2'
             - name: 'BGP'
               identifier: 'BGP'
               config:
@@ -176,10 +176,10 @@ mdd_data:
                 id: 'Loopback0'
                 interface: 'Loopback0'
                 subinterface: 0
-            - id: GigabitEthernet2.10
+            - id: GigabitEthernet3.10
               config:
-                id: GigabitEthernet2.10
-                interface: GigabitEthernet2
+                id: GigabitEthernet3.10
+                interface: GigabitEthernet3
                 subinterface: 10
         protocols:
           protocol:

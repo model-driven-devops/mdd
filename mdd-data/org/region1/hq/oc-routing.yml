@@ -9,6 +9,44 @@ mdd_data:
               name: '9999'
               tag-value:
                 - 9999
+      prefix-sets:
+        prefix-set:
+          - name: 'DEFAULT'
+            config:
+              name: 'DEFAULT'
+              mode: 'IPV4'
+            prefixes:
+              prefix:
+                - ip-prefix: '0.0.0.0/0'
+                  masklength-range: 'exact'
+                  config:
+                    ip-prefix: '0.0.0.0/0'
+                    masklength-range: 'exact'
+                    openconfig-routing-policy-ext:seq: 5
+          - name: 'LOCAL-PREFIXES'
+            config:
+              name: 'LOCAL-PREFIXES'
+              mode: 'IPV4'
+            prefixes:
+              prefix:
+                - ip-prefix: '172.16.0.0/24'
+                  masklength-range: 'exact'
+                  config:
+                    ip-prefix: '172.16.0.0/24'
+                    masklength-range: 'exact'
+                    openconfig-routing-policy-ext:seq: 5
+                - ip-prefix: '172.16.255.1/32'
+                  masklength-range: 'exact'
+                  config:
+                    ip-prefix: '172.16.255.1/32'
+                    masklength-range: 'exact'
+                    openconfig-routing-policy-ext:seq: 10
+                - ip-prefix: '172.16.255.2/32'
+                  masklength-range: 'exact'
+                  config:
+                    ip-prefix: '172.16.255.2/32'
+                    masklength-range: 'exact'
+                    openconfig-routing-policy-ext:seq: 15
       openconfig-bgp-policy:bgp-defined-sets:
         ext-community-sets:
           ext-community-set:
@@ -66,6 +104,39 @@ mdd_data:
                       config:
                         tag:
                           - '9999'
+        - name: 'from_wan'
+          config:
+            name: 'from_wan'
+          statements:
+            openconfig-routing-policy:statement:
+              - name: '10'
+                config:
+                  name: '10'
+                conditions:
+                  match-prefix-set:
+                    config:
+                      prefix-set: 'DEFAULT'
+                      match-set-options: 'ANY'
+                actions:
+                  config:
+                    policy-result: 'REJECT_ROUTE'
+              - name: '20'
+                config:
+                  name: '20'
+                conditions:
+                  match-prefix-set:
+                    config:
+                      prefix-set: 'LOCAL-PREFIXES'
+                      match-set-options: 'ANY'
+                actions:
+                  config:
+                    policy-result: 'REJECT_ROUTE'
+              - name: '20'
+                config:
+                  name: '20'
+                actions:
+                  config:
+                    policy-result: 'ACCEPT_ROUTE'
         - name: 'import-route-target'
           config:
             name: 'import-route-target'
@@ -110,12 +181,20 @@ mdd_data:
             interface-attributes:
               interface:
                 - config:
-                    interface-id: 'GigabitEthernet1'
+                    interface-id: 'GigabitEthernet2'
                     mpls-enabled: true
-                  interface-id: 'GigabitEthernet1'
+                  interface-id: 'GigabitEthernet2'
                   interface-ref:
                     config:
-                      interface: 'GigabitEthernet1'
+                      interface: 'GigabitEthernet2'
+                      subinterface: 0
+                - config:
+                    interface-id: 'GigabitEthernet4'
+                    mpls-enabled: true
+                  interface-id: 'GigabitEthernet4'
+                  interface-ref:
+                    config:
+                      interface: 'GigabitEthernet4'
                       subinterface: 0
           signaling-protocols:
             ldp:
@@ -131,52 +210,52 @@ mdd_data:
                   hello-interval: 5
         protocols:
           protocol:
-            - identifier: 'STATIC'   # These needs an address to switch 1 after G2
-              name: 'DEFAULT'
-              config:
-                identifier: 'STATIC'
-                name: 'DEFAULT'
-              static-routes:
-                static:
-                  - prefix: '10.0.0.0/8'
-                    config:
-                      prefix: '10.0.0.0/8'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
-                  - prefix: '172.16.0.0/12'
-                    config:
-                      prefix: '172.16.0.0/12'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
-                  - prefix: '192.168.0.0/16'
-                    config:
-                      prefix: '192.168.0.0/16'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: 'GigabitEthernet2.10'
-                            next-hop: 'LOCAL_LINK'
-                          index: 'GigabitEthernet2.10'
-                          interface-ref:
-                            config:
-                              interface: 'GigabitEthernet2'
-                              subinterface: 10
+#            - identifier: 'STATIC'   # These needs an address to switch 1 after G2
+#              name: 'DEFAULT'
+#              config:
+#                identifier: 'STATIC'
+#                name: 'DEFAULT'
+#              static-routes:
+#                static:
+#                  - prefix: '10.0.0.0/8'
+#                    config:
+#                      prefix: '10.0.0.0/8'
+#                    next-hops:
+#                      next-hop:
+#                        - config:
+#                            index: 'GigabitEthernet2.10'
+#                            next-hop: 'LOCAL_LINK'
+#                          index: 'GigabitEthernet2.10'
+#                          interface-ref:
+#                            config:
+#                              interface: 'GigabitEthernet2'
+#                              subinterface: 10
+#                  - prefix: '172.16.0.0/12'
+#                    config:
+#                      prefix: '172.16.0.0/12'
+#                    next-hops:
+#                      next-hop:
+#                        - config:
+#                            index: 'GigabitEthernet2.10'
+#                            next-hop: 'LOCAL_LINK'
+#                          index: 'GigabitEthernet2.10'
+#                          interface-ref:
+#                            config:
+#                              interface: 'GigabitEthernet2'
+#                              subinterface: 10
+#                  - prefix: '192.168.0.0/16'
+#                    config:
+#                      prefix: '192.168.0.0/16'
+#                    next-hops:
+#                      next-hop:
+#                        - config:
+#                            index: 'GigabitEthernet2.10'
+#                            next-hop: 'LOCAL_LINK'
+#                          index: 'GigabitEthernet2.10'
+#                          interface-ref:
+#                            config:
+#                              interface: 'GigabitEthernet2'
+#                              subinterface: 10
             - name: '100'
               identifier: 'OSPF'
               config:
@@ -199,8 +278,11 @@ mdd_data:
                               passive: True
                             id: 'Loopback100'
                           - config:
-                              id: 'GigabitEthernet1'
-                            id: 'GigabitEthernet1'
+                              id: 'GigabitEthernet2'
+                            id: 'GigabitEthernet2'
+                          - config:
+                              id: 'GigabitEthernet4'
+                            id: 'GigabitEthernet4'
             - name: BGP
               identifier: BGP
               config:
@@ -225,10 +307,10 @@ mdd_data:
                         config:
                           afi-safi-name: 'L3VPN_IPV4_UNICAST'
                           enabled: true
-                      - afi-safi-name: 'IPV4_UNICAST'
-                        config:
-                          afi-safi-name: 'IPV4_UNICAST'
-                          enabled: true
+#                      - afi-safi-name: 'IPV4_UNICAST'
+#                        config:
+#                          afi-safi-name: 'IPV4_UNICAST'
+#                          enabled: true
                 neighbors:
                   neighbor:
                     - config:
@@ -247,10 +329,14 @@ mdd_data:
                             config:
                               afi-safi-name: 'L3VPN_IPV4_UNICAST'
                               enabled: true
-                          - afi-safi-name: 'IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'IPV4_UNICAST'
-                              enabled: true
+                            apply-policy:
+                              config:
+                                import-policy:
+                                  - 'from_wan'
+#                          - afi-safi-name: 'IPV4_UNICAST'
+#                            config:
+#                              afi-safi-name: 'IPV4_UNICAST'
+#                              enabled: true
       - name: 'internal_1'
         config:
           name: 'internal_1'
@@ -274,30 +360,30 @@ mdd_data:
                 id: 'Loopback0'
                 interface: 'Loopback0'
                 subinterface: 0
-            - id: GigabitEthernet2.10
+            - id: GigabitEthernet3.10
               config:
-                id: GigabitEthernet2.10
-                interface: GigabitEthernet2
+                id: GigabitEthernet3.10
+                interface: GigabitEthernet3
                 subinterface: 10
         protocols:
           protocol:
-            - identifier: 'STATIC'
-              name: 'DEFAULT'
-              config:
-                identifier: 'STATIC'
-                name: 'DEFAULT'
-              static-routes:
-                static:
-                  - prefix: '0.0.0.0/0'
-                    config:
-                      prefix: '0.0.0.0/0'
-                    next-hops:
-                      next-hop:
-                        - config:
-                            index: '10.255.255.1'
-                            next-hop: '10.255.255.1'
-                            openconfig-local-routing-ext:global: true
-                          index: '10.255.255.1'
+#            - identifier: 'STATIC'
+#              name: 'DEFAULT'
+#              config:
+#                identifier: 'STATIC'
+#                name: 'DEFAULT'
+#              static-routes:
+#                static:
+#                  - prefix: '0.0.0.0/0'
+#                    config:
+#                      prefix: '0.0.0.0/0'
+#                    next-hops:
+#                      next-hop:
+#                        - config:
+#                            index: '10.255.255.1'
+#                            next-hop: '10.255.255.1'
+#                            openconfig-local-routing-ext:global: true
+#                          index: '10.255.255.1'
             - name: '1'
               identifier: 'OSPF'
               config:
@@ -308,6 +394,7 @@ mdd_data:
                 global:
                   config:
                     log-adjacency-changes: True
+                    openconfig-ospfv2-ext:capability-vrf-lite: True
                 areas:
                   area:
                     - config:
@@ -320,11 +407,8 @@ mdd_data:
                               passive: True
                             id: 'Loopback0'
                           - config:
-                              id: 'GigabitEthernet2.10'
-                            id: 'GigabitEthernet2.10'
-                          - config:
-                              id: 'GigabitEthernet3'
-                            id: 'GigabitEthernet3'
+                              id: 'GigabitEthernet3.10'
+                            id: 'GigabitEthernet3.10'
             - name: BGP
               identifier: BGP
               config:
@@ -335,22 +419,29 @@ mdd_data:
                 global:
                   config:
                     as: 65100
+                  default-route-distance:
+                    config:
+                      external-route-distance: 20
+                      internal-route-distance: 99
                   afi-safis:
                     afi-safi:
                       - afi-safi-name: 'IPV4_UNICAST'
                         config:
                           afi-safi-name: 'IPV4_UNICAST'
                           enabled: true
+                        ipv4-unicast:
+                          config:
+                            send-default-route: True
         openconfig-network-instance:table-connections:
           table-connection:
-            - address-family: 'IPV4'
-              dst-protocol: 'OSPF'
-              src-protocol: 'STATIC'
-              config:
-                address-family: 'IPV4'
-                dst-protocol: 'OSPF'
-                src-protocol: 'STATIC'
-                openconfig-network-instance-ext:dst-protocol-process-number: 1
+#            - address-family: 'IPV4'
+#              dst-protocol: 'OSPF'
+#              src-protocol: 'STATIC'
+#              config:
+#                address-family: 'IPV4'
+#                dst-protocol: 'OSPF'
+#                src-protocol: 'STATIC'
+#                openconfig-network-instance-ext:dst-protocol-process-number: 1
             - address-family: 'IPV4'
               dst-protocol: 'BGP'
               src-protocol: 'OSPF'

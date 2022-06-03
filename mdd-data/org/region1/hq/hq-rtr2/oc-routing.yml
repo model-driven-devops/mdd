@@ -29,10 +29,10 @@ mdd_data:
             - 'IPV6'
         interfaces:
           interface:
-            - id: 'GigabitEthernet8'
+            - id: 'GigabitEthernet1'
               config:
-                id: 'GigabitEthernet8'
-                interface: 'GigabitEthernet8'
+                id: 'GigabitEthernet1'
+                interface: 'GigabitEthernet1'
                 subinterface: 0
 mdd_tags:
   - all

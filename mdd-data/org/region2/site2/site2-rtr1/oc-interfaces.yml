@@ -47,6 +47,19 @@ mdd_data:
                 index: 0
               index: 0
               openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
+      - config:
+          enabled: true
+          name: GigabitEthernet2
+          type: ethernetCsmacd
+        name: GigabitEthernet2
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
                 addresses:
                   address:
                     - config:
@@ -55,9 +68,9 @@ mdd_data:
                       ip: 10.0.0.14
       - config:
           enabled: true
-          name: GigabitEthernet2
+          name: GigabitEthernet3
           type: ethernetCsmacd
-        name: GigabitEthernet2
+        name: GigabitEthernet3
         subinterfaces:
           subinterface:
             - config:
@@ -75,11 +88,6 @@ mdd_data:
               openconfig-vlan:vlan:
                 config:
                   vlan-id: 10
-      - config:
-          enabled: false
-          name: GigabitEthernet3
-          type: ethernetCsmacd
-        name: GigabitEthernet3
       - config:
           enabled: false
           name: GigabitEthernet4
@@ -101,17 +109,9 @@ mdd_data:
           type: ethernetCsmacd
         name: GigabitEthernet7
       - config:
-          enabled: true
+          enabled: false
           name: GigabitEthernet8
           type: ethernetCsmacd
         name: GigabitEthernet8
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                config:
-                  dhcp-client: true
 mdd_tags:
   - all

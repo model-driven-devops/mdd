@@ -16,26 +16,9 @@ mdd_data:
                 addresses:
                   address:
                     - config:
-                        ip: 192.168.255.1
+                        ip: 172.16.255.5
                         prefix-length: 32
-                      ip: 192.168.255.1
-      - config:
-          enabled: true
-          name: Loopback100
-          type: softwareLoopback
-        name: Loopback100
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 10.255.255.13
-                        prefix-length: 32
-                      ip: 10.255.255.13
+                      ip: 172.16.255.5
       - config:
           enabled: true
           name: GigabitEthernet1
@@ -50,28 +33,11 @@ mdd_data:
                 config:
                   dhcp-client: true
       - config:
+          description: '802.1q'
           enabled: true
           name: GigabitEthernet2
           type: ethernetCsmacd
         name: GigabitEthernet2
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 10.0.0.10
-                        prefix-length: 30
-                      ip: 10.0.0.10
-      - config:
-          description: '802.1q Trunk'
-          enabled: true
-          name: GigabitEthernet3
-          type: ethernetCsmacd
-        name: GigabitEthernet3
         subinterfaces:
           subinterface:
             - config:
@@ -83,12 +49,20 @@ mdd_data:
                 addresses:
                   address:
                     - config:
-                        ip: 192.168.1.1
+                        ip: 172.16.0.50
                         prefix-length: 24
-                      ip: 192.168.1.1
+                      ip: 172.16.0.50
+                config:
+                  openconfig-if-ip-mdd-ext:nat:
+                    nat-choice: 'inside'
               openconfig-vlan:vlan:
                 config:
                   vlan-id: 10
+      - config:
+          enabled: false
+          name: GigabitEthernet3
+          type: ethernetCsmacd
+        name: GigabitEthernet3
       - config:
           enabled: false
           name: GigabitEthernet4
@@ -114,5 +88,20 @@ mdd_data:
           name: GigabitEthernet8
           type: ethernetCsmacd
         name: GigabitEthernet8
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                addresses:
+                  address:
+                    - config:
+                        ip: 10.0.254.2
+                        prefix-length: 30
+                      ip: 10.0.254.2
+                config:
+                  openconfig-if-ip-mdd-ext:nat:
+                    nat-choice: 'outside'
 mdd_tags:
   - all

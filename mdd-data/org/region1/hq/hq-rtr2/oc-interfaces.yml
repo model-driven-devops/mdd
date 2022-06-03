@@ -47,6 +47,19 @@ mdd_data:
                 index: 0
               index: 0
               openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
+      - config:
+          enabled: true
+          name: GigabitEthernet2
+          type: ethernetCsmacd
+        name: GigabitEthernet2
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
                 addresses:
                   address:
                     - config:
@@ -56,9 +69,9 @@ mdd_data:
       - config:
           description: '802.1q Trunk'
           enabled: true
-          name: GigabitEthernet2
+          name: GigabitEthernet3
           type: ethernetCsmacd
-        name: GigabitEthernet2
+        name: GigabitEthernet3
         subinterfaces:
           subinterface:
             - config:
@@ -88,9 +101,9 @@ mdd_data:
                   vlan-id: 10
       - config:
           enabled: true
-          name: GigabitEthernet3
+          name: GigabitEthernet4
           type: ethernetCsmacd
-        name: GigabitEthernet3
+        name: GigabitEthernet4
         subinterfaces:
           subinterface:
             - config:
@@ -100,14 +113,9 @@ mdd_data:
                 addresses:
                   address:
                     - config:
-                        ip: 172.16.3.2
+                        ip: 10.0.3.2
                         prefix-length: 30
-                      ip: 172.16.3.2
-      - config:
-          enabled: false
-          name: GigabitEthernet4
-          type: ethernetCsmacd
-        name: GigabitEthernet4
+                      ip: 10.0.3.2
       - config:
           enabled: false
           name: GigabitEthernet5
@@ -124,17 +132,9 @@ mdd_data:
           type: ethernetCsmacd
         name: GigabitEthernet7
       - config:
-          enabled: true
+          enabled: false
           name: GigabitEthernet8
           type: ethernetCsmacd
         name: GigabitEthernet8
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                config:
-                  dhcp-client: true
 mdd_tags:
   - all

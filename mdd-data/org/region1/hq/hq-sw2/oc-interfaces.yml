@@ -40,52 +40,49 @@ mdd_data:
       - config:
           enabled: true
           name: GigabitEthernet0/0
-          type: l2vlan
+          type: ethernetCsmacd
         name: GigabitEthernet0/0
-        openconfig-if-ethernet:ethernet:
-          openconfig-vlan:switched-vlan:
-            config:
-              interface-mode: TRUNK
-              native-vlan: 99
-              trunk-vlans:
-                - 10
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
       - config:
           enabled: true
           name: GigabitEthernet0/1
-          type: ethernetCsmacd
+          type: l2vlan
         name: GigabitEthernet0/1
         openconfig-if-ethernet:ethernet:
           openconfig-vlan:switched-vlan:
             config:
               interface-mode: TRUNK
-              native-vlan: 99
-              trunk-vlans:
-                - 10
       - config:
           enabled: true
           name: GigabitEthernet0/2
-          type: l2vlan
+          type: ethernetCsmacd
         name: GigabitEthernet0/2
         openconfig-if-ethernet:ethernet:
           openconfig-vlan:switched-vlan:
             config:
-              access-vlan: 10
-              interface-mode: ACCESS
+              interface-mode: TRUNK
       - config:
           enabled: true
           name: GigabitEthernet0/3
-          type: ethernetCsmacd
-        name: GigabitEthernet0/3
-      - config:
-          enabled: true
-          name: GigabitEthernet1/0
           type: l2vlan
-        name: GigabitEthernet1/0
+        name: GigabitEthernet0/3
         openconfig-if-ethernet:ethernet:
           openconfig-vlan:switched-vlan:
             config:
               access-vlan: 10
               interface-mode: ACCESS
+      - config:
+          enabled: true
+          name: GigabitEthernet1/0
+          type: ethernetCsmacd
+        name: GigabitEthernet1/0
       - config:
           enabled: true
           name: GigabitEthernet1/1
@@ -141,14 +138,6 @@ mdd_data:
           name: GigabitEthernet3/3
           type: ethernetCsmacd
         name: GigabitEthernet3/3
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                config:
-                  dhcp-client: true
   openconfig-network-instance:network-instances:
     openconfig-network-instance:network-instance:
       - name: 'Mgmt-intf'
@@ -161,10 +150,10 @@ mdd_data:
             - 'IPV6'
         interfaces:
           interface:
-            - id: 'GigabitEthernet3/3'
+            - id: 'GigabitEthernet0/0'
               config:
-                id: 'GigabitEthernet3/3'
-                interface: 'GigabitEthernet3/3'
+                id: 'GigabitEthernet0/0'
+                interface: 'GigabitEthernet0/0'
                 subinterface: 0
 mdd_tags:
   - all
