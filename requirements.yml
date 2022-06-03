@@ -5,3 +5,4 @@ collections:
     type: git
   - name: https://github.com/model-driven-devops/ansible-nso.git
     type: git
+  - name: aws.amazon
