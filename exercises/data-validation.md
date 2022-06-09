@@ -5,7 +5,7 @@ Validating the data that we use to configure the devices before we send it to th
 1) Format Linting: Checking the syntax of the YAML used to represent the data
 2) Data Validation: Making sure that the right data is present and correct
 
-![Data Validation](data-validation.png?raw=true "Data Validation")
+![Data Validation](overview-data-validation.png?raw=true "Data Validation")
 
 ## Format Linting
 
