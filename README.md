@@ -34,4 +34,4 @@ The goal is to find a bad configuration before it is pushed into the network.
 * [Exercising the Runner](exercises/explore-runner.md)
 * [Data Validation](exercises/data-validation.md)
 * [Pushing the Data](exercises/push-data.md)
-* State Checking
+* [State Checking](exercises/check-state.md)
