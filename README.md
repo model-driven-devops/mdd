@@ -4,7 +4,7 @@
 
 This is the companion repository for the book ["Model-Driven DevOps: Increasing agility and security in your physical network through DevOps"](https://www.informit.com/store/model-driven-devops-increasing-agility-and-security-9780137644674)
 ([Amazon](https://www.amazon.com/Model-driven-Devops-Increasing-Security-Physical/dp/0137644671/ref=sr_1_1?crid=1X8MTIAXRKLMI&keywords=model-driven+devops&qid=1650992113&sprefix=model-driven+devop%2Caps%2C202&sr=8-1)).  It presents the code and a set
-of exercises that implement and demonstrate the concepts in the book.  In this repo, you are encouraged to use and contribute to
+of exercises that implements and demonstrates the concepts in the book.  In this repo, you are encouraged to use and contribute to
 the code, submit [issues](https://github.com/model-driven-devops/mdd/issues) for problems and feature requests, and start/participate in
 [discusions](https://github.com/model-driven-devops/mdd/discussions).
 
@@ -36,7 +36,7 @@ This is the reference implementation for Model-Driven Devops as outlined in the 
 
 ### Exercises
 
-These exercises are provided to help get hands-on experience with the reference implementation.  The book into depth on the individual steps as well as the core concepts behind them.
+These exercises are provided to help get hands-on experience with the reference implementation.  The book goes into depth on the individual steps as well as the core concepts behind them.
 
 * [Initial Setup](exercises/initial-setup.md)
 * [Deploying the Topology](exercises/deploy-topology.md)
