@@ -28,7 +28,7 @@ The goal is to find a bad configuration before it is pushed into the network.
 
 ## MDD Reference implementation
 
-This is the reference implementation for Model-Driven Devops as outlined in the book.  While the book captures the reference implementation at a moment in time, te code in this repo will evolve while holding true to the core concepts presented in the book.
+This is the reference implementation for Model-Driven Devops as outlined in the book.  While the book captures the reference implementation at a moment in time, the code in this repo will evolve while holding true to the core concepts presented in the book.
 
 ### Topology
 
