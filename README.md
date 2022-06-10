@@ -6,7 +6,7 @@ This is the companion repository for the book ["Model-Driven DevOps: Increasing 
 ([Amazon](https://www.amazon.com/Model-driven-Devops-Increasing-Security-Physical/dp/0137644671/ref=sr_1_1?crid=1X8MTIAXRKLMI&keywords=model-driven+devops&qid=1650992113&sprefix=model-driven+devop%2Caps%2C202&sr=8-1)).  It presents the code and a set
 of exercises that implements and demonstrates the concepts in the book.  In this repo, you are encouraged to use and contribute to
 the code, submit [issues](https://github.com/model-driven-devops/mdd/issues) for problems and feature requests, and start/participate in
-[discusions](https://github.com/model-driven-devops/mdd/discussions).
+[discussions](https://github.com/model-driven-devops/mdd/discussions).
 
 ## What is Model-Driven DevOps?
 
