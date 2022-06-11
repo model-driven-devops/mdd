@@ -9,7 +9,6 @@ env:
   CML_USERNAME: ${{ secrets.CML_USERNAME }}
   CML_HOST: ${{ secrets.CML_HOST }}
   CML_VERIFY_CERT: ${{ secrets.CML_VERIFY_CERT }}
-  ANSIBLE_PYTHON_INTERPRETER: /usr/local/bin/python
 
 jobs:
   build:
