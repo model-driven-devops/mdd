@@ -84,7 +84,7 @@ mdd_data:
           type: ethernetCsmacd
         name: GigabitEthernet7
       - config:
-          enabled: false
+          enabled: true
           name: GigabitEthernet8
           type: ethernetCsmacd
         name: GigabitEthernet8
@@ -103,5 +103,3 @@ mdd_data:
                 config:
                   openconfig-if-ip-mdd-ext:nat:
                     nat-choice: 'outside'
-mdd_tags:
-  - all

@@ -210,52 +210,6 @@ mdd_data:
                   hello-interval: 5
         protocols:
           protocol:
-#            - identifier: 'STATIC'   # These needs an address to switch 1 after G2
-#              name: 'DEFAULT'
-#              config:
-#                identifier: 'STATIC'
-#                name: 'DEFAULT'
-#              static-routes:
-#                static:
-#                  - prefix: '10.0.0.0/8'
-#                    config:
-#                      prefix: '10.0.0.0/8'
-#                    next-hops:
-#                      next-hop:
-#                        - config:
-#                            index: 'GigabitEthernet2.10'
-#                            next-hop: 'LOCAL_LINK'
-#                          index: 'GigabitEthernet2.10'
-#                          interface-ref:
-#                            config:
-#                              interface: 'GigabitEthernet2'
-#                              subinterface: 10
-#                  - prefix: '172.16.0.0/12'
-#                    config:
-#                      prefix: '172.16.0.0/12'
-#                    next-hops:
-#                      next-hop:
-#                        - config:
-#                            index: 'GigabitEthernet2.10'
-#                            next-hop: 'LOCAL_LINK'
-#                          index: 'GigabitEthernet2.10'
-#                          interface-ref:
-#                            config:
-#                              interface: 'GigabitEthernet2'
-#                              subinterface: 10
-#                  - prefix: '192.168.0.0/16'
-#                    config:
-#                      prefix: '192.168.0.0/16'
-#                    next-hops:
-#                      next-hop:
-#                        - config:
-#                            index: 'GigabitEthernet2.10'
-#                            next-hop: 'LOCAL_LINK'
-#                          index: 'GigabitEthernet2.10'
-#                          interface-ref:
-#                            config:
-#                              interface: 'GigabitEthernet2'
-#                              subinterface: 10
             - name: '100'
               identifier: 'OSPF'
               config:
@@ -307,10 +261,6 @@ mdd_data:
                         config:
                           afi-safi-name: 'L3VPN_IPV4_UNICAST'
                           enabled: true
-#                      - afi-safi-name: 'IPV4_UNICAST'
-#                        config:
-#                          afi-safi-name: 'IPV4_UNICAST'
-#                          enabled: true
                 neighbors:
                   neighbor:
                     - config:
@@ -333,10 +283,6 @@ mdd_data:
                               config:
                                 import-policy:
                                   - 'from_wan'
-#                          - afi-safi-name: 'IPV4_UNICAST'
-#                            config:
-#                              afi-safi-name: 'IPV4_UNICAST'
-#                              enabled: true
       - name: 'internal_1'
         config:
           name: 'internal_1'
@@ -367,23 +313,6 @@ mdd_data:
                 subinterface: 10
         protocols:
           protocol:
-#            - identifier: 'STATIC'
-#              name: 'DEFAULT'
-#              config:
-#                identifier: 'STATIC'
-#                name: 'DEFAULT'
-#              static-routes:
-#                static:
-#                  - prefix: '0.0.0.0/0'
-#                    config:
-#                      prefix: '0.0.0.0/0'
-#                    next-hops:
-#                      next-hop:
-#                        - config:
-#                            index: '10.255.255.1'
-#                            next-hop: '10.255.255.1'
-#                            openconfig-local-routing-ext:global: true
-#                          index: '10.255.255.1'
             - name: '1'
               identifier: 'OSPF'
               config:
@@ -434,14 +363,6 @@ mdd_data:
                             send-default-route: True
         openconfig-network-instance:table-connections:
           table-connection:
-#            - address-family: 'IPV4'
-#              dst-protocol: 'OSPF'
-#              src-protocol: 'STATIC'
-#              config:
-#                address-family: 'IPV4'
-#                dst-protocol: 'OSPF'
-#                src-protocol: 'STATIC'
-#                openconfig-network-instance-ext:dst-protocol-process-number: 1
             - address-family: 'IPV4'
               dst-protocol: 'BGP'
               src-protocol: 'OSPF'

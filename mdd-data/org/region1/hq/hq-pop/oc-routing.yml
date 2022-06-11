@@ -93,7 +93,7 @@ mdd_data:
                     openconfig-ospfv2-ext:default-information-originate:
                       openconfig-ospfv2-ext:config:
                         openconfig-ospfv2-ext:enabled: True
-                areas:
+                openconfig-network-instance:areas:
                   area:
                     - config:
                         identifier: 0
@@ -107,6 +107,3 @@ mdd_data:
                           - config:
                               id: 'GigabitEthernet2.10'
                             id: 'GigabitEthernet2.10'
-
-mdd_tags:
-  - hq_router

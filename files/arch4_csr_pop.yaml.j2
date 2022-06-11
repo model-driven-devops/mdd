@@ -562,7 +562,6 @@ nodes:
       ip domain-name mdd.cisco.com
       !
       interface GigabitEthernet1
-      no switchport
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
@@ -649,7 +648,6 @@ nodes:
       ip domain-name mdd.cisco.com
       !
       interface GigabitEthernet1
-      no switchport
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
@@ -736,7 +734,6 @@ nodes:
       ip domain-name mdd.cisco.com
       !
       interface GigabitEthernet1
-      no switchport
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
@@ -927,7 +924,6 @@ nodes:
       ip domain-name mdd.cisco.com
       !
       interface GigabitEthernet1
-      no switchport
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
@@ -1410,105 +1406,15 @@ nodes:
       address-family ipv6
       exit-address-family
       !
-      vrf definition internal_1
-      rd 1:1
-      address-family ipv4
-      exit-address-family
-      !
-      address-family ipv6
-      exit-address-family
-      !
-      address-family ipv6
-      exit-address-family
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface Loopback0
-       vrf forwarding internal_1
-       ip address 172.16.255.5 255.255.255.255
-      !
       interface GigabitEthernet1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no mop enabled
-       no mop sysid
-       no shutdown
-      !
-      interface GigabitEthernet2
-       description 802.1q Trunk
-       no ip address
-       no shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet2.10
-       description vrf internal_1
-       encapsulation dot1Q 10
-       vrf forwarding internal_1
-       ip address 172.16.0.50 255.255.255.0
-       ip nat inside
-       no shutdown
-      !
-      interface GigabitEthernet3
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet4
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet5
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet6
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet7
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet8
-       ip address 10.0.254.2 255.255.255.252
-       ip nat outside
-       no shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      router ospf 1 vrf internal_1
-       redistribute static
-       passive-interface Loopback0
-       network 172.16.0.50 0.0.0.0 area 0
-       default-information originate
-      !
-      router bgp 100
-       bgp log-neighbor-changes
-       no bgp default ipv4-unicast
-       neighbor 10.0.254.1 remote-as 99
-       !
-       address-family ipv4
-        neighbor 10.0.254.1 activate
-       exit-address-family
+      vrf forwarding Mgmt-intf
+      ip address dhcp
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
@@ -1519,20 +1425,14 @@ nodes:
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
-      ip nat inside source list nat-internal interface GigabitEthernet8 vrf internal_1 overload
-      ip route vrf internal_1 0.0.0.0 0.0.0.0 10.0.254.1 global
-      !
-      ip access-list standard nat-internal
-      10 permit 10.0.0.0 0.255.255.255
-      20 permit 192.168.0.0 0.0.255.255
-      30 permit 172.16.0.0 0.15.255.255
-      !
       line vty 0 4
       exec-timeout 30 0
       absolute-timeout 60
       session-limit 16
       login local
       transport input ssh
+      !
+      end
     hide_links: false
     image_definition: ''
     ram: 3072
