@@ -9,18 +9,10 @@ all:
       - site1
       - site2
     regions:
-      - WAN
-      - ISP
       - org
       - region1
       - region2
   children:
-    WAN_routers:
-      hosts:
-        WAN-rtr1:
-          tags:
-            - router
-            - bgp
     network:
       children:
         switches:
@@ -40,6 +32,9 @@ all:
               hosts:
                 site1-rtr1:
                 site2-rtr1:
+        WAN_routers:
+          hosts:
+            WAN-rtr1:
     org:
       children:
         region1:
@@ -65,6 +60,9 @@ all:
                 hq-pop:
                   tags:
                     - hq_pop
+                WAN-rtr1:
+                  tags:
+                    - WAN_router
             site1:
               hosts:
                 site1-rtr1:

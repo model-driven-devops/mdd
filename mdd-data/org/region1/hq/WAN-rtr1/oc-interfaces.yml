@@ -1,0 +1,134 @@
+---
+mdd_data:
+  openconfig-interfaces:interfaces:
+    interface:
+      - config:
+          enabled: true
+          name: Loopback0
+          type: softwareLoopback
+        name: Loopback0
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                - config:
+                    ip: 10.255.255.1
+                    prefix-length: '32'
+                  ip: 10.255.255.1
+      - config:
+          enabled: true
+          name: GigabitEthernet1
+          type: ethernetCsmacd
+        name: GigabitEthernet1
+        subinterfaces:
+          subinterface:
+            - config:
+                index: 0
+              index: 0
+              openconfig-if-ip:ipv4:
+                config:
+                  dhcp-client: true
+      - config:
+          enabled: true
+          name: GigabitEthernet2
+          type: ethernetCsmacd
+        name: GigabitEthernet2
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                - config:
+                    ip: 10.0.0.1
+                    prefix-length: '30'
+                  ip: 10.0.0.1
+      - config:
+          enabled: true
+          name: GigabitEthernet3
+          type: ethernetCsmacd
+        name: GigabitEthernet3
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                - config:
+                    ip: 10.0.0.5
+                    prefix-length: '30'
+                  ip: 10.0.0.5
+      - config:
+          enabled: true
+          name: GigabitEthernet4
+          type: ethernetCsmacd
+        name: GigabitEthernet4
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                - config:
+                    ip: 10.0.0.9
+                    prefix-length: '30'
+                  ip: 10.0.0.9
+      - config:
+          enabled: true
+          name: GigabitEthernet5
+          type: ethernetCsmacd
+        name: GigabitEthernet5
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+            openconfig-if-ip:ipv4:
+              addresses:
+                address:
+                - config:
+                    ip: 10.0.0.13
+                    prefix-length: '30'
+                  ip: 10.0.0.13
+      - config:
+          enabled: false
+          name: GigabitEthernet6
+          type: ethernetCsmacd
+        name: GigabitEthernet6
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+      - config:
+          enabled: false
+          name: GigabitEthernet7
+          type: ethernetCsmacd
+        name: GigabitEthernet7
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+      - config:
+          enabled: false
+          name: GigabitEthernet8
+          type: ethernetCsmacd
+        name: GigabitEthernet8
+        subinterfaces:
+          subinterface:
+          - config:
+              index: 0
+            index: 0
+mdd_tags:
+- all

@@ -10,18 +10,24 @@ nodes:
     x: -500
     y: -150
     configuration: |-
-      hostname WAN-rtr
+      hostname WAN-rtr1
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address dhcp
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
@@ -32,115 +38,12 @@ nodes:
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
-      interface Loopback0
-       ip address 10.255.255.1 255.255.255.255
-      !
-      interface GigabitEthernet1
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet2
-       ip address 10.0.0.1 255.255.255.252
-       negotiation auto
-       mpls ip
-       no shutdown
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet3
-       ip address 10.0.0.5 255.255.255.252
-       negotiation auto
-       mpls ip
-       no shutdown
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet4
-       ip address 10.0.0.9 255.255.255.252
-       negotiation auto
-       mpls ip
-       no shutdown
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet5
-       ip address 10.0.0.13 255.255.255.252
-       negotiation auto
-       mpls ip
-       no shutdown
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet6
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet7
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      interface GigabitEthernet8
-       no ip address
-       shutdown
-       negotiation auto
-       no mop enabled
-       no mop sysid
-      !
-      router ospf 100
-       router-id 10.255.255.1
-       passive-interface Loopback0
-       network 10.0.0.1 0.0.0.0 area 0
-       network 10.0.0.5 0.0.0.0 area 0
-       network 10.0.0.9 0.0.0.0 area 0
-       network 10.0.0.13 0.0.0.0 area 0
-       network 10.255.255.1 0.0.0.0 area 0
-      !
-      router bgp 65100
-       bgp router-id 10.255.255.1
-       bgp log-neighbor-changes
-       bgp listen range 10.255.255.0/24 peer-group L3VPN_PEERS
-       no bgp default ipv4-unicast
-       neighbor L3VPN_PEERS peer-group
-       neighbor L3VPN_PEERS remote-as 65100
-       neighbor L3VPN_PEERS cluster-id 10.255.255.1
-       neighbor L3VPN_PEERS update-source Loopback0
-       !
-       address-family vpnv4
-        neighbor L3VPN_PEERS activate
-        neighbor L3VPN_PEERS send-community extended
-        neighbor L3VPN_PEERS route-reflector-client
-       exit-address-family
-      !
-      ip forward-protocol nd
-      no ip http server
-      ip http secure-server
-      ip http max-connections 2
-      !
-      ip bgp-community new-format
-      ip ssh time-out 60
-      ip ssh version 2
-      !
-      mpls ldp router-id Loopback0 force
-      !
-      line con 0
-       exec-timeout 0 0
-       stopbits 1
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
       end
     hide_links: false
