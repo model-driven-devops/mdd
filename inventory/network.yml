@@ -1,7 +1,7 @@
 all:
   vars:
-    ansible_user: admin
-    ansible_password: admin
+    ansible_user: "{{ lookup('env', 'NSO_DEVICES_USERNAME') | default('admin', true) }}"
+    ansible_password: "{{ lookup('env', 'NSO_DEVICES_PASSWORD') | default('admin', true) }}"
     ansible_network_os: ios
     netconf_template_os: ios
     sites:
