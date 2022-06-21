@@ -1,5 +1,5 @@
 # MDD: Exploring the Data
-Although we also leverage the Ansible inventory, we use a separate role called `ciscops.mdd.data` to construct the data needed to configure devices.  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a determinisitc hierarchy.
+Although we also leverage the Ansible inventory, we use a separate role called `ciscops.mdd.data` to construct the data needed to configure devices.  This is because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works.  This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a deterministic hierarchy.
 
 In order to make it easy to leverage, the role can be called in the roles sections of the playbook.  For example, here is a simple playbook (`ciscops.mdd.show`) that displays the data constructed for a particular device:
 
@@ -16,7 +16,7 @@ In order to make it easy to leverage, the role can be called in the roles sectio
 
 Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data structure that contains the device's configuration data that can be used later in the playbook.
 
-We use we use a separate directory hierarchy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  The data is laid out in the directory as follows:
+We use a separate directory hierarchy to hold the MDD data named `mdd-data` (this can be changed in the defaults).  The data is laid out in the directory as follows:
 
 ```
 mdd-data
@@ -56,7 +56,7 @@ This aligns with the way that the devices are organized in the Ansible inventory
   |  |  |  |--site2-sw1
 ```
 
-Data at the deeper levels of the tree (closer to the device) take precendense over data closer to the root of the tree.  Each of the files in the heiracrhy are named by for the purpose and content.  For OpenConfig data, the filenames begin with `oc-`, but this is configurable.  For example, the file `mdd-data/org/oc-ntp.yml` contains the organization level NTP configuration:
+Data at the deeper levels of the tree (closer to the device) take precedence over data closer to the root of the tree.  Each of the files in the hierarchy are named by for the purpose and content.  For OpenConfig data, the filenames begin with `oc-`, but this is configurable.  For example, the file `mdd-data/org/oc-ntp.yml` contains the organization level NTP configuration:
 
 ```
 ---

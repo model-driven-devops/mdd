@@ -18,7 +18,7 @@ See [Initial Setup](exercises/initial-setup.md)
 
 ## Ansible Variables
 
-* `cml_lab_file`: The CML topology file to to deploy (defined in `inventory/group_vars/all/cml.yml`)
+* `cml_lab_file`: The CML topology file to deploy (defined in `inventory/group_vars/all/cml.yml`)
 * `nso_installer_file`: URL to the NSO installer file
 * `nso_ned_files`: List of URLs to the NSO NED files
 

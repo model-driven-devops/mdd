@@ -9,7 +9,7 @@ Validating the data that we use to configure the devices before we send it to th
 
 ## Format Linting
 
-We use [`yamllint`](https://github.com/adrienverge/yamllint) to validate that the data is properly formated in in YAML. `yamllint` behavior is configured in the file `.yamllint.yml`.
+We use [`yamllint`](https://github.com/adrienverge/yamllint) to validate that the data is properly formatted in YAML. `yamllint` behavior is configured in the file `.yamllint.yml`.
 In order to run `yamllint` against the mdd data, we run:
 
 ```
@@ -30,8 +30,8 @@ mdd-data/org/oc-ntp.yml
 
 While linting makes sure that our data is structurally righteous, validation checks the righteousness of its intent.  For example, we can check to make sure that banners are configured and even verify their content, we can make sure that the right options are enabled to properly secure the platform, and we can make sure that our interfaces use IP addresses in the proper range.
 
-We do these things using [JSON Schemas](https://json-schema.org).  To recap, we are representing data described by an OpenConfig YANG data model using YAML.  We are then taking a JSON schema that is also rendered in YAML, to validate the data.  While it might seem a bit of a contortion switching between different data model description and representation languages, the intent is to make strike the best balances between humans understanding and generating the data and computers being able to  consume it.  In our case, the OpenConfig data model has already been defined in YANG and we do not have to modify it.  Furthermore,
-JSON Schemas (even represented in YAML) are more widely used and better understood by most humans.  So while there is a bit changing between formats, it should have optimal approachability.  However, you can always chose to describe and render the data in whatever ways best fit your organization since these choices are orthogonal to the overall efficacy of the process.
+We do these things using [JSON Schemas](https://json-schema.org).  To recap, we are representing data described by an OpenConfig YANG data model using YAML.  We are then taking a JSON schema that is also rendered in YAML, to validate the data.  While it might seem a bit of a contortion switching between different data model description and representation languages, the intent is to make strike the best balances between humans understanding and generating the data and computers being able to  consume it.  In our case, the OpenConfig data model has already been defined in YANG,and we do not have to modify it.  Furthermore,
+JSON Schemas (even represented in YAML) are more widely used and better understood by most humans.  So while there is a bit changing between formats, it should have optimal approachability.  However, you can always choose to describe and render the data in whatever ways best fit your organization since these choices are orthogonal to the overall efficacy of the process.
 
 ### JSON Schema
 
@@ -85,7 +85,7 @@ mdd_schemas:
     file: 'local/dns.schema.yml'
 ```
 
-This file tells the ciscops.mdd.validate role to apply the two schemas `local/banner.schema.yml` and `local/dns.schema.yml` to all devices at the org level of the hierarchy.  The schemas are checked against the data after all of the data for a particular device has been retendered.  This is done using the `ciscops.mdd.validate` role and called at the beginning of a playbook:
+This file tells the ciscops.mdd.validate role to apply the two schemas `local/banner.schema.yml` and `local/dns.schema.yml` to all devices at the org level of the hierarchy.  The schemas are checked against the data after all of the data for a particular device has been re-rendered.  This is done using the `ciscops.mdd.validate` role and called at the beginning of a playbook:
 
 ```
 - hosts: network
@@ -99,7 +99,7 @@ This file tells the ciscops.mdd.validate role to apply the two schemas `local/ba
 
 When executed in this way, the `ciscops.mdd.data` role generates the device-specific data payload, then the `ciscops.mdd.validate` validates that data.  The subsequent tasks then are run using the data if it passes the validation.
 
-The playbook `ciscops.mdd.validate` is avaialble in the `ciscops.mdd` collection and is used for the validation step of the CI pipeline.  It can be run as follows:
+The playbook `ciscops.mdd.validate` is available in the `ciscops.mdd` collection and is used for the validation step of the CI pipeline.  It can be run as follows:
 
 ```
 ansible-playbook ciscops.mdd.validate
@@ -230,7 +230,7 @@ Since we put `oc-dns.yml` at the region1 level, it applied to all of the devices
 ```
 
 We can address this is a couple of ways:
-1) If we wanted to allow `8.8.8.8` to be used accross the organization, we could add it to the enumeration in `schemas/local/dns.schema.yml`.
+1) If we wanted to allow `8.8.8.8` to be used across the organization, we could add it to the enumeration in `schemas/local/dns.schema.yml`.
 2) we could define different schemas for different regions
 (e.g. `mdd-data/org/region1/validate-dns.yml` and `mdd-data/org/region2/validate-dns.yml`) that specify different
 schemas to use to validate data for the devices in each of those regions.
