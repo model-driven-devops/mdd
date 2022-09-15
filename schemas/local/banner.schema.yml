@@ -11,9 +11,9 @@ properties:
       'openconfig-system:config':
         type: object
         required:
-          - login-banner
+          - 'openconfig-system:login-banner'
         properties:
-          login-banner:
+          'openconfig-system:login-banner':
             type: string
             description: Login banner
             pattern: prohibited

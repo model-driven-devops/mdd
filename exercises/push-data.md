@@ -18,7 +18,7 @@ validated that data.  We are now ready to push that data into the device.
 
 We can do a dry run to push the data to all devices, a subset of devices, or
 a single device.  The dry run will calculate what changes need to be made and
-give a report of the specif changes that will be made to the devices.  To perform
+give a report of the specific changes that will be made to the devices.  To perform
 a dry run, do:
 
 ```

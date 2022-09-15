@@ -2,5 +2,5 @@
 mdd_data:
   openconfig-system:system:
     openconfig-system:config:
-      login-banner: "Unauthorized access is prohibited!"
-      motd-banner: "Welcome to {{ inventory_hostname }}"
+      openconfig-system:login-banner: "Unauthorized access is prohibited!"
+      openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
