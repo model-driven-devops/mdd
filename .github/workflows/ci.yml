@@ -32,6 +32,8 @@ jobs:
         run: ansible-playbook ciscops.mdd.nso_save_rollback
       - name: Validate Data
         run: ansible-playbook ciscops.mdd.validate
+      - name: Update Devices
+        run: ansible-playbook ciscops.mdd.nso_update_devices
       - name: Deploy Changes
         run: ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no
       - name: Run Checks
