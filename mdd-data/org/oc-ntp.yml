@@ -9,13 +9,13 @@ mdd_data:
         enabled: true
       servers:
         server:
-          - address: '1.us.pool.ntp.org'
+          - address: '216.239.35.0'
             config:
-              address: '1.us.pool.ntp.org'
+              address: '216.239.35.0'
               association-type: SERVER
               iburst: true
-          - address: '2.us.pool.ntp.org'
+          - address: '216.239.35.4'
             config:
-              address: '2.us.pool.ntp.org'
+              address: '216.239.35.4'
               association-type: SERVER
               iburst: true

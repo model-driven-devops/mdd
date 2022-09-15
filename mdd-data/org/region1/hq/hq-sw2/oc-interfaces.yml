@@ -62,7 +62,7 @@ mdd_data:
       - config:
           enabled: true
           name: GigabitEthernet0/2
-          type: ethernetCsmacd
+          type: l2vlan
         name: GigabitEthernet0/2
         openconfig-if-ethernet:ethernet:
           openconfig-vlan:switched-vlan:
