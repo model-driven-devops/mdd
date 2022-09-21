@@ -1,142 +1,141 @@
 ---
 mdd_data:
   openconfig-network-instance:network-instances:
-    network-instance:
-      - config:
-          enabled: true
-          name: default
-          type: DEFAULT_INSTANCE
-        name: default
-        mpls:
-          global:
-            config:
-              ttl-propagation: true
-            interface-attributes:
-              interface:
-                - config:
-                    interface-id: 'GigabitEthernet2'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet2'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet2'
-                      subinterface: 0
-                - config:
-                    interface-id: 'GigabitEthernet3'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet3'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet3'
-                      subinterface: 0
-                - config:
-                    interface-id: 'GigabitEthernet4'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet4'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet4'
-                      subinterface: 0
-                - config:
-                    interface-id: 'GigabitEthernet5'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet5'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet5'
-                      subinterface: 0
-          signaling-protocols:
-            ldp:
-              global:
-                config:
-                  lsr-id: 10.255.255.1
-                graceful-restart:
-                  config:
-                    enabled: false
-              interface-attributes:
-                config:
-                  hello-holdtime: 15
-                  hello-interval: 5
-        protocols:
-          protocol:
-            - name: '100'
-              identifier: 'OSPF'
-              config:
-                enabled: True
-                identifier: 'OSPF'
-                name: '100'
-              ospfv2:
-                global:
-                  config:
-                    router-id: '10.255.255.1'
-                    log-adjacency-changes: True
-                areas:
-                  area:
-                    - config:
-                        identifier: 0
-                      identifier: 0
-                      interfaces:
-                        interface:
-                          - config:
-                              id: 'Loopback0'
-                              passive: True
-                            id: 'Loopback0'
-                          - config:
-                              id: 'GigabitEthernet2'
-                            id: 'GigabitEthernet2'
-                          - config:
-                              id: 'GigabitEthernet3'
-                            id: 'GigabitEthernet3'
-                          - config:
-                              id: 'GigabitEthernet4'
-                            id: 'GigabitEthernet4'
-                          - config:
-                              id: 'GigabitEthernet5'
-                            id: 'GigabitEthernet5'
-
-            - name: BGP
-              identifier: BGP
-              config:
-                enabled: True
-                identifier: BGP
-                name: BGP
-              bgp:
-                global:
-                  config:
-                    as: 65100
-                    router-id: 10.255.255.1
-                  dynamic-neighbor-prefixes:
-                    dynamic-neighbor-prefix:
-                      - config:
-                          peer-group: 'L3VPN_PEERS'
-                          prefix: '10.255.255.0/24'
-                        prefix: '10.255.255.0/24'
-                  afi-safis:
-                    afi-safi:
-                      - afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                        config:
-                          afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                          enabled: true
-                peer-groups:
-                  peer-group:
-                    - config:
-                        peer-group-name: 'L3VPN_PEERS'
-                        peer-as: 65100
-                        send-community: 'EXTENDED'
-                      peer-group-name: 'L3VPN_PEERS'
-                      transport:
-                        config:
-                          local-address: 'Loopback0'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                              enabled: true
-                      route-reflector:
-                        config:
-                          route-reflector-client: True
-                          route-reflector-cluster-id: '10.255.255.1'
+    openconfig-network-instance:network-instance:
+      - openconfig-network-instance:name: default
+        openconfig-network-instance:config:
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:name: default
+          openconfig-network-instance:type: DEFAULT_INSTANCE
+        openconfig-network-instance:mpls:
+          openconfig-network-instance:global:
+            openconfig-network-instance:config:
+              openconfig-network-instance:ttl-propagation: true
+            openconfig-network-instance:interface-attributes:
+              openconfig-network-instance:interface:
+                - openconfig-network-instance:interface-id: GigabitEthernet2
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet2
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet2
+                      openconfig-network-instance:subinterface: 0
+                - openconfig-network-instance:interface-id: GigabitEthernet3
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet3
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet3
+                      openconfig-network-instance:subinterface: 0
+                - openconfig-network-instance:interface-id: GigabitEthernet4
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet4
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet4
+                      openconfig-network-instance:subinterface: 0
+                - openconfig-network-instance:interface-id: GigabitEthernet5
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet5
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet5
+                      openconfig-network-instance:subinterface: 0
+          openconfig-network-instance:signaling-protocols:
+            openconfig-network-instance:ldp:
+              openconfig-network-instance:global:
+                openconfig-network-instance:config:
+                  openconfig-network-instance:lsr-id: 10.255.255.1
+                openconfig-network-instance:graceful-restart:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:enabled: false
+              openconfig-network-instance:interface-attributes:
+                openconfig-network-instance:config:
+                  openconfig-network-instance:hello-holdtime: 15
+                  openconfig-network-instance:hello-interval: 5
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: OSPF
+              openconfig-network-instance:name: 100
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: OSPF
+                openconfig-network-instance:name: 100
+              openconfig-network-instance:ospfv2:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:router-id: 10.255.255.1
+                    openconfig-network-instance:log-adjacency-changes: True
+                openconfig-network-instance:areas:
+                  openconfig-network-instance:area:
+                    - openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:interfaces:
+                        openconfig-network-instance:interface:
+                          - openconfig-network-instance:id: Loopback0
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: Loopback0
+                              openconfig-network-instance:passive: True
+                          - openconfig-network-instance:id: GigabitEthernet2
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet2
+                          - openconfig-network-instance:id: GigabitEthernet3
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet3
+                          - openconfig-network-instance:id: GigabitEthernet4
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet4
+                          - openconfig-network-instance:id: GigabitEthernet5
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet5
+            - openconfig-network-instance:identifier: BGP
+              openconfig-network-instance:name: BGP
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+              openconfig-network-instance:bgp:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:as: 65100
+                    openconfig-network-instance:router-id: 10.255.255.1
+                  openconfig-network-instance:dynamic-neighbor-prefixes:
+                    openconfig-network-instance:dynamic-neighbor-prefix:
+                      - openconfig-network-instance:prefix: 10.255.255.0/24
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:peer-group: L3VPN_PEERS
+                          openconfig-network-instance:prefix: 10.255.255.0/24
+                  openconfig-network-instance:afi-safis:
+                    openconfig-network-instance:afi-safi:
+                      - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                          openconfig-network-instance:enabled: true
+                openconfig-network-instance:peer-groups:
+                  openconfig-network-instance:peer-group:
+                    - openconfig-network-instance:peer-group-name: L3VPN_PEERS
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:peer-group-name: L3VPN_PEERS
+                        openconfig-network-instance:peer-as: 65100
+                        openconfig-network-instance:send-community: EXTENDED
+                      openconfig-network-instance:transport:
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:local-address: Loopback0
+                      openconfig-network-instance:afi-safis:
+                        openconfig-network-instance:afi-safi:
+                          - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                              openconfig-network-instance:enabled: true
+                      openconfig-network-instance:route-reflector:
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:route-reflector-client: True
+                          openconfig-network-instance:route-reflector-cluster-id: 10.255.255.1
 
 mdd_tags:
 - all

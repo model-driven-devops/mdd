@@ -1,388 +1,385 @@
 ---
 mdd_data:
   openconfig-routing-policy:routing-policy:
-    defined-sets:
-      tag-sets:
-        tag-set:
-          - name: '9999'
-            config:
-              name: '9999'
-              tag-value:
-                - 9999
-      prefix-sets:
-        prefix-set:
-          - name: 'DEFAULT'
-            config:
-              name: 'DEFAULT'
-              mode: 'IPV4'
-            prefixes:
-              prefix:
-                - ip-prefix: '0.0.0.0/0'
-                  masklength-range: 'exact'
-                  config:
-                    ip-prefix: '0.0.0.0/0'
-                    masklength-range: 'exact'
+    openconfig-routing-policy:defined-sets:
+      openconfig-routing-policy:tag-sets:
+        openconfig-routing-policy:tag-set:
+          - openconfig-routing-policy:name: '9999'
+            openconfig-routing-policy:config:
+              openconfig-routing-policy:name: '9999'
+              openconfig-routing-policy:tag-value:
+                - '9999'
+      openconfig-routing-policy:prefix-sets:
+        openconfig-routing-policy:prefix-set:
+          - openconfig-routing-policy:name: DEFAULT
+            openconfig-routing-policy:config:
+              openconfig-routing-policy:name: DEFAULT
+              openconfig-routing-policy:mode: IPV4
+            openconfig-routing-policy:prefixes:
+              openconfig-routing-policy:prefix:
+                - openconfig-routing-policy:ip-prefix: 0.0.0.0/0
+                  openconfig-routing-policy:masklength-range: exact
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:ip-prefix: 0.0.0.0/0
+                    openconfig-routing-policy:masklength-range: exact
                     openconfig-routing-policy-ext:seq: 5
-          - name: 'LOCAL-PREFIXES'
-            config:
-              name: 'LOCAL-PREFIXES'
-              mode: 'IPV4'
-            prefixes:
-              prefix:
-                - ip-prefix: '172.16.0.0/24'
-                  masklength-range: 'exact'
-                  config:
-                    ip-prefix: '172.16.0.0/24'
-                    masklength-range: 'exact'
+          - openconfig-routing-policy:name: 'LOCAL-PREFIXES'
+            openconfig-routing-policy:config:
+              openconfig-routing-policy:name: 'LOCAL-PREFIXES'
+              openconfig-routing-policy:mode: IPV4
+            openconfig-routing-policy:prefixes:
+              openconfig-routing-policy:prefix:
+                - openconfig-routing-policy:ip-prefix: 172.16.0.0/24
+                  openconfig-routing-policy:masklength-range: exact
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:ip-prefix: 172.16.0.0/24
+                    openconfig-routing-policy:masklength-range: exact
                     openconfig-routing-policy-ext:seq: 5
-                - ip-prefix: '172.16.255.1/32'
-                  masklength-range: 'exact'
-                  config:
-                    ip-prefix: '172.16.255.1/32'
-                    masklength-range: 'exact'
+                - openconfig-routing-policy:ip-prefix: 172.16.255.1/32
+                  openconfig-routing-policy:masklength-range: exact
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:ip-prefix: 172.16.255.1/32
+                    openconfig-routing-policy:masklength-range: exact
                     openconfig-routing-policy-ext:seq: 10
-                - ip-prefix: '172.16.255.2/32'
-                  masklength-range: 'exact'
-                  config:
-                    ip-prefix: '172.16.255.2/32'
-                    masklength-range: 'exact'
+                - openconfig-routing-policy:ip-prefix: 172.16.255.2/32
+                  openconfig-routing-policy:masklength-range: exact
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:ip-prefix: 172.16.255.2/32
+                    openconfig-routing-policy:masklength-range: exact
                     openconfig-routing-policy-ext:seq: 15
       openconfig-bgp-policy:bgp-defined-sets:
-        ext-community-sets:
-          ext-community-set:
-            - ext-community-set-name: 'import-ext-community-set'
-              config:
-                ext-community-set-name: 'import-ext-community-set'
-                match-set-options: 'ANY'
-                ext-community-member:
+        openconfig-bgp-policy:ext-community-sets:
+          openconfig-bgp-policy:ext-community-set:
+            - openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
+              openconfig-bgp-policy:config:
+                openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
+                openconfig-bgp-policy:match-set-options: ANY
+                openconfig-bgp-policy:ext-community-member:
                   - "1:1"
-            - ext-community-set-name: 'export-ext-community-set'
-              config:
-                ext-community-set-name: 'export-ext-community-set'
-                match-set-options: 'ANY'
-                ext-community-member:
+            - openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
+              openconfig-bgp-policy:config:
+                openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
+                openconfig-bgp-policy:match-set-options: ANY
+                openconfig-bgp-policy:ext-community-member:
                   - "1:1"
-    policy-definitions:
+    openconfig-routing-policy:policy-definitions:
       openconfig-routing-policy:policy-definition:
-        - name: 'from_ospf'
-          config:
-            name: 'from_ospf'
-          statements:
+        - openconfig-routing-policy:name: from_ospf
+          openconfig-routing-policy:config:
+            openconfig-routing-policy:name: from_ospf
+          openconfig-routing-policy:statements:
             openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                conditions:
-                  match-tag-set:
-                    config:
-                      tag-set: '9999'
-                      match-set-options: 'ANY'
-                actions:
-                  config:
-                    policy-result: 'REJECT_ROUTE'
-              - name: '20'
-                config:
-                  name: '20'
-                actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-        - name: 'to_ospf'
-          config:
-            name: 'to_ospf'
-          statements:
+              - openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:conditions:
+                  openconfig-routing-policy:match-tag-set:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:tag-set: '9999'
+                      openconfig-routing-policy:match-set-options: ANY
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: REJECT_ROUTE
+              - openconfig-routing-policy:name: '20'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '20'
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+        - openconfig-routing-policy:name: to_ospf
+          openconfig-routing-policy:config:
+            openconfig-routing-policy:name: to_ospf
+          openconfig-routing-policy:statements:
             openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-                  set-tag:
-                    config:
-                      mode: 'INLINE'
-                    inline:
-                      config:
-                        tag:
+              - openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+                  openconfig-routing-policy:set-tag:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:mode: INLINE
+                    openconfig-routing-policy:inline:
+                      openconfig-routing-policy:config:
+                        openconfig-routing-policy:tag:
                           - '9999'
-        - name: 'from_wan'
-          config:
-            name: 'from_wan'
-          statements:
+        - openconfig-routing-policy:name: from_wan
+          openconfig-routing-policy:config:
+            openconfig-routing-policy:name: from_wan
+          openconfig-routing-policy:statements:
             openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                conditions:
-                  match-prefix-set:
-                    config:
-                      prefix-set: 'DEFAULT'
-                      match-set-options: 'ANY'
-                actions:
-                  config:
-                    policy-result: 'REJECT_ROUTE'
-              - name: '20'
-                config:
-                  name: '20'
-                conditions:
-                  match-prefix-set:
-                    config:
-                      prefix-set: 'LOCAL-PREFIXES'
-                      match-set-options: 'ANY'
-                actions:
-                  config:
-                    policy-result: 'REJECT_ROUTE'
-              - name: '20'
-                config:
-                  name: '20'
-                actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-        - name: 'import-route-target'
-          config:
-            name: 'import-route-target'
-          statements:
+              - openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:conditions:
+                  openconfig-routing-policy:match-prefix-set:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:prefix-set: DEFAULT
+                      openconfig-routing-policy:match-set-options: ANY
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: REJECT_ROUTE
+              - openconfig-routing-policy:name: '20'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '20'
+                openconfig-routing-policy:conditions:
+                  openconfig-routing-policy:match-prefix-set:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:prefix-set: 'LOCAL-PREFIXES'
+                      openconfig-routing-policy:match-set-options: ANY
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: REJECT_ROUTE
+              - openconfig-routing-policy:name: '30'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '30'
+                openconfig-routing-policy:actions:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+        - openconfig-routing-policy:name: import-route-target
+          openconfig-routing-policy:config:
+            openconfig-routing-policy:name: import-route-target
+          openconfig-routing-policy:statements:
             openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                conditions:
+              - openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:conditions:
                   openconfig-bgp-policy:bgp-conditions:
                     openconfig-bgp-policy:config:
-                      openconfig-bgp-policy:ext-community-set: 'import-ext-community-set'
+                      openconfig-bgp-policy:ext-community-set: import-ext-community-set
                 openconfig-routing-policy:actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
-        - name: 'export-route-target'
-          config:
-            name: 'export-route-target'
-          statements:
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+        - openconfig-routing-policy:name: export-route-target
+          openconfig-routing-policy:config:
+            openconfig-routing-policy:name: export-route-target
+          openconfig-routing-policy:statements:
             openconfig-routing-policy:statement:
-              - name: '10'
-                config:
-                  name: '10'
-                conditions:
+              - openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:config:
+                  openconfig-routing-policy:name: '10'
+                openconfig-routing-policy:conditions:
                   openconfig-bgp-policy:bgp-conditions:
                     openconfig-bgp-policy:config:
-                      openconfig-bgp-policy:ext-community-set: 'export-ext-community-set'
+                      openconfig-bgp-policy:ext-community-set: export-ext-community-set
                 openconfig-routing-policy:actions:
-                  config:
-                    policy-result: 'ACCEPT_ROUTE'
+                  openconfig-routing-policy:config:
+                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
   openconfig-network-instance:network-instances:
     openconfig-network-instance:network-instance:
-      - name: default
-        config:
-          name: default
-          type: DEFAULT_INSTANCE
-          enabled: true
-        mpls:
-          global:
-            config:
-              ttl-propagation: true
-            interface-attributes:
-              interface:
-                - config:
-                    interface-id: 'GigabitEthernet2'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet2'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet2'
-                      subinterface: 0
-                - config:
-                    interface-id: 'GigabitEthernet4'
-                    mpls-enabled: true
-                  interface-id: 'GigabitEthernet4'
-                  interface-ref:
-                    config:
-                      interface: 'GigabitEthernet4'
-                      subinterface: 0
-          signaling-protocols:
-            ldp:
-              global:
-                config:
-                  lsr-id: 10.255.255.11
-                graceful-restart:
-                  config:
-                    enabled: false
-              interface-attributes:
-                config:
-                  hello-holdtime: 15
-                  hello-interval: 5
-        protocols:
-          protocol:
-            - name: '100'
-              identifier: 'OSPF'
-              config:
-                enabled: True
-                identifier: 'OSPF'
-                name: '100'
-              ospfv2:
-                global:
-                  config:
-                    log-adjacency-changes: True
-                areas:
-                  area:
-                    - config:
-                        identifier: 0
-                      identifier: 0
-                      interfaces:
-                        interface:
-                          - config:
-                              id: 'Loopback100'
-                              passive: True
-                            id: 'Loopback100'
-                          - config:
-                              id: 'GigabitEthernet2'
-                            id: 'GigabitEthernet2'
-                          - config:
-                              id: 'GigabitEthernet4'
-                            id: 'GigabitEthernet4'
-            - name: BGP
-              identifier: BGP
-              config:
-                enabled: True
-                identifier: BGP
-                name: BGP
-              bgp:
-                global:
-                  config:
-                    as: 65100
-                    router-id: 10.255.255.11
+      - openconfig-network-instance:name: default
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: default
+          openconfig-network-instance:type: DEFAULT_INSTANCE
+          openconfig-network-instance:enabled: true
+        openconfig-network-instance:mpls:
+          openconfig-network-instance:global:
+            openconfig-network-instance:config:
+              openconfig-network-instance:ttl-propagation: true
+            openconfig-network-instance:interface-attributes:
+              openconfig-network-instance:interface:
+                - openconfig-network-instance:interface-id: GigabitEthernet2
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet2
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet2
+                      openconfig-network-instance:subinterface: 0
+                - openconfig-network-instance:interface-id: GigabitEthernet4
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:interface-id: GigabitEthernet4
+                    openconfig-network-instance:mpls-enabled: true
+                  openconfig-network-instance:interface-ref:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:interface: GigabitEthernet4
+                      openconfig-network-instance:subinterface: 0
+          openconfig-network-instance:signaling-protocols:
+            openconfig-network-instance:ldp:
+              openconfig-network-instance:global:
+                openconfig-network-instance:graceful-restart:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:enabled: false
+              openconfig-network-instance:interface-attributes:
+                openconfig-network-instance:config:
+                  openconfig-network-instance:hello-holdtime: 15
+                  openconfig-network-instance:hello-interval: 5
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: OSPF
+              openconfig-network-instance:name: '100'
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: OSPF
+                openconfig-network-instance:name: '100'
+              openconfig-network-instance:ospfv2:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:log-adjacency-changes: True
+                openconfig-network-instance:areas:
+                  openconfig-network-instance:area:
+                    - openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:interfaces:
+                        openconfig-network-instance:interface:
+                          - openconfig-network-instance:id: Loopback100
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: Loopback100
+                              openconfig-network-instance:passive: True
+                          - openconfig-network-instance:id: GigabitEthernet2
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet2
+                          - openconfig-network-instance:id: GigabitEthernet4
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet4
+            - openconfig-network-instance:identifier: BGP
+              openconfig-network-instance:name: BGP
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+              openconfig-network-instance:bgp:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:as: 65100
                     openconfig-bgp-ext:log-neighbor-changes: true
-                  use-multiple-paths:
-                    config:
-                      enabled: True
-                    ibgp:
-                      config:
-                        maximum-paths: 2
-                  afi-safis:
-                    afi-safi:
-                      - afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                        config:
-                          afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                          enabled: true
-                neighbors:
-                  neighbor:
-                    - config:
-                        neighbor-address: '10.255.255.1'
-                        description: 'WAN RR'
-                        peer-as: 65100
-                        send-community: 'BOTH'
-                        enabled: True
-                      neighbor-address: '10.255.255.1'
-                      transport:
-                        config:
-                          local-address: 'Loopback100'
-                      afi-safis:
-                        afi-safi:
-                          - afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                            config:
-                              afi-safi-name: 'L3VPN_IPV4_UNICAST'
-                              enabled: true
-                            apply-policy:
-                              config:
-                                import-policy:
-                                  - 'from_wan'
-      - name: 'internal_1'
-        config:
-          name: 'internal_1'
-          type: 'L3VRF'
-          enabled: true
-          enabled-address-families:
-            - 'IPV4'
-            - 'IPV6'
-          route-distinguisher: '1:1'
-        inter-instance-policies:
-          apply-policy:
-            config:
-              import-policy:
-                - 'import-route-target'
-              export-policy:
-                - 'export-route-target'
-        interfaces:
-          interface:
-            - id: 'Loopback0'
-              config:
-                id: 'Loopback0'
-                interface: 'Loopback0'
-                subinterface: 0
-            - id: GigabitEthernet3.10
-              config:
-                id: GigabitEthernet3.10
-                interface: GigabitEthernet3
-                subinterface: 10
-        protocols:
-          protocol:
-            - name: '1'
-              identifier: 'OSPF'
-              config:
-                enabled: True
-                identifier: 'OSPF'
-                name: '1'
-              ospfv2:
-                global:
-                  config:
-                    log-adjacency-changes: True
+                  openconfig-network-instance:use-multiple-paths:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:enabled: True
+                    openconfig-network-instance:ibgp:
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:maximum-paths: 2
+                  openconfig-network-instance:afi-safis:
+                    openconfig-network-instance:afi-safi:
+                      - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                          openconfig-network-instance:enabled: true
+                openconfig-network-instance:neighbors:
+                  openconfig-network-instance:neighbor:
+                    - openconfig-network-instance:neighbor-address: 10.255.255.1
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:neighbor-address: 10.255.255.1
+                        openconfig-network-instance:description: WAN RR
+                        openconfig-network-instance:peer-as: 65100
+                        openconfig-network-instance:send-community: BOTH
+                        openconfig-network-instance:enabled: True
+                      openconfig-network-instance:transport:
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:local-address: Loopback100
+                      openconfig-network-instance:afi-safis:
+                        openconfig-network-instance:afi-safi:
+                          - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                              openconfig-network-instance:enabled: true
+                            openconfig-network-instance:apply-policy:
+                              openconfig-network-instance:config:
+                                openconfig-network-instance:import-policy:
+                                  - from_wan
+      - openconfig-network-instance:name: internal_1
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: internal_1
+          openconfig-network-instance:type: L3VRF
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:enabled-address-families:
+            - IPV4
+            - IPV6
+          openconfig-network-instance:route-distinguisher: '1:1'
+        openconfig-network-instance:inter-instance-policies:
+          openconfig-network-instance:apply-policy:
+            openconfig-network-instance:config:
+              openconfig-network-instance:import-policy:
+                - import-route-target
+              openconfig-network-instance:export-policy:
+                - export-route-target
+        openconfig-network-instance:interfaces:
+          openconfig-network-instance:interface:
+            - openconfig-network-instance:id: Loopback0
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: Loopback0
+                openconfig-network-instance:interface: Loopback0
+                openconfig-network-instance:subinterface: 0
+            - openconfig-network-instance:id: GigabitEthernet3.10
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: GigabitEthernet3.10
+                openconfig-network-instance:interface: GigabitEthernet3
+                openconfig-network-instance:subinterface: 10
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: OSPF
+              openconfig-network-instance:name: '1'
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: OSPF
+                openconfig-network-instance:name: '1'
+              openconfig-network-instance:ospfv2:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:log-adjacency-changes: True
                     openconfig-ospfv2-ext:capability-vrf-lite: True
-                areas:
-                  area:
-                    - config:
-                        identifier: 0
-                      identifier: 0
-                      interfaces:
-                        interface:
-                          - config:
-                              id: 'Loopback0'
-                              passive: True
-                            id: 'Loopback0'
-                          - config:
-                              id: 'GigabitEthernet3.10'
-                            id: 'GigabitEthernet3.10'
-            - name: BGP
-              identifier: BGP
-              config:
-                enabled: True
-                identifier: BGP
-                name: BGP
-              bgp:
-                global:
-                  config:
-                    as: 65100
-                  default-route-distance:
-                    config:
-                      external-route-distance: 20
-                      internal-route-distance: 99
-                  afi-safis:
-                    afi-safi:
-                      - afi-safi-name: 'IPV4_UNICAST'
-                        config:
-                          afi-safi-name: 'IPV4_UNICAST'
-                          enabled: true
-                        ipv4-unicast:
-                          config:
-                            send-default-route: True
+                openconfig-network-instance:areas:
+                  openconfig-network-instance:area:
+                    - openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:interfaces:
+                        openconfig-network-instance:interface:
+                          - openconfig-network-instance:id: Loopback0
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: Loopback0
+                              openconfig-network-instance:passive: True
+                          - openconfig-network-instance:id: GigabitEthernet3.10
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet3.10
+            - openconfig-network-instance:identifier: BGP
+              openconfig-network-instance:name: BGP
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+              openconfig-network-instance:bgp:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:as: 65100
+                  openconfig-network-instance:default-route-distance:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:external-route-distance: 20
+                      openconfig-network-instance:internal-route-distance: 99
+                  openconfig-network-instance:afi-safis:
+                    openconfig-network-instance:afi-safi:
+                      - openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                          openconfig-network-instance:enabled: true
+                        openconfig-network-instance:ipv4-unicast:
+                          openconfig-network-instance:config:
+                            openconfig-network-instance:send-default-route: True
         openconfig-network-instance:table-connections:
-          table-connection:
-            - address-family: 'IPV4'
-              dst-protocol: 'BGP'
-              src-protocol: 'OSPF'
-              config:
-                address-family: 'IPV4'
-                dst-protocol: 'BGP'
-                src-protocol: 'OSPF'
+          openconfig-network-instance:table-connection:
+            - openconfig-network-instance:src-protocol: OSPF
+              openconfig-network-instance:dst-protocol: BGP
+              openconfig-network-instance:address-family: IPV4
+              openconfig-network-instance:config:
+                openconfig-network-instance:address-family: IPV4
+                openconfig-network-instance:dst-protocol: BGP
+                openconfig-network-instance:src-protocol: OSPF
                 openconfig-network-instance-ext:src-protocol-process-number: 1
-                import-policy:
-                  - 'from_ospf'
-            - address-family: 'IPV4'
-              dst-protocol: 'OSPF'
-              src-protocol: 'BGP'
-              config:
-                address-family: 'IPV4'
-                dst-protocol: 'OSPF'
-                src-protocol: 'BGP'
+                openconfig-network-instance:import-policy:
+                  - from_ospf
+            - openconfig-network-instance:src-protocol: BGP
+              openconfig-network-instance:dst-protocol: OSPF
+              openconfig-network-instance:address-family: IPV4
+              openconfig-network-instance:config:
+                openconfig-network-instance:address-family: IPV4
+                openconfig-network-instance:dst-protocol: OSPF
+                openconfig-network-instance:src-protocol: BGP
                 openconfig-network-instance-ext:dst-protocol-process-number: 1
                 openconfig-network-instance-ext:src-protocol-process-number: 65100
-                import-policy:
-                  - 'to_ospf'
+                openconfig-network-instance:import-policy:
+                  - to_ospf
 mdd_tags:
   - hq_router
