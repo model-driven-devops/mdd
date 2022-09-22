@@ -138,4 +138,4 @@ mdd_data:
                           openconfig-network-instance:route-reflector-cluster-id: 10.255.255.1
 
 mdd_tags:
-- all
+  - all
