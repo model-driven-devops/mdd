@@ -1,41 +1,41 @@
 title: OpenConfig system schema (DNS)
 type: object
 required:
-  - 'openconfig-system:system'
+  - openconfig-system:system
 properties:
-  'openconfig-system:system':
+  openconfig-system:system:
     description: top level object
     type: object
     required:
-      - 'openconfig-system:dns'
+      - openconfig-system:dns
     properties:
-      'openconfig-system:dns':
+      openconfig-system:dns:
         description: DNS settings
         type: object
         required:
-          - servers
+          - openconfig-system:servers
         properties:
-          servers:
+          openconfig-system:servers:
             description: DNS servers
             type: object
             required:
-              - server
+              - openconfig-system:server
             properties:
-              server:
+              openconfig-system:server:
                 description: a dns server
                 type: array
                 items:
                   type: object
                   properties:
-                    address:
+                    openconfig-system:address:
                       description: Server address
                       type: string
                       format: ipv4
-                    config:
-                      description: configuratsion
+                    openconfig-system:config:
+                      description: configuration
                       type: object
                       properties:
-                        address:
+                        openconfig-system:address:
                           description: DNS server address
                           type: string
                           format: ipv4
