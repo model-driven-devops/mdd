@@ -2,164 +2,162 @@
 mdd_data:
   openconfig-interfaces:interfaces:
     openconfig-interfaces:interface:
-      - config:
-          enabled: true
-          name: Loopback0
-          type: softwareLoopback
-        name: Loopback0
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
+      - openconfig-interfaces:name: Loopback0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: Loopback0
+          openconfig-interfaces:type: softwareLoopback
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 172.16.255.3
-                        prefix-length: 32
-                      ip: 172.16.255.3
-      - config:
-          description: 'VLAN10'
-          enabled: true
-          loopback-mode: false
-          mtu: 1500
-          name: 'Vlan10'
-          type: 'l3ipvlan'
-        name: 'Vlan10'
+                openconfig-if-ip:addresses:
+                  openconfig-if-ip:address:
+                    - openconfig-if-ip:ip: 172.16.255.3
+                      openconfig-if-ip:config:
+                        openconfig-if-ip:ip: 172.16.255.3
+                        openconfig-if-ip:prefix-length: 32
+      - openconfig-interfaces:name: Vlan10
+        openconfig-interfaces:config:
+          openconfig-interfaces:description: VLAN10
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:loopback-mode: false
+          openconfig-interfaces:mtu: 1500
+          openconfig-interfaces:name: Vlan10
+          openconfig-interfaces:type: l3ipvlan
         openconfig-vlan:routed-vlan:
-          config:
-            vlan: 10
+          openconfig-vlan:config:
+            openconfig-vlan:vlan: 10
           openconfig-if-ip:ipv4:
-            addresses:
-              address:
-                - config:
-                    ip: '172.16.0.11'
-                    prefix-length: '24'
-                  ip: '172.16.0.11'
-      - config:
-          enabled: true
-          name: GigabitEthernet0/0
-          type: l2vlan
-        name: GigabitEthernet0/0
-        openconfig-if-ethernet:ethernet:
-          openconfig-vlan:switched-vlan:
-            config:
-              interface-mode: TRUNK
-              native-vlan: 99
-              trunk-vlans:
-                - 10
-      - config:
-          enabled: true
-          name: GigabitEthernet0/1
-          type: l2vlan
-        name: GigabitEthernet0/1
-        openconfig-if-ethernet:ethernet:
-          openconfig-vlan:switched-vlan:
-            config:
-              interface-mode: TRUNK
-              native-vlan: 99
-              trunk-vlans:
-                - 10
-      - config:
-          enabled: true
-          name: GigabitEthernet0/2
-          type: l2vlan
-        name: GigabitEthernet0/2
-      - config:
-          enabled: true
-          name: GigabitEthernet0/3
-          type: l2vlan
-        name: GigabitEthernet0/3
-      - config:
-          enabled: true
-          name: GigabitEthernet1/0
-          type: l2vlan
-        name: GigabitEthernet1/0
-        openconfig-if-ethernet:ethernet:
-          openconfig-vlan:switched-vlan:
-            config:
-              access-vlan: 10
-              interface-mode: ACCESS
-      - config:
-          enabled: true
-          name: GigabitEthernet1/1
-          type: l2vlan
-        name: GigabitEthernet1/1
-      - config:
-          enabled: true
-          name: GigabitEthernet1/2
-          type: l2vlan
-        name: GigabitEthernet1/2
-      - config:
-          enabled: true
-          name: GigabitEthernet1/3
-          type: l2vlan
-        name: GigabitEthernet1/3
-      - config:
-          enabled: true
-          name: GigabitEthernet2/0
-          type: l2vlan
-        name: GigabitEthernet2/0
-      - config:
-          enabled: true
-          name: GigabitEthernet2/1
-          type: l2vlan
-        name: GigabitEthernet2/1
-      - config:
-          enabled: true
-          name: GigabitEthernet2/2
-          type: l2vlan
-        name: GigabitEthernet2/2
-      - config:
-          enabled: true
-          name: GigabitEthernet2/3
-          type: l2vlan
-        name: GigabitEthernet2/3
-      - config:
-          enabled: true
-          name: GigabitEthernet3/0
-          type: l2vlan
-        name: GigabitEthernet3/0
-      - config:
-          enabled: true
-          name: GigabitEthernet3/1
-          type: l2vlan
-        name: GigabitEthernet3/1
-      - config:
-          enabled: true
-          name: GigabitEthernet3/2
-          type: l2vlan
-        name: GigabitEthernet3/2
-      - config:
-          enabled: true
-          name: GigabitEthernet3/3
-          type: l2vlan
-        name: GigabitEthernet3/3
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
+            openconfig-if-ip:addresses:
+              openconfig-if-ip:address:
+                - openconfig-if-ip:ip: 172.16.0.11
+                  openconfig-if-ip:config:
+                    openconfig-if-ip:ip: 172.16.0.11
+                    openconfig-if-ip:prefix-length: 24
+      - openconfig-interfaces:name: GigabitEthernet0/0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet0/0
+          openconfig-interfaces:type: l2vlan
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                config:
-                  dhcp-client: true
+                openconfig-if-ip:config:
+                  openconfig-if-ip:dhcp-client: true
+      - openconfig-interfaces:name: GigabitEthernet0/1
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet0/1
+          openconfig-interfaces:type: l2vlan
+        openconfig-if-ethernet:ethernet:
+          openconfig-vlan:switched-vlan:
+            openconfig-vlan:config:
+              openconfig-vlan:interface-mode: TRUNK
+      - openconfig-interfaces:name: GigabitEthernet0/2
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet0/2
+          openconfig-interfaces:type: l2vlan
+        openconfig-if-ethernet:ethernet:
+          openconfig-vlan:switched-vlan:
+            openconfig-vlan:config:
+              openconfig-vlan:interface-mode: TRUNK
+      - openconfig-interfaces:name: GigabitEthernet0/3
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet0/3
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet1/0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet1/0
+          openconfig-interfaces:type: l2vlan
+        openconfig-if-ethernet:ethernet:
+          openconfig-vlan:switched-vlan:
+            openconfig-vlan:config:
+              openconfig-vlan:access-vlan: 10
+              openconfig-vlan:interface-mode: ACCESS
+      - openconfig-interfaces:name: GigabitEthernet1/1
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet1/1
+          openconfig-interfaces:type: l2vlan
+        openconfig-if-ethernet:ethernet:
+          openconfig-vlan:switched-vlan:
+            openconfig-vlan:config:
+              openconfig-vlan:interface-mode: TRUNK
+      - openconfig-interfaces:name: GigabitEthernet1/2
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet1/2
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet1/3
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet1/3
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet2/0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet2/0
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet2/1
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet2/1
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet2/2
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet2/2
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet2/3
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet2/3
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet3/0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet3/0
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet3/1
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet3/1
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet3/2
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet3/2
+          openconfig-interfaces:type: l2vlan
+      - openconfig-interfaces:name: GigabitEthernet3/3
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet3/3
+          openconfig-interfaces:type: l2vlan
   openconfig-network-instance:network-instances:
     openconfig-network-instance:network-instance:
-      - name: 'Mgmt-intf'
-        config:
-          name: 'Mgmt-intf'
-          type: 'L3VRF'
-          enabled: true
-          enabled-address-families:
-            - 'IPV4'
-            - 'IPV6'
-        interfaces:
-          interface:
-            - id: 'GigabitEthernet3/3'
-              config:
-                id: 'GigabitEthernet3/3'
-                interface: 'GigabitEthernet3/3'
-                subinterface: 0
+      - openconfig-network-instance:name: Mgmt-intf
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: Mgmt-intf
+          openconfig-network-instance:type: L3VRF
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:enabled-address-families:
+            - IPV4
+            - IPV6
+        openconfig-network-instance:interfaces:
+          openconfig-network-instance:interface:
+            - openconfig-network-instance:id: GigabitEthernet0/0
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: GigabitEthernet0/0
+                openconfig-network-instance:interface: GigabitEthernet0/0
+                openconfig-network-instance:subinterface: 0
 mdd_tags:
   - all

@@ -2,37 +2,38 @@
 mdd_data:
   openconfig-network-instance:network-instances:
     openconfig-network-instance:network-instance:
-      - name: default
-        mpls:
-          signaling-protocols:
-            ldp:
-              global:
-                config:
-                  lsr-id: 10.255.255.12
-        protocols:
-          protocol:
-            - name: BGP
-              bgp:
-                global:
-                  config:
-                    router-id: 10.255.255.12
-      - name: 'internal_1'
-        config:
-          route-distinguisher: '1:2'
-      - name: 'Mgmt-intf'
-        config:
-          name: 'Mgmt-intf'
-          type: 'L3VRF'
-          enabled: true
-          enabled-address-families:
-            - 'IPV4'
-            - 'IPV6'
-        interfaces:
-          interface:
-            - id: 'GigabitEthernet8'
-              config:
-                id: 'GigabitEthernet8'
-                interface: 'GigabitEthernet8'
-                subinterface: 0
+      - openconfig-network-instance:name: default
+        openconfig-network-instance:mpls:
+          openconfig-network-instance:signaling-protocols:
+            openconfig-network-instance:ldp:
+              openconfig-network-instance:global:
+                openconfig-network-instance:config:
+                  openconfig-network-instance:lsr-id: 10.255.255.12
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: BGP
+              openconfig-network-instance:name: BGP
+              openconfig-network-instance:bgp:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:router-id: 10.255.255.12
+      - openconfig-network-instance:name: internal_1
+        openconfig-network-instance:config:
+          openconfig-network-instance:route-distinguisher: '1:2'
+      - openconfig-network-instance:name: Mgmt-intf
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: Mgmt-intf
+          openconfig-network-instance:type: L3VRF
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:enabled-address-families:
+            - IPV4
+            - IPV6
+        openconfig-network-instance:interfaces:
+          openconfig-network-instance:interface:
+            - openconfig-network-instance:id: GigabitEthernet1
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: GigabitEthernet1
+                openconfig-network-instance:interface: GigabitEthernet1
+                openconfig-network-instance:subinterface: 0
 mdd_tags:
   - all

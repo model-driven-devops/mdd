@@ -2,5 +2,5 @@
 mdd_data:
   openconfig-system:system:
     openconfig-system:clock:
-      config:
-        timezone-name: 'EST -5 0'
+      openconfig-system:config:
+        openconfig-system:timezone-name: 'EST -5 0'

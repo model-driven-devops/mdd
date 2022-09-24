@@ -2,117 +2,117 @@
 mdd_data:
   openconfig-interfaces:interfaces:
     openconfig-interfaces:interface:
-      - config:
-          enabled: true
-          name: Loopback0
-          type: softwareLoopback
-        name: Loopback0
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
+      - openconfig-interfaces:name: Loopback0
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: Loopback0
+          openconfig-interfaces:type: softwareLoopback
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 192.168.255.1
-                        prefix-length: 32
-                      ip: 192.168.255.1
-      - config:
-          enabled: true
-          name: Loopback100
-          type: softwareLoopback
-        name: Loopback100
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
+                openconfig-if-ip:addresses:
+                  openconfig-if-ip:address:
+                    - openconfig-if-ip:ip: 192.168.255.1
+                      openconfig-if-ip:config:
+                        openconfig-if-ip:ip: 192.168.255.1
+                        openconfig-if-ip:prefix-length: 32
+      - openconfig-interfaces:name: Loopback100
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: Loopback100
+          openconfig-interfaces:type: softwareLoopback
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 10.255.255.13
-                        prefix-length: 32
-                      ip: 10.255.255.13
-      - config:
-          enabled: true
-          name: GigabitEthernet1
-          type: ethernetCsmacd
-        name: GigabitEthernet1
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
+                openconfig-if-ip:addresses:
+                  openconfig-if-ip:address:
+                    - openconfig-if-ip:ip: 10.255.255.13
+                      openconfig-if-ip:config:
+                        openconfig-if-ip:ip: 10.255.255.13
+                        openconfig-if-ip:prefix-length: 32
+      - openconfig-interfaces:name: GigabitEthernet1
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet1
+          openconfig-interfaces:type: ethernetCsmacd
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 10.0.0.10
-                        prefix-length: 30
-                      ip: 10.0.0.10
-      - config:
-          description: '802.1q Trunk'
-          enabled: true
-          name: GigabitEthernet2
-          type: ethernetCsmacd
-        name: GigabitEthernet2
-        subinterfaces:
-          subinterface:
-            - config:
-                description: VLAN10
-                enabled: true
-                index: 10
-              index: 10
+                openconfig-if-ip:config:
+                  openconfig-if-ip:dhcp-client: true
+      - openconfig-interfaces:name: GigabitEthernet2
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet2
+          openconfig-interfaces:type: ethernetCsmacd
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 0
+              openconfig-interfaces:config:
+                openconfig-interfaces:index: 0
               openconfig-if-ip:ipv4:
-                addresses:
-                  address:
-                    - config:
-                        ip: 192.168.1.1
-                        prefix-length: 24
-                      ip: 192.168.1.1
+                openconfig-if-ip:addresses:
+                  openconfig-if-ip:address:
+                    - openconfig-if-ip:ip: 10.0.0.10
+                      openconfig-if-ip:config:
+                        openconfig-if-ip:ip: 10.0.0.10
+                        openconfig-if-ip:prefix-length: 30
+      - openconfig-interfaces:name: GigabitEthernet3
+        openconfig-interfaces:config:
+          openconfig-interfaces:description: 802.1q Trunk
+          openconfig-interfaces:enabled: true
+          openconfig-interfaces:name: GigabitEthernet3
+          openconfig-interfaces:type: ethernetCsmacd
+        openconfig-interfaces:subinterfaces:
+          openconfig-interfaces:subinterface:
+            - openconfig-interfaces:index: 10
+              openconfig-interfaces:config:
+                openconfig-interfaces:description: VLAN10
+                openconfig-interfaces:enabled: true
+                openconfig-interfaces:index: 10
+              openconfig-if-ip:ipv4:
+                openconfig-if-ip:addresses:
+                  openconfig-if-ip:address:
+                    - openconfig-if-ip:ip: 192.168.1.1
+                      openconfig-if-ip:config:
+                        openconfig-if-ip:ip: 192.168.1.1
+                        openconfig-if-ip:prefix-length: 24
               openconfig-vlan:vlan:
-                config:
-                  vlan-id: 10
-      - config:
-          enabled: false
-          name: GigabitEthernet3
-          type: ethernetCsmacd
-        name: GigabitEthernet3
-      - config:
-          enabled: false
-          name: GigabitEthernet4
-          type: ethernetCsmacd
-        name: GigabitEthernet4
-      - config:
-          enabled: false
-          name: GigabitEthernet5
-          type: ethernetCsmacd
-        name: GigabitEthernet5
-      - config:
-          enabled: false
-          name: GigabitEthernet6
-          type: ethernetCsmacd
-        name: GigabitEthernet6
-      - config:
-          enabled: false
-          name: GigabitEthernet7
-          type: ethernetCsmacd
-        name: GigabitEthernet7
-      - config:
-          enabled: true
-          name: GigabitEthernet8
-          type: ethernetCsmacd
-        name: GigabitEthernet8
-        subinterfaces:
-          subinterface:
-            - config:
-                index: 0
-              index: 0
-              openconfig-if-ip:ipv4:
-                config:
-                  dhcp-client: true
+                openconfig-vlan:config:
+                  openconfig-vlan:vlan-id: 10
+      - openconfig-interfaces:name: GigabitEthernet4
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: false
+          openconfig-interfaces:name: GigabitEthernet4
+          openconfig-interfaces:type: ethernetCsmacd
+      - openconfig-interfaces:name: GigabitEthernet5
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: false
+          openconfig-interfaces:name: GigabitEthernet5
+          openconfig-interfaces:type: ethernetCsmacd
+      - openconfig-interfaces:name: GigabitEthernet6
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: false
+          openconfig-interfaces:name: GigabitEthernet6
+          openconfig-interfaces:type: ethernetCsmacd
+      - openconfig-interfaces:name: GigabitEthernet7
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: false
+          openconfig-interfaces:name: GigabitEthernet7
+          openconfig-interfaces:type: ethernetCsmacd
+      - openconfig-interfaces:name: GigabitEthernet8
+        openconfig-interfaces:config:
+          openconfig-interfaces:enabled: false
+          openconfig-interfaces:name: GigabitEthernet8
+          openconfig-interfaces:type: ethernetCsmacd
 mdd_tags:
   - all

@@ -14,8 +14,8 @@ all:
   children:
     nso:
       vars:
-        ansible_user: ubuntu
-        ansible_password: admin
+        ansible_user: "{{ lookup('env', 'NSO_USERNAME') | default('ubuntu', true) }}"
+        ansible_password: "{{ lookup('env', 'NSO_PASSWORD') | default('admin', true) }}"
         ansible_python_interpreter: /usr/bin/python3
       hosts:
         nso1:

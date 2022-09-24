@@ -1,13 +1,14 @@
 ---
 mdd_data:
   openconfig-network-instance:network-instances:
-    - name: 'Mgmt-intf'
-      config:
-        name: 'Mgmt-intf'
-        type: 'L3VRF'
-        enabled: true
-        enabled-address-families:
-          - 'IPV4'
-          - 'IPV6'
+    openconfig-network-instance:network-instance:
+      - openconfig-network-instance:name: Mgmt-intf
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: Mgmt-intf
+          openconfig-network-instance:type: L3VRF
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:enabled-address-families:
+            - IPV4
+            - IPV6
 mdd_tags:
   - router

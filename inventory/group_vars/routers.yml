@@ -1,2 +1,2 @@
 cml_config_file: "{{ lookup('env', 'PWD') }}/templates/ios/bootstrap.j2"
-mgmt_interface: GigabitEthernet8
+mgmt_interface: GigabitEthernet1

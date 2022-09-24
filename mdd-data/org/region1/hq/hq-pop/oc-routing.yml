@@ -1,0 +1,109 @@
+---
+mdd_data:
+  openconfig-network-instance:network-instances:
+    openconfig-network-instance:network-instance:
+      - openconfig-network-instance:name: default
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: default
+          openconfig-network-instance:type: DEFAULT_INSTANCE
+          openconfig-network-instance:enabled: true
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: BGP
+              openconfig-network-instance:name: BGP
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+              openconfig-network-instance:bgp:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:as: 100
+                    openconfig-bgp-ext:log-neighbor-changes: true
+                  openconfig-network-instance:afi-safis:
+                    openconfig-network-instance:afi-safi:
+                      - openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                          openconfig-network-instance:enabled: true
+                openconfig-network-instance:neighbors:
+                  openconfig-network-instance:neighbor:
+                    - openconfig-network-instance:neighbor-address: 10.0.254.1
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:neighbor-address: 10.0.254.1
+                        openconfig-network-instance:description: ISP
+                        openconfig-network-instance:peer-as: 99
+                        openconfig-network-instance:enabled: True
+                      openconfig-network-instance:afi-safis:
+                        openconfig-network-instance:afi-safi:
+                          - openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                              openconfig-network-instance:enabled: true
+      - openconfig-network-instance:name: internal_1
+        openconfig-network-instance:config:
+          openconfig-network-instance:name: internal_1
+          openconfig-network-instance:type: L3VRF
+          openconfig-network-instance:enabled: true
+          openconfig-network-instance:enabled-address-families:
+            - IPV4
+            - IPV6
+          openconfig-network-instance:route-distinguisher: '1:1'
+        openconfig-network-instance:interfaces:
+          openconfig-network-instance:interface:
+            - openconfig-network-instance:id: Loopback0
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: Loopback0
+                openconfig-network-instance:interface: Loopback0
+                openconfig-network-instance:subinterface: 0
+            - openconfig-network-instance:id: GigabitEthernet2.10
+              openconfig-network-instance:config:
+                openconfig-network-instance:id: GigabitEthernet2.10
+                openconfig-network-instance:interface: GigabitEthernet2
+                openconfig-network-instance:subinterface: 10
+        openconfig-network-instance:protocols:
+          openconfig-network-instance:protocol:
+            - openconfig-network-instance:identifier: STATIC
+              openconfig-network-instance:name: DEFAULT
+              openconfig-network-instance:config:
+                openconfig-network-instance:identifier: STATIC
+                openconfig-network-instance:name: DEFAULT
+              openconfig-network-instance:static-routes:
+                openconfig-network-instance:static:
+                  - openconfig-network-instance:prefix: 0.0.0.0/0
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:prefix: 0.0.0.0/0
+                    openconfig-network-instance:next-hops:
+                      openconfig-network-instance:next-hop:
+                        - openconfig-network-instance:index: 10.0.254.1
+                          openconfig-network-instance:config:
+                            openconfig-network-instance:index: 10.0.254.1
+                            openconfig-network-instance:next-hop: 10.0.254.1
+                            openconfig-local-routing-ext:global: true
+            - openconfig-network-instance:identifier: OSPF
+              openconfig-network-instance:name: '1'
+              openconfig-network-instance:config:
+                openconfig-network-instance:enabled: True
+                openconfig-network-instance:identifier: OSPF
+                openconfig-network-instance:name: '1'
+              openconfig-network-instance:ospfv2:
+                openconfig-network-instance:global:
+                  openconfig-network-instance:config:
+                    openconfig-network-instance:log-adjacency-changes: True
+                    openconfig-ospfv2-ext:default-information-originate:
+                      openconfig-ospfv2-ext:config:
+                        openconfig-ospfv2-ext:enabled: True
+                openconfig-network-instance:areas:
+                  openconfig-network-instance:area:
+                    - openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:identifier: 0
+                      openconfig-network-instance:interfaces:
+                        openconfig-network-instance:interface:
+                          - openconfig-network-instance:id: Loopback0
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: Loopback0
+                              openconfig-network-instance:passive: True
+                          - openconfig-network-instance:id: GigabitEthernet2.10
+                            openconfig-network-instance:config:
+                              openconfig-network-instance:id: GigabitEthernet2.10

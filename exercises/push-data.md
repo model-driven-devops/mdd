@@ -262,7 +262,7 @@ But what if we want to rollback an entire change?
 
 ### Checkpoint/Rollback
 
-In order to rollback multiple changes at once, we have to perform a checkpoint operation befire we make the changes.  To do that, we run the `ciscops.mdd.nso_save_rollback`:
+In order to rollback multiple changes at once, we have to perform a checkpoint operation before we make the changes.  To do that, we run the `ciscops.mdd.nso_save_rollback`:
 
 ```
 ansible-playbook ciscops.mdd.nso_save_rollback
@@ -274,4 +274,4 @@ This drop the current Rollback ID into a file called `rollback.yaml`, but it can
 ansible-playbook ciscops.mdd.nso_load_rollback
 ```
 
-This playbook will return the network to the state that it was when `ciscops.mdd.nso_save_rollback` by loading the Rollback ID that immediatly follows the one that is in `rollback.yaml`, since rolling back to the one listed in `rollback.yaml` would return the network to the state it was at the change before the changes about to  be made.
+This playbook will return the network to the state that it was when `ciscops.mdd.nso_save_rollback` by loading the Rollback ID that immediately follows the one that is in `rollback.yaml`, since rolling back to the one listed in `rollback.yaml` would return the network to the state it was at the change before the changes about to  be made.

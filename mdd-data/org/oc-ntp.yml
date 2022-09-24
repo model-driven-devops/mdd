@@ -2,20 +2,20 @@
 mdd_data:
   openconfig-system:system:
     openconfig-system:clock:
-      config:
-        timezone-name: 'PST -8 0'
+      openconfig-system:config:
+        openconfig-system:timezone-name: 'PST -8 0'
     openconfig-system:ntp:
-      config:
-        enabled: true
-      servers:
-        server:
-          - address: '1.us.pool.ntp.org'
-            config:
-              address: '1.us.pool.ntp.org'
-              association-type: SERVER
-              iburst: true
-          - address: '2.us.pool.ntp.org'
-            config:
-              address: '2.us.pool.ntp.org'
-              association-type: SERVER
-              iburst: true
+      openconfig-system:config:
+        openconfig-system:enabled: true
+      openconfig-system:servers:
+        openconfig-system:server:
+          - openconfig-system:address: '216.239.35.0'
+            openconfig-system:config:
+              openconfig-system:address: '216.239.35.0'
+              openconfig-system:association-type: SERVER
+              openconfig-system:iburst: true
+          - openconfig-system:address: '216.239.35.4'
+            openconfig-system:config:
+              openconfig-system:address: '216.239.35.4'
+              openconfig-system:association-type: SERVER
+              openconfig-system:iburst: true

@@ -195,5 +195,5 @@ site2-sw1                  : ok=1    changed=0    unreachable=0    failed=0    s
 
 ```
 
-Keep in mind that this is the just the Ansible inventory and does not include the MDD Data.  For that,
-please refer to the excercise [Exploring the Data](exercises/explore-data.md).
+Keep in mind that this is just the Ansible inventory and does not include the MDD Data.  For that,
+please refer to the exercise [Exploring the Data](exercises/explore-data.md).
