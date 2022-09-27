@@ -5,28 +5,32 @@ mdd_data:
       openconfig-system:console:
         openconfig-system:config:
           openconfig-system-ext:enabled: false
+    openconfig-system-ext:timestamps:
+      openconfig-system-ext:logging:
+        openconfig-system-ext:config:
+          openconfig-system-ext:enabled: true
+          openconfig-system-ext:datetime: true
+          openconfig-system-ext:uptime: false
+          openconfig-system-ext:localtime: false
+      openconfig-system-ext:debugging:
+        openconfig-system-ext:config:
+          openconfig-system-ext:enabled: true
+          openconfig-system-ext:datetime: true
+          openconfig-system-ext:uptime: false
+          openconfig-system-ext:localtime: false
     openconfig-system:config:
       openconfig-system:domain-name: mdd.cisco.com
       openconfig-system:hostname: '{{ inventory_hostname }}'
-      openconfig-system-ext:timestamps:
-        openconfig-system-ext:logging:
-          openconfig-system-ext:enabled: true
-          openconfig-system-ext:datetime: true
-          openconfig-system-ext:uptime: false
-          openconfig-system-ext:localtime: false
-        openconfig-system-ext:debugging:
-          openconfig-system-ext:enabled: true
-          openconfig-system-ext:datetime: true
-          openconfig-system-ext:uptime: false
-          openconfig-system-ext:localtime: false
     openconfig-system-ext:services:
-      openconfig-system-ext:finger: false
-      openconfig-system-ext:service-tcp-small-servers: false
-      openconfig-system-ext:service-udp-small-servers: false
+      openconfig-system-ext:config:
+        openconfig-system-ext:finger: false
+        openconfig-system-ext:service-tcp-small-servers: false
+        openconfig-system-ext:service-udp-small-servers: false
       openconfig-system-ext:http:
-        openconfig-system-ext:http-enabled: false
-        openconfig-system-ext:https-enabled: true
-        openconfig-system-ext:ip-http-max-connections: 2
+        openconfig-system-ext:config:
+          openconfig-system-ext:http-enabled: false
+          openconfig-system-ext:https-enabled: true
+          openconfig-system-ext:ip-http-max-connections: 2
     openconfig-system:dns:
       openconfig-system:servers:
         openconfig-system:server:

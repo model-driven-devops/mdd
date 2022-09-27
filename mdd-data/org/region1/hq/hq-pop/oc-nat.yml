@@ -18,7 +18,8 @@ mdd_data:
                 openconfig-acl:config:
                   openconfig-acl:sequence-id: 10
                 openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:source-address: 10.0.0.0/8
+                  openconfig-acl-ext:config:
+                    openconfig-acl-ext:source-address: 10.0.0.0/8
               - openconfig-acl:sequence-id: 20
                 openconfig-acl:actions:
                   openconfig-acl:config:
@@ -27,7 +28,8 @@ mdd_data:
                 openconfig-acl:config:
                   openconfig-acl:sequence-id: 20
                 openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:source-address: 172.16.0.0/12
+                  openconfig-acl-ext:config:
+                    openconfig-acl-ext:source-address: 172.16.0.0/12
               - openconfig-acl:sequence-id: 30
                 openconfig-acl:actions:
                   openconfig-acl:config:
@@ -36,7 +38,8 @@ mdd_data:
                 openconfig-acl:config:
                   openconfig-acl:sequence-id: 30
                 openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:source-address: 192.168.0.0/16
+                  openconfig-acl-ext:config:
+                    openconfig-acl-ext:source-address: 192.168.0.0/16
   openconfig-system:system:
     openconfig-system-ext:services:
       openconfig-system-ext:nat:
