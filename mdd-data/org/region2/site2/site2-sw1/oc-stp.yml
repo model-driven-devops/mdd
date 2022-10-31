@@ -1,0 +1,101 @@
+---
+mdd_tags:
+  - switch
+mdd_data:
+  openconfig-spanning-tree:stp:
+    openconfig-spanning-tree:global:
+      openconfig-spanning-tree:config:
+        openconfig-spanning-tree:enabled-protocol:
+          - RAPID_PVST
+    openconfig-spanning-tree:interfaces:
+      openconfig-spanning-tree:interface:
+        - openconfig-spanning-tree:name: 'GigabitEthernet0/1'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet0/1'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_ENABLE
+        - openconfig-spanning-tree:name: 'GigabitEthernet0/2'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet0/2'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet0/3'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet0/3'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet1/0'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet1/0'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet1/1'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet1/1'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet1/2'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet1/2'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet1/3'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet1/3'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet2/0'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet2/0'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet2/1'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet2/1'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet2/2'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet2/2'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet2/3'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet2/3'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet3/0'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet3/0'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet3/1'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet3/1'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet3/2'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet3/2'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
+        - openconfig-spanning-tree:name: 'GigabitEthernet3/3'
+          openconfig-spanning-tree:config:
+            openconfig-spanning-tree:name: 'GigabitEthernet3/3'
+            openconfig-spanning-tree:guard: ROOT
+            openconfig-spanning-tree:link-type: P2P
+            openconfig-spanning-tree:edge-port: EDGE_AUTO
