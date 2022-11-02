@@ -8,3 +8,5 @@ ansible_collections/
 .cache/
 collections/
 envvars
+config.yaml
+labs.yaml
