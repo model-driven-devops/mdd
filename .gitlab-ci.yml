@@ -20,8 +20,7 @@ clean:
     - ansible-playbook cisco.cml.clean
   resource_group: mdd
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $CLEAN == "true"
-    - if: $CI_PIPELINE_SOURCE == "api" && $CLEAN == "true"
+    - if: $CLEAN == "true"
 
 build-cml:
   stage: build-cml
@@ -29,8 +28,7 @@ build-cml:
     - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
   resource_group: mdd
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $CLEAN == "true"
-    - if: $CI_PIPELINE_SOURCE == "api" && $CLEAN == "true"
+    - if: $CLEAN == "true"
 
 build-nso:
   stage: build-nso
@@ -41,8 +39,7 @@ build-nso:
     - ansible-playbook ciscops.mdd.nso_update_devices
   resource_group: mdd
   rules:
-    - if: $CI_PIPELINE_SOURCE == "web" && $CLEAN == "true"
-    - if: $CI_PIPELINE_SOURCE == "api" && $CLEAN == "true"
+    - if: $CLEAN == "true"
 
 save-rollback:
   stage: save-rollback
@@ -56,7 +53,6 @@ save-rollback:
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
-
 validate:
   stage: validate
   script:
@@ -66,7 +62,7 @@ validate:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "clus22"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 update:
@@ -79,20 +75,20 @@ update:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "clus22"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 check:
   stage: check
   script:
     # allow network to converge before running checks
-    - sleep 20
+    - sleep 60
     - ansible-playbook ciscops.mdd.check
   resource_group: mdd
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "clus22"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 load-rollback:

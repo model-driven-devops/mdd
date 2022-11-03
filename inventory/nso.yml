@@ -11,6 +11,12 @@ all:
       - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.5/ncs-5.7.5-cisco-iosxr-7.41.signed.bin
       - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.5/ncs-5.7.5-cisco-asa-6.14.signed.bin
     nso_default_ned: cisco-ios-cli-6.85
+    nso_package_repos:
+      - name: mdd
+        repo: https://github.com/model-driven-devops/nso-oc-services.git
+        version: v2.7.1
+        service_list:
+          - mdd
   children:
     nso:
       vars:
