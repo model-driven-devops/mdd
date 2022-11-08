@@ -2,6 +2,7 @@ stages:
   - clean
   - build-cml
   - build-nso
+  - init-nso
   - save-rollback
   - validate
   - update
@@ -13,6 +14,7 @@ image: ghcr.io/model-driven-devops/mdd:latest
 variables:
   ANSIBLE_CONFIG: "./ansible.cfg"
   CML_VERIFY_CERT: "false"
+  NSO_INSTALL: "true"
 
 clean:
   stage: clean
@@ -35,6 +37,15 @@ build-nso:
   script:
     - ansible-playbook ciscops.mdd.nso_install
     - ansible-playbook ciscops.mdd.nso_update_packages
+    - ansible-playbook ciscops.mdd.nso_init
+    - ansible-playbook ciscops.mdd.nso_update_devices
+  resource_group: mdd
+  rules:
+    - if: $CLEAN == "true" && $NSO_INSTALL == "true"
+
+init-nso:
+  stage: init-nso
+  script:
     - ansible-playbook ciscops.mdd.nso_init
     - ansible-playbook ciscops.mdd.nso_update_devices
   resource_group: mdd
