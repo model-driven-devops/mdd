@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-See [Initial Setup](exercises/initial-setup.md)
+See [Initial Setup](initial-setup.md)
 
 ## Topology
 
