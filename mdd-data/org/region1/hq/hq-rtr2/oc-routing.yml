@@ -19,7 +19,7 @@ mdd_data:
                     openconfig-network-instance:router-id: 10.255.255.12
       - openconfig-network-instance:name: internal_1
         openconfig-network-instance:config:
-          openconfig-network-instance:route-distinguisher: '1:2'
+          openconfig-network-instance:route-distinguisher: '1:1'
       - openconfig-network-instance:name: Mgmt-intf
         openconfig-network-instance:config:
           openconfig-network-instance:name: Mgmt-intf
