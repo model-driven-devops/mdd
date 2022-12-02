@@ -16,6 +16,11 @@ mdd_data:
                 openconfig-network-instance:vlan-id: 10
                 openconfig-network-instance:name: 'Internal-1'
                 openconfig-network-instance:status: 'ACTIVE'
+            - openconfig-network-instance:vlan-id: 99
+              openconfig-network-instance:config:
+                openconfig-network-instance:vlan-id: 99
+                openconfig-network-instance:name: 'Native'
+                openconfig-network-instance:status: 'ACTIVE'
             - openconfig-network-instance:vlan-id: 100
               openconfig-network-instance:config:
                 openconfig-network-instance:vlan-id: 100
