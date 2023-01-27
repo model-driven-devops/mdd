@@ -48,6 +48,7 @@ init-nso:
   script:
     - ansible-playbook ciscops.mdd.nso_init
     - ansible-playbook ciscops.mdd.nso_delete_devices
+    - sleep 10
     - ansible-playbook ciscops.mdd.nso_update_devices
     - ansible-playbook ciscops.mdd.update -e dry_run=no
   resource_group: mdd
