@@ -234,3 +234,5 @@ We can address this is a couple of ways:
 2) we could define different schemas for different regions
 (e.g. `mdd-data/org/region1/validate-dns.yml` and `mdd-data/org/region2/validate-dns.yml`) that specify different
 schemas to use to validate data for the devices in each of those regions.
+
+[Home](../README.md#workshop-exercises) | [Previous](explore-data.md#exploring-the-data) | [Next](push-data.md#pushing-data)

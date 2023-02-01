@@ -371,3 +371,5 @@ fatal: [hq-rtr1]: FAILED! => {
 PLAY RECAP ********************************************************************************************************
 hq-rtr1                    : ok=14   changed=0    unreachable=0    failed=1    skipped=3    rescued=1    ignored=0   
 ```
+
+[Home](../README.md#workshop-exercises) | [Previous](push-data.md#pushing-data) | [Next](cicd.md#ci-cd)

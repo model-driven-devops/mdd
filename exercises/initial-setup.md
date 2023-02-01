@@ -100,3 +100,5 @@ To show the config data for `hq-rtr1`, run:
 ```
 ansible-playbook ciscops.mdd.show_oc --limit=hq-rtr1
 ```
+
+[Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)

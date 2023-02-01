@@ -275,3 +275,5 @@ ansible-playbook ciscops.mdd.nso_load_rollback
 ```
 
 This playbook will return the network to the state that it was when `ciscops.mdd.nso_save_rollback` by loading the Rollback ID that immediately follows the one that is in `rollback.yaml`, since rolling back to the one listed in `rollback.yaml` would return the network to the state it was at the change before the changes about to  be made.
+
+[Home](../README.md#workshop-exercises) | [Previous](data-validation.md#data-validation) | [Next](check-state.md#state-checking)
