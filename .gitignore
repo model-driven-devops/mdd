@@ -1,6 +1,7 @@
 venv*/
 ansible_collections/
 .virl/
+.vscode/
 .virlrc
 *.pyc
 *.retry
