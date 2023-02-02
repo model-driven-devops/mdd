@@ -1,28 +1,17 @@
 # Pushing Data
 
-## Dependencies
 
-See [Initial Setup](exercises/initial-setup.md)
-See [Deploying the Topology](exercises/deploy-topology.md)
-
-## Overview
+At this point in the pipeline, we've generated the device specific data and
+validated it.  We are now ready to push the validated data into the devices.
 
 ![Push Data](overview-push-data.png?raw=true "Push Data")
 
-At this point in the pipeline, we've generated the device specific data and
-validated that data.  We are now ready to push that data into the device.
+## Dry Run
 
-## Procedure
+You can optionally do a dry run to push the data to all devices, a subset of devices, or a single device.  The dry run will calculate what changes need to be made and give a report of the specific changes that would be made to the devices.  To perform a dry run, use:
 
-### Dry Run (optional)
-
-We can do a dry run to push the data to all devices, a subset of devices, or
-a single device.  The dry run will calculate what changes need to be made and
-give a report of the specific changes that will be made to the devices.  To perform
-a dry run, do:
-
-```
-ansible-playbook ciscops.mdd.nso_update_oc
+```bash
+ansible-playbook ciscops.mdd.update
 ```
 
 Here is a truncated version of the output to illustrate what the playbook does:
@@ -85,28 +74,43 @@ site2-rtr1                 : ok=16   changed=0    unreachable=0    failed=0    s
 site2-sw1                  : ok=16   changed=0    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0 
 ```
 
-First, the playbook combines the data as explained in [Exploring the Data](exercises/explore-data.md) to create the device-specific payload.  Second, it checks that all the devices are in sync with NSO to make sure that there were not any manual changes made.  If manual changes were made, that host would error out and no new updated would be pushed to the device until the conflict was resolved and the device brought back into sync with NSO.  Third, it pushes the data to NSO.  By default, the `ciscops.mdd.nso_update_oc`.  Since we did not override that behavior,
-NSO will perform a dry run and report back what changes it would make to the device.  Last, the playbook consolidates the changes into a report to consolidate the changes made with the group of devices that changes were made on. Since `consolidated_report` was `null`, there were no updates that needed to pushed out to the devices.
+The playbook performs the following tasks:
 
-### Single device change
+1. It combines the data as explained in the Explore the Data exercise to create the device-specific payload.
+2. It checks that all of the devices are in sync with NSO to make sure that there were not any manual changes made out-of-band.  If manual changes were made, that host would error out and no new update would be pushed to the device until the conflict was resolved and the device brought back into sync with NSO.
+3. It pushes the data to NSO.  By default, the ```ciscops.mdd.update``` performs a dry run.  Since we did not override that behavior, NSO will perform a dry run and report back what changes it would make to the device.
+4. It consolidates the changes into a report to consolidate the changes made with the group of devices that changes were made on. Since `consolidated_report` was `null`, there were no updates that needed to pushed out to the devices.
 
-Let's look at making a change that affects a single device.  A common change of this type would be to enable an interface and add it to a VLAN.  We'll do that by adding interface `GigabitEthernet1/1` into vlan 10 on `site2-sw1` by modifying the interface data under `openconfig-interfaces:interface` in `mdd-data/org/region2/site2/site2-sw1/oc-intefaces.yml`
-to be: 
+## Single Device Change
 
-```
-      - config:
-          enabled: true
-          name: GigabitEthernet1/1
-          type: l2vlan
-        name: GigabitEthernet1/1
-        openconfig-if-ethernet:ethernet:
-          openconfig-vlan:switched-vlan:
-            config:
-              access-vlan: 10
-              interface-mode: ACCESS
+Let's look at making a change that affects a single device.  A common change of this type would be to enable an interface and add it to a VLAN.  We'll do that by adding interface ```GigabitEthernet1/1``` into vlan 10 on ```site2-sw1``` by modifying the interface data in its `oc-intefaces.yml`.  Copy the updated interface configuration of site2-sw1 into the file `mdd-data/org/region2/site2/site2-sw1/oc-intefaces.yml`.
+
+```bash
+cp files/oc-interfaces-new.yml mdd-data/org/region2/site2/site2-sw1/oc-interfaces.yml
 ```
 
-When we perform a dry run, we see the change that will be pushed out.
+This file contains the following changed data.  View the file in the editor to verify.
+
+```yaml
+$ diff files/oc-interfaces.yml files/oc-interfaces-new.yml 
+54c54,59
+<           openconfig-interfaces:type: ethernetCsmacd
+---
+>           openconfig-interfaces:type: l2vlan
+>         openconfig-if-ethernet:ethernet:
+>           openconfig-vlan:switched-vlan:
+>             openconfig-vlan:config:
+>               openconfig-vlan:access-vlan: 10
+>               openconfig-vlan:interface-mode: ACCESS
+```
+
+Then perform a dry run:
+
+```bash
+ansible-playbook ciscops.mdd.update
+```
+
+And see the change that would be pushed out:
 
 ```
 TASK [ciscops.mdd.nso : debug] *************************************************************************************************************************************************************************************************************************************************
@@ -136,9 +140,11 @@ site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    s
 Notice that site2-sw1 is the only device that changes.  Since we know that we are only pushing out a change to site2-sw1,
 we can push it to that device specifically by limiting the scope of tha Ansible playbook:
 
+```bash
+ansible-playbook ciscops.mdd.update -e dry_run=no --limit=site2-sw1
 ```
-ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no --limit=site2-sw1
-```
+
+The truncated output below shows that the change was successful:
 
 ```
 TASK [ciscops.mdd.nso : Update OC Service] ************************************************************************
@@ -158,17 +164,50 @@ PLAY RECAP *********************************************************************
 site2-sw1                  : ok=17   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0   
 ```
 
-We can see that the change was pushed out and are given a Rollback Id of 10036.  This Rollback ID allows us to roll back this last change if it turns out to have a mistake and/or broke something on the network.  We can rollback using the `ciscops.mdd.nso_rollback` playbook:
+You can see that the change was pushed out and we are given a rollback ID (10036 in this example).  This rollback ID allows us to roll back this last change if it turns out to have a mistake and/or broke something on the network.  Make a note of the rollback ID you get when running the playbook. You will use it later to rollback this change.
+
+Let's verify that this change was actually made.  Find the IP address of `site2-sw1`:
+
+```bash
+ansible-playbook cisco.cml.inventory --limit site2-sw1
+```
+
+Then login to the device using SSH with username admin and password admin (substitute your `site2-sw1` IP address here):
+
+```
+# ssh admin@192.133.151.134
+Password:
+Welcome to site2-sw1
+
+site2-sw1#
+```
+
+And verify the interface configuration:
+
+```bash
+show run int gig1/1
+```
+
+Now, exit out of the SSH session to `site2-sw1` and rollback the configuration with the ```ciscops.mdd.nso_rollback``` playbook (use your rollback ID, NOT the one shown below):
 
 ```
 ansible-playbook ciscops.mdd.nso_rollback -e rollback_id=10036
 ```
+> Note: update the rollback ID to match the one shown in your terminal output for the previous step.
 
-### Multi-Device Change
+If you would like, you can SSH to `site2-sw1` again to verify that the changes were rolled back.
 
-Next, let's make a change the affects several devices.  We'll do another common change: Adding a VLAN.  This time, we'll make a change to the org-level file `mdd-data/org/oc-vlan.yml` so that the change is pushed out to all switches:
+Now reset the site2-sw1 interfaces back to the original values:
 
+```bash
+cp files/oc-interfaces.yml mdd-data/org/region2/site2/site2-sw1/oc-interfaces.yml
 ```
+
+## Multi-Device Changes
+
+Next, let's make a change that effects several devices.  For this, we will do another common change: Adding a VLAN.  This time, we'll make a change to the org-level file `mdd-data/org/oc-vlan.yml` so that the change is pushed out to all switches.  Verify the current contents of the `mdd-data/org/oc-vlan.yml` file in the editor.
+
+```yaml
 ---
 mdd_tags:
   - switch
@@ -199,16 +238,33 @@ mdd_data:
                 status: 'ACTIVE'
 ```
 
-As you can see, this data will only get applied to devices that are tagged as `switch1`.  We'll add VLAN 20 by adding the following data under `openconfig-network-instance:network-instance`:
+Because we set ```mdd_tags``` to ```switch```, this data will only get applied to devices that are tagged as ```switch```.  We'll add VLAN 20 by adding the following data to the list of vlans in ```openconfig-network-instance:network-instance```.
 
+Copy the updated vlan configuration into the file `mdd-data/org/oc-vlan.yml`:
+
+```bash
+cp files/oc-vlan-new.yml mdd-data/org/oc-vlan.yml
 ```
-            - vlan-id: 20
-              config:
-                vlan-id: 20
-                name: 'Internal-2'
+
+This file contains the following additional data.  View the file in the editor to verify.
+
+```yaml
+$ diff files/oc-vlan.yml files/oc-vlan-new.yml 
+18a19,23
+>             - openconfig-network-instance:vlan-id: 20
+>               openconfig-network-instance:config:
+>                 openconfig-network-instance:vlan-id: 20
+>                 openconfig-network-instance:name: 'Internal-2'
+>                 openconfig-network-instance:status: 'ACTIVE'
 ```
 
 We can now perform a dry run to see what changes will be made in the network:
+
+```bash
+ansible-playbook ciscops.mdd.update
+```
+
+And get the following truncated output:
 
 ```
 TASK [Update OC Data] *********************************************************************************************
@@ -240,7 +296,7 @@ site2-rtr1                 : ok=16   changed=0    unreachable=0    failed=0    s
 site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0   
 ```
 
-As you can see, the change only affected the devices tagged as a `switch`.  Since the same change was pushed to multiple devices, the consolidated report only listed it once.  Since no other devices were changed, they were not included in the report.  When we push out the change, we get the Rollback Ids for the changes:
+As you can see, the change only affected the devices tagged as a `switch`.  Since the same change was pushed to multiple devices, the consolidated report only listed it once.  Since no other devices were changed, they were not included in the report.  If we push out these changes without a dry run, we would get the rollback IDs for the changes:
 
 ```
 TASK [ciscops.mdd.nso : debug] *************************************************************************************************************************************************************************************************************************************************
@@ -260,20 +316,20 @@ ok: [site2-sw1] => {
 
 But what if we want to rollback an entire change?
 
-### Checkpoint/Rollback
+## Checkpoint/Rollback
 
-In order to rollback multiple changes at once, we have to perform a checkpoint operation before we make the changes.  To do that, we run the `ciscops.mdd.nso_save_rollback`:
+In order to rollback multiple changes at once, we have to perform a checkpoint operation before we make the changes.  To do that, we run the ```ciscops.mdd.nso_save_rollback```:
 
-```
+```bash
 ansible-playbook ciscops.mdd.nso_save_rollback
 ```
 
-This drop the current Rollback ID into a file called `rollback.yaml`, but it can be overridden with extra vars. If the playbook is run a second time, it will drip the latest Rollback ID into the file, losing the previous one.  To rollback to this checkpoint, run the playbook `ciscops.mdd.nso_load_rollback`:
+This drops the current rollback ID into a file called `rollback.yaml`, but it can be overridden with extra vars. If the playbook is run a second time, it will drop the latest rollback ID into the file, losing the previous one.  To rollback to this checkpoint, run the playbook ```ciscops.mdd.nso_load_rollback```:
 
-```
+```bash
 ansible-playbook ciscops.mdd.nso_load_rollback
 ```
 
-This playbook will return the network to the state that it was when `ciscops.mdd.nso_save_rollback` by loading the Rollback ID that immediately follows the one that is in `rollback.yaml`, since rolling back to the one listed in `rollback.yaml` would return the network to the state it was at the change before the changes about to  be made.
+This playbook will return the network to the state that it was in when ```ciscops.mdd.nso_save_rollback``` was run.
 
 [Home](../README.md#workshop-exercises) | [Previous](data-validation.md#data-validation) | [Next](check-state.md#state-checking)

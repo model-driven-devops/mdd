@@ -1,104 +1,38 @@
 # Initial Setup
 
-There are three ways to run the tooling in this repo:
-1) Locally in the native OS
-2) Using a container on top of your native OS
-3) Using GitHub actions from a fork of the repo (covered later)
+This workshop requires access to a running network simulation and other resources in order to properly exercise the MDD reference architecture.  In this exercise you will:
 
-## Cloning the repo for local execution
-### Clone the repo
+- Open the MDD folder in Visual Studio Code
+- Set the required environment variables
+- Start the VPN required for accesss to the resources
 
-First, clone and enter the repo:
-```
-git clone https://github.com/model-driven-devops/mdd.git
-cd mdd
+To get started, open a terminal and start Visual Studio Code in the MDD directory.
+```bash
+code ~/DEVWKS-2870/mdd
 ```
 
-## Dependencies
+Open a new terminal in Visual Studio Code using the Terminal menu (or CTRL-` if you like shortcuts).  All future commands for this workshop should be executed in this terminal.
 
-* Environmental Variables
-* Docker (if running in a docker container)
+In the new terminal, source the `envvars` file.
 
-### Environmental Variables
-The MDD tooling requires several environment variables.  The first one required for
-base execution is:
-```
-export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python
+```bash
+source envvars
 ```
 
-You can define this variable from the `envars` file:
+Then connect to the VPN.
 
-```
-. ./envvars
-```
-
-### Docker
-
-## Running Locally in the Native OS
-### Python Dependencies
-Next, it is highly recommended that you create a virtual environment to make it easier to
-install the dependencies without conflict:
-
-```
-python3 -m venv venv-mdd
-. ./venv-mdd/bin/activate
+```bash
+./start-vpn.sh
 ```
 
-Next, install the Python requirements via pip:
-```
-pip3 install -r requirements.txt
-```
-If using CML >=2.4, PIP install the correct cml client .whl file:
-```
-pip3 install ./files/virl2_client-2.4.0+build.2-py3-none-any.whl
-```
-### Reactivate Virtual Environment
-Reactivate virtual environment to ensure your shell is using the newly installed ansible.  
-```
-deactivate
-```
-```
-. ./venv-mdd/bin/activate
-```
-### Ansible Collections
-The MDD tooling is distributed via an Ansible Collection.  To install the tooling and it's
-Ansible dependencies, use ansible-galaxy:
+If the VPN started correctly you should see the following in the output:
 
 ```
-ansible-galaxy collection install -r requirements.yml
-```
-> Note: If you want to develop a collection, you need to set `ANSIBLE_COLLECTIONS_PATH` (or set in ansible.cfg)
-before installing the requirements above to tell Ansible to look locally for collections, comment out the collection
-in requirements.yml, and clone the collection repo directly, e.g.
-```
-export ANSIBLE_COLLECTIONS_PATH=./
-cd ansible_colletions
-mkdir ciscops
-cd ciscops
-git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
+Session authentication will expire at ...
 ```
 
-## Running in a Container on top of your native OS
-If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
-documentation for how to run tooling from a container.  Examples of how to run the tooling from a
-container in GitHib actions can be found in `.github/workflows` in this repo.
+If the VPN fails to start, make sure you fix this before proceeding.
 
-*** Need to put more verbiage on running in the container (e.g. Where does it get the tooling, where does it get the data)
-
-If you are running the tooling locally instide a container, you can use the provided shell script
-`play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
-
-```
-./play.sh ciscops.mdd.show_oc --limit=hq-rtr1
-```
-
-> Note: The same applies as above to developing running in the container.
-
-## Testing
-At this point, you should be able to show the config data for the hosts in the inventory.
-To show the config data for `hq-rtr1`, run:
-```
-ansible-playbook ciscops.mdd.show_oc --limit=hq-rtr1
-```
+That's it!  Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
 
 [Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)
