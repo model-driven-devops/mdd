@@ -24,7 +24,7 @@ The goal is to find bad configurations *before* they are pushed into the network
 
 In this workshop you will be using the [MDD reference implementation](https://github.com/model-driven-devops/mdd). The reference implementation is a specific implementation of the MDD concepts layed out in the book [Model-Driven Devops](www.informit.com/MDD). The reference implementation uses Cisco Modeling Labs to provision the topology, Ansible as the workflow engine, Cisco Network Services Orchestrator (NSO) as the platform and GitLab for version control and CI.
 
-Shown below is the topology you will be working with during the workshop.  It is a typical HQ/branch architecture with L3 VPN in the WAN, rendundancy at the HQ site, NAT at the ISP edge.
+Shown below is the topology you will be working with during the workshop.  It is a typical HQ/branch architecture with L3 VPN in the WAN, rendundancy at the HQ site, and NAT at the ISP edge.
 
 ![MDD Reference Topology](exercises/mdd_topo.png?raw=true "MDD Reference Topology")
 
@@ -43,7 +43,6 @@ These exercises will help you get hands-on experience with different aspects of 
 
 
 # extras
-
 
 <img align="right" width="300" height="400" src="exercises/MDD-Book-Cover.png">
 
