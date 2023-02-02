@@ -415,4 +415,4 @@ At this point, you now have the tools to:
 
 To this point we have been running each of these steps manually.  In the next exercise we use this set of tools in a fully functional CI/CD pipeline.
 
-[Home](../README.md#workshop-exercises) | [Previous](push-data.md#pushing-data) | [Next](cicd.md#ci-cd)
+[Home](../README.md#workshop-exercises) | [Previous](push-data.md#pushing-data) | [Next](cicd.md#cicd)
