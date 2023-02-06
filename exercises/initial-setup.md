@@ -6,22 +6,22 @@ This workshop requires access to a running network simulation and other resource
 - Set the required environment variables
 - Start the VPN required for accesss to the resources
 
-To get started, open a terminal and start Visual Studio Code in the MDD directory.
-```bash
+To get started, open a terminal and start Visual Studio Code in the MDD directory:
+```
 code ~/DEVWKS-2870/mdd
 ```
 
-Open a new terminal in Visual Studio Code using the Terminal menu (or CTRL-` if you like shortcuts).  All future commands for this workshop should be executed in this terminal.
+Open a new terminal in Visual Studio Code using the Terminal menu (or CTRL-` if you like shortcuts). All future commands for this workshop should be executed in this terminal.
 
 In the new terminal, source the `envvars` file.
 
-```bash
+```
 source envvars
 ```
 
 Then connect to the VPN.
 
-```bash
+```
 ./start-vpn.sh
 ```
 
@@ -33,6 +33,6 @@ Session authentication will expire at ...
 
 If the VPN fails to start, make sure you fix this before proceeding.
 
-That's it!  Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
+That's it! Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
 
 [Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)

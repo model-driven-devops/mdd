@@ -1,6 +1,6 @@
 # State Checking
 
-The last step in the CI part of the MDD CI/CD pipeline is state checking. In the data validation step, we checked the configuration data before it was pushed into the network. State checking is an important step because if verifies that a change has the desired effect, in a running network, while not breaking anything else. While you are learning about state checking in this exercise as part of CI, it can be used in CD as well by design. It is a core tenant of Model-Driven DevOps to use the same code for testing as is used for deployment where possible.  In the case of state checking, you should use a test network comprised of virtual devices where possible and physical devices where necessary. Since we are using the actual OSs from the production network for the CI tests, we can run those same tests after CD in the production network, or just check state as part of a monitoring framework.
+The last step in the CI part of the MDD CI/CD pipeline is state checking. In the data validation step, we checked the configuration data before it was pushed into the network. State checking is an important step because if verifies that a change has the desired effect, in a running network, while not breaking anything else. While you are learning about state checking in this exercise as part of CI, it can be used in CD as well by design. It is a core tenant of Model-Driven DevOps to use the same code for testing as is used for deployment where possible. In the case of state checking, you should use a test network comprised of virtual devices where possible and physical devices where necessary. Since we are using the actual OSs from the production network for the CI tests, we can run those same tests after CD in the production network, or just check state as part of a monitoring framework.
 
 ![State Checking](overview-check-state.png?raw=true "State Checking")
 
@@ -8,7 +8,7 @@ The last step in the CI part of the MDD CI/CD pipeline is state checking. In the
 
 We define State Checks in the same way that we define Data Validation, by using files in `mdd-data` that apply depending on where they are in the directory hierarchy. In the case of State Checking, these files are prefixed with `check-`. For example, the file `mdd-data/org/check-site-routes.yml` defines a check that verifies routes in a routing table:
 
-```
+```yaml
 ---
 mdd_tags:
   - hq_router
@@ -38,21 +38,21 @@ By allowing the passing in of variables, the same schema can be used to check mu
 
 ## Structured Data
 
-We use JSON Schema for checking state, just like we did when we validated data, to avoid a programmatic approach that would require writing a new script or playbook for each test.  Using JSON Schema for state validation is more modular and requires little to no programming.
+We use JSON Schema for checking state, just like we did when we validated data, to avoid a programmatic approach that would require writing a new script or playbook for each test. Using JSON Schema for state validation is more modular and requires little to no programming.
 
-Using JSON Schema, however, does require structured data.  One option for structured data is to use the API provided by the device itself.  Many modern devices provide a structured API that provides operational data.  The problem is that they generally use different models between devices and vendors, requiring different JSON Schemas which adds more work and creates more code to maintain.  Another option is it take the unstructured data from "show" commands and structure it in a consistent way.  Using the CLI also has the advantage of supporting legacy devices; however, the composition of your network might drive a different set of decisions.
+Using JSON Schema, however, does require structured data. One option for structured data is to use the API provided by the device itself. Many modern devices provide a structured API that provides operational data. The problem is that they generally use different models between devices and vendors, requiring different JSON Schemas which adds more work and creates more code to maintain.  Another option is it take the unstructured data from "show" commands and structure it in a consistent way. Using the CLI also has the advantage of supporting legacy devices; however, the composition of your network might drive a different set of decisions.
 
-In the case of this reference implementation, we use [pyATS](https://pubhub.devnetcloud.com/media/pyats/docs/overview/index.html) to parse the unstructured data into structured data.  Specifically, we use the parsers from pyATS (as opposed to its test automation framework either through NSO or direct to device using the `ansible.netcommon.cli_parse` module.
+In the case of this reference implementation, we use [pyATS](https://pubhub.devnetcloud.com/media/pyats/docs/overview/index.html) to parse the unstructured data into structured data. Specifically, we use the parsers from pyATS (as opposed to its test automation framework) either through NSO or direct to device using the `ansible.netcommon.cli_parse` module.
 
 Run the `ciscops.mdd.check` in debug (i.e. `-vvv`) for `site1-rtr1`: 
 
-```bash
+```
 ansible-playbook ciscops.mdd.check --limit=site1-rtr1 -vvv
 ```
 
 And you should get the following data output from a `show ip route vrf internal_1` command:
 
-```
+```json
 ok: [site1-rtr1] => {
     "ansible_facts": {
         "parsed_output": {
@@ -230,15 +230,11 @@ ok: [site1-rtr1] => {
 }
 ```
 
-As you can see, what was previously unstructured CLI output is now nicely structured data that can be verified
-with a JSON Schema.  
+As you can see, what was previously unstructured CLI output is now nicely structured data that can be verified with a JSON Schema.  
 
 ## Schema
 
-Now that we have structured data representing the state of the device, we can construct a JSON Schema to check to
-make sure that it is at the desired state.  For this topology, we want to check that the routes for the HQ and other
-sites appear in each of the sites.  In some circumstances, these routes can vary depending on the location in the network.  To keep
-us from needing to write a different schema for each check, we construct the JSON Schema as a Jinja template.  The following is the JSON Schema for checking routes in the reference implementation.  It can be found in the file `scehmas/pyats/show_ip_route.yml.j2`.
+Now that we have structured data representing the state of the device, we can construct a JSON Schema to check to make sure that it is at the desired state. For this topology, we want to check that the routes for the HQ and other sites appear in each of the sites. In some circumstances, these routes can vary depending on the location in the network. To keep us from needing to write a different schema for each check, we construct the JSON Schema as a Jinja template. The following is the JSON Schema for checking routes in the reference implementation. It can be found in the file `scehmas/pyats/show_ip_route.yml.j2`.
 
 ```yaml
 type: object
@@ -270,11 +266,7 @@ properties:
                     required: {{ check_vars.routes }}
 ```
 
-As with the schemas used for data validation, it follows the structure of the data.  At the places in the
-data structure where the values would change for a particular check, we use Jinja to inject the correct
-values.  These values are retrieved from the check definition file as provided by the `check_vars` attribute.
-In the case of this particular check, `{{ check_vars.vrf }}` is replaced with `internal_1` and `{{ check_vars.routes }}`
-is replaced with:
+As with the schemas used for data validation, it follows the structure of the data.  At the places in the data structure where the values would change for a particular check, we use Jinja to inject the correct values. These values are retrieved from the check definition file as provided by the `check_vars` attribute. In the case of this particular check, `{{ check_vars.vrf }}` is replaced with `internal_1` and `{{ check_vars.routes }}` is replaced with:
 
 ```yaml
         - 172.16.0.0/24
@@ -282,21 +274,18 @@ is replaced with:
         - 192.168.2.0/24
 ```
 
-This templating, in combination with the ability to place different checks in different parts of the network
-hierarchy, provides us with the ability to check for different subnets in different places.
+This templating, in combination with the ability to place different checks in different parts of the network hierarchy, provides us with the ability to check for different subnets in different places.
 
 
 ## Running the Checks
 
-The playbook `ciscops.mdd.check` is used to run the checks.  Let's look at how it operates by walking
-through a truncated version of the output when run against a single device:
+The playbook `ciscops.mdd.check` is used to run the checks. Let's look at how it operates by walking through a truncated version of the output when run against a single device:
 
-```bash
+```
 ansible-playbook ciscops.mdd.check --limit=hq-rtr1
 ```
 
-First, the playbook looks for all the check definition files that apply to the devices in scope, then checks
-that list against the tags in the definition:
+First, the playbook looks for all the check definition files that apply to the devices in scope, then checks that list against the tags in the definition:
 
 ```
 TASK [Search for check files] *************************************************************************************
@@ -313,8 +302,7 @@ ok: [hq-rtr1] => (item={'mdd_tags': ['hq_router', 'site_router'], 'mdd_checks': 
 ok: [hq-rtr1] => (item={'mdd_tags': ['hq_router', 'site_router'], 'mdd_checks': [{'name': 'Check Network-wide Routes', 'command': 'show ip route vrf internal_1', 'schema': 'pyats/show_ip_route.yml.j2', 'method': 'cli_parse', 'check_vars': {'vrf': 'internal_1', 'routes': ['172.16.0.0/24', '192.168.1.0/24', '192.168.2.0/24']}}]})
 ```
 
-Then it runs the actual checks.  While the devices are run in parallel as specified in the Ansible configuration
-(Usually five at a time), the checks for a particular device are run sequentially:
+Then it runs the actual checks. While the devices are run in parallel as specified in the Ansible configuration (usually five at a time), the checks for a particular device are run sequentially:
 
 ```
 TASK [Run Checks] *************************************************************************************************
@@ -341,13 +329,11 @@ PLAY RECAP *********************************************************************
 hq-rtr1                    : ok=14   changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
 ```
 
-At this point, the check step is finished, and all the checks have passed.  Let's look at what happens when
-something fails.  If we simply add a network to the check definition that we know we are not pushing out, we should
-see that fail.
+At this point, the check step is finished, and all the checks have passed. Let's look at what happens when something fails. If we simply add a network to the check definition that we know we are not pushing out, we should see that fail.
 
 Open the `mdd-data/org/check-site-routes.yml` file in the editor and add a new check for `192.168.3.0/24` to the list of routes.  When you are done, the data should look like this:
 
-```
+```yaml
 ---
 mdd_tags:
   - hq_router
@@ -366,9 +352,9 @@ mdd_checks:
         - 192.168.3.0/24
 ```
 
-Then rerun the check:
+Save the file and then rerun the check:
 
-```bash
+```
 ansible-playbook ciscops.mdd.check --limit=hq-rtr1
 ```
 
@@ -398,13 +384,13 @@ Notice that `192.168.3.0/24` is a required property, but it was not found in the
 
 Remove `192.168.3.0/24` from the list of routes and verify that the check passes.
 
-```bash
+```
 ansible-playbook ciscops.mdd.check --limit=hq-rtr1
 ```
 
 ## Summary
 
-This type of state checking is important as we begin to adopt test-driven development (TDD). TDD reverses the typical process of developing code and then writing the tests for it.  In TDD, the tests are written first and then the code is written to pass the tests. Model-Driven DevOps is built to support this method when developing infrastructure-as-code for your network infrastructure.  By writing the schema for data validation and state checking prior to updating the configuration data, you can be assured that changes to your network are compliant, secure, and will not break existing applications or services.
+This type of state checking is important as we begin to adopt test-driven development (TDD). TDD reverses the typical process of developing code and then writing the tests for it. In TDD, the tests are written first and then the code is written to pass the tests. Model-Driven DevOps is built to support this method when developing infrastructure-as-code for your network infrastructure. By writing the schema for data validation and state checking prior to updating the configuration data, you can be assured that changes to your network are compliant, secure, and will not break existing applications or services.
 
 At this point, you now have the tools to:
 

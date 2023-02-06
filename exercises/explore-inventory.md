@@ -1,14 +1,14 @@
 # Exploring the Inventory
 
-In this exercise you will explore the Ansible inventory.  For this lab, the inventory source is set in `ansible.cfg` and is defined as `./inventory`.  This directory contains files that define the Ansible inventory for this repository.  There are two main sources of inventory information: `network.yml` and `cml.yml`.  `network.yml` defines the nodes in the topology, their relationship (hierarchy), and attributes (e.g. tags).
+In this exercise you will explore the Ansible inventory. For this lab, the inventory source is set in `ansible.cfg` and is defined as `./inventory`. This directory contains files that define the Ansible inventory for this repository.  There are two main sources of inventory information: `network.yml` and `cml.yml`.  `network.yml` defines the nodes in the topology, their relationship (hierarchy), and attributes (e.g. tags).
 
 You can see this structure by running `ansible-inventory` on the "network" group:
 
-```bash
+```
 ansible-inventory --graph network
 ```
 
-This will produce the following output:
+Expected output:
 
 ```
 SSL Verification disabled
@@ -30,13 +30,13 @@ SSL Verification disabled
   |  |--site2-sw1
 ```
 
-This command will work whether you've deployed the topology in CML or not since it comes directly from the Ansible inventory files.  If you do have the topology deployed, however, this inventory is augmented with the inventory in CML via the `cml.yml` file.  We can see what inventory is added by running `ansible-inventory` on the "cml_hosts" group after the topology is started:
+This command will work whether you've deployed the topology in CML or not since it comes directly from the Ansible inventory files. If you do have the topology deployed, however, this inventory is augmented with the inventory in CML via the `cml.yml` file. We can see what inventory is added by running `ansible-inventory` on the "cml_hosts" group after the topology is started:
 
-```bash
+```
 ansible-inventory --graph cml_hosts
 ```
 
-This will produce the following output:
+Expected output:
 
 ```
 SSL Verification disabled
@@ -71,11 +71,11 @@ Notice that the group `cml_hosts` is added to the output for the devices that ar
 
 When the topology is up and running in CML, we can get the inventory including an IP address assocated with that instance:
 
-```bash
+```
 ansible-playbook cisco.cml.inventory
 ```
 
-This will produce the following output:
+Expected output:
 
 ```
 SSL Verification disabled
@@ -178,7 +178,7 @@ If you just want to see the inventory data for a single device, use the Ansible 
 ansible-playbook cisco.cml.inventory --limit hq-rtr1
 ```
 
-This will produce the following output:
+Expected output:
 
 ```
 SSL Verification disabled
@@ -194,6 +194,6 @@ PLAY RECAP *********************************************************************
 hq-rtr1                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
-Keep in mind that this is just the Ansible inventory of devices and *does not* include the configuration for the devices (ie. the Source of Truth).  That data is stored in the MDD data directory, which we will explore in the next exercise.
+Keep in mind that this is just the Ansible inventory of devices and *does not* include the configuration for the devices (ie. the Source of Truth). That data is stored in the MDD data directory, which we will explore in the next exercise.
 
 [Home](../README.md#workshop-exercises) | [Previous](initial-setup.md#initial-setup) | [Next](explore-data.md#exploring-the-data)

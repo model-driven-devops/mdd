@@ -247,21 +247,21 @@ Let's fix this error.
 
 16. Click `Create commit...` and then `Commit`.
 
-17. Click the rocket ship icon to view the pipeline run.  It should complete successfully this time.  If not, view the pipeline output and fix any errors.
+17. Click the rocket ship icon to view the pipeline run. It should complete successfully this time.  If not, view the pipeline output and fix any errors.
 
 ![Merge request CI fix validate](gitlab-ci-fix-validate.png)
 
 15. After the pipeline completes successfully, click the merge request icon in the upper right corner of the screen, select `Assigned to you`, and open the merge request.
 
-You should now see that the CI pipeline completeed successfully and your merge request is now ready for approval.  In this lab we do not have the rules set such that the merge request *requires* approval, but putting another human in the loop might be something you would want to do depending on your environment.
+You should now see that the CI pipeline completeed successfully and your merge request is now ready for approval. In this lab we do not have the rules set such that the merge request *requires* approval, but putting another human in the loop might be something you would want to do depending on your environment.
 
-Remember also that, at this point, the CI pipeline has backed out the changes made to the test network during testing.  In order to move our change into production, we need to merge our change into production branch (clus22 in this case).  Let's approve the merge request are ourselves and the merge the change into production.
+Remember also that, at this point, the CI pipeline has backed out the changes made to the test network during testing. In order to move our change into production, we need to merge our change into production branch (clus22 in this case). Let's approve the merge request are ourselves and the merge the change into production.
 
 16. Click `Approve` and then `Merge`.
 
 ![Merge request approve](gitlab-mr-approve.png)
 
-Note the pipe line that is running now in the merge request window.  This is the CD pipeline.  Because our merge request had a successful pipeline run, and it was approved, we are now deploying to production.  Note that we do not save the rollback ID or load a rollback ID at this point.  These changes were already validated and checked and are now ready for production.
+Note the pipe line that is running now in the merge request window. This is the CD pipeline. Because our merge request had a successful pipeline run, and it was approved, we are now deploying to production. Note that we do not save the rollback ID or load a rollback ID at this point. These changes were already validated and checked and are now ready for production.
 
 ![Merge request CD](gitlab-cd.png)
 
@@ -290,11 +290,11 @@ hq-rtr1#
 
 ## Summary
 
-This exercise was a culmination of everything you have learned so far in this lab.  When the rigor of CI/CD is applied to infrastructure as code, great things happen!  Not only does it help us accelerate change into production, it does so in a more secure, more compliant, and unltimately, less risky way.  The goal here is to build trust with other IT stakeholders such that you can now automate other business processes on top of your network infrastructure and achieve true business transformation.
+This exercise was a culmination of everything you have learned so far in this lab.  When the rigor of CI/CD is applied to infrastructure as code, great things happen!  Not only does it help us accelerate change into production, it does so in a more secure, more compliant, and unltimately, less risky way. The goal here is to build trust with other IT stakeholders such that you can now automate other business processes on top of your network infrastructure and achieve true business transformation.
 
 Finally, there are a few key takeaways from this lab:
 - DevOps tools, processes and principles *can* be applied to network infrastructure!
-- Models are the key to all of this.  Without a well-defined model, the validation and state checking required will not be possible.
+- Models are the key to all of this. Without a well-defined model, the validation and state checking required will not be possible.
 - Operators and engineers working in this model do not need to be progammers. The skill set require of people to effectively operate in this model are understanding data formats (i.e. YAML/JSON) and being able to create/modify schema against that validate the data (i.e. JSON Schema).
 
 [Home](../README.md#workshop-exercises) | [Previous](check-state.md#state-checking)
