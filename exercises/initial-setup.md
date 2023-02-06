@@ -13,6 +13,12 @@ code ~/DEVWKS-2870/mdd
 
 Open a new terminal in Visual Studio Code using the Terminal menu (or CTRL-` if you like shortcuts). All future commands for this workshop should be executed in this terminal.
 
+Enable the python virtual environment.
+
+```
+source venv/bin/activate
+```
+
 In the new terminal, source the `envvars` file.
 
 ```
