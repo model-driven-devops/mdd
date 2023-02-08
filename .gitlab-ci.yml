@@ -27,7 +27,7 @@ clean:
 build-cml:
   stage: build-cml
   script:
-    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
+    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes' -e retries=100
   resource_group: mdd
   rules:
     - if: $CLEAN == "true"
@@ -47,10 +47,12 @@ init-nso:
   stage: init-nso
   script:
     - ansible-playbook ciscops.mdd.nso_init
+    - ansible-playbook ciscops.mdd.nso_delete_devices
     - ansible-playbook ciscops.mdd.nso_update_devices
+    - ansible-playbook ciscops.mdd.update -e dry_run=no
   resource_group: mdd
   rules:
-    - if: $CLEAN == "true"
+    - if: $NSO_INIT == "true"
 
 save-rollback:
   stage: save-rollback
