@@ -27,7 +27,7 @@ clean:
 build-cml:
   stage: build-cml
   script:
-    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
+    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes' -e retries=100
   resource_group: mdd
   rules:
     - if: $CLEAN == "true"
