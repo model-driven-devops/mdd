@@ -82,7 +82,7 @@ update:
   stage: update
   script:
     # update devices in case DHCP address changed
-    - ansible-playbook ciscops.mdd.nso_update_devices
+    # - ansible-playbook ciscops.mdd.nso_update_devices
     - ansible-playbook ciscops.mdd.update -e dry_run=no
   resource_group: mdd
   rules:
@@ -108,7 +108,7 @@ load-rollback:
   stage: load-rollback
   script:
     # update devices in case DHCP address changed
-    - ansible-playbook ciscops.mdd.nso_update_devices
+    # - ansible-playbook ciscops.mdd.nso_update_devices
     - ansible-playbook ciscops.mdd.nso_load_rollback
   resource_group: mdd
   rules:
