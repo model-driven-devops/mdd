@@ -72,10 +72,10 @@ before installing the requirements above to tell Ansible to look locally for col
 in requirements.yml, and clone the collection repo directly, e.g.
 ```
 export ANSIBLE_COLLECTIONS_PATH=./
-cd ansible_colletions
+cd ansible_collections
 mkdir ciscops
 cd ciscops
-git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
+git clone https://github.com/model-driven-devops/ansible-mdd mdd
 ```
 
 ## Running in a Container on top of your native OS
