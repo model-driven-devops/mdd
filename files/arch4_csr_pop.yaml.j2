@@ -1417,6 +1417,12 @@ nodes:
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
+      ip dhcp pool CML
+       network 198.18.128.0 255.255.192.0
+       default-router 198.18.128.1 
+       dns-server 8.8.8.8
+      !
+      ip dhcp excluded-address 198.18.128.1
       ip http server
       ip http secure-server
       ip http max-connections 2
@@ -1478,7 +1484,7 @@ nodes:
        no mop sysid
       !
       interface GigabitEthernet8
-       ip address dhcp
+       ip address 198.18.133.11 255.255.192.0
        ip nat outside
        no shutdown
        negotiation auto
@@ -1503,7 +1509,7 @@ nodes:
       !
       ip bgp-community new-format
       ip nat inside source list nat interface GigabitEthernet8 overload
-      ip route 0.0.0.0 0.0.0.0 GigabitEthernet8 dhcp
+      ip route 0.0.0.0 0.0.0.0 198.18.128.1
       ip ssh time-out 60
       ip ssh version 2
       !
