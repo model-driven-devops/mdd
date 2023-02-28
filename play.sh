@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
-# OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
+OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/TEST"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
-   OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
+   OPTIONS="$OPTIONS --env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
 
 OPTION_LIST=( \
@@ -24,4 +24,4 @@ for OPTION in ${OPTION_LIST[*]}; do
    fi
 done
 
-docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd:latest ansible-playbook "$@"
+podman run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env COLLECTIONS_PATHS="/TEST" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd:latest ansible-playbook "$@"
