@@ -1,55 +1,56 @@
 ---
 mdd_data:
-  openconfig-acl:acl:
-    openconfig-acl:acl-sets:
-      openconfig-acl:acl-set:
-        - openconfig-acl:name: nat-internal
-          openconfig-acl:type: 'openconfig-acl-ext:ACL_IPV4_STANDARD'
-          openconfig-acl:config:
-            openconfig-acl:name: nat-internal
+  mdd:openconfig:
+    openconfig-acl:acl:
+      openconfig-acl:acl-sets:
+        openconfig-acl:acl-set:
+          - openconfig-acl:name: nat-internal
             openconfig-acl:type: 'openconfig-acl-ext:ACL_IPV4_STANDARD'
-          openconfig-acl:acl-entries:
-            openconfig-acl:acl-entry:
-              - openconfig-acl:sequence-id: 10
-                openconfig-acl:actions:
+            openconfig-acl:config:
+              openconfig-acl:name: nat-internal
+              openconfig-acl:type: 'openconfig-acl-ext:ACL_IPV4_STANDARD'
+            openconfig-acl:acl-entries:
+              openconfig-acl:acl-entry:
+                - openconfig-acl:sequence-id: 10
+                  openconfig-acl:actions:
+                    openconfig-acl:config:
+                      openconfig-acl:forwarding-action: ACCEPT
+                      openconfig-acl:log-action: LOG_NONE
                   openconfig-acl:config:
-                    openconfig-acl:forwarding-action: ACCEPT
-                    openconfig-acl:log-action: LOG_NONE
-                openconfig-acl:config:
-                  openconfig-acl:sequence-id: 10
-                openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:config:
-                    openconfig-acl-ext:source-address: 10.0.0.0/8
-              - openconfig-acl:sequence-id: 20
-                openconfig-acl:actions:
+                    openconfig-acl:sequence-id: 10
+                  openconfig-acl-ext:ipv4:
+                    openconfig-acl-ext:config:
+                      openconfig-acl-ext:source-address: 10.0.0.0/8
+                - openconfig-acl:sequence-id: 20
+                  openconfig-acl:actions:
+                    openconfig-acl:config:
+                      openconfig-acl:forwarding-action: ACCEPT
+                      openconfig-acl:log-action: LOG_NONE
                   openconfig-acl:config:
-                    openconfig-acl:forwarding-action: ACCEPT
-                    openconfig-acl:log-action: LOG_NONE
-                openconfig-acl:config:
-                  openconfig-acl:sequence-id: 20
-                openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:config:
-                    openconfig-acl-ext:source-address: 172.16.0.0/12
-              - openconfig-acl:sequence-id: 30
-                openconfig-acl:actions:
+                    openconfig-acl:sequence-id: 20
+                  openconfig-acl-ext:ipv4:
+                    openconfig-acl-ext:config:
+                      openconfig-acl-ext:source-address: 172.16.0.0/12
+                - openconfig-acl:sequence-id: 30
+                  openconfig-acl:actions:
+                    openconfig-acl:config:
+                      openconfig-acl:forwarding-action: ACCEPT
+                      openconfig-acl:log-action: LOG_NONE
                   openconfig-acl:config:
-                    openconfig-acl:forwarding-action: ACCEPT
-                    openconfig-acl:log-action: LOG_NONE
-                openconfig-acl:config:
-                  openconfig-acl:sequence-id: 30
-                openconfig-acl-ext:ipv4:
-                  openconfig-acl-ext:config:
-                    openconfig-acl-ext:source-address: 192.168.0.0/16
-  openconfig-system:system:
-    openconfig-system-ext:services:
-      openconfig-system-ext:nat:
-        openconfig-system-ext:inside:
-          openconfig-system-ext:source:
-            openconfig-system-ext:local-addresses-access-lists:
-              openconfig-system-ext:local-addresses-access-list:
-                - openconfig-system-ext:local-addresses-access-list-name: nat-internal
-                  openconfig-system-ext:config:
-                    openconfig-system-ext:local-addresses-access-list-name: nat-internal
-                    openconfig-system-ext:global-interface-name: GigabitEthernet8
-                    openconfig-system-ext:vrf: internal_1
-                    openconfig-system-ext:overload: true
+                    openconfig-acl:sequence-id: 30
+                  openconfig-acl-ext:ipv4:
+                    openconfig-acl-ext:config:
+                      openconfig-acl-ext:source-address: 192.168.0.0/16
+    openconfig-system:system:
+      openconfig-system-ext:services:
+        openconfig-system-ext:nat:
+          openconfig-system-ext:inside:
+            openconfig-system-ext:source:
+              openconfig-system-ext:local-addresses-access-lists:
+                openconfig-system-ext:local-addresses-access-list:
+                  - openconfig-system-ext:local-addresses-access-list-name: nat-internal
+                    openconfig-system-ext:config:
+                      openconfig-system-ext:local-addresses-access-list-name: nat-internal
+                      openconfig-system-ext:global-interface-name: GigabitEthernet8
+                      openconfig-system-ext:vrf: internal_1
+                      openconfig-system-ext:overload: true
