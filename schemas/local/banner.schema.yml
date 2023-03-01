@@ -1,22 +1,19 @@
 title: Network banner schema
 type: object
 required:
-  - mdd:openconfig
+  - openconfig-system:system
 properties:
-  required:
-    - openconfig-system:system
-  properties:
-    openconfig-system:system:
-      type: object
-      required:
-        - openconfig-system:config
-      properties:
-        openconfig-system:config:
-          type: object
-          required:
-            - openconfig-system:login-banner
-          properties:
-            openconfig-system:login-banner:
-              type: string
-              description: Login banner
-              pattern: prohibited
+  openconfig-system:system:
+    type: object
+    required:
+      - openconfig-system:config
+    properties:
+      openconfig-system:config:
+        type: object
+        required:
+          - openconfig-system:login-banner
+        properties:
+          openconfig-system:login-banner:
+            type: string
+            description: Login banner
+            pattern: prohibited
