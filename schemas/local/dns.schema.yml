@@ -1,44 +1,47 @@
 title: OpenConfig system schema (DNS)
 type: object
 required:
-  - openconfig-system:system
+  - mdd:openconfig
 properties:
-  openconfig-system:system:
-    description: top level object
-    type: object
-    required:
-      - openconfig-system:dns
-    properties:
-      openconfig-system:dns:
-        description: DNS settings
-        type: object
-        required:
-          - openconfig-system:servers
-        properties:
-          openconfig-system:servers:
-            description: DNS servers
-            type: object
-            required:
-              - openconfig-system:server
-            properties:
-              openconfig-system:server:
-                description: a dns server
-                type: array
-                items:
-                  type: object
-                  properties:
-                    openconfig-system:address:
-                      description: Server address
-                      type: string
-                      format: ipv4
-                    openconfig-system:config:
-                      description: configuration
-                      type: object
-                      properties:
-                        openconfig-system:address:
-                          description: DNS server address
-                          type: string
-                          format: ipv4
-                          enum:
-                            - 208.67.222.222
-                            - 208.67.220.220
+  required:
+    - openconfig-system:system
+  properties:
+    openconfig-system:system:
+      description: top level object
+      type: object
+      required:
+        - openconfig-system:dns
+      properties:
+        openconfig-system:dns:
+          description: DNS settings
+          type: object
+          required:
+            - openconfig-system:servers
+          properties:
+            openconfig-system:servers:
+              description: DNS servers
+              type: object
+              required:
+                - openconfig-system:server
+              properties:
+                openconfig-system:server:
+                  description: a dns server
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      openconfig-system:address:
+                        description: Server address
+                        type: string
+                        format: ipv4
+                      openconfig-system:config:
+                        description: configuration
+                        type: object
+                        properties:
+                          openconfig-system:address:
+                            description: DNS server address
+                            type: string
+                            format: ipv4
+                            enum:
+                              - 208.67.222.222
+                              - 208.67.220.220
