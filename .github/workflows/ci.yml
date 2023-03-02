@@ -8,6 +8,8 @@ on:
     paths:
       - 'mdd-data/**.yml'
       - 'mdd-data/**.yaml'
+      - 'requirements.txt'
+      - 'requirements.yml'
 
 env:
   CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
@@ -26,6 +28,10 @@ jobs:
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2
+      - name: Install Python Requirements
+        run: pip install -r requirements.txt
+      - name: Install Ansible Collections
+        run: ansible-galaxy collection install -r requirements.yml
       - name: Run YAMLLINT
         run: yamllint mdd-data
       - name: Save Rollback
