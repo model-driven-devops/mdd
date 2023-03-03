@@ -13,6 +13,10 @@
 # mdd_data_patterns:
 #   - 'oc-*.yml'
 #   - 'config-*.yml'
+# The data types that MDD will operate on
+mdd_data_types:
+  - oc
+  # - config
 # The file pattern for files that specify state checks
 mdd_check_patterns:
   - 'check-*.yml'
