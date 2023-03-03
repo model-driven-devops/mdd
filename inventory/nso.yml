@@ -25,3 +25,4 @@ all:
         ansible_python_interpreter: /usr/bin/python3
       hosts:
         nso1:
+          ansible_host: 10.10.20.49

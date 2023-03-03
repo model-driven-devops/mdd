@@ -1,185 +1,61 @@
 lab:
   description: ''
-  notes: |2-
-
-
-    ## Import Warnings
-    - Can't map ubuntu, ens3
-    - Can't map ubuntu, ens4
-    - Can't map ubuntu, ens3
-    - Can't map ubuntu, ens4
-  timestamp: 1639244295.7854996
-  title: mdd-dev
+  notes: ''
+  timestamp: 1617724740.2914157
+  title: mdd-dev-test112457
   version: 0.0.4
 nodes:
-  - id: n7
-    label: internet-rtr1
-    node_definition: cat8000v
+  - id: n0
+    label: WAN-rtr1
+    node_definition: csr1000v
     x: -500
     y: -150
     configuration: |-
-      hostname internet-rtr
+      hostname WAN-rtr1
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface GigabitEthernet3/3
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.131 255.255.255.0
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
       ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
       !
       ip ssh time-out 60
       ip ssh version 2
       ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
-      interface Loopback0
-      ip address 10.255.255.1 255.255.255.255
-      !
-      interface GigabitEthernet1
-      ip address 10.0.0.1 255.255.255.252
-      ip nat inside
-      negotiation auto
-      mpls ip
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet2
-      ip address 10.0.0.5 255.255.255.252
-      ip nat inside
-      negotiation auto
-      mpls ip
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet3
-      ip address 10.0.0.9 255.255.255.252
-      ip nat inside
-      negotiation auto
-      mpls ip  
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet4
-      ip address 10.0.0.13 255.255.255.252
-      ip nat inside
-      negotiation auto
-      mpls ip
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet5
-      no ip address
-      shutdown
-      negotiation auto
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet6
-      no ip address
-      shutdown
-      negotiation auto
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet7
-      ip address dhcp
-      ip nat outside
-      negotiation auto
-      no mop enabled
-      no mop sysid
-      !
-      interface GigabitEthernet8
-      vrf forwarding Mgmt-intf
-      ip address dhcp
-      negotiation auto
-      no mop enabled
-      no mop sysid
-      !
-      router ospf 100
-      router-id 10.255.255.1
-      passive-interface Loopback0
-      network 10.0.0.1 0.0.0.0 area 0
-      network 10.0.0.5 0.0.0.0 area 0
-      network 10.0.0.9 0.0.0.0 area 0
-      network 10.0.0.13 0.0.0.0 area 0
-      network 10.255.255.1 0.0.0.0 area 0
-      !
-      router bgp 65100
-      bgp router-id 10.255.255.1
-      bgp log-neighbor-changes
-      bgp listen range 10.255.255.0/24 peer-group L3VPN_PEERS
-      no bgp default ipv4-unicast
-      neighbor L3VPN_PEERS peer-group
-      neighbor L3VPN_PEERS remote-as 65100
-      neighbor L3VPN_PEERS cluster-id 10.255.255.1
-      neighbor L3VPN_PEERS update-source Loopback0
-      !
-      address-family ipv4
-        redistribute static route-map to_bgp
-        default-information originate
-      exit-address-family
-      !
-      address-family vpnv4
-        neighbor L3VPN_PEERS activate
-        neighbor L3VPN_PEERS send-community extended
-        neighbor L3VPN_PEERS route-reflector-client
-      exit-address-family
-      !         
-      ip forward-protocol nd
-      no ip http server
-      ip http secure-server
-      ip http max-connections 2
-      !
-      ip bgp-community new-format
-      ip nat inside source list nat interface GigabitEthernet7 overload
-      ip nat inside source list nat-internal interface GigabitEthernet7 overload
-      ip route 10.0.0.0 255.0.0.0 Null0
-      ip route 0.0.0.0 0.0.0.0 GigabitEthernet7 dhcp
-      ip ssh time-out 60
-      ip ssh version 2
-      !
-      ip access-list standard nat
-      10 permit 10.0.0.0 0.0.0.255
-      20 permit 192.168.0.0 0.0.255.255
-      30 permit 172.16.0.0 0.15.255.255
-      ip access-list standard nat-internal
-      10 permit 10.0.0.0 0.255.255.255
-      20 permit 192.168.0.0 0.0.255.255
-      30 permit 172.16.0.0 0.15.255.255
-      !
-      !         
-      !
-      ip prefix-list prefixes_to_bgp seq 10 permit 0.0.0.0/0
-      !
-      route-map to_bgp permit 10 
-      match ip address prefix-list prefixes_to_bgp
-      !
-      mpls ldp router-id Loopback0 force    
-
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
-      end 
+      end
+    hide_links: false
     image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -217,35 +93,38 @@ nodes:
         slot: 7
         label: GigabitEthernet8
         type: physical
-  - id: n9
+  - id: n1
     label: hq-sw1
     node_definition: iosvl2
     x: -900
     y: -250
     configuration: |-
       hostname hq-sw1
+      !I just added this
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-familyf
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface GigabitEthernet3/3
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
+      interface GigabitEthernet0/0
+      no switchport
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.132 255.255.255.0
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
       ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
       !
       ip ssh time-out 60
       ip ssh version 2
@@ -253,14 +132,19 @@ nodes:
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -330,7 +214,7 @@ nodes:
         slot: 15
         label: GigabitEthernet3/3
         type: physical
-  - id: n10
+  - id: n2
     label: hq-sw2
     node_definition: iosvl2
     x: -900
@@ -338,27 +222,29 @@ nodes:
     configuration: |-
       hostname hq-sw2
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface GigabitEthernet3/3
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
+      interface GigabitEthernet0/0
+      no switchport
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.133 255.255.255.0
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
       ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
       !
       ip ssh time-out 60
       ip ssh version 2
@@ -366,14 +252,19 @@ nodes:
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -443,35 +334,37 @@ nodes:
         slot: 15
         label: GigabitEthernet3/3
         type: physical
-  - id: n12
+  - id: n3
     label: site1-sw1
     node_definition: iosvl2
     x: -100
     y: -300
     configuration: |-
-      hostname site-sw1
+      hostname site1-sw1
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface GigabitEthernet3/3
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
+      interface GigabitEthernet0/0
+      no switchport
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.134 255.255.255.0
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
       ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
       !
       ip ssh time-out 60
       ip ssh version 2
@@ -479,14 +372,19 @@ nodes:
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
       end
-    image_definition: iosvl2-2019
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -556,35 +454,36 @@ nodes:
         slot: 15
         label: GigabitEthernet3/3
         type: physical
-  - id: n18
+  - id: n4
     label: hq-rtr1
-    node_definition: cat8000v
+    node_definition: csr1000v
     x: -750
     y: -250
     configuration: |-
       hostname hq-rtr1
       vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
-      interface GigabitEthernet8
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.135 255.255.255.0
+      negotiation auto
+      no shutdown
       !
       ip http server
       ip http secure-server
       ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
       !
       ip ssh time-out 60
       ip ssh version 2
@@ -592,344 +491,20 @@ nodes:
       ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
       line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
       !
       end
+    hide_links: false
     image_definition: ''
-    tags: []
-    interfaces:
-      - id: i0
-        label: Loopback0
-        type: loopback
-      - id: i1
-        slot: 0
-        label: GigabitEthernet1
-        type: physical
-      - id: i2
-        slot: 1
-        label: GigabitEthernet2
-        type: physical
-      - id: i3
-        slot: 2
-        label: GigabitEthernet3
-        type: physical
-      - id: i4
-        slot: 3
-        label: GigabitEthernet4
-        type: physical
-      - id: i5
-        slot: 4
-        label: GigabitEthernet5
-        type: physical
-      - id: i6
-        slot: 5
-        label: GigabitEthernet6
-        type: physical
-      - id: i7
-        slot: 6
-        label: GigabitEthernet7
-        type: physical
-      - id: i8
-        slot: 7
-        label: GigabitEthernet8
-        type: physical
-  - id: n0
-    label: hq-rtr2
-    node_definition: cat8000v
-    x: -750
-    y: -50
-    configuration: |-
-      hostname hq-rtr2
-      vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
-      !
-      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
-      no aaa new-model
-      ip domain-name mdd.cisco.com
-      !
-      interface GigabitEthernet8
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
-      !
-      ip http server
-      ip http secure-server
-      ip http max-connections 2
-      !
-      ip ssh time-out 60
-      ip ssh version 2
-      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      !
-      line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
-      !
-      end
-    image_definition: ''
-    tags: []
-    interfaces:
-      - id: i0
-        label: Loopback0
-        type: loopback
-      - id: i1
-        slot: 0
-        label: GigabitEthernet1
-        type: physical
-      - id: i2
-        slot: 1
-        label: GigabitEthernet2
-        type: physical
-      - id: i3
-        slot: 2
-        label: GigabitEthernet3
-        type: physical
-      - id: i4
-        slot: 3
-        label: GigabitEthernet4
-        type: physical
-      - id: i5
-        slot: 4
-        label: GigabitEthernet5
-        type: physical
-      - id: i6
-        slot: 5
-        label: GigabitEthernet6
-        type: physical
-      - id: i7
-        slot: 6
-        label: GigabitEthernet7
-        type: physical
-      - id: i8
-        slot: 7
-        label: GigabitEthernet8
-        type: physical
-  - id: n2
-    label: site1-rtr1
-    node_definition: cat8000v
-    x: -250
-    y: -300
-    configuration: |-
-      hostname site-rtr1
-      vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
-      !
-      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
-      no aaa new-model
-      ip domain-name mdd.cisco.com
-      !
-      interface GigabitEthernet8
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-       no shutdown
-      !
-      ip http server
-      ip http secure-server
-      ip http max-connections 2
-      !
-      ip ssh time-out 60
-      ip ssh version 2
-      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      !
-      line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
-      !
-      end
-    image_definition: ''
-    tags: []
-    interfaces:
-      - id: i0
-        label: Loopback0
-        type: loopback
-      - id: i1
-        slot: 0
-        label: GigabitEthernet1
-        type: physical
-      - id: i2
-        slot: 1
-        label: GigabitEthernet2
-        type: physical
-      - id: i3
-        slot: 2
-        label: GigabitEthernet3
-        type: physical
-      - id: i4
-        slot: 3
-        label: GigabitEthernet4
-        type: physical
-      - id: i5
-        slot: 4
-        label: GigabitEthernet5
-        type: physical
-      - id: i6
-        slot: 5
-        label: GigabitEthernet6
-        type: physical
-      - id: i7
-        slot: 6
-        label: GigabitEthernet7
-        type: physical
-      - id: i8
-        slot: 7
-        label: GigabitEthernet8
-        type: physical
-  - id: n6
-    label: site1-host1
-    node_definition: ubuntu
-    x: 50
-    y: -300
-    configuration: |-
-      #cloud-config
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      hostname: site1-host1
-      apt:
-        preserve_sources_list: false
-        primary:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-        security:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-      bootcmd:
-       - cloud-init-per always ip-ad sudo ip address add 192.168.1.100/24 dev ens3
-       - cloud-init-per always link-set sudo ip link set dev ens3 up
-       - cloud-init-per always ip-route-add sudo ip route add default via 192.168.1.1
-    image_definition: ubuntu-18-04
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: enp0s2
-        type: physical
-      - id: i1
-        slot: 1
-        label: enp0s3
-        type: physical
-  - id: n21
-    label: hq-host1
-    node_definition: ubuntu
-    x: -1050
-    y: -250
-    configuration: |-
-      #cloud-config
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      hostname: hq-host1
-      apt:
-        preserve_sources_list: false
-        primary:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-        security:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-      bootcmd:
-       - cloud-init-per always ip-ad sudo ip address add 172.16.0.100/24 dev ens3
-       - cloud-init-per always link-set sudo ip link set dev ens3 up
-       - cloud-init-per always ip-route-add sudo ip route add default via 172.16.0.1
-    image_definition: ubuntu-18-04
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: enp0s2
-        type: physical
-      - id: i1
-        slot: 1
-        label: enp0s3
-        type: physical
-  - id: n1
-    label: internet-mgmt
-    node_definition: external_connector
-    x: -500
-    y: -300
-    configuration: bridge0
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: port
-        type: physical
-  - id: n4
-    label: site2-rtr1
-    node_definition: cat8000v
-    x: -250
-    y: 0
-    configuration: |-
-      hostname site-rtr1
-      vrf definition Mgmt-intf
-       !
-       address-family ipv4
-       exit-address-family
-       !
-       address-family ipv6
-       exit-address-family
-      !
-      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
-      no aaa new-model
-      ip domain-name mdd.cisco.com
-      !
-      interface GigabitEthernet8
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       negotiation auto
-      !
-      ip http server
-      ip http secure-server
-      ip http max-connections 2
-      !
-      ip ssh time-out 60
-      ip ssh version 2
-      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
-      !
-      line vty 0 4
-       exec-timeout 30 0
-       absolute-timeout 60
-       session-limit 16
-       login local
-       transport input ssh
-      !
-      end
-    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -968,39 +543,338 @@ nodes:
         label: GigabitEthernet8
         type: physical
   - id: n5
+    label: hq-rtr2
+    node_definition: csr1000v
+    x: -750
+    y: -50
+    configuration: |-
+      hostname hq-rtr2
+      vrf definition Mgmt-intf
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.136 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      line vty 0 4
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
+      !
+      end
+    hide_links: false
+    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet6
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet7
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet8
+        type: physical
+  - id: n6
+    label: site1-rtr1
+    node_definition: csr1000v
+    x: -250
+    y: -300
+    configuration: |-
+      hostname site1-rtr1
+      vrf definition Mgmt-intf
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.137 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      line vty 0 4
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
+      !
+      end
+    hide_links: false
+    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet6
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet7
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet8
+        type: physical
+  - id: n9
+    label: WAN-mgmt
+    node_definition: external_connector
+    x: -500
+    y: -50
+    configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
+  - id: n10
+    label: site2-rtr1
+    node_definition: csr1000v
+    x: -250
+    y: 0
+    configuration: |-
+      hostname site2-rtr1
+      vrf definition Mgmt-intf
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.138 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      line vty 0 4
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
+      !
+      end
+    hide_links: false
+    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet6
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet7
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet8
+        type: physical
+  - id: n11
     label: site2-sw1
     node_definition: iosvl2
     x: -100
     y: 0
     configuration: |-
       hostname site2-sw1
-      ip domain name cml.local
-      banner motd ^Welcome to site2-sw1!^
-      !
-      !
-      username admin privilege 15 secret admin
-      crypto key generate rsa modulus 2048
-      !
       vrf definition Mgmt-intf
-       address-family ipv4
-       exit-address-family
-       address-family ipv6
-       exit-address-family
       !
-      interface GigabitEthernet3/3
-       no switchport
-       vrf forwarding Mgmt-intf
-       ip address dhcp
-       no shutdown
-
+      address-family ipv4
+      exit-address-family
       !
-
+      address-family ipv6
+      exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet0/0
+      no switchport
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.139 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
       !
       line vty 0 4
-       login local
-       transport input ssh
-      exit
-    image_definition: iosvl2-2019
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
+      !
+      end
+    hide_links: false
+    ram: 768
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -1070,98 +944,36 @@ nodes:
         slot: 15
         label: GigabitEthernet3/3
         type: physical
-  - id: n8
-    label: site2-host1
-    node_definition: ubuntu
-    x: 50
-    y: 0
-    configuration: |-
-      #cloud-config
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      hostname: site2-host1
-      apt:
-        preserve_sources_list: false
-        primary:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-        security:
-          - arches:
-              - default
-            uri: 'http://us.archive.ubuntu.com/ubuntu'
-            search_dns: true
-      bootcmd:
-       - cloud-init-per always ip-ad sudo ip address add 192.168.2.100/24 dev ens3
-       - cloud-init-per always link-set sudo ip link set dev ens3 up
-       - cloud-init-per always ip-route-add sudo ip route add default via 192.168.2.1
-    image_definition: ubuntu-18-04
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: enp0s2
-        type: physical
   - id: n13
     label: hq-mgmt-bridge
     node_definition: external_connector
-    x: -1100
+    x: -1200
     y: -150
     configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
         slot: 0
         label: port
         type: physical
-  - id: n11
+  - id: n14
     label: hq-mgmt-switch
     node_definition: unmanaged_switch
-    x: -1000
+    x: -1065
     y: -150
-    configuration: ''
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: port0
-        type: physical
-      - id: i1
-        slot: 1
-        label: port1
-        type: physical
-      - id: i2
-        slot: 2
-        label: port2
-        type: physical
-      - id: i3
-        slot: 3
-        label: port3
-        type: physical
-      - id: i4
-        slot: 4
-        label: port4
-        type: physical
-      - id: i5
-        slot: 5
-        label: port5
-        type: physical
-      - id: i6
-        slot: 6
-        label: port6
-        type: physical
-      - id: i7
-        slot: 7
-        label: port7
-        type: physical
-  - id: n14
-    label: site1-mgmt-switch
-    node_definition: unmanaged_switch
-    x: -100
-    y: -400
-    configuration: ''
+    configuration: ums-92d7583c-b4
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -1197,23 +1009,17 @@ nodes:
         label: port7
         type: physical
   - id: n15
-    label: site1-mgmt-bridge
-    node_definition: external_connector
-    x: -100
-    y: -500
-    configuration: bridge0
-    tags: []
-    interfaces:
-      - id: i0
-        slot: 0
-        label: port
-        type: physical
-  - id: n16
-    label: site2-mgmt-switch
+    label: site1-mgmt-switch
     node_definition: unmanaged_switch
     x: -100
-    y: 100
-    configuration: ''
+    y: -400
+    configuration: ums-a5688c00-4c
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
@@ -1248,200 +1054,548 @@ nodes:
         slot: 7
         label: port7
         type: physical
+  - id: n16
+    label: site1-mgmt-bridge
+    node_definition: external_connector
+    x: -100
+    y: -510
+    configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
   - id: n17
+    label: site2-mgmt-switch
+    node_definition: unmanaged_switch
+    x: -100
+    y: 100
+    configuration: ums-4a59dd37-02
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port0
+        type: physical
+      - id: i1
+        slot: 1
+        label: port1
+        type: physical
+      - id: i2
+        slot: 2
+        label: port2
+        type: physical
+      - id: i3
+        slot: 3
+        label: port3
+        type: physical
+      - id: i4
+        slot: 4
+        label: port4
+        type: physical
+      - id: i5
+        slot: 5
+        label: port5
+        type: physical
+      - id: i6
+        slot: 6
+        label: port6
+        type: physical
+      - id: i7
+        slot: 7
+        label: port7
+        type: physical
+  - id: n18
     label: site2-mgmt-bridge
     node_definition: external_connector
     x: -100
     y: 200
     configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
         slot: 0
         label: port
         type: physical
-  - id: n3
-    label: nso1
-    node_definition: ubuntu
-    x: -1000
-    y: -50
-    configuration: |-
-      #cloud-config
-      hostname: nso1
-      manage_etc_hosts: True
-      system_info:
-        default_user:
-          name: ubuntu
-      password: admin
-      chpasswd: { expire: False }
-      ssh_pwauth: True
-      ssh_authorized_keys:
-         - your-ssh-pubkey-line-goes-here
-    image_definition: ubuntu-18-04
-    ram: 8192
-    cpus: 4
-    cpu_limit: 100
-    tags:
-      - nso
-    interfaces:
-      - id: i0
-        slot: 0
-        label: enp0s2
-        type: physical
-      - id: i1
-        slot: 1
-        label: enp0s3
-        type: physical
-  - id: n19
+  - id: n20
     label: internet-out
     node_definition: external_connector
     x: -500
-    y: 0
+    y: -510
     configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
     tags: []
     interfaces:
       - id: i0
         slot: 0
         label: port
         type: physical
+  - id: n21
+    label: hq-pop
+    node_definition: csr1000v
+    x: -750
+    y: -400
+    configuration: |-
+      hostname hq-pop
+      vrf definition Mgmt-intf
+      !
+      address-family ipv4
+      exit-address-family
+      !
+      address-family ipv6
+      exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      interface GigabitEthernet1
+      vrf forwarding Mgmt-intf
+      ip address 10.10.20.140 255.255.255.0
+      negotiation auto
+      no shutdown
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip route vrf Mgmt-intf 0.0.0.0 0.0.0.0 10.10.20.254
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      line vty 0 4
+      exec-timeout 30 0
+      absolute-timeout 60
+      session-limit 16
+      login local
+      transport input ssh
+      !
+      end
+    hide_links: false
+    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet6
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet7
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet8
+        type: physical
+  - id: n22
+    label: ISP-mgmt-bridge
+    node_definition: external_connector
+    x: -500
+    y: -320
+    configuration: bridge0
+    hide_links: false
+    ram: 0
+    cpus: 0
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        slot: 0
+        label: port
+        type: physical
+  - id: n23
+    label: ISP
+    node_definition: csr1000v
+    x: -500
+    y: -400
+    configuration: |-
+      hostname ISP
+      vrf definition Mgmt-intf
+       !
+       address-family ipv4
+       exit-address-family
+       !
+       address-family ipv6
+       exit-address-family
+      !
+      username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      no aaa new-model
+      ip domain-name mdd.cisco.com
+      !
+      ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip ssh time-out 60
+      ip ssh version 2
+      ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+      !
+      interface GigabitEthernet1
+       vrf forwarding Mgmt-intf
+       ip address 10.10.20.141 255.255.255.0
+       no shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet2
+       ip address 10.0.254.1 255.255.255.252
+       ip nat inside
+       no shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet3
+       no ip address
+       shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet4
+       no ip address
+       shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet5
+       no ip address
+       shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet6
+       no ip address
+       shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet7
+       no ip address
+       shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      interface GigabitEthernet8
+       ip address dhcp
+       ip nat outside
+       no shutdown
+       negotiation auto
+       no mop enabled
+       no mop sysid
+      !
+      router bgp 99
+       bgp log-neighbor-changes
+       no bgp default ipv4-unicast
+       neighbor 10.0.254.2 remote-as 100
+       !
+       address-family ipv4
+        redistribute static route-map to_bgp
+        neighbor 10.0.254.2 activate
+        default-information originate
+       exit-address-family
+      !
+      ip forward-protocol nd
+      no ip http server
+      ip http secure-server
+      ip http max-connections 2
+      !
+      ip bgp-community new-format
+      ip nat inside source list nat interface GigabitEthernet8 overload
+      ip route 0.0.0.0 0.0.0.0 GigabitEthernet8 dhcp
+      ip ssh time-out 60
+      ip ssh version 2
+      !
+      ip access-list standard nat
+      10 permit 10.0.0.0 0.255.255.255
+      20 permit 192.168.0.0 0.0.255.255
+      30 permit 172.16.0.0 0.15.255.255
+      !
+      !
+      !
+      ip prefix-list prefixes_to_bgp seq 10 permit 0.0.0.0/0
+      !
+      route-map to_bgp permit 10
+      match ip address prefix-list prefixes_to_bgp
+      !
+      line con 0
+       exec-timeout 0 0
+       stopbits 1
+      line vty 0 4
+       exec-timeout 30 0
+       absolute-timeout 60
+       session-limit 16
+       login local
+       transport input ssh
+      !
+      end
+    hide_links: false
+    image_definition: ''
+    ram: 3072
+    cpus: 1
+    cpu_limit: 100
+    data_volume: 0
+    boot_disk_size: 0
+    tags: []
+    interfaces:
+      - id: i0
+        label: Loopback0
+        type: loopback
+      - id: i1
+        slot: 0
+        label: GigabitEthernet1
+        type: physical
+      - id: i2
+        slot: 1
+        label: GigabitEthernet2
+        type: physical
+      - id: i3
+        slot: 2
+        label: GigabitEthernet3
+        type: physical
+      - id: i4
+        slot: 3
+        label: GigabitEthernet4
+        type: physical
+      - id: i5
+        slot: 4
+        label: GigabitEthernet5
+        type: physical
+      - id: i6
+        slot: 5
+        label: GigabitEthernet6
+        type: physical
+      - id: i7
+        slot: 6
+        label: GigabitEthernet7
+        type: physical
+      - id: i8
+        slot: 7
+        label: GigabitEthernet8
+        type: physical
 links:
   - id: l0
-    i1: i1
-    n1: n18
+    i1: i0
+    n1: n22
     i2: i1
-    n2: n7
-  - id: l4
-    i1: i3
-    n1: n18
-    i2: i3
-    n2: n0
-  - id: l29
-    i1: i2
-    n1: n9
-    i2: i2
-    n2: n10
-  - id: l14
-    i1: i5
-    n1: n12
-    i2: i0
-    n2: n6
+    n2: n23
+    label: ISP-mgmt-bridge-port<->ISP-GigabitEthernet1
   - id: l1
-    i1: i2
-    n1: n7
-    i2: i1
-    n2: n0
+    i1: i0
+    n1: n13
+    i2: i0
+    n2: n14
+    label: hq-mgmt-bridge-port<->hq-mgmt-switch-port0
   - id: l2
-    i1: i2
-    n1: n18
-    i2: i1
+    i1: i1
+    n1: n0
+    i2: i0
     n2: n9
+    label: WAN-rtr1-GigabitEthernet1<->WAN-mgmt-port
   - id: l3
-    i1: i2
-    n1: n0
-    i2: i1
-    n2: n10
-  - id: l5
-    i1: i3
-    n1: n7
-    i2: i1
-    n2: n2
-  - id: l6
-    i1: i2
-    n1: n2
-    i2: i1
-    n2: n12
-  - id: l8
-    i1: i0
-    n1: n1
-    i2: i8
-    n2: n7
-  - id: l10
-    i1: i4
-    n1: n7
-    i2: i1
-    n2: n4
-  - id: l11
-    i1: i2
-    n1: n4
-    i2: i1
-    n2: n5
-  - id: l12
-    i1: i5
-    n1: n5
-    i2: i0
-    n2: n8
-  - id: l15
-    i1: i0
-    n1: n21
-    i2: i5
-    n2: n9
-  - id: l9
-    i1: i0
-    n1: n11
-    i2: i0
-    n2: n13
-  - id: l18
-    i1: i8
-    n1: n18
-    i2: i4
-    n2: n11
-  - id: l19
-    i1: i8
-    n1: n0
-    i2: i5
-    n2: n11
-  - id: l20
     i1: i0
     n1: n15
     i2: i0
-    n2: n14
-  - id: l21
-    i1: i8
-    n1: n2
-    i2: i1
-    n2: n14
-  - id: l22
+    n2: n16
+    label: site1-mgmt-switch-port0<->site1-mgmt-bridge-port
+  - id: l4
     i1: i0
     n1: n17
     i2: i0
-    n2: n16
-  - id: l23
+    n2: n18
+    label: site2-mgmt-switch-port0<->site2-mgmt-bridge-port
+  - id: l5
     i1: i1
-    n1: n16
-    i2: i8
-    n2: n4
-  - id: l7
-    i1: i0
-    n1: n3
+    n1: n14
     i2: i1
-    n2: n11
-  - id: l13
-    i1: i2
-    n1: n11
-    i2: i16
-    n2: n9
-  - id: l16
-    i1: i3
-    n1: n11
-    i2: i16
-    n2: n10
-  - id: l17
-    i1: i16
-    n1: n12
+    n2: n21
+    label: hq-mgmt-switch-port1<->hq-pop-GigabitEthernet1
+  - id: l6
+    i1: i1
+    n1: n4
     i2: i2
     n2: n14
-  - id: l24
-    i1: i16
+    label: hq-rtr1-GigabitEthernet1<->hq-mgmt-switch-port2
+  - id: l7
+    i1: i1
     n1: n5
-    i2: i2
-    n2: n16
-  - id: l25
-    i1: i0
-    n1: n19
-    i2: i7
-    n2: n7
-  - id: l26
+    i2: i3
+    n2: n14
+    label: hq-rtr2-GigabitEthernet1<->hq-mgmt-switch-port3
+  - id: l8
+    i1: i1
+    n1: n1
+    i2: i4
+    n2: n14
+    label: hq-sw1-GigabitEthernet0/0<->hq-mgmt-switch-port4
+  - id: l9
+    i1: i1
+    n1: n2
+    i2: i5
+    n2: n14
+    label: hq-sw2-GigabitEthernet0/0<->hq-mgmt-switch-port5
+  - id: l10
+    i1: i1
+    n1: n6
+    i2: i1
+    n2: n15
+    label: site1-rtr1-GigabitEthernet1<->site1-mgmt-switch-port1
+  - id: l11
     i1: i1
     n1: n3
-    i2: i3
+    i2: i2
+    n2: n15
+    label: site1-sw1-GigabitEthernet0/0<->site1-mgmt-switch-port2
+  - id: l12
+    i1: i1
+    n1: n10
+    i2: i1
+    n2: n17
+    label: site2-rtr1-GigabitEthernet1<->site2-mgmt-switch-port1
+  - id: l13
+    i1: i1
+    n1: n11
+    i2: i2
+    n2: n17
+    label: site2-sw1-GigabitEthernet0/0<->site2-mgmt-switch-port2
+  - id: l15
+    i1: i2
+    n1: n0
+    i2: i2
+    n2: n4
+    label: WAN-rtr1-GigabitEthernet2<->hq-rtr1-GigabitEthernet2
+  - id: l16
+    i1: i3
+    n1: n0
+    i2: i2
+    n2: n5
+    label: WAN-rtr1-GigabitEthernet3<->hq-rtr2-GigabitEthernet2
+  - id: l17
+    i1: i4
+    n1: n0
+    i2: i2
+    n2: n6
+    label: WAN-rtr1-GigabitEthernet4<->site1-rtr1-GigabitEthernet2
+  - id: l18
+    i1: i5
+    n1: n0
+    i2: i2
     n2: n10
+    label: WAN-rtr1-GigabitEthernet5<->site2-rtr1-GigabitEthernet2
+  - id: l19
+    i1: i0
+    n1: n20
+    i2: i8
+    n2: n23
+    label: internet-out-port<->ISP-GigabitEthernet8
+  - id: l20
+    i1: i8
+    n1: n21
+    i2: i2
+    n2: n23
+    label: hq-pop-GigabitEthernet8<->ISP-GigabitEthernet2
+  - id: l21
+    i1: i6
+    n1: n1
+    i2: i2
+    n2: n21
+    label: hq-sw1-GigabitEthernet1/1<->hq-pop-GigabitEthernet2
+  - id: l22
+    i1: i2
+    n1: n1
+    i2: i3
+    n2: n4
+    label: hq-sw1-GigabitEthernet0/1<->hq-rtr1-GigabitEthernet3
+  - id: l23
+    i1: i2
+    n1: n2
+    i2: i3
+    n2: n5
+    label: hq-sw2-GigabitEthernet0/1<->hq-rtr2-GigabitEthernet3
+  - id: l24
+    i1: i3
+    n1: n1
+    i2: i3
+    n2: n2
+    label: hq-sw1-GigabitEthernet0/2<->hq-sw2-GigabitEthernet0/2
+  - id: l25
+    i1: i4
+    n1: n4
+    i2: i4
+    n2: n5
+    label: hq-rtr1-GigabitEthernet4<->hq-rtr2-GigabitEthernet4
+  - id: l28
+    i1: i2
+    n1: n3
+    i2: i3
+    n2: n6
+    label: site1-sw1-GigabitEthernet0/1<->site1-rtr1-GigabitEthernet3
+  - id: l30
+    i1: i3
+    n1: n10
+    i2: i2
+    n2: n11
+    label: site2-rtr1-GigabitEthernet3<->site2-sw1-GigabitEthernet0/1

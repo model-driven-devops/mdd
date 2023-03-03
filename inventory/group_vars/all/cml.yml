@@ -1,1 +1,1 @@
-cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch4_csr_pop.yaml.j2"
+cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch4_csr_pop_sandbox.yaml.j2"
