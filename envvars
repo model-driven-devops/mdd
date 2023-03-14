@@ -1,10 +1,2 @@
 export ANSIBLE_COLLECTIONS_PATH=./
 export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python 
-export CML_HOST=10.10.20.161
-export CML_USERNAME=developer
-export CML_PASSWORD=C1sco12345
-export CML_LAB=mdd
-export CML_VERIFY_CERT=false
-export NSO_URL=https://10.10.20.49
-export NSO_USERNAME=developer
-export NSO_PASSWORD=C1sco12345

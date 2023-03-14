@@ -2,8 +2,8 @@
 
 IMAGE=ghcr.io/model-driven-devops/mdd:latest
 
-OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
-# OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
+OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3"
+OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
@@ -14,10 +14,11 @@ OPTION_LIST=( \
    "CML_PASSWORD" \
    "CML_LAB" \
    "CML_VERIFY_CERT" \
-   "CSR1000V_VERSION" \
-   "UBUNTU_VERSION" \
-   "IOSVL2_VERSION" \
+   "NSO_URL" \
+   "NSO_USERNAME" \
+   "NSO_PASSWORD" \
    "ANSIBLE_INVENTORY" \
+   "ANSIBLE_COLLECTIONS_PATH" \
    )
 
 for OPTION in ${OPTION_LIST[*]}; do

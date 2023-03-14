@@ -27,7 +27,7 @@ clean:
 build-cml:
   stage: build-cml
   script:
-    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes' -e retries=100
+    - ansible-playbook cisco.cml.build -e wait='yes'
   resource_group: mdd
   rules:
     - if: $CLEAN == "true"
@@ -75,7 +75,7 @@ validate:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 update:
@@ -88,7 +88,7 @@ update:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 check:
@@ -101,7 +101,7 @@ check:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 load-rollback:
