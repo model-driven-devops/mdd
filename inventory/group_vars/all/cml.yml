@@ -1,1 +1,6 @@
 cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch4_csr_pop_sandbox.yaml.j2"
+cml_host: 10.10.20.161
+cml_username: developer
+cml_password: C1sco12345
+cml_lab: mdd
+cml_verify_cert: false
