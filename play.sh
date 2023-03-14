@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+IMAGE=ghcr.io/model-driven-devops/mdd:latest
+
 OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
 # OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
@@ -24,4 +26,16 @@ for OPTION in ${OPTION_LIST[*]}; do
    fi
 done
 
-docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd:latest ansible-playbook "$@"
+while getopts ":dl" opt; do
+  case $opt in
+    d)
+      docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE /bin/bash
+      exit
+      ;;
+    l)
+      docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE ansible-lint
+      exit
+      ;;
+  esac
+done
+docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE ansible-playbook "$@"
