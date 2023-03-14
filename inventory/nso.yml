@@ -1,16 +1,6 @@
 all:
   vars:
-    mdd_model_repos:
-      - name: nso-oc-services
-        model_list:
-          - mdd
-    nso_installer_file: https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/nso-5.7.7.linux.x86_64.signed.bin
-    nso_ned_files:
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-ios-6.87.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-nx-5.23.5.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-iosxr-7.43.3.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-asa-6.16.2.signed.bin
-    nso_default_ned: cisco-ios-cli-6.87
+    nso_default_ned: cisco-ios-cli-6.90
     nso_package_repos:
       - name: mdd
         repo: https://github.com/model-driven-devops/nso-oc-services.git
@@ -20,8 +10,8 @@ all:
   children:
     nso:
       vars:
-        ansible_user: "{{ lookup('env', 'NSO_USERNAME') | default('ubuntu', true) }}"
-        ansible_password: "{{ lookup('env', 'NSO_PASSWORD') | default('admin', true) }}"
+        ansible_user: developer
+        ansible_password: C1sco12345
         ansible_python_interpreter: /usr/bin/python3
       hosts:
         nso1:

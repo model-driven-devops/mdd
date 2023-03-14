@@ -48,8 +48,12 @@ mdd_data:
                 openconfig-interfaces:config:
                   openconfig-interfaces:index: 0
                 openconfig-if-ip:ipv4:
-                  openconfig-if-ip:config:
-                    openconfig-if-ip:dhcp-client: true
+                  openconfig-if-ip:addresses:
+                    openconfig-if-ip:address:
+                      - openconfig-if-ip:ip: 10.10.20.137
+                        openconfig-if-ip:config:
+                          openconfig-if-ip:ip: 10.10.20.137
+                          openconfig-if-ip:prefix-length: 24
         - openconfig-interfaces:name: GigabitEthernet2
           openconfig-interfaces:config:
             openconfig-interfaces:enabled: true

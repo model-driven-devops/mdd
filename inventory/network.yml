@@ -12,6 +12,30 @@ all:
       - org
       - region1
       - region2
+  hosts:
+    hq-sw1:
+      ansible_host: 10.10.20.132
+    hq-sw2:
+      ansible_host: 10.10.20.133
+    site1-sw1:
+      ansible_host: 10.10.20.134
+    site2-sw1:
+      ansible_host: 10.10.20.139
+    hq-rtr1:
+      ansible_host: 10.10.20.135
+    hq-rtr2:
+      ansible_host: 10.10.20.136
+    hq-pop:
+      ansible_host: 10.10.20.140
+    site1-rtr1:
+      ansible_host: 10.10.20.137
+    site2-rtr1:
+      ansible_host: 10.10.20.138
+    WAN-rtr1:
+      ansible_host: 10.10.20.131
+  #
+  # Oranized by device type
+  #
   children:
     network:
       children:
@@ -35,6 +59,9 @@ all:
         WAN_routers:
           hosts:
             WAN-rtr1:
+    #
+    # Organized by organization structure
+    #
     org:
       children:
         region1:
