@@ -21,4 +21,4 @@ jobs:
       - name: Checkout Inventory
         uses: actions/checkout@v2
       - name: Show
-        run: ansible-playbook ciscops.mdd.show_oc --limit=${{ inputs.limit }}
+        run: ansible-playbook ciscops.mdd.show --limit=${{ inputs.limit }}
