@@ -2,12 +2,12 @@
 name: Build Environment
 on:
   workflow_dispatch:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'inventory/**.yml'
-      - 'inventory/**.yaml'
+  # pull_request:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'inventory/**.yml'
+  #     - 'inventory/**.yaml'
 
 env:
   CML_PASSWORD: ${{ secrets.CML_PASSWORD }}
