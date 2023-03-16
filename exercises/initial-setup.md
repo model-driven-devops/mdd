@@ -72,10 +72,10 @@ before installing the requirements above to tell Ansible to look locally for col
 in requirements.yml, and clone the collection repo directly, e.g.
 ```
 export ANSIBLE_COLLECTIONS_PATH=./
-cd ansible_colletions
+cd ansible_collections
 mkdir ciscops
 cd ciscops
-git clone git@github.com:model-driven-devops/ansible-mdd.git mdd
+git clone https://github.com/model-driven-devops/ansible-mdd mdd
 ```
 
 ## Running in a Container on top of your native OS
@@ -89,7 +89,7 @@ If you are running the tooling locally instide a container, you can use the prov
 `play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
 
 ```
-./play.sh ciscops.mdd.show_oc --limit=hq-rtr1
+./play.sh ciscops.mdd.show --limit=hq-rtr1
 ```
 
 > Note: The same applies as above to developing running in the container.
@@ -98,5 +98,5 @@ If you are running the tooling locally instide a container, you can use the prov
 At this point, you should be able to show the config data for the hosts in the inventory.
 To show the config data for `hq-rtr1`, run:
 ```
-ansible-playbook ciscops.mdd.show_oc --limit=hq-rtr1
+ansible-playbook ciscops.mdd.show --limit=hq-rtr1
 ```
