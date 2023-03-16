@@ -54,5 +54,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.TAG }}
+          tags: ${{ inputs.tag }}
         if: ${{ inputs.tag }}
