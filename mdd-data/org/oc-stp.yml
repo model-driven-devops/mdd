@@ -2,12 +2,13 @@
 mdd_tags:
   - switch
 mdd_data:
-  openconfig-spanning-tree:stp:
-    openconfig-spanning-tree:global:
-      openconfig-spanning-tree:config:
-        openconfig-spanning-tree:loop-guard: true
-        openconfig-spanning-tree:etherchannel-misconfig-guard: true
-        openconfig-spanning-tree:bpdu-guard: true
-        openconfig-spanning-tree:bpdu-filter: false
-        openconfig-spanning-tree:enabled-protocol:
-          - RAPID_PVST
+  mdd:openconfig:
+    openconfig-spanning-tree:stp:
+      openconfig-spanning-tree:global:
+        openconfig-spanning-tree:config:
+          openconfig-spanning-tree:loop-guard: true
+          openconfig-spanning-tree:etherchannel-misconfig-guard: true
+          openconfig-spanning-tree:bpdu-guard: true
+          openconfig-spanning-tree:bpdu-filter: false
+          openconfig-spanning-tree:enabled-protocol:
+            - RAPID_PVST

@@ -9,9 +9,14 @@
 # The data directory for the particular device
 # mdd_device_dir: >-
 #   {{ mdd_data_root }}/{{ mdd_dir_items | join('/') }}
-# The file pattern for files that specify OD Data
-# mdd_oc_patterns:
+# The file pattern for files that specify MDD Data
+# mdd_data_patterns:
 #   - 'oc-*.yml'
+#   - 'config-*.yml'
+# The data types that MDD will operate on
+mdd_data_types:
+  - oc
+  # - config
 # The file pattern for files that specify state checks
 mdd_check_patterns:
   - 'check-*.yml'

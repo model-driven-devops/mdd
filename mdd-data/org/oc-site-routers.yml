@@ -1,216 +1,217 @@
 ---
 mdd_data:
-  openconfig-routing-policy:routing-policy:
-    openconfig-routing-policy:defined-sets:
-      openconfig-bgp-policy:bgp-defined-sets:
-        openconfig-bgp-policy:ext-community-sets:
-          openconfig-bgp-policy:ext-community-set:
-            - openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
-              openconfig-bgp-policy:config:
-                openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
-                openconfig-bgp-policy:match-set-options: ANY
-                openconfig-bgp-policy:ext-community-member:
-                  - "1:1"
-            - openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
-              openconfig-bgp-policy:config:
-                openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
-                openconfig-bgp-policy:match-set-options: ANY
-                openconfig-bgp-policy:ext-community-member:
-                  - "1:1"
-    openconfig-routing-policy:policy-definitions:
-      openconfig-routing-policy:policy-definition:
-        - openconfig-routing-policy:name: import-route-target
-          openconfig-routing-policy:config:
-            openconfig-routing-policy:name: import-route-target
-          openconfig-routing-policy:statements:
-            openconfig-routing-policy:statement:
-              - openconfig-routing-policy:name: '10'
-                openconfig-routing-policy:config:
-                  openconfig-routing-policy:name: '10'
-                openconfig-routing-policy:conditions:
-                  openconfig-bgp-policy:bgp-conditions:
-                    openconfig-bgp-policy:config:
-                      openconfig-bgp-policy:ext-community-set: import-ext-community-set
-                openconfig-routing-policy:actions:
+  mdd:openconfig:
+    openconfig-routing-policy:routing-policy:
+      openconfig-routing-policy:defined-sets:
+        openconfig-bgp-policy:bgp-defined-sets:
+          openconfig-bgp-policy:ext-community-sets:
+            openconfig-bgp-policy:ext-community-set:
+              - openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
+                openconfig-bgp-policy:config:
+                  openconfig-bgp-policy:ext-community-set-name: import-ext-community-set
+                  openconfig-bgp-policy:match-set-options: ANY
+                  openconfig-bgp-policy:ext-community-member:
+                    - "1:1"
+              - openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
+                openconfig-bgp-policy:config:
+                  openconfig-bgp-policy:ext-community-set-name: export-ext-community-set
+                  openconfig-bgp-policy:match-set-options: ANY
+                  openconfig-bgp-policy:ext-community-member:
+                    - "1:1"
+      openconfig-routing-policy:policy-definitions:
+        openconfig-routing-policy:policy-definition:
+          - openconfig-routing-policy:name: import-route-target
+            openconfig-routing-policy:config:
+              openconfig-routing-policy:name: import-route-target
+            openconfig-routing-policy:statements:
+              openconfig-routing-policy:statement:
+                - openconfig-routing-policy:name: '10'
                   openconfig-routing-policy:config:
-                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
-        - openconfig-routing-policy:name: export-route-target
-          openconfig-routing-policy:config:
-            openconfig-routing-policy:name: export-route-target
-          openconfig-routing-policy:statements:
-            openconfig-routing-policy:statement:
-              - openconfig-routing-policy:name: '10'
-                openconfig-routing-policy:config:
-                  openconfig-routing-policy:name: '10'
-                openconfig-routing-policy:conditions:
-                  openconfig-bgp-policy:bgp-conditions:
-                    openconfig-bgp-policy:config:
-                      openconfig-bgp-policy:ext-community-set: export-ext-community-set
-                openconfig-routing-policy:actions:
+                    openconfig-routing-policy:name: '10'
+                  openconfig-routing-policy:conditions:
+                    openconfig-bgp-policy:bgp-conditions:
+                      openconfig-bgp-policy:config:
+                        openconfig-bgp-policy:ext-community-set: import-ext-community-set
+                  openconfig-routing-policy:actions:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+          - openconfig-routing-policy:name: export-route-target
+            openconfig-routing-policy:config:
+              openconfig-routing-policy:name: export-route-target
+            openconfig-routing-policy:statements:
+              openconfig-routing-policy:statement:
+                - openconfig-routing-policy:name: '10'
                   openconfig-routing-policy:config:
-                    openconfig-routing-policy:policy-result: ACCEPT_ROUTE
-  openconfig-network-instance:network-instances:
-    openconfig-network-instance:network-instance:
-      - openconfig-network-instance:name: default
-        openconfig-network-instance:config:
-          openconfig-network-instance:name: default
-          openconfig-network-instance:type: DEFAULT_INSTANCE
-          openconfig-network-instance:enabled: true
-        openconfig-network-instance:mpls:
-          openconfig-network-instance:global:
-            openconfig-network-instance:config:
-              openconfig-network-instance:ttl-propagation: true
-            openconfig-network-instance:interface-attributes:
-              openconfig-network-instance:interface:
-                - openconfig-network-instance:interface-id: GigabitEthernet2
-                  openconfig-network-instance:config:
-                    openconfig-network-instance:interface-id: GigabitEthernet2
-                    openconfig-network-instance:mpls-enabled: true
-                  openconfig-network-instance:interface-ref:
-                    openconfig-network-instance:config:
-                      openconfig-network-instance:interface: GigabitEthernet2
-                      openconfig-network-instance:subinterface: 0
-          openconfig-network-instance:signaling-protocols:
-            openconfig-network-instance:ldp:
-              openconfig-network-instance:global:
-                openconfig-network-instance:graceful-restart:
-                  openconfig-network-instance:config:
-                    openconfig-network-instance:enabled: false
+                    openconfig-routing-policy:name: '10'
+                  openconfig-routing-policy:conditions:
+                    openconfig-bgp-policy:bgp-conditions:
+                      openconfig-bgp-policy:config:
+                        openconfig-bgp-policy:ext-community-set: export-ext-community-set
+                  openconfig-routing-policy:actions:
+                    openconfig-routing-policy:config:
+                      openconfig-routing-policy:policy-result: ACCEPT_ROUTE
+    openconfig-network-instance:network-instances:
+      openconfig-network-instance:network-instance:
+        - openconfig-network-instance:name: default
+          openconfig-network-instance:config:
+            openconfig-network-instance:name: default
+            openconfig-network-instance:type: DEFAULT_INSTANCE
+            openconfig-network-instance:enabled: true
+          openconfig-network-instance:mpls:
+            openconfig-network-instance:global:
+              openconfig-network-instance:config:
+                openconfig-network-instance:ttl-propagation: true
               openconfig-network-instance:interface-attributes:
-                openconfig-network-instance:config:
-                  openconfig-network-instance:hello-holdtime: 15
-                  openconfig-network-instance:hello-interval: 5
-        openconfig-network-instance:protocols:
-          openconfig-network-instance:protocol:
-            - openconfig-network-instance:identifier: OSPF
-              openconfig-network-instance:name: '100'
-              openconfig-network-instance:config:
-                openconfig-network-instance:enabled: True
-                openconfig-network-instance:identifier: OSPF
-                openconfig-network-instance:name: '100'
-              openconfig-network-instance:ospfv2:
-                openconfig-network-instance:global:
-                  openconfig-network-instance:config:
-                    openconfig-network-instance:log-adjacency-changes: True
-                openconfig-network-instance:areas:
-                  openconfig-network-instance:area:
-                    - openconfig-network-instance:identifier: 0
-                      openconfig-network-instance:config:
-                        openconfig-network-instance:identifier: 0
-                      openconfig-network-instance:interfaces:
-                        openconfig-network-instance:interface:
-                          - openconfig-network-instance:id: Loopback100
-                            openconfig-network-instance:config:
-                              openconfig-network-instance:id: Loopback100
-                              openconfig-network-instance:passive: True
-                          - openconfig-network-instance:id: GigabitEthernet2
-                            openconfig-network-instance:config:
-                              openconfig-network-instance:id: GigabitEthernet2
-            - openconfig-network-instance:identifier: BGP
-              openconfig-network-instance:name: BGP
-              openconfig-network-instance:config:
-                openconfig-network-instance:enabled: True
-                openconfig-network-instance:identifier: BGP
-                openconfig-network-instance:name: BGP
-              openconfig-network-instance:bgp:
-                openconfig-network-instance:global:
-                  openconfig-network-instance:config:
-                    openconfig-network-instance:as: 65100
-                    openconfig-bgp-ext:log-neighbor-changes: true
-                  openconfig-network-instance:use-multiple-paths:
+                openconfig-network-instance:interface:
+                  - openconfig-network-instance:interface-id: GigabitEthernet2
                     openconfig-network-instance:config:
-                      openconfig-network-instance:enabled: True
-                    openconfig-network-instance:ebgp:
+                      openconfig-network-instance:interface-id: GigabitEthernet2
+                      openconfig-network-instance:mpls-enabled: true
+                    openconfig-network-instance:interface-ref:
                       openconfig-network-instance:config:
-                        openconfig-network-instance:allow-multiple-as: True
-                        openconfig-network-instance:maximum-paths: 2
-                    openconfig-network-instance:ibgp:
-                      openconfig-network-instance:config:
-                        openconfig-network-instance:maximum-paths: 2
-                  openconfig-network-instance:afi-safis:
-                    openconfig-network-instance:afi-safi:
-                      - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
-                        openconfig-network-instance:config:
-                          openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
-                          openconfig-network-instance:enabled: true
-                openconfig-network-instance:neighbors:
-                  openconfig-network-instance:neighbor:
-                    - openconfig-network-instance:neighbor-address: 10.255.255.1
-                      openconfig-network-instance:config:
-                        openconfig-network-instance:neighbor-address: 10.255.255.1
-                        openconfig-network-instance:description: WAN RR
-                        openconfig-network-instance:peer-as: 65100
-                        openconfig-network-instance:send-community: BOTH
-                      openconfig-network-instance:transport:
-                        openconfig-network-instance:config:
-                          openconfig-network-instance:local-address: Loopback100
-                      openconfig-network-instance:afi-safis:
-                        openconfig-network-instance:afi-safi:
-                          - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
-                            openconfig-network-instance:config:
-                              openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
-                              openconfig-network-instance:enabled: true
-      - openconfig-network-instance:name: internal_1
-        openconfig-network-instance:config:
-          openconfig-network-instance:name: internal_1
-          openconfig-network-instance:type: L3VRF
-          openconfig-network-instance:enabled: true
-          openconfig-network-instance:enabled-address-families:
-            - IPV4
-            - IPV6
-          openconfig-network-instance:route-distinguisher: '1:1'
-        openconfig-network-instance:inter-instance-policies:
-          openconfig-network-instance:apply-policy:
-            openconfig-network-instance:config:
-              openconfig-network-instance:import-policy:
-                - import-route-target
-              openconfig-network-instance:export-policy:
-                - export-route-target
-        openconfig-network-instance:interfaces:
-          openconfig-network-instance:interface:
-            - openconfig-network-instance:id: Loopback0
-              openconfig-network-instance:config:
-                openconfig-network-instance:id: Loopback0
-                openconfig-network-instance:interface: Loopback0
-                openconfig-network-instance:subinterface: 0
-            - openconfig-network-instance:id: GigabitEthernet3.10
-              openconfig-network-instance:config:
-                openconfig-network-instance:id: GigabitEthernet3.10
-                openconfig-network-instance:interface: GigabitEthernet3
-                openconfig-network-instance:subinterface: 10
-        openconfig-network-instance:protocols:
-          openconfig-network-instance:protocol:
-            - openconfig-network-instance:identifier: BGP
-              openconfig-network-instance:name: BGP
-              openconfig-network-instance:config:
-                openconfig-network-instance:enabled: True
-                openconfig-network-instance:identifier: BGP
-                openconfig-network-instance:name: BGP
-              openconfig-network-instance:bgp:
+                        openconfig-network-instance:interface: GigabitEthernet2
+                        openconfig-network-instance:subinterface: 0
+            openconfig-network-instance:signaling-protocols:
+              openconfig-network-instance:ldp:
                 openconfig-network-instance:global:
+                  openconfig-network-instance:graceful-restart:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:enabled: false
+                openconfig-network-instance:interface-attributes:
                   openconfig-network-instance:config:
-                    openconfig-network-instance:as: 65100
-                  openconfig-network-instance:afi-safis:
-                    openconfig-network-instance:afi-safi:
-                      - openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                    openconfig-network-instance:hello-holdtime: 15
+                    openconfig-network-instance:hello-interval: 5
+          openconfig-network-instance:protocols:
+            openconfig-network-instance:protocol:
+              - openconfig-network-instance:identifier: OSPF
+                openconfig-network-instance:name: '100'
+                openconfig-network-instance:config:
+                  openconfig-network-instance:enabled: True
+                  openconfig-network-instance:identifier: OSPF
+                  openconfig-network-instance:name: '100'
+                openconfig-network-instance:ospfv2:
+                  openconfig-network-instance:global:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:log-adjacency-changes: True
+                  openconfig-network-instance:areas:
+                    openconfig-network-instance:area:
+                      - openconfig-network-instance:identifier: 0
                         openconfig-network-instance:config:
-                          openconfig-network-instance:afi-safi-name: IPV4_UNICAST
-                          openconfig-network-instance:enabled: true
-        openconfig-network-instance:table-connections:
-          openconfig-network-instance:table-connection:
-            - openconfig-network-instance:src-protocol: STATIC
-              openconfig-network-instance:dst-protocol: BGP
-              openconfig-network-instance:address-family: IPV4
+                          openconfig-network-instance:identifier: 0
+                        openconfig-network-instance:interfaces:
+                          openconfig-network-instance:interface:
+                            - openconfig-network-instance:id: Loopback100
+                              openconfig-network-instance:config:
+                                openconfig-network-instance:id: Loopback100
+                                openconfig-network-instance:passive: True
+                            - openconfig-network-instance:id: GigabitEthernet2
+                              openconfig-network-instance:config:
+                                openconfig-network-instance:id: GigabitEthernet2
+              - openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+                openconfig-network-instance:config:
+                  openconfig-network-instance:enabled: True
+                  openconfig-network-instance:identifier: BGP
+                  openconfig-network-instance:name: BGP
+                openconfig-network-instance:bgp:
+                  openconfig-network-instance:global:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:as: 65100
+                      openconfig-bgp-ext:log-neighbor-changes: true
+                    openconfig-network-instance:use-multiple-paths:
+                      openconfig-network-instance:config:
+                        openconfig-network-instance:enabled: True
+                      openconfig-network-instance:ebgp:
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:allow-multiple-as: True
+                          openconfig-network-instance:maximum-paths: 2
+                      openconfig-network-instance:ibgp:
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:maximum-paths: 2
+                    openconfig-network-instance:afi-safis:
+                      openconfig-network-instance:afi-safi:
+                        - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                          openconfig-network-instance:config:
+                            openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                            openconfig-network-instance:enabled: true
+                  openconfig-network-instance:neighbors:
+                    openconfig-network-instance:neighbor:
+                      - openconfig-network-instance:neighbor-address: 10.255.255.1
+                        openconfig-network-instance:config:
+                          openconfig-network-instance:neighbor-address: 10.255.255.1
+                          openconfig-network-instance:description: WAN RR
+                          openconfig-network-instance:peer-as: 65100
+                          openconfig-network-instance:send-community: BOTH
+                        openconfig-network-instance:transport:
+                          openconfig-network-instance:config:
+                            openconfig-network-instance:local-address: Loopback100
+                        openconfig-network-instance:afi-safis:
+                          openconfig-network-instance:afi-safi:
+                            - openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                              openconfig-network-instance:config:
+                                openconfig-network-instance:afi-safi-name: L3VPN_IPV4_UNICAST
+                                openconfig-network-instance:enabled: true
+        - openconfig-network-instance:name: internal_1
+          openconfig-network-instance:config:
+            openconfig-network-instance:name: internal_1
+            openconfig-network-instance:type: L3VRF
+            openconfig-network-instance:enabled: true
+            openconfig-network-instance:enabled-address-families:
+              - IPV4
+              - IPV6
+            openconfig-network-instance:route-distinguisher: '1:1'
+          openconfig-network-instance:inter-instance-policies:
+            openconfig-network-instance:apply-policy:
               openconfig-network-instance:config:
-                openconfig-network-instance:address-family: IPV4
+                openconfig-network-instance:import-policy:
+                  - import-route-target
+                openconfig-network-instance:export-policy:
+                  - export-route-target
+          openconfig-network-instance:interfaces:
+            openconfig-network-instance:interface:
+              - openconfig-network-instance:id: Loopback0
+                openconfig-network-instance:config:
+                  openconfig-network-instance:id: Loopback0
+                  openconfig-network-instance:interface: Loopback0
+                  openconfig-network-instance:subinterface: 0
+              - openconfig-network-instance:id: GigabitEthernet3.10
+                openconfig-network-instance:config:
+                  openconfig-network-instance:id: GigabitEthernet3.10
+                  openconfig-network-instance:interface: GigabitEthernet3
+                  openconfig-network-instance:subinterface: 10
+          openconfig-network-instance:protocols:
+            openconfig-network-instance:protocol:
+              - openconfig-network-instance:identifier: BGP
+                openconfig-network-instance:name: BGP
+                openconfig-network-instance:config:
+                  openconfig-network-instance:enabled: True
+                  openconfig-network-instance:identifier: BGP
+                  openconfig-network-instance:name: BGP
+                openconfig-network-instance:bgp:
+                  openconfig-network-instance:global:
+                    openconfig-network-instance:config:
+                      openconfig-network-instance:as: 65100
+                    openconfig-network-instance:afi-safis:
+                      openconfig-network-instance:afi-safi:
+                        - openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                          openconfig-network-instance:config:
+                            openconfig-network-instance:afi-safi-name: IPV4_UNICAST
+                            openconfig-network-instance:enabled: true
+          openconfig-network-instance:table-connections:
+            openconfig-network-instance:table-connection:
+              - openconfig-network-instance:src-protocol: STATIC
                 openconfig-network-instance:dst-protocol: BGP
-                openconfig-network-instance:src-protocol: STATIC
-            - openconfig-network-instance:src-protocol: DIRECTLY_CONNECTED
-              openconfig-network-instance:dst-protocol: BGP
-              openconfig-network-instance:address-family: IPV4
-              openconfig-network-instance:config:
                 openconfig-network-instance:address-family: IPV4
+                openconfig-network-instance:config:
+                  openconfig-network-instance:address-family: IPV4
+                  openconfig-network-instance:dst-protocol: BGP
+                  openconfig-network-instance:src-protocol: STATIC
+              - openconfig-network-instance:src-protocol: DIRECTLY_CONNECTED
                 openconfig-network-instance:dst-protocol: BGP
-                openconfig-network-instance:src-protocol: DIRECTLY_CONNECTED
+                openconfig-network-instance:address-family: IPV4
+                openconfig-network-instance:config:
+                  openconfig-network-instance:address-family: IPV4
+                  openconfig-network-instance:dst-protocol: BGP
+                  openconfig-network-instance:src-protocol: DIRECTLY_CONNECTED
 mdd_tags:
   - site_router

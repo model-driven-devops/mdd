@@ -1,6 +1,7 @@
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:config:
-      openconfig-system:login-banner: "Unauthorized access is prohibited!"
-      openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:config:
+        openconfig-system:login-banner: "Unauthorized access is prohibited!"
+        openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"

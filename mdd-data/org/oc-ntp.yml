@@ -1,21 +1,22 @@
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:clock:
-      openconfig-system:config:
-        openconfig-system:timezone-name: 'PST -8 0'
-    openconfig-system:ntp:
-      openconfig-system:config:
-        openconfig-system:enabled: true
-      openconfig-system:servers:
-        openconfig-system:server:
-          - openconfig-system:address: '216.239.35.0'
-            openconfig-system:config:
-              openconfig-system:address: '216.239.35.0'
-              openconfig-system:association-type: SERVER
-              openconfig-system:iburst: true
-          - openconfig-system:address: '216.239.35.4'
-            openconfig-system:config:
-              openconfig-system:address: '216.239.35.4'
-              openconfig-system:association-type: SERVER
-              openconfig-system:iburst: true
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:clock:
+        openconfig-system:config:
+          openconfig-system:timezone-name: 'PST -8 0'
+      openconfig-system:ntp:
+        openconfig-system:config:
+          openconfig-system:enabled: true
+        openconfig-system:servers:
+          openconfig-system:server:
+            - openconfig-system:address: '216.239.35.0'
+              openconfig-system:config:
+                openconfig-system:address: '216.239.35.0'
+                openconfig-system:association-type: SERVER
+                openconfig-system:iburst: true
+            - openconfig-system:address: '216.239.35.4'
+              openconfig-system:config:
+                openconfig-system:address: '216.239.35.4'
+                openconfig-system:association-type: SERVER
+                openconfig-system:iburst: true
