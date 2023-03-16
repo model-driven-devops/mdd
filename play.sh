@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/local/bin/python"
-# OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
+IMAGE=ghcr.io/model-driven-devops/mdd:1.2.0
+
+OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
@@ -12,10 +13,10 @@ OPTION_LIST=( \
    "CML_PASSWORD" \
    "CML_LAB" \
    "CML_VERIFY_CERT" \
-   "CSR1000V_VERSION" \
-   "UBUNTU_VERSION" \
-   "IOSVL2_VERSION" \
    "ANSIBLE_INVENTORY" \
+   "NSO_URL" \
+   "NSO_USERNAME" \
+   "NSO_PASSWORD" \
    )
 
 for OPTION in ${OPTION_LIST[*]}; do
@@ -24,4 +25,17 @@ for OPTION in ${OPTION_LIST[*]}; do
    fi
 done
 
-docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS ghcr.io/model-driven-devops/mdd:latest ansible-playbook "$@"
+while getopts ":sl" opt; do
+  case $opt in
+    s)
+      docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE /bin/bash
+      exit
+      ;;
+    l)
+      docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE ansible-lint
+      exit
+      ;;
+  esac
+done
+
+docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE ansible-playbook "$@"
