@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-IMAGE=ghcr.io/model-driven-devops/mdd:latest
+IMAGE=ghcr.io/model-driven-devops/mdd:1.2.2
 
 OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3"
-OPTIONS="$OPTIONS --env COLLECTIONS_PATHS=/"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
    OPTIONS="--env ANSIBLE_VAULT_PASSWORD_FILE=/tmp/vault.pw -v $ANSIBLE_VAULT_PASSWORD_FILE:/tmp/vault.pw"
 fi
@@ -27,9 +26,9 @@ for OPTION in ${OPTION_LIST[*]}; do
    fi
 done
 
-while getopts ":dl" opt; do
+while getopts ":sl" opt; do
   case $opt in
-    d)
+    s)
       docker run -it --rm -v $PWD:/ansible --env PWD="/ansible" --env USER="$USER" $OPTIONS $IMAGE /bin/bash
       exit
       ;;

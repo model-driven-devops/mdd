@@ -22,7 +22,7 @@ give a report of the specific changes that will be made to the devices.  To perf
 a dry run, do:
 
 ```
-ansible-playbook ciscops.mdd.nso_update_oc
+ansible-playbook ciscops.mdd.update
 ```
 
 Here is a truncated version of the output to illustrate what the playbook does:
@@ -85,7 +85,7 @@ site2-rtr1                 : ok=16   changed=0    unreachable=0    failed=0    s
 site2-sw1                  : ok=16   changed=0    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0 
 ```
 
-First, the playbook combines the data as explained in [Exploring the Data](exercises/explore-data.md) to create the device-specific payload.  Second, it checks that all the devices are in sync with NSO to make sure that there were not any manual changes made.  If manual changes were made, that host would error out and no new updated would be pushed to the device until the conflict was resolved and the device brought back into sync with NSO.  Third, it pushes the data to NSO.  By default, the `ciscops.mdd.nso_update_oc`.  Since we did not override that behavior,
+First, the playbook combines the data as explained in [Exploring the Data](exercises/explore-data.md) to create the device-specific payload.  Second, it checks that all the devices are in sync with NSO to make sure that there were not any manual changes made.  If manual changes were made, that host would error out and no new updated would be pushed to the device until the conflict was resolved and the device brought back into sync with NSO.  Third, it pushes the data to NSO.  By default, the `ciscops.mdd.update`.  Since we did not override that behavior,
 NSO will perform a dry run and report back what changes it would make to the device.  Last, the playbook consolidates the changes into a report to consolidate the changes made with the group of devices that changes were made on. Since `consolidated_report` was `null`, there were no updates that needed to pushed out to the devices.
 
 ### Single device change
@@ -137,7 +137,7 @@ Notice that site2-sw1 is the only device that changes.  Since we know that we ar
 we can push it to that device specifically by limiting the scope of tha Ansible playbook:
 
 ```
-ansible-playbook ciscops.mdd.nso_update_oc -e dry_run=no --limit=site2-sw1
+ansible-playbook ciscops.mdd.update -e dry_run=no --limit=site2-sw1
 ```
 
 ```
