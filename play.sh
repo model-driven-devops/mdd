@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE=ghcr.io/model-driven-devops/mdd:1.2.1
+IMAGE=ghcr.io/model-driven-devops/mdd:1.2.2
 
 OPTIONS="--env ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3"
 if [[ ! -z "$ANSIBLE_VAULT_PASSWORD_FILE" ]]; then
