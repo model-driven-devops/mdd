@@ -5,4 +5,8 @@ mdd_schemas:
   - name: banner
     file: 'local/banner.schema.yml'
   - name: dns
-    file: 'local/dns.schema.yml'
+    file: 'local/dns.schema.yml.j2'
+    validate_vars:
+      dns_servers:
+        - 208.67.222.222
+        - 208.67.220.220
