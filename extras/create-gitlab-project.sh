@@ -24,4 +24,4 @@ curl --request POST -sSLk --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" "http://$G
 curl --request POST -sSLk --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" "http://$GITLAB_HOST/api/v4/projects/$GITLAB_USER%2f$GITLAB_PROJECT/variables" --form "key=CML_VERIFY_CERT" --form "value=$CML_VERIFY_CERT"
 
 # Push repo into project
-git push ssh://$GITLAB_USER:$GITLAB_PASSWORD@$GITLAB_HOST/$GITLAB_USER/$GITLAB_PROJECT.git
+git push http://$GITLAB_USER:$GITLAB_PASSWORD@$GITLAB_HOST/$GITLAB_USER/$GITLAB_PROJECT.git
