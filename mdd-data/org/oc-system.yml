@@ -45,10 +45,10 @@ mdd_data:
                 openconfig-system:port: 53  # always 53 for ios
       openconfig-system:ssh-server:
         openconfig-system:config:
-          openconfig-system-ext:absolute-timeout-minutes: 1200
+          # openconfig-system-ext:absolute-timeout-minutes: 1200
           openconfig-system-ext:ssh-timeout: 60  # ip ssh timeout
           openconfig-system:enable: true  #   adds line transport input ssh; must be enabled for this to work
           openconfig-system:protocol-version: V2  # ip ssh version 2
           openconfig-system:rate-limit: 0  # unsupported in ios
-          openconfig-system:session-limit: 16  # line session-limit 16
+          # openconfig-system:session-limit: 16  # line session-limit 16
           openconfig-system:timeout: 1800  # seconds - line exec-timeout 30 0

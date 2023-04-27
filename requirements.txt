@@ -12,3 +12,5 @@ passlib
 botocore
 boto3
 nso-oc==2.35.8
+networkx
+scipy

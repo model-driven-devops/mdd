@@ -25,7 +25,7 @@ mdd_data:
             openconfig-vlan:switched-vlan:
               openconfig-vlan:config:
                 openconfig-vlan:interface-mode: TRUNK
-                openconfig-vlan:native-vlan: 99
+                openconfig-vlan:native-vlan: 1
                 openconfig-vlan:trunk-vlans:
                   - 10
         - openconfig-interfaces:name: GigabitEthernet0/2

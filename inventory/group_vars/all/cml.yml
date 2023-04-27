@@ -1,1 +1,40 @@
 cml_lab_file: "{{ lookup('env', 'PWD') }}/files/arch4_csr_pop.yaml.j2"
+cml_device_template:
+  switch:
+    node_definition: iosvl2
+    ram: 768
+    tags:
+      - switch
+    type: switch
+  router:
+    node_definition: csr1000v
+    ram: 3072
+    tags:
+      - router
+    type: router
+  # Uncomment if setting use_cat9kv to True
+  l3switch:
+    node_definition: Cat9000v
+    image_definition: Cat9kv-17.12.1
+    ram: 18432
+    cpus: 4
+    tags:
+      - l3switch
+    type: l3switch
+  # Uncomment if setting use_cat9kv to False
+  # l3switch:
+  #   node_definition: iosvl2
+  #   ram: 768
+  #   tags:
+  #     - l3switch
+  #   type: l3switch
+  ext_conn:
+    node_definition: external_connector
+    ram: 0
+    tags: []
+# Default interface mappings for CML, uncomment to add/modify
+# Note: any interfaces not handled here will be truncated when mapping physical to virtual
+# cml_default_mappings:
+#   Loopback(\d+): Loopback\1
+#   Vlan(\d+): Vlan\1
+  

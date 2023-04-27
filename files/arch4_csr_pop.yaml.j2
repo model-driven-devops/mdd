@@ -20,6 +20,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -27,7 +28,20 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet3
+      cdp enable
+      !
+      interface GigabitEthernet4
+      cdp enable
+      !
+      interface GigabitEthernet5
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -97,16 +111,16 @@ nodes:
     y: -250
     configuration: |-
       hostname hq-sw1
-      !I just added this
       vrf definition Mgmt-intf
       !
       address-family ipv4
       exit-address-family
       !
       address-family ipv6
-      exit-address-familyf
+      exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -115,7 +129,9 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+
       !
       ip http server
       ip http secure-server
@@ -225,6 +241,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -233,6 +250,7 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
       !
       ip http server
@@ -343,6 +361,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -351,6 +370,7 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
       !
       ip http server
@@ -461,6 +481,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -468,7 +489,17 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet3
+      cdp enable
+      !
+      interface GigabitEthernet4
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -547,6 +578,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -554,7 +586,17 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet3
+      cdp enable
+      !
+      interface GigabitEthernet4
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -633,6 +675,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -640,7 +683,14 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet3
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -823,6 +873,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -830,7 +881,14 @@ nodes:
       vrf forwarding Mgmt-intf
       ip address dhcp
       negotiation auto
+      no cdp enable
       no shutdown
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet3
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -909,6 +967,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -918,6 +977,7 @@ nodes:
       ip address dhcp
       negotiation auto
       no shutdown
+      no cdp enable
       !
       ip http server
       ip http secure-server
@@ -1310,6 +1370,7 @@ nodes:
       exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -1318,6 +1379,13 @@ nodes:
       ip address dhcp
       negotiation auto
       no shutdown
+      no cdp enable
+      !
+      interface GigabitEthernet2
+      cdp enable
+      !
+      interface GigabitEthernet8
+      cdp enable
       !
       ip http server
       ip http secure-server
@@ -1414,6 +1482,7 @@ nodes:
        exit-address-family
       !
       username {{ ansible_user }} privilege 15 secret 0 {{ ansible_password }}
+      cdp run
       no aaa new-model
       ip domain-name mdd.cisco.com
       !
@@ -1433,6 +1502,7 @@ nodes:
        negotiation auto
        no mop enabled
        no mop sysid
+       no cdp enable
       !
       interface GigabitEthernet2
        ip address 10.0.254.1 255.255.255.252
@@ -1441,6 +1511,7 @@ nodes:
        negotiation auto
        no mop enabled
        no mop sysid
+       cdp enable
       !
       interface GigabitEthernet3
        no ip address
