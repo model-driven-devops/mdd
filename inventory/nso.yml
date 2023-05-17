@@ -15,7 +15,7 @@ all:
       vars:
         ansible_user: developer
         ansible_password: C1sco12345
-        ansible_python_interpreter: /usr/bin/python3
+        ansible_python_interpreter: /usr/local/bin/python3
       hosts:
         nso1:
           ansible_host: 10.10.20.49
