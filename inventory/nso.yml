@@ -7,7 +7,7 @@ all:
         version: v2.35.8
         service_list:
           - mdd
-    nso_url: https://10.10.20.49/jsonrpc
+    nso_rest_url: https://10.10.20.49
     nso_username: developer
     nso_password: C1sco12345
   children:
