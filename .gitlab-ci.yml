@@ -49,7 +49,7 @@ init-nso:
     - ansible-playbook ciscops.mdd.nso_init
     - ansible-playbook ciscops.mdd.nso_delete_devices
     - ansible-playbook ciscops.mdd.nso_update_devices
-    - ansible-playbook ciscops.mdd.update -e dry_run=no
+    - ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
   resource_group: mdd
   rules:
     - if: $NSO_INIT == "true"
@@ -83,7 +83,7 @@ update:
   script:
     # update devices in case DHCP address changed
     # - ansible-playbook ciscops.mdd.nso_update_devices
-    - ansible-playbook ciscops.mdd.update -e throttle=1 -e dry_run=no
+    - ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
   resource_group: mdd
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
