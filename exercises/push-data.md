@@ -11,7 +11,7 @@ validated it. We are now ready to push the validated data into the devices.
 You can optionally do a dry run to push the data to all devices, a subset of devices, or a single device. The dry run will calculate what changes need to be made and give a report of the specific changes that would be made to the devices. To perform a dry run, use:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 Here is a truncated version of the output to illustrate what the playbook does:
@@ -93,21 +93,21 @@ This file contains the following changed data.  View the file in the editor to v
 
 ```
 $ diff files/oc-interfaces.yml files/oc-interfaces-new.yml 
-54c54,59
-<           openconfig-interfaces:type: ethernetCsmacd
+59c59,64
+<             openconfig-interfaces:type: ethernetCsmacd
 ---
->           openconfig-interfaces:type: l2vlan
->         openconfig-if-ethernet:ethernet:
->           openconfig-vlan:switched-vlan:
->             openconfig-vlan:config:
->               openconfig-vlan:access-vlan: 10
->               openconfig-vlan:interface-mode: ACCESS
+>             openconfig-interfaces:type: l2vlan
+>           openconfig-if-ethernet:ethernet:
+>             openconfig-vlan:switched-vlan:
+>               openconfig-vlan:config:
+>                 openconfig-vlan:access-vlan: 10
+>                 openconfig-vlan:interface-mode: ACCESS
 ```
 
 Then perform a dry run:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 And see the change that would be pushed out:
@@ -140,7 +140,7 @@ site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    s
 Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of tha Ansible playbook:
 
 ```
-ansible-playbook ciscops.mdd.update -e dry_run=no --limit=site2-sw1
+ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no --limit=site2-sw1
 ```
 
 The truncated output below shows that the change was successful:
@@ -174,7 +174,7 @@ ansible-playbook cisco.cml.inventory --limit site2-sw1
 Then login to the device using SSH with username admin and password admin (substitute your `site2-sw1` IP address here):
 
 ```
-$ ssh admin@192.133.151.134
+$ ssh admin@10.10.20.139
 Password:
 Welcome to site2-sw1
 
@@ -249,18 +249,18 @@ This file contains the following additional data. View the file in the editor to
 
 ```
 $ diff files/oc-vlan.yml files/oc-vlan-new.yml 
-18a19,23
->             - openconfig-network-instance:vlan-id: 20
->               openconfig-network-instance:config:
->                 openconfig-network-instance:vlan-id: 20
->                 openconfig-network-instance:name: 'Internal-2'
->                 openconfig-network-instance:status: 'ACTIVE'
+19a20,24
+>               - openconfig-network-instance:vlan-id: 20
+>                 openconfig-network-instance:config:
+>                   openconfig-network-instance:vlan-id: 20
+>                   openconfig-network-instance:name: 'Internal-2'
+>                   openconfig-network-instance:status: 'ACTIVE'
 ```
 
 We can now perform a dry run to see what changes will be made in the network:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 And get the following truncated output:
@@ -313,7 +313,11 @@ ok: [site2-sw1] => {
 }
 ```
 
-But what if we want to rollback an entire change?
+Return the VLAN configuration to the original state:
+
+```
+cp files/oc-vlan.yml mdd-data/org/oc-vlan.yml
+```
 
 ## Checkpoint/Rollback
 

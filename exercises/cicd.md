@@ -9,16 +9,27 @@ Continuous Integration (CI) is the concept of continuously testing and validatin
 
 In this lab you will use GitLab to provide version control, workflow enforcement and CI/CD automation.  GitLab conveniently combines all of these features into a single web UI, which makes it ideal for lab environments like this.  A project named `mdd` has already been created for you and the code for the MDD reference implementation placed into this project.
 
-1. To access Gitlab, open https://gitlab.aws.ciscops.net in your browser.  Login with the credentials provided for your pod and click on the `mdd` project to open it.
+1. To access Gitlab, open http://devtools-gitlab.lab.devnetsandbox.local in your browser.  Login with the "developer" credentials.
+
+1. Set an API key by clicking on your user icon in the upper right corner, selecting Preferences, then Access Tokens and create a token with the "api" scope selected.  Name the token "api-token" and click "Create personal access token".  **Copy the token after it is created.**
+
+1. In Visual Studio Code, set your GITLAB_API_TOKEN in your environment.  Update `your_token_value` in the following command to the value of your token.
+    ```
+    export GITLAB_API_TOKEN=your_token_value
+    ```
+
+1. Create the GitLab project.
+    ```
+    extras/create-gitlab-project.sh
+    ```
 
 > Note: all further instructions in this exercise assume you are in the GitLab UI unless otherwise stated.
-
 ## Continuous Integration
 Throughout this lab we have been building a complete CI process that includes linting, data validation and state checking as shown in the diagram below. It is now time to take the next step and use these tools to build out an automated CI pipeline.
 
 ![MDD CI Flow](mdd_ci_flow.png)
 
-2. Navigate to **Repository -> Files** and click on the `gitlab-ci.yml` file to view its contents.
+1. Navigate to **Repository -> Files** and click on the `gitlab-ci.yml` file to view its contents.
 
 The `.gitlab-ci.yml` file contains instructions that GitLab will use to run the CI (and/or CD) pipeline for this project.  Your file should looks similar to the one shown below:
 
@@ -221,11 +232,11 @@ Let's fix this error.
 
 10. Click the back button in the browser to go back to your merge request.
 
-11. In the upper right corner of the page, click `Code` and then `Open in WebIDE`.
+11. In the upper right corner of the page, click `Open in WebIDE`.
 
 ![Merge request IDE](gitlab-mr-ide.png)
 
-12. Fix the indentation issue and click `Create commit...` and then `Commit`.
+12. Fix the indentation issue and click `Commit...` and then `Commit`.
 
 ![Merge request fix yamllint](gitlab-mr-fix.png)
 
@@ -245,7 +256,7 @@ Let's fix this error.
 
 15. Close the tab with the job output, and modify the banner to be compliant.  Change "Unauthorized access is strongly discouraged!" to "Unauthorized use is prohibited!".
 
-16. Click `Create commit...` and then `Commit`.
+16. Click `Commit...` and then `Commit`.
 
 17. Click the rocket ship icon to view the pipeline run. It should complete successfully this time.  If not, view the pipeline output and fix any errors.
 
