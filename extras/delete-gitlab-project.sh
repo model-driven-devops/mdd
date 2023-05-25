@@ -3,8 +3,7 @@
 # Uncomment the following and define proper values (or specify as environment variables)
 
 GITLAB_HOST=http://devtools-gitlab.lab.devnetsandbox.local
-GITLAB_USER=root
-GITLAB_API_TOKEN=zbBCZoKtHK7PwsoouEYb
+GITLAB_USER=developer
 GITLAB_PROJECT=mdd
 
 # Delete project

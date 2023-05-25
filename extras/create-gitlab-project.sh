@@ -3,9 +3,8 @@
 # Uncomment the following and define proper values (or specify as environment variables)
 
 GITLAB_HOST=devtools-gitlab.lab.devnetsandbox.local
-GITLAB_USER=root
+GITLAB_USER=developer
 GITLAB_PASSWORD=C1sco12345
-GITLAB_API_TOKEN=zbBCZoKtHK7PwsoouEYb
 GITLAB_PROJECT=mdd
 CML_HOST=10.10.20.161
 CML_USERNAME=developer
