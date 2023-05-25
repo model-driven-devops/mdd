@@ -16,7 +16,7 @@ In order to make it easy to leverage, the role can be called in the roles sectio
 
 Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data structure that contains the device's configuration data that can be used later in the playbook.
 
-We use a separate directory hierarchy to hold the MDD data in the `mdd-data` directory (this can be changed in the defaults). You can see how the data is laid out in the `mdd-data` directory using the `tree` command:
+We use a separate directory hierarchy to hold the MDD data in the `mdd-data` directory (this can be changed in the defaults). You can see how the data is laid out in the `mdd-data` directory using the `tree` command.  (Note: this command is not installed on the DevBox and will fail, but you can see the output below.)
 
 ```
 tree -d mdd-data
