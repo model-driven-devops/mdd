@@ -1,102 +1,59 @@
 # Initial Setup
 
-There are three ways to run the tooling in this repo:
-1) Locally in the native OS
-2) Using a container on top of your native OS
-3) Using GitHub actions from a fork of the repo (covered later)
+This workshop is designed to work with Visual Studio Code and the Cisco NSO DevNet sandbox. Before you begin, please visit the DevNet sandbox [page](https://developer.cisco.com/site/sandbox/) and reserve the Cisco Network Services Orchestrator sandbox. Once your NSO sandbox has been provisioned, you can proceed with the steps below to get it setup for the rest of the workshop.  In this exercise you will:
 
-## Cloning the repo for local execution
-### Clone the repo
+- Connect to your sandbox via VPN
+- Open Visual Studio Code and connect to the DevBox in the sandbox.
+- Clone the MDD repo and set the required environment variables
+- Install the required Python packages and Ansible collections
 
-First, clone and enter the repo:
-```
-git clone https://github.com/model-driven-devops/mdd.git
-cd mdd
-```
+# Steps
+1. Following the instructions in your NSO sandbox, connect to the sandbox via VPN.
 
-## Dependencies
+1. If you don't already have it installed, install Visual Studio Code and the Remote - SSH plugin. Note: you can use any IDE you prefer, if you do not prefer to use Visual Studio Code. However, the instructions specified in this workshop will need to be modified for you environment.
 
-* Environmental Variables
-* Docker (if running in a docker container)
+1. Open Visual Studio Code and click the blue "Open a Remote Window" button in the bottom left corner then choose "Connect to Host...".  Select "+ Add New SSH Host..." from the list and enter the command to access the DevBox and then press return.
+    ```
+    ssh developer@10.10.20.50
+    ```
 
-### Environmental Variables
-The MDD tooling requires several environment variables.  The first one required for
-base execution is:
-```
-export ANSIBLE_PYTHON_INTERPRETER=${VIRTUAL_ENV}/bin/python
-```
+1. Click the blue "Open a Remote Window" button in the bottom left corner, choose "Connect to Host..." and select 10.10.20.50 from the list.  When prompted, enter the DevBox password.
 
-You can define this variable from the `envars` file:
+1. Click the "Clone Git Repository..." and clone the MDD repo URL.  When prompted, accept the default directory to clone the repo into (`/home/developer`)
+    ```
+    https://github.com/model-driven-devops/mdd.git
+    ```
 
-```
-. ./envvars
-```
+1. When prompted, click "Open" to open the MDD repo and enter the DevBox password.
 
-### Docker
+1. Open a new terminal in Visual Studio Code using the Terminal menu (or CTRL-` if you like shortcuts). All future commands for this workshop should be executed in this terminal.
 
-## Running Locally in the Native OS
-### Python Dependencies
-Next, it is highly recommended that you create a virtual environment to make it easier to
-install the dependencies without conflict:
+1. Checkout the "learning-lab" branch.
+    ```
+    git checkout learning-lab
+    ```
 
-```
-python3 -m venv venv-mdd
-. ./venv-mdd/bin/activate
-```
+1. Create a Python virtual envrironment and activate it.
+    ```
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
 
-Next, install the Python requirements via pip:
-```
-pip3 install -r requirements.txt
-```
-If using CML >=2.4, PIP install the correct cml client .whl file:
-```
-pip3 install ./files/virl2_client-2.4.0+build.2-py3-none-any.whl
-```
-### Reactivate Virtual Environment
-Reactivate virtual environment to ensure your shell is using the newly installed ansible.  
-```
-deactivate
-```
-```
-. ./venv-mdd/bin/activate
-```
-### Ansible Collections
-The MDD tooling is distributed via an Ansible Collection.  To install the tooling and it's
-Ansible dependencies, use ansible-galaxy:
+1. Source the `envvars` file.
+    ```
+    source envvars
+    ```
 
-```
-ansible-galaxy collection install -r requirements.yml
-```
-> Note: If you want to develop a collection, you need to set `ANSIBLE_COLLECTIONS_PATH` (or set in ansible.cfg)
-before installing the requirements above to tell Ansible to look locally for collections, comment out the collection
-in requirements.yml, and clone the collection repo directly, e.g.
-```
-export ANSIBLE_COLLECTIONS_PATH=./
-cd ansible_collections
-mkdir ciscops
-cd ciscops
-git clone https://github.com/model-driven-devops/ansible-mdd mdd
-```
+1. Install the required Python packages.
+    ```
+    pip install -r requirements.txt
+    ```
 
-## Running in a Container on top of your native OS
-If you are running the tools from a CI runner like GitHib Actions, you'll need to consult that CI runner's
-documentation for how to run tooling from a container.  Examples of how to run the tooling from a
-container in GitHib actions can be found in `.github/workflows` in this repo.
+1. Install the required Ansible collections.
+    ```
+    ansible-galaxy collection install -r requirements.yml
+    ```
 
-*** Need to put more verbiage on running in the container (e.g. Where does it get the tooling, where does it get the data)
+That's it! Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
 
-If you are running the tooling locally instide a container, you can use the provided shell script
-`play.sh`.  To use it, replace `ansible-playbook` with `./play.sh` as follows:
-
-```
-./play.sh ciscops.mdd.show --limit=hq-rtr1
-```
-
-> Note: The same applies as above to developing running in the container.
-
-## Testing
-At this point, you should be able to show the config data for the hosts in the inventory.
-To show the config data for `hq-rtr1`, run:
-```
-ansible-playbook ciscops.mdd.show --limit=hq-rtr1
-```
+[Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)
