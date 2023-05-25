@@ -9,7 +9,7 @@ stages:
   - check
   - load-rollback
 
-image: ghcr.io/model-driven-devops/mdd:1.2.3
+image: ghcr.io/model-driven-devops/mdd:1.2.5rc2
 
 variables:
   ANSIBLE_CONFIG: "./ansible.cfg"
