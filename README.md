@@ -35,6 +35,7 @@ Each pod has its own topology running in a Cisco Modeling Labs instance in AWS.
 These exercises will help you get hands-on experience with different aspects of the reference implementation. You will begin by getting familiar with the data and Ansible playbooks in Visual Studio Code and finish with the fully implemented pipeline in GitLab.
 
 * [Initial Setup](exercises/initial-setup.md#initial-setup)
+* [Deploy the Topology](exercises/deploy-topology.md#deploy-the-topology)
 * [Exploring the Inventory](exercises/explore-inventory.md#exploring-the-inventory)
 * [Exploring the Data](exercises/explore-data.md#exploring-the-data)
 * [Data Validation](exercises/data-validation.md#data-validation)

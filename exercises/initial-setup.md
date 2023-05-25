@@ -7,7 +7,7 @@ This workshop is designed to work with Visual Studio Code and the Cisco NSO DevN
 - Clone the MDD repo and set the required environment variables
 - Install the required Python packages and Ansible collections
 
-# Steps
+## Steps
 1. Following the instructions in your NSO sandbox, connect to the sandbox via VPN.
 
 1. If you don't already have it installed, install Visual Studio Code and the Remote - SSH plugin. Note: you can use any IDE you prefer, if you do not prefer to use Visual Studio Code. However, the instructions specified in this workshop will need to be modified for you environment.
@@ -56,4 +56,4 @@ This workshop is designed to work with Visual Studio Code and the Cisco NSO DevN
 
 That's it! Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
 
-[Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)
+[Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](deploy-topology.md#deploying-the-topology)

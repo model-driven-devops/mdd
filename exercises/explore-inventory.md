@@ -39,13 +39,11 @@ ansible-inventory --graph cml_hosts
 Expected output:
 
 ```
-SSL Verification disabled
 @cml_hosts:
   |--ISP
   |--ISP-mgmt-bridge
   |--WAN-mgmt
   |--WAN-rtr1
-  |--hq-host1
   |--hq-mgmt-bridge
   |--hq-mgmt-switch
   |--hq-pop
@@ -54,13 +52,10 @@ SSL Verification disabled
   |--hq-sw1
   |--hq-sw2
   |--internet-out
-  |--nso1
-  |--site1-host1
   |--site1-mgmt-bridge
   |--site1-mgmt-switch
   |--site1-rtr1
   |--site1-sw1
-  |--site2-host1
   |--site2-mgmt-bridge
   |--site2-mgmt-switch
   |--site2-rtr1
@@ -78,50 +73,38 @@ ansible-playbook cisco.cml.inventory
 Expected output:
 
 ```
-SSL Verification disabled
-[WARNING]: running playbook inside collection cisco.cml
+PLAY [cml_hosts] *************************************************************************************************************************************************
 
-PLAY [cml_hosts] *************************************************************************************************
-
-TASK [debug] *****************************************************************************************************
-ok: [internet-rtr1] => {
-    "msg": "Node: internet-rtr1(cat8000v), State: BOOTED, Address: 192.168.178.230"
-}
-ok: [hq-sw1] => {
-    "msg": "Node: hq-sw1(iosvl2), State: BOOTED, Address: 192.168.178.227"
+TASK [debug] *****************************************************************************************************************************************************
+ok: [WAN-rtr1] => {
+    "msg": "Node: WAN-rtr1(csr1000v), State: BOOTED, Address: 10.10.20.131"
 }
 ok: [hq-sw2] => {
-    "msg": "Node: hq-sw2(iosvl2), State: BOOTED, Address: 192.168.178.226"
+    "msg": "Node: hq-sw2(iosvl2), State: BOOTED, Address: 10.10.20.133"
+}
+ok: [hq-sw1] => {
+    "msg": "Node: hq-sw1(iosvl2), State: BOOTED, Address: 10.10.20.132"
 }
 ok: [site1-sw1] => {
-    "msg": "Node: site1-sw1(iosvl2), State: BOOTED, Address: 192.168.178.229"
+    "msg": "Node: site1-sw1(iosvl2), State: BOOTED, Address: 10.10.20.134"
 }
 ok: [hq-rtr1] => {
-    "msg": "Node: hq-rtr1(cat8000v), State: BOOTED, Address: 192.168.178.228"
-}
-ok: [hq-rtr2] => {
-    "msg": "Node: hq-rtr2(cat8000v), State: BOOTED, Address: 192.168.178.222"
+    "msg": "Node: hq-rtr1(csr1000v), State: BOOTED, Address: 10.10.20.135"
 }
 ok: [site1-rtr1] => {
-    "msg": "Node: site1-rtr1(cat8000v), State: BOOTED, Address: 192.168.178.212"
+    "msg": "Node: site1-rtr1(csr1000v), State: BOOTED, Address: 10.10.20.137"
 }
-ok: [site1-host1] => {
-    "msg": "Node: site1-host1(ubuntu), State: BOOTED, Address: site1-host1"
+ok: [hq-rtr2] => {
+    "msg": "Node: hq-rtr2(csr1000v), State: BOOTED, Address: 10.10.20.136"
 }
-ok: [hq-host1] => {
-    "msg": "Node: hq-host1(ubuntu), State: BOOTED, Address: hq-host1"
-}
-ok: [internet-mgmt] => {
-    "msg": "Node: internet-mgmt(external_connector), State: BOOTED, Address: internet-mgmt"
+ok: [WAN-mgmt] => {
+    "msg": "Node: WAN-mgmt(external_connector), State: BOOTED, Address: WAN-mgmt"
 }
 ok: [site2-rtr1] => {
-    "msg": "Node: site2-rtr1(cat8000v), State: BOOTED, Address: 192.168.178.213"
+    "msg": "Node: site2-rtr1(csr1000v), State: BOOTED, Address: 10.10.20.138"
 }
 ok: [site2-sw1] => {
-    "msg": "Node: site2-sw1(iosvl2), State: BOOTED, Address: 192.168.178.231"
-}
-ok: [site2-host1] => {
-    "msg": "Node: site2-host1(ubuntu), State: BOOTED, Address: site2-host1"
+    "msg": "Node: site2-sw1(iosvl2), State: BOOTED, Address: 10.10.20.139"
 }
 ok: [hq-mgmt-bridge] => {
     "msg": "Node: hq-mgmt-bridge(external_connector), State: BOOTED, Address: hq-mgmt-bridge"
@@ -135,37 +118,42 @@ ok: [site1-mgmt-switch] => {
 ok: [site1-mgmt-bridge] => {
     "msg": "Node: site1-mgmt-bridge(external_connector), State: BOOTED, Address: site1-mgmt-bridge"
 }
-ok: [site2-mgmt-switch] => {
-    "msg": "Node: site2-mgmt-switch(unmanaged_switch), State: BOOTED, Address: site2-mgmt-switch"
-}
 ok: [site2-mgmt-bridge] => {
     "msg": "Node: site2-mgmt-bridge(external_connector), State: BOOTED, Address: site2-mgmt-bridge"
 }
-ok: [nso1] => {
-    "msg": "Node: nso1(ubuntu), State: BOOTED, Address: 192.168.178.221"
+ok: [site2-mgmt-switch] => {
+    "msg": "Node: site2-mgmt-switch(unmanaged_switch), State: BOOTED, Address: site2-mgmt-switch"
+}
+ok: [hq-pop] => {
+    "msg": "Node: hq-pop(csr1000v), State: BOOTED, Address: 10.10.20.140"
 }
 ok: [internet-out] => {
     "msg": "Node: internet-out(external_connector), State: BOOTED, Address: internet-out"
 }
+ok: [ISP-mgmt-bridge] => {
+    "msg": "Node: ISP-mgmt-bridge(external_connector), State: BOOTED, Address: ISP-mgmt-bridge"
+}
+ok: [ISP] => {
+    "msg": "Node: ISP(csr1000v), State: BOOTED, Address: ISP"
+}
 
-PLAY RECAP *******************************************************************************************************
-hq-host1                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+PLAY RECAP *******************************************************************************************************************************************************
+ISP                        : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ISP-mgmt-bridge            : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+WAN-mgmt                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+WAN-rtr1                   : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-mgmt-bridge             : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-mgmt-switch             : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+hq-pop                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-rtr1                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-rtr2                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-sw1                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 hq-sw2                     : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-internet-mgmt              : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 internet-out               : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-internet-rtr1              : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-nso1                       : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-site1-host1                : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site1-mgmt-bridge          : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site1-mgmt-switch          : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site1-rtr1                 : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site1-sw1                  : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-site2-host1                : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site2-mgmt-bridge          : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site2-mgmt-switch          : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 site2-rtr1                 : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
@@ -181,19 +169,17 @@ ansible-playbook cisco.cml.inventory --limit hq-rtr1
 Expected output:
 
 ```
-SSL Verification disabled
+PLAY [cml_hosts] *************************************************************************************************************************************************
 
-PLAY [cml_hosts] *************************************************************************************************************************************
-
-TASK [debug] *****************************************************************************************************************************************
+TASK [debug] *****************************************************************************************************************************************************
 ok: [hq-rtr1] => {
-    "msg": "Node: hq-rtr1(csr1000v), State: BOOTED, Address: 192.168.178.228"
+    "msg": "Node: hq-rtr1(csr1000v), State: BOOTED, Address: 10.10.20.135"
 }
 
-PLAY RECAP *******************************************************************************************************************************************
+PLAY RECAP *******************************************************************************************************************************************************
 hq-rtr1                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 Keep in mind that this is just the Ansible inventory of devices and *does not* include the configuration for the devices (ie. the Source of Truth). That data is stored in the MDD data directory, which we will explore in the next exercise.
 
-[Home](../README.md#workshop-exercises) | [Previous](initial-setup.md#initial-setup) | [Next](explore-data.md#exploring-the-data)
+[Home](../README.md#workshop-exercises) | [Previous](deploy-topology.md#deploy-the-topology) | [Next](explore-data.md#exploring-the-data)
