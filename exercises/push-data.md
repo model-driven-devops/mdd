@@ -58,7 +58,12 @@ TASK [Update OC Data] **********************************************************
 TASK [ciscops.mdd.nso : debug] ************************************************************************************
 ok: [internet-rtr1] => {
     "update_report": {
-        "consolidated_report": null
+        "consolidated_report": [
+            {
+                "data": "vrf definition internal_1 rd 1:1 address-family ipv4 exit-address-family ! address-family ipv6 exit-address-family ! ! clock timezone PST -8 0 ip domain name mdd.cisco.com ip name-server 208.67.222.222 ip name-server 208.67.220.220 no ip http server ip bgp-community new-format interface Loopback0 ip redirects vrf forwarding internal_1 ip address 172.16.255.5 255.255.255.255 no shutdown exit interface GigabitEthernet2 description 802.1q no shutdown exit interface GigabitEthernet2.10 no shutdown no switchport description VLAN10 encapsulation dot1Q 10 vrf forwarding internal_1 ip address 172.16.0.50 255.255.255.0 ip nat inside exit interface GigabitEthernet8 ip address 10.0.254.2 255.255.255.252 ip nat outside no shutdown exit ip nat inside source list nat-internal interface GigabitEthernet8 vrf internal_1 overload ip access-list standard nat-internal 10 permit 10.0.0.0 0.255.255.255 20 permit 172.16.0.0 0.15.255.255 30 permit 192.168.0.0 0.0.255.255 ! banner login ^Unauthorized access is prohibited!^ banner motd ^Welcome to hq-pop^ line vty 0 4 absolute-timeout 1200 exec-timeout 30 0 ! no logging console debugging ntp server 216.239.35.0 iburst ntp server 216.239.35.4 iburst router bgp 100 bgp log-neighbor-changes no bgp default ipv4-unicast neighbor 10.0.254.1 remote-as 99 neighbor 10.0.254.1 description ISP address-family ipv4 unicast neighbor 10.0.254.1 activate exit-address-family ! ! router ospf 1 vrf internal_1 log-adjacency-changes passive-interface Loopback0 default-information originate network 172.16.0.50 0.0.0.0 area 0 network 172.16.255.5 0.0.0.0 area 0 exit ip route vrf internal_1 0.0.0.0 0.0.0.0 10.0.254.1 global ",
+                "hosts": "['hq-pop']"
+            },
+            ...
     }
 }
 
@@ -80,6 +85,12 @@ The playbook performs the following tasks:
 2. It checks that all of the devices are in sync with NSO to make sure that there were not any manual changes made out-of-band. If manual changes were made, that host would error out and no new update would be pushed to the device until the conflict was resolved and the device brought back into sync with NSO.
 3. It pushes the data to NSO. By default, the ```ciscops.mdd.update``` performs a dry run.  Since we did not override that behavior, NSO will perform a dry run and report back what changes it would make to the device.
 4. It consolidates the changes into a report to consolidate the changes made with the group of devices that changes were made on. Since `consolidated_report` was `null`, there were no updates that needed to pushed out to the devices.
+
+Now push the data without a dry run to fully configure the reference topology.
+
+```
+ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
+```
 
 ## Single Device Change
 

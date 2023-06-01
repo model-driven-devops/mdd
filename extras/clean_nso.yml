@@ -1,0 +1,44 @@
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Delete all device groups from NSO
+      cisco.nso.nso_config:
+        url: https://10.10.20.49/jsonrpc
+        username: developer
+        password: C1sco12345
+        data:
+          tailf-ncs:devices:
+            device-group:
+              - name: ALL
+                __state: absent
+              - name: ASA-DEVICES
+                __state: absent
+              - name: IOS-DEVICES
+                __state: absent
+              - name: NXOS-DEVICES
+                __state: absent
+              - name: XR-DEVICES
+                __state: absent
+            device:
+              - name: core-rtr01
+                __state: absent
+              - name: core-rtr02
+                __state: absent
+              - name: dist-rtr01
+                __state: absent
+              - name: dist-rtr02
+                __state: absent
+              - name: dist-sw01
+                __state: absent
+              - name: dist-sw02
+                __state: absent
+              - name: edge-firewall01
+                __state: absent
+              - name: edge-sw01
+                __state: absent
+              - name: internet-rtr01
+                __state: absent
+            authgroups:
+              group:
+                - name: labadmin
+                  __state: absent

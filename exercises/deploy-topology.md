@@ -10,6 +10,12 @@ Stop the default topology in the sandbox, we will not be using it.  This command
 ansible-playbook cisco.cml.clean -e cml_lab='"Multi Platform Network"'
 ```
 
+Clean up NSO.
+
+```
+ansible-playbook extras/clean_nso.yml
+```
+
 Build the MDD reference topology in CML and wait for the lab to boot.  This will take several minutes.  If you want to watch the topology come online, you can browse to CML at https://10.10.20.161 and login with your developer credentials to explore the topology while it boots.
 
 ```
