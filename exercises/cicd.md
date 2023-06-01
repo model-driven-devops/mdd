@@ -1,35 +1,37 @@
 # CI/CD
 Automation can help you make changes faster and at scale, but with all that power comes great risk, particlarly when applied to physical network infrastructure.  All other IT services depend on the physical network.  Used indiscriminately, automation can crater your network faster than you ever thought possible.  This is one of the many reasons that network engineers have been slow to adopt automation in the physical network compared to their peers in application development who might just crater their own application.  
 
-As you have seen in the preceeding exercises, infrastructe-as-code and choosing the right data models can help put some much needed rigor around data validation and network state checking.  But it is not until we place our infrastructure-as-code into version control and automate the validation and testing that we start to see the real benefits of adopting infastructure as code and DevOps.
+As you have seen in the preceeding exercises, infrastructure-as-code and choosing the right data models can help put some much needed rigor around data validation and network state checking.  But it is not until we place our infrastructure-as-code into version control and automate the validation and testing that we start to see the real benefits of adopting infastructure as code and DevOps.
 
 Continuous Integration (CI) is the concept of continuously testing and validating changes, while Continuous Deployment (CD) is the process and automation around moving validated changes into production.  Together, CI/CD provides the needed rigor to *safely* and *rapidly* inject change into production.  These tools and processes were developed, and mostly used in, the cloud and application space, but they are equally applicable to the network *if* you have adopted the tools and concepts covered in the previous exercises.
 
 ## GitLab
 
-In this lab you will use GitLab to provide version control, workflow enforcement and CI/CD automation.  GitLab conveniently combines all of these features into a single web UI, which makes it ideal for lab environments like this.  A project named `mdd` has already been created for you and the code for the MDD reference implementation placed into this project.
+In this lab you will use GitLab to provide version control, workflow enforcement and CI/CD automation.  GitLab conveniently combines all of these features into a single web UI, which makes it ideal for lab environments like this.  You will create a project named `mdd` and push the MDD repo to this project.
 
 1. To access Gitlab, open http://devtools-gitlab.lab.devnetsandbox.local in your browser.  Login with the "developer" credentials.
 
-1. Set an API key by clicking on your user icon in the upper right corner, selecting Preferences, then Access Tokens and create a token with the "api" scope selected.  Name the token "api-token" and click "Create personal access token".  **Copy the token after it is created.**
+2. Set an API key by clicking on your user icon in the upper right corner, selecting Preferences, then Access Tokens and create a token with the "api" scope selected.  Name the token "api-token" and click "Create personal access token".  **Copy the token after it is created.**
 
-1. In Visual Studio Code, set your GITLAB_API_TOKEN in your environment.  Update `your_token_value` in the following command to the value of your token.
+3. In Visual Studio Code, set your GITLAB_API_TOKEN in your environment.  Update `your_token_value` in the following command to the value of your token.
     ```
     export GITLAB_API_TOKEN=your_token_value
     ```
 
-1. Create the GitLab project.
+4. Create the GitLab project.  If you are curious about how to create projects and CI variables in GitLab using the API, open up the file `extras/create-gitlab-project.sh` and examine the CURL commands used.
     ```
     extras/create-gitlab-project.sh
     ```
 
 > Note: all further instructions in this exercise assume you are in the GitLab UI unless otherwise stated.
+
 ## Continuous Integration
-Throughout this lab we have been building a complete CI process that includes linting, data validation and state checking as shown in the diagram below. It is now time to take the next step and use these tools to build out an automated CI pipeline.
+
+Throughout this learning lab we have been building a complete CI process that includes linting, data validation and state checking as shown in the diagram below. It is now time to take the next step and use these tools to build out an automated CI pipeline.
 
 ![MDD CI Flow](mdd_ci_flow.png)
 
-1. Navigate to **Repository -> Files** and click on the `gitlab-ci.yml` file to view its contents.
+5. Navigate to **Repository -> Files** and click on the `gitlab-ci.yml` file to view its contents.
 
 The `.gitlab-ci.yml` file contains instructions that GitLab will use to run the CI (and/or CD) pipeline for this project.  Your file should looks similar to the one shown below:
 
@@ -45,7 +47,7 @@ stages:
   - check
   - load-rollback
 
-image: ghcr.io/model-driven-devops/mdd:latest
+image: ghcr.io/model-driven-devops/mdd:1.2.5rc2
 
 variables:
   ANSIBLE_CONFIG: "./ansible.cfg"
@@ -63,7 +65,7 @@ clean:
 build-cml:
   stage: build-cml
   script:
-    - ansible-playbook cisco.cml.build -e startup='host' -e wait='yes'
+    - ansible-playbook cisco.cml.build -e wait='yes'
   resource_group: mdd
   rules:
     - if: $CLEAN == "true"
@@ -84,9 +86,8 @@ init-nso:
   script:
     - ansible-playbook ciscops.mdd.nso_init
     - ansible-playbook ciscops.mdd.nso_delete_devices
-    - sleep 10
     - ansible-playbook ciscops.mdd.nso_update_devices
-    - ansible-playbook ciscops.mdd.update -e dry_run=no
+    - ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
   resource_group: mdd
   rules:
     - if: $NSO_INIT == "true"
@@ -112,7 +113,7 @@ validate:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "cl23"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 update:
@@ -120,12 +121,12 @@ update:
   script:
     # update devices in case DHCP address changed
     # - ansible-playbook ciscops.mdd.nso_update_devices
-    - ansible-playbook ciscops.mdd.update -e dry_run=no
+    - ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
   resource_group: mdd
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "cl23"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 check:
@@ -138,7 +139,7 @@ check:
   rules:
     - if: $CI_PIPELINE_SOURCE == "web"
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "cl23"
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == "learning-lab"
     - if: $CI_PIPELINE_SOURCE == "api"
 
 load-rollback:
@@ -150,7 +151,7 @@ load-rollback:
   resource_group: mdd
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  when: always
+      when: always
 ```
 
 Some things to note from this pipeline configuration:
@@ -160,12 +161,12 @@ Some things to note from this pipeline configuration:
 - Which jobs get executed in a particular pipeline run are controlled by various rules
 - The commands used in the `script` section of each stage should look familiar to you from the previous exercises
 
-This file is essentially an ordered list of commands to run.  At each stage, if there is a failure, the entire pipeline will fail at that point.  This is useful for CI/CD because we want to fail early if there are basic errors found in linting, for instance, because each progressive stage is a little more time and resource intensive.
+This file is essentially an ordered list of commands to run.  At each stage, if there is a failure, the entire pipeline will fail at that point.  This is useful for CI/CD because we want to fail early if there are basic errors found in linting, for instance, because each progressive stage is a little more time and resource intensive.  This methodology is known as "fail fast".
 
-This pipeline supports three basic scenarios that we will leverage later in this exercise:
+The pipeline supports three basic scenarios that we will leverage later in this exercise:
 - The pipeline was run via either `web` or `api`, in which case you can set `CLEAN` to "true" in order to have the pipeline rebuild the entire topology in CML
 - The pipeline was run via `merge_request_event`, this will be the CI pipeline (more on this below)
-- The pipeline was run via `push` to branch `clus22`, this will be the CD pipeline (more on this below)
+- The pipeline was run via `push` to branch `learning-lab`, this will be the CD pipeline (more on this below)
 
 ## Workflow
 
@@ -183,21 +184,21 @@ This workflow involves:
 
 To exercise this workflow, lets try again to change the banner, but this time use the GitLab Web IDE to do it. 
 
-3. Navigate to **Repository -> Files** and click on the `Web IDE` in the upper right hand corner.
+6. Navigate to **Repository -> Files** and click on the `Web IDE` in the upper right hand corner.
 
 ![Web IDE](gitlab-ide.png)
 
-4. In the file browser, navigate to `mdd-data/org/oc-banner.yml` and open the file.
+7. In the file browser, navigate to `mdd-data/org/oc-banner.yml` and open the file.
 
-5. Change the value of `login-banner` to "Unauthorized access is strongy discouraged!" and shift the line to the right two spaces.
+8. Change the value of `login-banner` to "Unauthorized access is strongy discouraged!" and shift the line to the right two spaces.
 
-6. Click `Create commit...` in the lower left hand corner.
+9. Click `Commit...` in the lower left hand corner.
 
 ![Update login banner](gitlab-commit.png)
 
-7. Leave the options `Create a new branch` and `Start a new merge request` selected, then click `Commit`.  Optionially, you can add a commit message, or just leave the default.
+10. Leave the options `Create a new branch` and `Start a new merge request` selected, then click `Commit`.  Optionally, you can add a commit message, or just leave the default.
 
-8. At the bottom of the page, click `Changes`, verify the changes you made and then click `Create merge request`.
+11. At the bottom of the page, click `Changes`, verify the changes you made and then click `Create merge request`.
 
 ![Create merge request](gitlab-mr.png)
 
@@ -214,7 +215,7 @@ In CI we don't necessarily want to push these changes to production.  Perhaps th
 
 In this case, your change should have failed at the `validate` stage.
 
-9. Click on the validate stage to see the output of this stage and verify that it failed the yamllint check because the indentation was not correct.
+12. Click on the validate stage to see the output of this stage and verify that it failed the yamllint check because the indentation was not correct.
 
 ![Merge request CI fail yamllint](gitlab-ci-fail.png)
 
@@ -230,45 +231,45 @@ $ yamllint mdd-data
 
 Let's fix this error.
 
-10. Click the back button in the browser to go back to your merge request.
+13. Click the back button in the browser to go back to your merge request.
 
-11. In the upper right corner of the page, click `Open in WebIDE`.
+14. In the upper right corner of the page, click `Open in WebIDE`.
 
 ![Merge request IDE](gitlab-mr-ide.png)
 
-12. Fix the indentation issue and click `Commit...` and then `Commit`.
+15. Fix the indentation issue and click `Commit...` and then `Commit`.
 
 ![Merge request fix yamllint](gitlab-mr-fix.png)
 
-13. In the upper right corner of the page, click the rocket ship icon to view the pipeline run.
+16. In the upper right corner of the page, click the rocket ship icon to view the pipeline run.
 
-14. When it fails, click on the job ID next to the validate stage and verify the reason for the failure.
+17. When it fails, click on the job ID next to the validate stage and verify the reason for the failure.
 
 ![Merge request CI fail validate](gitlab-ci-fail-validate.png)
 
 You should see this in the output:
 
 ```
-failed: [site2-rtr1] (item={'name': 'banner', 'file': 'local/banner.schema.yml'}) => {"ansible_loop_var": "mdd_schema_item", "changed": false, "failed_schema": "banner.schema.yml", "mdd_schema_item": {"file": "local/banner.schema.yml", "name": "banner"}, "msg": "Schema Failed: $.openconfig-system:system.openconfig-system:config.login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'", "x_error_list": ["$.openconfig-system:system.openconfig-system:config.login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'"]}
+fatal: [site1-rtr1]: FAILED! => {"changed": false, "failed_schema": "Network banner schema", "msg": "Schema Failed: $.openconfig-system:system.openconfig-system:config.openconfig-system:login-banner: 'Unauthorized access is strongly encouraged!' does not match 'prohibited'", "x_error_list": ["$.openconfig-system:system.openconfig-system:config.openconfig-system:login-banner: 'Unauthorized access is strongly encouraged!' does not match 'prohibited'"]}
 ```
 
 Let's fix this error.
 
-15. Close the tab with the job output, and modify the banner to be compliant.  Change "Unauthorized access is strongly discouraged!" to "Unauthorized use is prohibited!".
+18. Close the tab with the job output, and modify the banner to be compliant.  Change "Unauthorized access is strongly discouraged!" to "Unauthorized use is prohibited!".
 
-16. Click `Commit...` and then `Commit`.
+19. Click `Commit...` and then `Commit`.
 
-17. Click the rocket ship icon to view the pipeline run. It should complete successfully this time.  If not, view the pipeline output and fix any errors.
+20. Click the rocket ship icon to view the pipeline run. It should complete successfully this time.  If not, view the pipeline output and fix any errors.
 
 ![Merge request CI fix validate](gitlab-ci-fix-validate.png)
 
-15. After the pipeline completes successfully, click the merge request icon in the upper right corner of the screen, select `Assigned to you`, and open the merge request.
+21. After the pipeline completes successfully, navigate back to your merge request.
 
 You should now see that the CI pipeline completeed successfully and your merge request is now ready for approval. In this lab we do not have the rules set such that the merge request *requires* approval, but putting another human in the loop might be something you would want to do depending on your environment.
 
-Remember also that, at this point, the CI pipeline has backed out the changes made to the test network during testing. In order to move our change into production, we need to merge our change into production branch (clus22 in this case). Let's approve the merge request are ourselves and the merge the change into production.
+Remember also that, at this point, the CI pipeline has backed out the changes made to the test network during testing. In order to move our change into production, we need to merge our change into the production branch (learning-lab in this case). Let's approve the merge request ourselves and merge the change into production.
 
-16. Click `Approve` and then `Merge`.
+22. Click `Approve` and then `Merge`.
 
 ![Merge request approve](gitlab-mr-approve.png)
 
@@ -291,9 +292,9 @@ ansible-playbook cisco.cml.inventory --limit hq-rtr1
 Then login to the device using SSH with username admin and password admin (substitute your `hq-rtr1` IP address here):
 
 ```
-# ssh admin@192.133.151.146
+$ ssh admin@10.10.20.135
 Unauthorized use is prohibited!
-(admin@192.133.151.146) Password:
+Password:
 Welcome to hq-rtr1
 
 hq-rtr1#
