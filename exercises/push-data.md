@@ -148,7 +148,7 @@ site2-rtr1                 : ok=16   changed=0    unreachable=0    failed=0    s
 site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0   
 ```
 
-Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of tha Ansible playbook:
+Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of the Ansible playbook:
 
 ```
 ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no --limit=site2-sw1
@@ -198,7 +198,7 @@ And verify the interface configuration:
 show run int gig1/1
 ```
 
-Now, exit out of the SSH session to `site2-sw1` and rollback the configuration with the ```ciscops.mdd.nso_rollback``` playbook (use your rollback ID, NOT the one shown below):
+Now, ``` exit ``` out of the SSH session  to `site2-sw1` and rollback the configuration with the ```ciscops.mdd.nso_rollback``` playbook (use your rollback ID, NOT the one shown below):
 
 ```
 ansible-playbook ciscops.mdd.nso_rollback -e rollback_id=10036
