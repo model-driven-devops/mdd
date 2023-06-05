@@ -5,5 +5,5 @@ echo $POD_PASSWORD | sudo openconnect \
 	--no-dtls \
 	--passwd-on-stdin \
 	--protocol=anyconnect \
-	--user=$POD_NAME@vpn.colab.ciscops.net \
-	 cpn-vpn-mkdqgqzprv.dynamic-m.com
+	--user=user01 \
+	  devnetsandbox-usw1-reservation.cisco.com:20287

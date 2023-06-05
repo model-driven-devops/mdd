@@ -1,8 +1,0 @@
----
-mdd_tags:
-  - all
-mdd_schemas:
-  - name: banner
-    file: 'local/banner.schema.yml'
-  - name: dns
-    file: 'local/dns.schema.yml'

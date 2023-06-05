@@ -1,3 +1,0 @@
----
-plugin: cisco.cml.cml_inventory
-group_tags: nso, awx, netbox, network, ios, nxos

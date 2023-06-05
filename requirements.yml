@@ -1,9 +1,0 @@
-collections:
-  - name: https://github.com/ciscodevnet/ansible-cml.git
-    type: git
-  - name: https://github.com/model-driven-devops/ansible-mdd.git,mdd-dev
-    type: git
-  - name: https://github.com/model-driven-devops/ansible-nso.git
-    type: git
-  - name: amazon.aws
-    source: https://galaxy.ansible.com

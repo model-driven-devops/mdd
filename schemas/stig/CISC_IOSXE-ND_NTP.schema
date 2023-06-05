@@ -1,9 +1,0 @@
-{
-
-    "$id": "https://cisco.com/CISC_IOSXE-ND_NTP.schema",
-
-    "allOf": [
-        { "$ref": "file:./CISC-ND-001030.schema"},
-        { "$ref": "file:./CISC-ND-001310.schema"}
-    ]
-}
