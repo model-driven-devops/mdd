@@ -4,7 +4,7 @@ all:
     nso_package_repos:
       - name: mdd
         repo: https://github.com/model-driven-devops/nso-oc-services.git
-        version: v2.35.8
+        version: v2.54.1
         service_list:
           - mdd
     nso_rest_url: https://10.10.20.49
