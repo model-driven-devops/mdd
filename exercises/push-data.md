@@ -11,7 +11,7 @@ validated it. We are now ready to push the validated data into the devices.
 You can optionally do a dry run to push the data to all devices, a subset of devices, or a single device. The dry run will calculate what changes need to be made and give a report of the specific changes that would be made to the devices. To perform a dry run, use:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 Here is a truncated version of the output to illustrate what the playbook does:
@@ -58,7 +58,12 @@ TASK [Update OC Data] **********************************************************
 TASK [ciscops.mdd.nso : debug] ************************************************************************************
 ok: [internet-rtr1] => {
     "update_report": {
-        "consolidated_report": null
+        "consolidated_report": [
+            {
+                "data": "vrf definition internal_1 rd 1:1 address-family ipv4 exit-address-family ! address-family ipv6 exit-address-family ! ! clock timezone PST -8 0 ip domain name mdd.cisco.com ip name-server 208.67.222.222 ip name-server 208.67.220.220 no ip http server ip bgp-community new-format interface Loopback0 ip redirects vrf forwarding internal_1 ip address 172.16.255.5 255.255.255.255 no shutdown exit interface GigabitEthernet2 description 802.1q no shutdown exit interface GigabitEthernet2.10 no shutdown no switchport description VLAN10 encapsulation dot1Q 10 vrf forwarding internal_1 ip address 172.16.0.50 255.255.255.0 ip nat inside exit interface GigabitEthernet8 ip address 10.0.254.2 255.255.255.252 ip nat outside no shutdown exit ip nat inside source list nat-internal interface GigabitEthernet8 vrf internal_1 overload ip access-list standard nat-internal 10 permit 10.0.0.0 0.255.255.255 20 permit 172.16.0.0 0.15.255.255 30 permit 192.168.0.0 0.0.255.255 ! banner login ^Unauthorized access is prohibited!^ banner motd ^Welcome to hq-pop^ line vty 0 4 absolute-timeout 1200 exec-timeout 30 0 ! no logging console debugging ntp server 216.239.35.0 iburst ntp server 216.239.35.4 iburst router bgp 100 bgp log-neighbor-changes no bgp default ipv4-unicast neighbor 10.0.254.1 remote-as 99 neighbor 10.0.254.1 description ISP address-family ipv4 unicast neighbor 10.0.254.1 activate exit-address-family ! ! router ospf 1 vrf internal_1 log-adjacency-changes passive-interface Loopback0 default-information originate network 172.16.0.50 0.0.0.0 area 0 network 172.16.255.5 0.0.0.0 area 0 exit ip route vrf internal_1 0.0.0.0 0.0.0.0 10.0.254.1 global ",
+                "hosts": "['hq-pop']"
+            },
+            ...
     }
 }
 
@@ -81,6 +86,12 @@ The playbook performs the following tasks:
 3. It pushes the data to NSO. By default, the ```ciscops.mdd.update``` performs a dry run.  Since we did not override that behavior, NSO will perform a dry run and report back what changes it would make to the device.
 4. It consolidates the changes into a report to consolidate the changes made with the group of devices that changes were made on. Since `consolidated_report` was `null`, there were no updates that needed to pushed out to the devices.
 
+Now push the data without a dry run to fully configure the reference topology.
+
+```
+ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
+```
+
 ## Single Device Change
 
 Let's look at making a change that affects a single device. A common change of this type would be to enable an interface and add it to a VLAN.  We'll do that by adding interface ```GigabitEthernet1/1``` into vlan 10 on ```site2-sw1``` by modifying the interface data in its `oc-intefaces.yml`. Copy the updated interface configuration of site2-sw1 into the file `mdd-data/org/region2/site2/site2-sw1/oc-intefaces.yml`:
@@ -93,21 +104,21 @@ This file contains the following changed data.  View the file in the editor to v
 
 ```
 $ diff files/oc-interfaces.yml files/oc-interfaces-new.yml 
-54c54,59
-<           openconfig-interfaces:type: ethernetCsmacd
+59c59,64
+<             openconfig-interfaces:type: ethernetCsmacd
 ---
->           openconfig-interfaces:type: l2vlan
->         openconfig-if-ethernet:ethernet:
->           openconfig-vlan:switched-vlan:
->             openconfig-vlan:config:
->               openconfig-vlan:access-vlan: 10
->               openconfig-vlan:interface-mode: ACCESS
+>             openconfig-interfaces:type: l2vlan
+>           openconfig-if-ethernet:ethernet:
+>             openconfig-vlan:switched-vlan:
+>               openconfig-vlan:config:
+>                 openconfig-vlan:access-vlan: 10
+>                 openconfig-vlan:interface-mode: ACCESS
 ```
 
 Then perform a dry run:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 And see the change that would be pushed out:
@@ -137,10 +148,10 @@ site2-rtr1                 : ok=16   changed=0    unreachable=0    failed=0    s
 site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0   
 ```
 
-Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of tha Ansible playbook:
+Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of the Ansible playbook:
 
 ```
-ansible-playbook ciscops.mdd.update -e dry_run=no --limit=site2-sw1
+ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no --limit=site2-sw1
 ```
 
 The truncated output below shows that the change was successful:
@@ -174,7 +185,7 @@ ansible-playbook cisco.cml.inventory --limit site2-sw1
 Then login to the device using SSH with username admin and password admin (substitute your `site2-sw1` IP address here):
 
 ```
-$ ssh admin@192.133.151.134
+$ ssh admin@10.10.20.139
 Password:
 Welcome to site2-sw1
 
@@ -187,7 +198,7 @@ And verify the interface configuration:
 show run int gig1/1
 ```
 
-Now, exit out of the SSH session to `site2-sw1` and rollback the configuration with the ```ciscops.mdd.nso_rollback``` playbook (use your rollback ID, NOT the one shown below):
+Now, ``` exit ``` out of the SSH session  to `site2-sw1` and rollback the configuration with the ```ciscops.mdd.nso_rollback``` playbook (use your rollback ID, NOT the one shown below):
 
 ```
 ansible-playbook ciscops.mdd.nso_rollback -e rollback_id=10036
@@ -249,18 +260,18 @@ This file contains the following additional data. View the file in the editor to
 
 ```
 $ diff files/oc-vlan.yml files/oc-vlan-new.yml 
-18a19,23
->             - openconfig-network-instance:vlan-id: 20
->               openconfig-network-instance:config:
->                 openconfig-network-instance:vlan-id: 20
->                 openconfig-network-instance:name: 'Internal-2'
->                 openconfig-network-instance:status: 'ACTIVE'
+19a20,24
+>               - openconfig-network-instance:vlan-id: 20
+>                 openconfig-network-instance:config:
+>                   openconfig-network-instance:vlan-id: 20
+>                   openconfig-network-instance:name: 'Internal-2'
+>                   openconfig-network-instance:status: 'ACTIVE'
 ```
 
 We can now perform a dry run to see what changes will be made in the network:
 
 ```
-ansible-playbook ciscops.mdd.update
+ansible-playbook ciscops.mdd.update -e workers=1
 ```
 
 And get the following truncated output:
@@ -313,7 +324,11 @@ ok: [site2-sw1] => {
 }
 ```
 
-But what if we want to rollback an entire change?
+Return the VLAN configuration to the original state:
+
+```
+cp files/oc-vlan.yml mdd-data/org/oc-vlan.yml
+```
 
 ## Checkpoint/Rollback
 

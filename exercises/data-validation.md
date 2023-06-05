@@ -32,8 +32,8 @@ Now when we run `yamllint` we get an error:
 ```
 $ yamllint mdd-data
 mdd-data/org/oc-ntp.yml
-  14:17     error    wrong indentation: expected 14 but found 16  (indentation)
-  15:15     error    syntax error: expected <block end>, but found '<block mapping start>' (syntax)
+  15:19     error    wrong indentation: expected 16 but found 18  (indentation)
+  16:17     error    syntax error: expected <block end>, but found '<block mapping start>' (syntax)
 ```
 
 YAML requires consistent indentation (unlike JSON), therefore this file now fails during linting. Fix the indentation problem and re-run `yamllint` to make sure you do not have any linting errors:
@@ -162,10 +162,11 @@ Notice there were no failures and all hosts passed.  Now let's test it.  Open th
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:config:
-      openconfig-system:login-banner: "Unauthorized access is strongly discouraged!"
-      openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:config:
+        openconfig-system:login-banner: "Unauthorized access is strongly discouraged!"
+        openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
 ```
 
 Now run the validate playbook again (for efficeincy we only run it on one device)
@@ -184,7 +185,7 @@ ok: [site2-rtr1] => {
             "failures": [
                 {
                     "hosts": "['site2-rtr1']",
-                    "schemas": "['banner.schema.yml']"
+                    "schemas": "['Network banner schema']"
                 }
             ],
             "passed": []
@@ -202,7 +203,7 @@ site2-rtr1                 : ok=18   changed=0    unreachable=0    failed=1    s
 In this example, we see that the playbook failed for the device site2-rtr1, so that would also cause our CI to fail. We also see in the consolidated report that site2-rtr1 failed because of the schema `banner.schema.yml`. If we look up in the output a bit more, we see:
 
 ```
-failed: [site2-rtr1] (item={'name': 'banner', 'file': 'local/banner.schema.yml'}) => {"ansible_loop_var": "mdd_schema_item", "changed": false, "failed_schema": "banner.schema.yml", "mdd_schema_item": {"file": "local/banner.schema.yml", "name": "banner"}, "msg": "Schema Failed: $.openconfig-system:system.openconfig-system:config.login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'", "x_error_list": ["$.openconfig-system:system.openconfig-system:config.login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'"]}
+fatal: [site2-rtr1]: FAILED! => {"changed": false, "failed_schema": "Network banner schema", "msg": "Schema Failed: $.openconfig-system:system.openconfig-system:config.openconfig-system:login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'", "x_error_list": ["$.openconfig-system:system.openconfig-system:config.openconfig-system:login-banner: 'Unauthorized access is strongly discouraged!' does not match 'prohibited'"]}
 ```
 
 This tells us exactly what failed. Apparently, our warning was not strong enough. Replace the contents of ```mdd-data/org/oc-banner.yml``` with the original data:
@@ -210,10 +211,11 @@ This tells us exactly what failed. Apparently, our warning was not strong enough
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:config:
-      openconfig-system:login-banner: "Unauthorized access is prohibited!"
-      openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:config:
+        openconfig-system:login-banner: "Unauthorized access is prohibited!"
+        openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
 ```
 
 And rerun the validate playbook to verify that your login banner is valid:
@@ -233,18 +235,19 @@ This file contains the following data. View the file in the editor to verify.
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:dns:
-      openconfig-system:servers:
-        openconfig-system:server:
-          - openconfig-system:address: 208.67.222.222
-            openconfig-system:config:
-              openconfig-system:address: 208.67.222.222
-              openconfig-system:port: 53  # always 53 for ios
-          - openconfig-system:address: 8.8.8.8
-            openconfig-system:config:
-              openconfig-system:address: 8.8.8.8
-              openconfig-system:port: 53  # always 53 for ios
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:dns:
+        openconfig-system:servers:
+          openconfig-system:server:
+            - openconfig-system:address: 208.67.222.222
+              openconfig-system:config:
+                openconfig-system:address: 208.67.222.222
+                openconfig-system:port: 53  # always 53 for ios
+            - openconfig-system:address: 8.8.8.8
+              openconfig-system:config:
+                openconfig-system:address: 8.8.8.8
+                openconfig-system:port: 53  # always 53 for ios
 ```
 
 Then run the validation for `hq-rtr1` (which is in region1):
@@ -256,14 +259,14 @@ ansible-playbook ciscops.mdd.validate --limit hq-rtr1
 We get the following truncated output:
 
 ```
-TASK [ciscops.mdd.validate : debug] ******************************************************************************
+TASK [ciscops.mdd.validate : debug] *******************************************************************************
 ok: [hq-rtr1] => {
     "validation_report": {
         "consolidated_report": {
             "failures": [
                 {
                     "hosts": "['hq-rtr1']",
-                    "schemas": "['dns.schema.yml']"
+                    "schemas": "['OpenConfig system schema (DNS)']"
                 }
             ],
             "passed": []
@@ -271,11 +274,11 @@ ok: [hq-rtr1] => {
     }
 }
 
-TASK [fail] ******************************************************************************************************
+TASK [fail] *******************************************************************************************************
 fatal: [hq-rtr1]: FAILED! => {"changed": false, "msg": "Failed Validation"}
 
-PLAY RECAP *******************************************************************************************************
-hq-rtr1                    : ok=18   changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=2   
+PLAY RECAP ********************************************************************************************************
+hq-rtr1                    : ok=18   changed=0    unreachable=0    failed=1    skipped=4    rescued=0    ignored=2
 ```
 
 Since we put `oc-dns.yml` at the region1 level, it applied to all of the devices in region1 causing them to fail data validation. That is because we specified a DNS server that is not listed in the schema `schemas/local/dns.schema.yml` which specifies that the DNS server address should be one of an enumeration:

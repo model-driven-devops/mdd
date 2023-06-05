@@ -1,5 +1,5 @@
 # Exploring the Data
-Although we leverage the Ansible inventory for some things, we also use a separate set of data in the `mdd-data` directory. An Ansible role called `ciscops.mdd.data` uses the `mdd-data` directory to construct the data needed to configure devices. We do this because the large about of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works. This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a deterministic hierarchy.
+Although we leverage the Ansible inventory for some things, we also use a separate set of data in the `mdd-data` directory. An Ansible role called `ciscops.mdd.data` uses the `mdd-data` directory to construct the data needed to configure devices. We do this because the large amount of data necessary to configure modern networks would be difficult to manage with the way the Ansible inventory system works. This method allows the tool to read just the data that is needed into the device's context and for that data to be organized in a deterministic hierarchy.
 
 In order to make it easy to leverage, the role can be called in the roles sections of the playbook. For example, here is a simple playbook (`ciscops.mdd.show`) that displays the data constructed for a particular device:
 
@@ -16,7 +16,7 @@ In order to make it easy to leverage, the role can be called in the roles sectio
 
 Notice that the invocation of the `ciscops.mdd.data` creates the `mdd_data` data structure that contains the device's configuration data that can be used later in the playbook.
 
-We use a separate directory hierarchy to hold the MDD data in the `mdd-data` directory (this can be changed in the defaults). You can see how the data is laid out in the `mdd-data` directory using the `tree` command:
+We use a separate directory hierarchy to hold the MDD data in the `mdd-data` directory (this can be changed in the defaults). You can see how the data is laid out in the `mdd-data` directory using the `tree` command.  (Note: this command is not installed on the DevBox and will fail, but you can see the output below.)
 
 ```
 tree -d mdd-data
@@ -118,13 +118,7 @@ To see the effect this has on the data, run the following:
 ansible-playbook ciscops.mdd.show --limit=site1-rtr1
 ```
 
-And compare to:
-
-```
-ansible-playbook ciscops.mdd.show --limit=site2-rtr1
-```
-
-In particular, note the timezone set for `site1-rtr1`:
+In particular, note the timezone data for `site1-rtr1`:
 
 ```yaml
             "openconfig-system:clock": {
@@ -134,7 +128,13 @@ In particular, note the timezone set for `site1-rtr1`:
             },
 ```
 
-Compared to the timezone set for `site2-rtr1`:
+And compare to:
+
+```
+ansible-playbook ciscops.mdd.show --limit=site2-rtr1
+```
+
+The timezone data for `site2-rtr1`:
 
 ```yaml
             "openconfig-system:clock": {
