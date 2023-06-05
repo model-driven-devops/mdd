@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo $POD_PASSWORD | sudo openconnect \
+echo $VPN_PASSWORD | sudo openconnect \
 	--background \
 	--no-dtls \
 	--passwd-on-stdin \

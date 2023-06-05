@@ -182,4 +182,4 @@ hq-rtr1                    : ok=1    changed=0    unreachable=0    failed=0    s
 
 Keep in mind that this is just the Ansible inventory of devices and *does not* include the configuration for the devices (ie. the Source of Truth). That data is stored in the MDD data directory, which we will explore in the next exercise.
 
-[Home](../README.md#workshop-exercises) | [Previous](deploy-topology.md#deploy-the-topology) | [Next](explore-data.md#exploring-the-data)
+[Home](../README.md#workshop-exercises) | [Previous](initial-setup.md#initial-setup) | [Next](explore-data.md#exploring-the-data)
