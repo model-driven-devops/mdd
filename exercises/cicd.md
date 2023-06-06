@@ -7,9 +7,23 @@ Continuous Integration (CI) is the concept of continuously testing and validatin
 
 ## GitLab
 
-In this lab you will use GitLab to provide version control, workflow enforcement and CI/CD automation.  GitLab conveniently combines all of these features into a single web UI, which makes it ideal for lab environments like this.  For this workshop, we have pre-populated the MDD repo in GitLab.
+In this lab you will use GitLab to provide version control, workflow enforcement and CI/CD automation.  GitLab conveniently combines all of these features into a single web UI, which makes it ideal for lab environments like this.  You will create a project named `mdd` and push the MDD repo to this project.
 
-1. To access Gitlab, open http://devtools-gitlab.lab.devnetsandbox.local in your browser.  Login with the username "developer" with password "C1sco12345".
+1. To access Gitlab, open http://devtools-gitlab.lab.devnetsandbox.local in your browser.  Login with the "developer" credentials.
+
+2. Set an API key by clicking on your user icon in the upper right corner, selecting Preferences, then Access Tokens and create a token with the "api" scope selected.  Name the token "api-token" and click "Create personal access token".  **Copy the token after it is created.**
+
+3. In Visual Studio Code, set your GITLAB_API_TOKEN in your environment.  Update `your_token_value` in the following command to the value of your token.
+    ```
+    export GITLAB_API_TOKEN=your_token_value
+    ```
+
+4. Create the GitLab project.  If you are curious about how to create projects and CI variables in GitLab using the API, open up the file `extras/create-gitlab-project.sh` and examine the CURL commands used.
+    ```
+    extras/create-gitlab-project.sh
+    ```
+
+> Note: all further instructions in this exercise assume you are in the GitLab UI unless otherwise stated.
 
 ## Continuous Integration
 
@@ -295,4 +309,4 @@ Finally, there are a few key takeaways from this lab:
 - Models are the key to all of this. Without a well-defined model, the validation and state checking required will not be possible.
 - Operators and engineers working in this model do not need to be progammers. The skill set require of people to effectively operate in this model are understanding data formats (i.e. YAML/JSON) and being able to create/modify schema against that validate the data (i.e. JSON Schema).
 
-[Home](../README.md#workshop-exercises) | [Previous](check-state.md#state-checking)
+[Home](../README.md#workshop-exercises) | [Previous](check-state.md#state-checking) | [Next](populate-netbox.md#populating-netbox)
