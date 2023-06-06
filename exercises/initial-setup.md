@@ -33,11 +33,19 @@ Session authentication will expire at ...
 Open a remote session to the sandbox in Visual Studio Code.
 
 ```
-code --folder-uri vscode-remote://ssh-remote+10.10.20.50/home/developer/mdd
+code --folder-uri vscode-remote://ssh-remote+developer@10.10.20.50/home/developer/mdd
 ```
 
 Enter the sandbox password `C1sco12345` when prompted.
 
+> Note: if you get a key error with this command run `rm ~/.ssh/known_hosts` to clear out the SSH host cache.
+
+Activate the Python virtual environment.
+
+```
+source venv/bin/activate
+source envvars
+```
 That's it! Your environment should be properly setup and you are ready to start your journey with Model-Driven DevOps.
 
 [Home](../README.md#workshop-exercises) | [Previous](../README.md#workshop-exercises) | [Next](explore-inventory.md#exploring-the-inventory)
