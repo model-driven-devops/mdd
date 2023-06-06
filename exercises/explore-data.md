@@ -78,25 +78,26 @@ Data at the deeper levels of the tree (closer to the device) take precendense ov
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:clock:
-      openconfig-system:config:
-        openconfig-system:timezone-name: 'PST -8 0'
-    openconfig-system:ntp:
-      openconfig-system:config:
-        openconfig-system:enabled: true
-      openconfig-system:servers:
-        openconfig-system:server:
-          - openconfig-system:address: '216.239.35.0'
-            openconfig-system:config:
-              openconfig-system:address: '216.239.35.0'
-              openconfig-system:association-type: SERVER
-              openconfig-system:iburst: true
-          - openconfig-system:address: '216.239.35.4'
-            openconfig-system:config:
-              openconfig-system:address: '216.239.35.4'
-              openconfig-system:association-type: SERVER
-              openconfig-system:iburst: true
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:clock:
+        openconfig-system:config:
+          openconfig-system:timezone-name: 'PST -8 0'
+      openconfig-system:ntp:
+        openconfig-system:config:
+          openconfig-system:enabled: true
+        openconfig-system:servers:
+          openconfig-system:server:
+            - openconfig-system:address: '216.239.35.0'
+              openconfig-system:config:
+                openconfig-system:address: '216.239.35.0'
+                openconfig-system:association-type: SERVER
+                openconfig-system:iburst: true
+            - openconfig-system:address: '216.239.35.4'
+              openconfig-system:config:
+                openconfig-system:address: '216.239.35.4'
+                openconfig-system:association-type: SERVER
+                openconfig-system:iburst: true
 ```
 
 The OpenConfig data is collected under the `mdd_data` key. While this file just includes the OC data to define NTP, it will later be combined with the rest of the OC data to create the full data payload. Since this data is at the root of the hierarchy, it can be overridden by anything else closer to the device. If we want to set `timezone-name` to something specific to a particular region, we can override it at the region level. For example, `mdd-data/org/region2/oc-ntp.yml` contains:
@@ -104,10 +105,12 @@ The OpenConfig data is collected under the `mdd_data` key. While this file just 
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:clock:
-      openconfig-system:config:
-        openconfig-system:timezone-name: 'EST -5 0'
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:clock:
+        openconfig-system:config:
+          openconfig-system:timezone-name: 'EST -5 0'
+
 ```
 
 This file only contains the data needed to override specific values and the approriate structure to place it in context of the overall data model.
