@@ -55,10 +55,11 @@ Let's start by looking at a simple JSON schema to validate our banners. We defin
 ```yaml
 ---
 mdd_data:
-  openconfig-system:system:
-    openconfig-system:config:
-      login-banner: "Unauthorized access is prohibited!"
-      motd-banner: "Welcome to {{ inventory_hostname }}"
+  mdd:openconfig:
+    openconfig-system:system:
+      openconfig-system:config:
+        openconfig-system:login-banner: "Unauthorized access is prohibited!"
+        openconfig-system:motd-banner: "Welcome to {{ inventory_hostname }}"
 ```
 
 As mentioned in previous exercises, this data is merged in with the rest of the data that is collected on a per-device basis. Since it is at the org level it can be overridden by data at a more specific level. We do not define tags in this example, but we could also provide a tag to specify which devices this data applies to. While it is a simple banner definition, we want to 1) make sure that it is there and 2) make sure that it contains the word `prohibited` since it turns out that lawyers find words important.
