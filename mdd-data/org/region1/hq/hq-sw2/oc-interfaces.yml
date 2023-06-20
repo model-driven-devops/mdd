@@ -25,7 +25,7 @@ mdd_data:
             openconfig-interfaces:description: VLAN10
             openconfig-interfaces:enabled: true
             openconfig-interfaces:loopback-mode: false
-            openconfig-interfaces:mtu: 1500
+            # openconfig-interfaces:mtu: 1500
             openconfig-interfaces:name: Vlan10
             openconfig-interfaces:type: l3ipvlan
           openconfig-vlan:routed-vlan:
