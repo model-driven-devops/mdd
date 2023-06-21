@@ -4,17 +4,17 @@ all:
       - name: nso-oc-services
         model_list:
           - mdd
-    nso_installer_file: https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/nso-5.7.7.linux.x86_64.signed.bin
+    nso_installer_file: https://colabucket.s3.amazonaws.com/sw/cisco/nso/6.1/nso-6.1.linux.x86_64.signed.bin
     nso_ned_files:
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-ios-6.87.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-nx-5.23.5.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-iosxr-7.43.3.signed.bin
-      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/5.7.7/ncs-5.7.7-cisco-asa-6.16.2.signed.bin
-    nso_default_ned: cisco-ios-cli-6.87
+      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/6.1/ncs-6.1-cisco-ios-6.92.7.signed.bin
+      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/6.1/ncs-6.1-cisco-nx-5.23.13.signed.bin
+      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/6.1/ncs-6.1-cisco-iosxr-7.49.2.signed.bin
+      - https://colabucket.s3.amazonaws.com/sw/cisco/nso/6.1/ncs-6.0.3-cisco-asa-6.18.3.signed.bin
+    nso_default_ned: cisco-ios-cli-6.92
     nso_package_repos:
       - name: mdd
         repo: https://github.com/model-driven-devops/nso-oc-services.git
-        version: v2.43.2
+        version: v2.70.0
         service_list:
           - mdd
   children:
