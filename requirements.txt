@@ -11,6 +11,6 @@ jmespath
 passlib
 botocore
 boto3
-nso-oc==2.70.0
+nso-oc==2.71.0
 networkx
 scipy
