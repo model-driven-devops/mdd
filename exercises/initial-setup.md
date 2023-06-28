@@ -48,10 +48,6 @@ Next, install the Python requirements via pip:
 ```
 pip3 install -r requirements.txt
 ```
-If using CML >=2.4, PIP install the correct cml client .whl file:
-```
-pip3 install ./files/virl2_client-2.4.0+build.2-py3-none-any.whl
-```
 ### Reactivate Virtual Environment
 Reactivate virtual environment to ensure your shell is using the newly installed ansible.  
 ```
