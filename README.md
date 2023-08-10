@@ -38,6 +38,8 @@ This is the reference implementation for Model-Driven Devops as outlined in the 
 
 These exercises are provided to help get hands-on experience with the reference implementation.  The book goes into depth on the individual steps as well as the core concepts behind them.
 
+> Note: the exercises below are intended for you to execute in your own environment and require CML and access to NSO software. If you would like to try out MDD in a DevNet sandbox, the exercises have been adapted and extended to work in the DevNet NSO sandbox. The DevNet NSO sandbox includes CML, NSO, GitLab and NetBox.  The updated exercises can be found in the [mdd-workshop](https://github.com/model-driven-devops/mdd-workshop) repo.
+
 * [Initial Setup](exercises/initial-setup.md)
 * [Deploying the Topology](exercises/deploy-topology.md)
 * [Exploring the Inventory](exercises/explore-inventory.md)
