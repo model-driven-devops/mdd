@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:20.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 ARG build_date=unspecified
 
@@ -20,7 +20,7 @@ USER root
 RUN mkdir /root/.ssh && bash -c 'echo -e "Host *\n  KexAlgorithms +diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha1" > /root/.ssh/config'
 RUN mkdir /ansible_collections && chmod 777 /ansible_collections
 RUN apt-get update && \
-    apt-get install -y python3.8 python3-pip sshpass git && \
+    apt-get install -y python3.10 python3-pip sshpass git && \
     pip3 install --upgrade --no-cache-dir setuptools pip && \
     echo "===> Installing PIP Requirements <==="  && \
     pip3 install --no-cache -r /tmp/requirements.txt && \
