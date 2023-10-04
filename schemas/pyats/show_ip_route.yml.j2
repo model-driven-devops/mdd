@@ -1,22 +1,22 @@
 type: object
+required:
+  - vrf
 properties:
-  required:
-    - vrf
   vrf:
     type: object
+    required:
+      - {{ check_vars.vrf }}
     properties:
-      required:
-        - {{ check_vars.vrf }}
       {{ check_vars.vrf }}:
         type: object
+        required:
+          - address_family
         properties:
-          required:
-            - address_family
           address_family:
             type: object
+            required:
+              - ipv4
             properties:
-              required:
-                - ipv4
               ipv4:
                 type: object
                 required:
@@ -24,4 +24,96 @@ properties:
                 properties:
                   routes:
                     type: object
-                    required: {{ check_vars.routes }}
+                    required:
+{% for route in check_vars.routes %}
+                      - {{ route.route }}
+{% endfor %}
+                    properties:
+{% for route in check_vars.routes %}
+                      {{ route.route }}:
+                        type: object
+                        required:
+                          - route
+{% if route.active is defined and route.active %}
+                          - active
+{% endif %}
+{% if route.metric is defined and route.metric %}
+                          - metric
+{% endif %}
+{% if route.next_hop is defined and route.next_hop %}
+                          - next_hop
+{% endif %}
+{% if route.source_protocol is defined and route.source_protocol %}
+                          - source_protocol
+{% endif %}
+{% if route.next_hop is defined and route.next_hop %}
+                          - next_hop
+{% endif %}
+                        properties:
+                          route:
+                            type: string
+                            const: {{ route.route }}
+{% if route.active is defined and route.active %}
+                          active:
+                            type: boolean
+                            const: {{ route.active }}
+{% endif %}
+{% if route.metric is defined and route.metric %}
+                          metric:
+                            type: integer
+                            const: {{ route.metric }}
+{% endif %}
+{% if route.next_hop is defined and route.next_hop %}
+                          next_hop:
+{% if route.next_hop.next_hop_list is defined and route.next_hop.next_hop_list %}
+                            type: object
+                            required:
+                              - next_hop_list
+                            properties:
+                              next_hop_list:
+                                type: object
+                                required:
+{% for next_hop in route.next_hop.next_hop_list %}
+                                  - "{{ next_hop.index }}"
+{% endfor %}
+                                properties:
+{% for next_hop in route.next_hop.next_hop_list %}
+                                  "{{ next_hop.index }}":
+                                    type: object
+                                    required:
+                                      - index
+                                      - next_hop
+{% if next_hop.outgoing_interface is defined and next_hop.outgoing_interface %}
+                                      - outgoing_interface
+{% endif %}
+                                    properties:
+                                      index:
+                                        type: integer
+                                        const: {{ next_hop.index }}
+                                      next_hop:
+                                        type: string
+                                        const: {{ next_hop.next_hop }}
+{% if next_hop.outgoing_interface is defined and next_hop.outgoing_interface %}
+                                      outgoing_interface:
+                                        type: string
+                                        const: {{ next_hop.outgoing_interface }}
+{% endif %}
+{% endfor %}                       
+{% endif %}
+{% if route.next_hop.outgoing_interface is defined and route.next_hop.outgoing_interface %}
+                            type: object
+                            required:
+                              - outgoing_interface
+                            properties:
+                              outgoing_interface:
+                                type: object
+                                required:
+                                  - {{ route.next_hop.outgoing_interface }}
+{% endif %}
+{% endif %}
+{% if route.source_protocol is defined and route.source_protocol %}
+                          source_protocol:
+                            type: string
+                            const: {{ route.source_protocol }}
+{% endif %}
+{% endfor %}

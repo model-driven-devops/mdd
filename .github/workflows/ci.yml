@@ -24,7 +24,7 @@ jobs:
     environment: mdd-dev
     concurrency: mdd-dev
     container:
-      image: ghcr.io/model-driven-devops/mdd:latest
+      image: ghcr.io/model-driven-devops/ansible-mdd/mdd:1.2.10
     steps:
       - name: Checkout Inventory
         uses: actions/checkout@v2
