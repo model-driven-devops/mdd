@@ -8,7 +8,7 @@ This workshop is designed to work with Visual Studio Code and the Cisco NSO DevN
 To get started, open a terminal and change into the `DEVWKS-2870/mdd` directory.
 
 ```
-cd ~/DEVWKS-2870/mdd
+cd ~/workshop/DEVWKS-2870/mdd
 ```
 
 Set an environment variable for your sandbox VPN password (substitute your password here).
