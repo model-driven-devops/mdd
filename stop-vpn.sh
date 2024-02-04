@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo killall openconnect
+/opt/cisco/secureclient/bin/vpn disconnect
