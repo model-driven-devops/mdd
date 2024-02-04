@@ -19,7 +19,7 @@ Start the VPN and enter your VPN password.
 If the VPN started correctly you should see the following in the output:
 
 ```
-Session authentication will expire at ...
+state: Connected
 ```
 
 > Note: If the VPN fails to start, make sure you fix this before proceeding.
@@ -27,7 +27,7 @@ Session authentication will expire at ...
 Open a remote session to the sandbox in Visual Studio Code.
 
 ```
-code --folder-uri vscode-remote://ssh-remote+developer@10.10.20.50/home/developer/workshop/DEVWKS-2870/mdd
+code --folder-uri vscode-remote://ssh-remote+developer@10.10.20.50/home/developer/mdd-workshop
 ```
 
 Enter the sandbox password `C1sco12345` when prompted.
