@@ -11,7 +11,13 @@ To get started, open a terminal and change into the `DEVWKS-2870/mdd` directory.
 cd ~/workshop/DEVWKS-2870/mdd
 ```
 
-Start the VPN and enter your password.
+Set an environment variable for your sandbox VPN password (substitute your password here).
+
+```
+export VPN_PASSWORD=your_vpn_password
+```
+
+Start the VPN.
 
 ```
 ./start-vpn.sh
