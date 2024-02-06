@@ -11,18 +11,6 @@ In this lab you will use GitLab to provide version control, workflow enforcement
 
 1. To access Gitlab, open http://devtools-gitlab.lab.devnetsandbox.local in your browser.  Login with the "developer" credentials.
 
-2. Set an API key by clicking on your user icon in the upper right corner, selecting Preferences, then Access Tokens and create a token with the "api" scope selected.  Name the token "api-token" and click "Create personal access token".  **Copy the token after it is created.**
-
-3. In Visual Studio Code, set your GITLAB_API_TOKEN in your environment.  Update `your_token_value` in the following command to the value of your token.
-    ```
-    export GITLAB_API_TOKEN=your_token_value
-    ```
-
-4. Create the GitLab project.  If you are curious about how to create projects and CI variables in GitLab using the API, open up the file `extras/create-gitlab-project.sh` and examine the CURL commands used.
-    ```
-    extras/create-gitlab-project.sh
-    ```
-
 > Note: all further instructions in this exercise assume you are in the GitLab UI unless otherwise stated.
 
 ## Continuous Integration
