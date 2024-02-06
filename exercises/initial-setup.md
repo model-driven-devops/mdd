@@ -33,6 +33,7 @@ code --folder-uri vscode-remote://ssh-remote+developer@10.10.20.50/home/develope
 Enter the sandbox password `C1sco12345` when prompted.
 
 > Note: you may need to enter the password twice.
+
 > Note: if you get a key error with this command run `rm ~/.ssh/known_hosts` to clear out the SSH host cache.
 
 Open a terminal in Visual Studio Code and activate the Python virtual environment.
