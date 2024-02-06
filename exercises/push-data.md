@@ -11,7 +11,7 @@ validated it. We are now ready to push the validated data into the devices.
 You can optionally do a dry run to push the data to all devices, a subset of devices, or a single device. The dry run will calculate what changes need to be made and give a report of the specific changes that would be made to the devices. To perform a dry run, use:
 
 ```
-ansible-playbook ciscops.mdd.update -e workers=1
+ansible-playbook ciscops.mdd.update
 ```
 
 Here is a truncated version of the output to illustrate what the playbook does:
@@ -89,7 +89,7 @@ The playbook performs the following tasks:
 Now push the data without a dry run to fully configure the reference topology.
 
 ```
-ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no
+ansible-playbook ciscops.mdd.update -e dry_run=no
 ```
 
 ## Single Device Change
@@ -118,7 +118,7 @@ $ diff files/oc-interfaces.yml files/oc-interfaces-new.yml
 Then perform a dry run:
 
 ```
-ansible-playbook ciscops.mdd.update -e workers=1
+ansible-playbook ciscops.mdd.update
 ```
 
 And see the change that would be pushed out:
@@ -151,7 +151,7 @@ site2-sw1                  : ok=16   changed=1    unreachable=0    failed=0    s
 Notice that site2-sw1 is the only device that changes. Since we know that we are only pushing out a change to site2-sw1, we can push it to that device specifically by limiting the scope of the Ansible playbook:
 
 ```
-ansible-playbook ciscops.mdd.update -e workers=1 -e dry_run=no --limit=site2-sw1
+ansible-playbook ciscops.mdd.update -e dry_run=no --limit=site2-sw1
 ```
 
 The truncated output below shows that the change was successful:
@@ -271,7 +271,7 @@ $ diff files/oc-vlan.yml files/oc-vlan-new.yml
 We can now perform a dry run to see what changes will be made in the network:
 
 ```
-ansible-playbook ciscops.mdd.update -e workers=1
+ansible-playbook ciscops.mdd.update
 ```
 
 And get the following truncated output:
