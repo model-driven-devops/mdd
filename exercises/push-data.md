@@ -92,6 +92,8 @@ Now push the data without a dry run to fully configure the reference topology.
 ansible-playbook ciscops.mdd.update -e dry_run=no
 ```
 
+> Note: if you would like to view the data in the NSO UI, you can access this at https://10.10.20.49 and login with developer/C1sco12345
+
 ## Single Device Change
 
 Let's look at making a change that affects a single device. A common change of this type would be to enable an interface and add it to a VLAN.  We'll do that by adding interface ```GigabitEthernet1/1``` into vlan 10 on ```site2-sw1``` by modifying the interface data in its `oc-intefaces.yml`. Copy the updated interface configuration of site2-sw1 into the file `mdd-data/org/region2/site2/site2-sw1/oc-intefaces.yml`:
