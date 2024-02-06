@@ -64,6 +64,8 @@ Expected output:
 
 Notice that the group `cml_hosts` is added to the output for the devices that are available in CML. This group can be used to limit playbooks to devices that are both in your inventory and currently in CML. In addition to the group `cml_hosts`, hosts are also placed in groups as determined by their tags in CML.  The tags can be specified in `cml.yml` with the `group_tags` option.
 
+> Note: if you would like to verify the topology in CML, you can access the CML UI at https://10.10.20.161 and login with developer/C1sco12345.
+
 When the topology is up and running in CML, we can get the inventory including an IP address assocated with that instance:
 
 ```
